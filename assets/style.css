@@ -20,6 +20,9 @@ body{
   top: 45%;
 
 }
+.greeting{
+  animation: noise-3 2s linear infinite;
+}
 h1{
   user-select: none;
   font-size: 10vmin;
@@ -91,32 +94,42 @@ h1{
   height: 100%;
   width: 25%;
   float: left;
-  background-position: center;
+  border: 5px solid black;
+  box-sizing: border-box;
   color: white;
+  transition: 1s;
+  transform-style: preserve-3d;
 }
 h3,p{
   margin: 0;
 }
 .board1{
   background-image: url(images/cover3.jpg);
+  background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
 }
 .board2{
   background-image: url(images/cover4.jpg);
+  background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
 }
 .board3{
   background-image: url(images/cover1.jpg);
+  background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
 }
 .board4{
   background-image: url(images/cover2.jpg);
+  background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
 }
+
+
+
 /**********STORY START********************/
 /**********KEY FRAMES START********************/
 
@@ -135,7 +148,44 @@ h3,p{
       filter: blur(20px);
     }
 }
+@keyframes side {
+  0% {
+    transform-origin: 50% 50%;
+    transform: rotateY(130deg);
+  }
+  100%{
+    transform-origin: 50% 50%;
+    transform: rotateY(0deg);
+  }
+}
 
+@keyframes noise-1 {
+  0%, 20%, 40%, 60%, 70%, 90% {opacity: 0;}
+  10% {opacity: .1;}
+  50% {opacity: .5; left: -6px;}
+  80% {opacity: .3;}
+  100% {opacity: .6; left: 2px;}
+}
+
+@keyframes noise-2 {
+  0%, 20%, 40%, 60%, 70%, 90% {opacity: 0;}
+  10% {opacity: .1;}
+  50% {opacity: .5; left: 6px;}
+  80% {opacity: .3;}
+  100% {opacity: .6; left: -2px;}
+}
+
+@keyframes noise {
+  0%, 3%, 5%, 42%, 44%, 100% {opacity: 1; transform: scaleY(1);}
+  4.3% {opacity: 1; transform: scaleY(1.7);}
+  43% {opacity: 1; transform: scaleX(1.5);}
+}
+
+@keyframes noise-3 {
+  0%,3%,5%,42%,44%,100% {opacity: 1; transform: scaleY(1);}
+  4.3% {opacity: 1; transform: scaleY(4);}
+  43% {opacity: 1; transform: scaleX(10) rotate(60deg);}
+}
 /**********KEY FRAMES END**************/
 
 /*******MOBILE STYLING  START**********/
@@ -154,6 +204,7 @@ h3,p{
       text-align: left;
       height: 48%;
       width: 48%;
+      border: 0;
       color: white;
       margin: 1%;
     }
