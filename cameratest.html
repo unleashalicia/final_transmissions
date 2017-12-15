@@ -94,8 +94,10 @@
 
     function draw(video,context,width,height){
         if (getRandom(0,100) > 3){
+            ctx.filter = 'grayscale(90%)';
             context.drawImage(video,0,0,width,height);
         } else {
+            ctx.filter = 'grayscale(40%)';
             width = 640;
             height = 480;
             var verticalSlices = Math.round(height / 20);
@@ -108,7 +110,7 @@
             }
         }
 
-        setTimeout(draw,10,video,context,width,height);
+        setTimeout(draw,80,video,context,width,height);
     }
 
     function getRandom(min, max) {
@@ -176,7 +178,7 @@
 
     var canvas = document.querySelector('#canvas');
     var ctx = canvas.getContext("2d");
-    ctx.filter = 'grayscale(90%)';
+
 
 
     //distance calc
