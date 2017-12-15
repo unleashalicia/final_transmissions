@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="https://code.jquery.com/jquery-3.1.0.js"></script>
+
+    <title>Display Webcam Stream</title>
+
+    <style>
+
+    #container {
+        margin: 0px 0px;
+        width: 100vw;
+        height: 100vh;
+        border: none;
+        position: absolute;
+        left: 00%;
+        top: 0%;
+    }
+
+    #videoElement {
+        width: 640px;
+        height: 480px;
+        background-color: #666;
+        position: absolute;
+        top: 0;
+        left: 0;
+        visibility: hidden;
+    }
+
+    #canvas {
+        width: 100vw;
+        height: 100vh;
+        background-color: transparent;
+        position: absolute;
+        top: 0;
+        left: 0;
+    }
+
+    .output {
+        display: block;
+        font-size: 1.5rem;
+        color: blue;
+        text-align: center;
+    }
+
+    #map {
+        height: 105vh;
+        width: 105vw;
+        border: none;
+        position: absolute;
+        top: 0%;
+        left: -20px;
+    }
+
+    .concealer {
+        height: 100vh;
+        width: 100vw;
+        border: none;
+        position: absolute;
+        top: 0%;
+        left: 0%;
+        overflow: hidden;
+    }
+
+    .refresh {
+        position: absolute;
+        bottom: 5%;
+        left: 50%;
+        transform: translateX(-50%);
+        background-color: red;
+        height: 10vmin;
+        width: 10vmin;
+        color: yellow;
+        border-radius: 100%;
+        cursor: pointer;
+    }
+
+    .toplayer {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 10vmin;
+        color: yellow;
+        text-align: center;
+        font-size: 2rem;
+    }
+
+    </style>
+</head>
+
+<body>
+    <div class="concealer">
+            <div id="map"></div>
+    </div>
+    <div class="toplayer"></div>
+    <div class="refresh" onclick="getLocation()"></div>
+
+    <script>
+
+
+
+    //geolocation
+    var locationdata;
+    var coord;
+    var average = [];
+    var startPoint;
+    var mapLoaded = false;
+    function getLocation() {
+        console.log('getting location');
+        var options = {
+            enableHighAccuracy: true,
+            timeout: 15000
+        };
+
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(showSuccess,showError,options);
+        } else {
+            location = "Geolocation is not supported by this browser.";
+        }
+
+
+        function showSuccess(pos) {
+            coord = pos.coords;
+            // if (coord.accuracy) {
+            //     average.push(coord.accuracy);
+            // }
+
+            // if (!startPoint) {
+            //     startPoint = {
+            //         lat: coord.latitude,
+            //         lon: coord.longitude
+            //     };
+            // }
+            if(mapLoaded === false){
+                initMap();
+
+                mapLoaded = true;
+            }
+            console.log(coord);
+            var place = document.querySelector('.toplayer');
+            place.innerHTML= `${coord.latitude} <br /> ${coord.longitude}`;
+
+            showCurrentLocation();
+        }
+
+        function showError(err){
+            console.warn(`ERROR(${err.code}): ${err.message}`);
+        }
+    }
+
+    getLocation();
+
+
+
+    //distance calc
+    function getDistanceFromLatLonInKm(lat1,lon1,lat2,lon2) {
+        var R = 6371; // Radius of the earth in km
+        var dLat = deg2rad(lat2-lat1);  // deg2rad below
+        var dLon = deg2rad(lon2-lon1);
+        var a = Math.sin(dLat/2) * Math.sin(dLat/2) +
+        Math.cos(deg2rad(lat1)) * Math.cos(deg2rad(lat2)) *
+        Math.sin(dLon/2) * Math.sin(dLon/2);
+        var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+        var d = R * c; // Distance in km
+        return d * 1000; //Distance in meters
+    }
+
+    function deg2rad(deg) {
+        return deg * (Math.PI/180)
+    }
+
+    var map;
+    function initMap() {
+        map = new google.maps.Map(document.getElementById('map'), {
+            center: {lat: coord.latitude, lng: coord.longitude},
+            zoom: 19,
+            disableDefaultUI: true,
+            draggable: false,
+            styles: [
+              {
+                "elementType": "geometry",
+                "stylers": [
+                  {
+                    "color": "#242f3e"
+                  }
+                ]
+              },
+              {
+                "elementType": "labels",
+                "stylers": [
+                  {
+                    "visibility": "off"
+                  }
+                ]
+              },
+              {
+                "elementType": "labels.text.fill",
+                "stylers": [
+                  {
+                    "color": "#746855"
+                  }
+                ]
+              },
+              {
+                "elementType": "labels.text.stroke",
+                "stylers": [
+                  {
+                    "color": "#242f3e"
+                  }
+                ]
+              },
+              {
+                "featureType": "administrative",
+                "elementType": "geometry.fill",
+                "stylers": [
+                  {
+                    "color": "#242f3e"
+                  }
+                ]
+              },
+              {
+                "featureType": "administrative",
+                "elementType": "geometry.stroke",
+                "stylers": [
+                  {
+                    "color": "#30ff27"
+                  }
+                ]
+              },
+              {
+                "featureType": "administrative.locality",
+                "elementType": "labels.text.fill",
+                "stylers": [
+                  {
+                    "color": "#d59563"
+                  }
+                ]
+              },
+              {
+                "featureType": "landscape.man_made",
+                "elementType": "geometry.stroke",
+                "stylers": [
+                  {
+                    "color": "#30ff27"
+                  },
+                  {
+                    "visibility": "on"
+                  },
+                  {
+                    "weight": 8
+                  }
+                ]
+              },
+              {
+                "featureType": "landscape.man_made",
+                "elementType": "labels",
+                "stylers": [
+                  {
+                    "visibility": "off"
+                  }
+                ]
+              },
+              {
+                "featureType": "landscape.natural",
+                "elementType": "geometry.stroke",
+                "stylers": [
+                  {
+                    "color": "#d41d1c"
+                  }
+                ]
+              },
+              {
+                "featureType": "poi",
+                "elementType": "geometry.stroke",
+                "stylers": [
+                  {
+                    "color": "#d59563"
+                  },
+                  {
+                    "visibility": "off"
+                  }
+                ]
+              },
+              {
+                "featureType": "poi",
+                "elementType": "labels.text.fill",
+                "stylers": [
+                  {
+                    "color": "#d59563"
+                  }
+                ]
+              },
+              {
+                "featureType": "poi.park",
+                "elementType": "geometry",
+                "stylers": [
+                  {
+                    "color": "#263c3f"
+                  }
+                ]
+              },
+              {
+                "featureType": "poi.park",
+                "elementType": "labels.text.fill",
+                "stylers": [
+                  {
+                    "color": "#6b9a76"
+                  }
+                ]
+              },
+              {
+                "featureType": "road",
+                "elementType": "geometry",
+                "stylers": [
+                  {
+                    "color": "#38414e"
+                  }
+                ]
+              },
+              {
+                "featureType": "road",
+                "elementType": "geometry.stroke",
+                "stylers": [
+                  {
+                    "color": "#388924"
+                  },
+                  {
+                    "visibility": "simplified"
+                  }
+                ]
+              },
+              {
+                "featureType": "road",
+                "elementType": "labels.text.fill",
+                "stylers": [
+                  {
+                    "color": "#9ca5b3"
+                  }
+                ]
+              },
+              {
+                "featureType": "road.arterial",
+                "elementType": "geometry.stroke",
+                "stylers": [
+                  {
+                    "color": "#265918"
+                  },
+                  {
+                    "visibility": "simplified"
+                  }
+                ]
+              },
+              {
+                "featureType": "road.highway",
+                "elementType": "geometry",
+                "stylers": [
+                  {
+                    "color": "#746855"
+                  }
+                ]
+              },
+              {
+                "featureType": "road.highway",
+                "elementType": "geometry.stroke",
+                "stylers": [
+                  {
+                    "color": "#265918"
+                  }
+                ]
+              },
+              {
+                "featureType": "road.highway",
+                "elementType": "labels.text.fill",
+                "stylers": [
+                  {
+                    "color": "#f3d19c"
+                  }
+                ]
+              },
+              {
+                "featureType": "road.local",
+                "elementType": "geometry.stroke",
+                "stylers": [
+                  {
+                    "color": "#265918"
+                  },
+                  {
+                    "visibility": "on"
+                  }
+                ]
+              },
+              {
+                "featureType": "transit",
+                "elementType": "geometry",
+                "stylers": [
+                  {
+                    "color": "#2f3948"
+                  }
+                ]
+              },
+              {
+                "featureType": "transit",
+                "elementType": "geometry.stroke",
+                "stylers": [
+                  {
+                    "color": "#265918"
+                  },
+                  {
+                    "visibility": "simplified"
+                  }
+                ]
+              },
+              {
+                "featureType": "transit.station",
+                "elementType": "labels.text.fill",
+                "stylers": [
+                  {
+                    "color": "#d59563"
+                  }
+                ]
+              },
+              {
+                "featureType": "water",
+                "elementType": "geometry",
+                "stylers": [
+                  {
+                    "color": "#17263c"
+                  }
+                ]
+              },
+              {
+                "featureType": "water",
+                "elementType": "labels.text.fill",
+                "stylers": [
+                  {
+                    "color": "#515c6d"
+                  }
+                ]
+              },
+              {
+                "featureType": "water",
+                "elementType": "labels.text.stroke",
+                "stylers": [
+                  {
+                    "color": "#17263c"
+                  }
+                ]
+              }
+            ]
+        });
+    }
+
+
+    function showCurrentLocation(){
+        var iconBase = 'http://maps.google.com/mapfiles/kml/shapes/shaded_dot.png';
+        var marker = new google.maps.Marker({
+            position: {
+                lat: coord.latitude,
+                lng: coord.longitude
+            },
+            map: map,
+            icon: iconBase
+        });
+    }
+
+</script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCXqyuEI8wFxFvczjGjlbim35FAuco0oCU&"
+async defer></script>
+</body>
+</html>
