@@ -117,8 +117,8 @@
     function getLocation() {
         console.log('getting location');
         var options = {
-            enableHighAccuracy: false,
-            timeout: 0,
+            enableHighAccuracy: true,
+            timeout: 5000,
             maxAge: 10000
         };
 
@@ -160,7 +160,7 @@
         function showError(err){
             console.warn(`ERROR(${err.code}): ${err.message}`);
             let place = document.querySelector('.toplayer');
-            place.innerHTML= `${coord.latitude} <br /> ${coord.longitude} <br />Error!`;
+            place.innerHTML= `Error!`;
         }
     }
 
