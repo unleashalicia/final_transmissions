@@ -2,14 +2,13 @@
 <html>
     <head>
             <script src="https://aframe.io/releases/0.6.1/aframe.min.js"></script>
-            <script src="https://cdn.rawgit.com/jeromeetienne/AR.js/1.5.0/aframe/build/aframe-ar.js"> </script>
+            <script src="https://cdn.rawgit.com/jeromeetienne/AR.js/1.5.0/aframe/build/aframe-ar.js"></script>
+            <script>THREE.ArToolKitContext.baseURL = 'https://rawgit.com/jeromeetienne/ar.js/master/three.js/'</script>
     </head>
     <body style='margin : 0px; overflow: hidden;'>
-        <a-scene embedded arjs>
-            <a-marker preset="hiro">
-                <a-sphere position='0 2 0' material='opacity: 0.7, color: yellow;'></a-sphere>
-            </a-marker>
-            <a-entity camera></a-entity>
+        <a-scene embedded artoolkit='sourceType: webcam;'>
+            <a-box position="0 0.5 0" width="1" height="1" depth="1" color="white" opacity = "0.7"></a-box>
+            <a-marker-camera preset='hiro'></a-marker-camera>
         </a-scene>
     </body>
 </html>
