@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0"/>
     <script src="https://code.jquery.com/jquery-3.1.0.js"></script>
 
     <title>Display Webcam Stream</title>
@@ -94,7 +95,7 @@
             <div id="map"></div>
     </div>
     <div class="toplayer"></div>
-    <div class="refresh" onclick="getLocation()"></div>
+    <div class="refresh" ontouchstart="getLocation()"></div>
 
     <script>
 
@@ -103,6 +104,7 @@
     //geolocation
     var locationdata;
     var coord;
+    var marker;
     var average = [];
     var startPoint;
     var mapLoaded = false;
@@ -139,13 +141,15 @@
             }
             console.log(coord);
             var place = document.querySelector('.toplayer');
-            place.innerHTML= `${coord.latitude} <br /> ${coord.longitude}`;
+            place.innerHTML= `${coord.latitude} <br /> ${coord.longitude} <br />Success!`;
 
             showCurrentLocation();
         }
 
         function showError(err){
             console.warn(`ERROR(${err.code}): ${err.message}`);
+            var place = document.querySelector('.toplayer');
+            place.innerHTML= `${coord.latitude} <br /> ${coord.longitude} <br />Error!`;
         }
     }
 
@@ -454,15 +458,19 @@
 
     function showCurrentLocation(){
         var iconBase = 'http://maps.google.com/mapfiles/kml/shapes/shaded_dot.png';
-        var marker = new google.maps.Marker({
-            position: {
-                lat: coord.latitude,
-                lng: coord.longitude
-            },
+        var pos = {
+            lat: coord.latitude,
+            lng: coord.longitude
+        };
+        marker = new google.maps.Marker({
+            position: pos,
             map: map,
             icon: iconBase
         });
+        map.setCenter(pos);
     }
+
+
 
 </script>
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCXqyuEI8wFxFvczjGjlbim35FAuco0oCU&"

@@ -80,8 +80,9 @@
     <script>
     //video
     var video = document.querySelector("#videoElement");
+    var videoConstraints = {video: {facingMode: "environment"}, audio: false}
 
-    navigator.mediaDevices.getUserMedia({video: true, audio: false}).then(handleVideo).catch(videoError);
+    navigator.mediaDevices.getUserMedia(videoConstraints).then(handleVideo).catch(videoError);
 
 
     function handleVideo(stream) {
