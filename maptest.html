@@ -108,39 +108,50 @@
     var average = [];
     var startPoint;
     var mapLoaded = false;
+    var map;
+
+    //##
+    //our general purpose call for location locationdata
+    //this could get wrapped up into a player object as a method
+    //##
     function getLocation() {
         console.log('getting location');
         var options = {
-            enableHighAccuracy: true,
-            timeout: 15000
+            enableHighAccuracy: false,
+            timeout: 0,
+            maxAge:
         };
 
-        if (navigator.geolocation) {
+        if (!coord && navigator.geolocation) {
+            //If we have not gotten a location then call for one
             navigator.geolocation.getCurrentPosition(showSuccess,showError,options);
-        } else {
+        } else if (navigator.geolocation){
+            //otherwise, watch the position
+            navigator.geolocation.watchPosition(showSuccess,showError,options);
+        }else {
             location = "Geolocation is not supported by this browser.";
         }
 
-
+        //##
+        //Not sure about the need to have this here
+        //move outside of the parent function?
+        //##
         function showSuccess(pos) {
+            //##
+            //pos also includes pos.timestamp
+            //which can be used for discarding spurious results
+            //when combined with a calculated distance from origin
+            //##
             coord = pos.coords;
-            // if (coord.accuracy) {
-            //     average.push(coord.accuracy);
-            // }
 
-            // if (!startPoint) {
-            //     startPoint = {
-            //         lat: coord.latitude,
-            //         lon: coord.longitude
-            //     };
-            // }
+
             if(mapLoaded === false){
                 initMap();
 
                 mapLoaded = true;
             }
             console.log(coord);
-            var place = document.querySelector('.toplayer');
+            let place = document.querySelector('.toplayer');
             place.innerHTML= `${coord.latitude} <br /> ${coord.longitude} <br />Success!`;
 
             showCurrentLocation();
@@ -148,16 +159,30 @@
 
         function showError(err){
             console.warn(`ERROR(${err.code}): ${err.message}`);
-            var place = document.querySelector('.toplayer');
+            let place = document.querySelector('.toplayer');
             place.innerHTML= `${coord.latitude} <br /> ${coord.longitude} <br />Error!`;
         }
     }
 
+    //##
+    //Make an initial call on load in order to bring up map data
     getLocation();
 
+    //##
+    //This would set an interval, but since I am trying to use geolocation.watchPosition
+    //I am hoping an interval will not be necessary
+    //
+    // var autoLocationInterval = setInterval(function(){
+    //     getLocation();
+    // },60000);
+    //##
 
 
-    //distance calc
+    //##
+    //distance calc for anything we put into it
+    //takes latitude and longitude for each object
+    //maybe switch this to be passed as objects?
+    //##
     function getDistanceFromLatLonInKm(lat1,lon1,lat2,lon2) {
         var R = 6371; // Radius of the earth in km
         var dLat = deg2rad(lat2-lat1);  // deg2rad below
@@ -170,11 +195,18 @@
         return d * 1000; //Distance in meters
     }
 
+    //##
+    //used in the get distance calc in order to use radians
+    //##
     function deg2rad(deg) {
         return deg * (Math.PI/180)
     }
 
-    var map;
+
+
+    //##
+    //gets called on first location success within getLocation()
+    //##
     function initMap() {
         map = new google.maps.Map(document.getElementById('map'), {
             center: {lat: coord.latitude, lng: coord.longitude},
@@ -456,6 +488,10 @@
     }
 
 
+    //##
+    //Works to show location, but is not yet handling clearing the marker and replacing it in a new spot
+    //it just adds another one, Im also uncertain as to whether it is recentering the map?
+    //##
     function showCurrentLocation(){
         var iconBase = 'http://maps.google.com/mapfiles/kml/shapes/shaded_dot.png';
         var pos = {
@@ -471,7 +507,8 @@
     }
 
 
-
+//Not sure why this script tag is all the way down ehre instead of on m=page load at the top?
+//Remember to ask Lori about it -BE
 </script>
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCXqyuEI8wFxFvczjGjlbim35FAuco0oCU&"
 async defer></script>
