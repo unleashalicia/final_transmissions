@@ -7,16 +7,9 @@
     </head>
     <body style='margin : 0px; overflow: hidden;'>
         <a-scene embedded artoolkit='sourceType: webcam;'>
-            <a-sphere src="https://raw.githubusercontent.com/aframevr/sample-assets/master/assets/images/space/earth_atmos_4096.jpg" radius="1" segments-height="53">
-                <a-animation attribute="scale"
-                             dur="1000"
-                             from= "1 1 1"
-                             to="2 2 2"
-                             direction='alternate-reverse'
-                             easing= "ease-in-out-circ"
-                             repeat="indefinite"></a-animation>
+            <a-sphere src="./images/ghost.png" radius="1" segments-height="53">
             </a-sphere>
-            <a-sky src="http://www.eso.org/public/archives/images/screen/eso1501a.jpg" rotation="0 -90 0"></a-sky>
+            <a-sky color="white"></a-sky>
             <a-marker-camera preset='hiro'></a-marker-camera>
         </a-scene>
     </body>
