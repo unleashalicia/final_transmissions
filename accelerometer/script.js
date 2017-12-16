@@ -7,8 +7,10 @@ function handleMotion(DeviceMotionEvent) {
     var beta     = DeviceMotionEvent.beta;
     var gamma    = DeviceMotionEvent.gamma;
 
-    console.log("value pertaining to acceleration: ", acceleration);
-    console.log("value pertaining to alpha: ", alpha);
-    console.log("value pertaining to beta: ", beta);
-    console.log("value pertaining to gamma: ", gamma);
+    console.log(alpha, beta, gamma);
+
+    $('.accelerometer').text(`x: ${acceleration.x} y: ${acceleration.y} z: ${acceleration.z}`);
+    $('.alpha').text(alpha);
+    $('.beta').text(beta);
+    $('.gamma').text(gamma);
 }
