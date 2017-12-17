@@ -80,8 +80,11 @@
     <script>
     //video
     var video = document.querySelector("#videoElement");
-    var videoConstraints = window.constraints = {video: {facingMode: "environment"}, audio: false};
+    var videoConstraints = window.constraints = {video: {facingMode: "user"}, audio: false};
     var iOSsystem = iOS();
+	video.setAttribute("playsinline",true);
+	video.setAttribute("controls",true);
+
 
     function iOS() {
         var iDevices = [
@@ -102,7 +105,7 @@
 
 
     function handleVideo(stream) {
-        window.stream = stream; // make variable available to browser console
+	window.stream = stream; // make variable available to browser console
         video.srcObject = stream;
         // video.src = window.URL.createObjectURL(stream);
         draw(video,ctx,412,732);
