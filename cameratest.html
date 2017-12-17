@@ -108,7 +108,12 @@
 	window.stream = stream; // make variable available to browser console
         video.srcObject = stream;
         // video.src = window.URL.createObjectURL(stream);
-        draw(video,ctx,412,732);
+        if (iOS) {
+            $('canvas').css('display','none');
+            $('video').css('visibility','visible');
+        } else {
+            draw(video,ctx,412,732);
+        }
     }
 
     function videoError(e) {
