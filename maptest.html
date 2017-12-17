@@ -109,6 +109,11 @@
     var startPoint;
     var mapLoaded = false;
     var map;
+    var target = {
+        latitude: 33.7517861,
+        longitude: -117.8632928,
+        threshold: 10
+    };
 
     //##
     //our general purpose call for location locationdata
@@ -152,9 +157,15 @@
             }
             console.log(coord);
             let place = document.querySelector('.toplayer');
-            place.innerHTML= `${coord.latitude} <br /> ${coord.longitude} <br />Success!`;
+
 
             showCurrentLocation();
+
+            if (getDistanceFromLatLonInKm(coord.latitude,coord.longitude,target.latitude,target.longitude) <= 10){
+                place.innerHTML= `Within 10m of location!!`;
+            } else {
+                place.innerHTML= `${coord.latitude} <br /> ${coord.longitude} <br />Success!`;
+            }
         }
 
         function showError(err){
