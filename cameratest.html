@@ -81,39 +81,39 @@
     //video
     var video = document.querySelector("#videoElement");
     var videoConstraints = window.constraints = {video: {facingMode: "user"}, audio: false};
-    var iOSsystem = iOS();
-	video.setAttribute("playsinline",true);
-	video.setAttribute("controls",true);
+    // var iOSsystem = iOS(); <----for iOS
+	// video.setAttribute("playsinline",true); <----for iOS
+	// video.setAttribute("controls",true); <----for iOS
 
 
-    function iOS() {
-        var iDevices = [
-            'iPad',
-            'iPhone',
-            'iPod'
-        ];
-
-        if (!!navigator.platform) {
-            while (iDevices.length) {
-                if (navigator.platform === iDevices.pop()){ return true; }
-            }
-        }
-        return false;
-    }
+    // function iOS() { <----for iOS
+    //     var iDevices = [
+    //         'iPad',
+    //         'iPhone',
+    //         'iPod'
+    //     ];
+    //
+    //     if (!!navigator.platform) {
+    //         while (iDevices.length) {
+    //             if (navigator.platform === iDevices.pop()){ return true; }
+    //         }
+    //     }
+    //     return false;
+    // }
 
     navigator.mediaDevices.getUserMedia(videoConstraints).then(handleVideo).catch(videoError);
 
 
     function handleVideo(stream) {
-	window.stream = stream; // make variable available to browser console
-        video.srcObject = stream;
-        // video.src = window.URL.createObjectURL(stream);
-        if (iOS) {
-            $('canvas').css('display','none');
-            $('video').css('visibility','visible');
-        } else {
-            draw(video,ctx,412,732);
-        }
+	    // window.stream = stream; <----for iOS
+        // video.srcObject = stream; <----for iOS
+        video.src = window.URL.createObjectURL(stream);
+        // if (iOS) {<----for iOS
+        //     $('canvas').css('display','none');<----for iOS
+        //     $('video').css('visibility','visible');<----for iOS
+        // } else {<----for iOS
+        draw(video,ctx,412,732);
+        // }<----for iOS
     }
 
     function videoError(e) {
@@ -146,391 +146,11 @@
     }
 
 
-
-    //geolocation
-    // var locationdata;
-    // var coord;
-    // var average = [];
-    // var startPoint;
-    // var mapLoaded = false;
-    // function getLocation() {
-    //     var options = {
-    //         enableHighAccuracy: true,
-    //         timeout: 5000
-    //     };
-    //
-    //     if (navigator.geolocation) {
-    //         navigator.geolocation.getCurrentPosition(showSuccess,showError,options);
-    //     } else {
-    //         location = "Geolocation is not supported by this browser.";
-    //     }
-    //
-    //
-    //     function showSuccess(pos) {
-    //         coord = pos.coords;
-    //         if (coord.accuracy) {
-    //             average.push(coord.accuracy);
-    //         }
-    //
-    //         if (!startPoint) {
-    //             startPoint = {
-    //                 lat: coord.latitude,
-    //                 lon: coord.longitude
-    //             };
-    //         }
-    //         if(mapLoaded === false){
-    //             initMap();
-    //
-    //             mapLoaded = true;
-    //         }
-    //         console.log(coord);
-    //         showCurrentLocation();
-    //     }
-    //
-    //     function showError(err){
-    //         console.warn(`ERROR(${err.code}): ${err.message}`);
-    //     }
-    // }
-
-    //  setInterval(function(){
-    //      getLocation();
-    //      ctx.clearRect(0, 0, canvas.width, canvas.height);
-    //      ctx.font = "30px Arial";
-    //      ctx.fillStyle = 'yellow';
-    //      let sum = average.reduce((x,y) => y += x );
-    //      let newAv = Math.floor(sum / average.length);
-    //      ctx.fillText(newAv,10,50);
-    //      console.log('getLocation');
-    //      document.getElementsByClassName("output")[0].innerText = `Lat: ${coord.latitude} \n Lon: ${coord.longitude} \n Accuracy: ${coord.accuracy} \n Distance from start: ${getDistanceFromLatLonInKm(coord.latitude,coord.longitude,startPoint.lat,startPoint.lon)}`;
-    //  },5000);
-    // getLocation();
-
-
     var canvas = document.querySelector('#canvas');
     var ctx = canvas.getContext("2d");
 
 
 
-    //distance calc
-    // function getDistanceFromLatLonInKm(lat1,lon1,lat2,lon2) {
-    //     var R = 6371; // Radius of the earth in km
-    //     var dLat = deg2rad(lat2-lat1);  // deg2rad below
-    //     var dLon = deg2rad(lon2-lon1);
-    //     var a = Math.sin(dLat/2) * Math.sin(dLat/2) +
-    //     Math.cos(deg2rad(lat1)) * Math.cos(deg2rad(lat2)) *
-    //     Math.sin(dLon/2) * Math.sin(dLon/2);
-    //     var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
-    //     var d = R * c; // Distance in km
-    //     return d * 1000; //Distance in meters
-    // }
-    //
-    // function deg2rad(deg) {
-    //     return deg * (Math.PI/180)
-    // }
-    //
-    // var map;
-    // function initMap() {
-    //     map = new google.maps.Map(document.getElementById('map'), {
-    //         center: {lat: coord.latitude, lng: coord.longitude},
-    //         zoom: 19,
-    //         disableDefaultUI: true,
-    //         draggable: false,
-    //         styles: [
-    //           {
-    //             "elementType": "geometry",
-    //             "stylers": [
-    //               {
-    //                 "color": "#242f3e"
-    //               }
-    //             ]
-    //           },
-    //           {
-    //             "elementType": "labels",
-    //             "stylers": [
-    //               {
-    //                 "visibility": "off"
-    //               }
-    //             ]
-    //           },
-    //           {
-    //             "elementType": "labels.text.fill",
-    //             "stylers": [
-    //               {
-    //                 "color": "#746855"
-    //               }
-    //             ]
-    //           },
-    //           {
-    //             "elementType": "labels.text.stroke",
-    //             "stylers": [
-    //               {
-    //                 "color": "#242f3e"
-    //               }
-    //             ]
-    //           },
-    //           {
-    //             "featureType": "administrative",
-    //             "elementType": "geometry.fill",
-    //             "stylers": [
-    //               {
-    //                 "color": "#242f3e"
-    //               }
-    //             ]
-    //           },
-    //           {
-    //             "featureType": "administrative",
-    //             "elementType": "geometry.stroke",
-    //             "stylers": [
-    //               {
-    //                 "color": "#30ff27"
-    //               }
-    //             ]
-    //           },
-    //           {
-    //             "featureType": "administrative.locality",
-    //             "elementType": "labels.text.fill",
-    //             "stylers": [
-    //               {
-    //                 "color": "#d59563"
-    //               }
-    //             ]
-    //           },
-    //           {
-    //             "featureType": "landscape.man_made",
-    //             "elementType": "geometry.stroke",
-    //             "stylers": [
-    //               {
-    //                 "color": "#30ff27"
-    //               },
-    //               {
-    //                 "visibility": "on"
-    //               },
-    //               {
-    //                 "weight": 8
-    //               }
-    //             ]
-    //           },
-    //           {
-    //             "featureType": "landscape.man_made",
-    //             "elementType": "labels",
-    //             "stylers": [
-    //               {
-    //                 "visibility": "off"
-    //               }
-    //             ]
-    //           },
-    //           {
-    //             "featureType": "landscape.natural",
-    //             "elementType": "geometry.stroke",
-    //             "stylers": [
-    //               {
-    //                 "color": "#d41d1c"
-    //               }
-    //             ]
-    //           },
-    //           {
-    //             "featureType": "poi",
-    //             "elementType": "geometry.stroke",
-    //             "stylers": [
-    //               {
-    //                 "color": "#d59563"
-    //               },
-    //               {
-    //                 "visibility": "off"
-    //               }
-    //             ]
-    //           },
-    //           {
-    //             "featureType": "poi",
-    //             "elementType": "labels.text.fill",
-    //             "stylers": [
-    //               {
-    //                 "color": "#d59563"
-    //               }
-    //             ]
-    //           },
-    //           {
-    //             "featureType": "poi.park",
-    //             "elementType": "geometry",
-    //             "stylers": [
-    //               {
-    //                 "color": "#263c3f"
-    //               }
-    //             ]
-    //           },
-    //           {
-    //             "featureType": "poi.park",
-    //             "elementType": "labels.text.fill",
-    //             "stylers": [
-    //               {
-    //                 "color": "#6b9a76"
-    //               }
-    //             ]
-    //           },
-    //           {
-    //             "featureType": "road",
-    //             "elementType": "geometry",
-    //             "stylers": [
-    //               {
-    //                 "color": "#38414e"
-    //               }
-    //             ]
-    //           },
-    //           {
-    //             "featureType": "road",
-    //             "elementType": "geometry.stroke",
-    //             "stylers": [
-    //               {
-    //                 "color": "#388924"
-    //               },
-    //               {
-    //                 "visibility": "simplified"
-    //               }
-    //             ]
-    //           },
-    //           {
-    //             "featureType": "road",
-    //             "elementType": "labels.text.fill",
-    //             "stylers": [
-    //               {
-    //                 "color": "#9ca5b3"
-    //               }
-    //             ]
-    //           },
-    //           {
-    //             "featureType": "road.arterial",
-    //             "elementType": "geometry.stroke",
-    //             "stylers": [
-    //               {
-    //                 "color": "#265918"
-    //               },
-    //               {
-    //                 "visibility": "simplified"
-    //               }
-    //             ]
-    //           },
-    //           {
-    //             "featureType": "road.highway",
-    //             "elementType": "geometry",
-    //             "stylers": [
-    //               {
-    //                 "color": "#746855"
-    //               }
-    //             ]
-    //           },
-    //           {
-    //             "featureType": "road.highway",
-    //             "elementType": "geometry.stroke",
-    //             "stylers": [
-    //               {
-    //                 "color": "#265918"
-    //               }
-    //             ]
-    //           },
-    //           {
-    //             "featureType": "road.highway",
-    //             "elementType": "labels.text.fill",
-    //             "stylers": [
-    //               {
-    //                 "color": "#f3d19c"
-    //               }
-    //             ]
-    //           },
-    //           {
-    //             "featureType": "road.local",
-    //             "elementType": "geometry.stroke",
-    //             "stylers": [
-    //               {
-    //                 "color": "#265918"
-    //               },
-    //               {
-    //                 "visibility": "on"
-    //               }
-    //             ]
-    //           },
-    //           {
-    //             "featureType": "transit",
-    //             "elementType": "geometry",
-    //             "stylers": [
-    //               {
-    //                 "color": "#2f3948"
-    //               }
-    //             ]
-    //           },
-    //           {
-    //             "featureType": "transit",
-    //             "elementType": "geometry.stroke",
-    //             "stylers": [
-    //               {
-    //                 "color": "#265918"
-    //               },
-    //               {
-    //                 "visibility": "simplified"
-    //               }
-    //             ]
-    //           },
-    //           {
-    //             "featureType": "transit.station",
-    //             "elementType": "labels.text.fill",
-    //             "stylers": [
-    //               {
-    //                 "color": "#d59563"
-    //               }
-    //             ]
-    //           },
-    //           {
-    //             "featureType": "water",
-    //             "elementType": "geometry",
-    //             "stylers": [
-    //               {
-    //                 "color": "#17263c"
-    //               }
-    //             ]
-    //           },
-    //           {
-    //             "featureType": "water",
-    //             "elementType": "labels.text.fill",
-    //             "stylers": [
-    //               {
-    //                 "color": "#515c6d"
-    //               }
-    //             ]
-    //           },
-    //           {
-    //             "featureType": "water",
-    //             "elementType": "labels.text.stroke",
-    //             "stylers": [
-    //               {
-    //                 "color": "#17263c"
-    //               }
-    //             ]
-    //           }
-    //         ]
-    //     });
-    // }
-
-    //show current location
-//
-//    var goldStar = {
-//        path: 'M 125,5 155,90 245,90 175,145 200,230 125,180 50,230 75,145 5,90 95,90 z',
-//        fillColor: 'blue',
-////        fillOpacity: 0.4,
-//        scale: .2,
-////        strokeColor: 'gold',
-////        strokeWeight: 14
-//    };
-
-    // function showCurrentLocation(){
-    //     var iconBase = 'http://maps.google.com/mapfiles/kml/shapes/shaded_dot.png';
-    //     var marker = new google.maps.Marker({
-    //         position: {
-    //             lat: coord.latitude,
-    //             lng: coord.longitude
-    //         },
-    //         map: map,
-    //         icon: iconBase
-    //     });
-    // }
 
 </script>
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCXqyuEI8wFxFvczjGjlbim35FAuco0oCU&"
