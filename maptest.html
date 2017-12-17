@@ -110,8 +110,8 @@
     var mapLoaded = false;
     var map;
     var target = {
-        latitude: 33.7517861,
-        longitude: -117.8632928,
+        latitude: 33.7523889,
+        longitude: -117.8637263,
         threshold: 10
     };
 
@@ -160,11 +160,12 @@
 
 
             showCurrentLocation();
+            var distance = getDistanceFromLatLonInKm(coord.latitude,coord.longitude,target.latitude,target.longitude);
 
-            if (getDistanceFromLatLonInKm(coord.latitude,coord.longitude,target.latitude,target.longitude) <= 10){
+            if ( distance <= target.threshold){
                 place.innerHTML= `Within 10m of location!!`;
             } else {
-                place.innerHTML= `${coord.latitude} <br /> ${coord.longitude} <br />Success!`;
+                place.innerHTML= `${coord.latitude} <br /> ${coord.longitude} <br />Success!<br />${distance}`;
             }
         }
 
