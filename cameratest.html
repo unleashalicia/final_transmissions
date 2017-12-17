@@ -80,13 +80,31 @@
     <script>
     //video
     var video = document.querySelector("#videoElement");
-    var videoConstraints = {video: {facingMode: "environment"}, audio: false}
+    var videoConstraints = window.constraints = {video: {facingMode: "environment"}, audio: false};
+    var iOSsystem = iOS();
+
+    function iOS() {
+        var iDevices = [
+            'iPad',
+            'iPhone',
+            'iPod'
+        ];
+
+        if (!!navigator.platform) {
+            while (iDevices.length) {
+                if (navigator.platform === iDevices.pop()){ return true; }
+            }
+        }
+        return false;
+    }
 
     navigator.mediaDevices.getUserMedia(videoConstraints).then(handleVideo).catch(videoError);
 
 
     function handleVideo(stream) {
-        video.src = window.URL.createObjectURL(stream);
+        window.stream = stream; // make variable available to browser console
+        video.srcObject = stream;
+        // video.src = window.URL.createObjectURL(stream);
         draw(video,ctx,412,732);
     }
 
