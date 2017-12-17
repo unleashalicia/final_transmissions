@@ -6,10 +6,22 @@
             <script>THREE.ArToolKitContext.baseURL = 'https://rawgit.com/jeromeetienne/ar.js/master/three.js/'</script>
     </head>
     <body style='margin : 0px; overflow: hidden;'>
+        <a-assets>
+            <img src="./images/hellraiser.jpg" id="hellraiser"/>
+        </a-assets>
         <a-scene embedded artoolkit='sourceType: webcam;'>
-            <a-sphere src="./images/ghost.png" radius="1" segments-height="53">
-            </a-sphere>
-            <a-sky color="white"></a-sky>
+            <a-entity position= "1 1 1">
+                <a-animation attribute="rotation"
+                             dur="3000"
+                             fill="forwards"
+                             easing="linear"
+                             to="0 360 0"
+                             repeat="indefinite">
+
+                </a-animation>
+                <a-box src="#hellraiser" width="2" height="2" depth="2">
+            </a-box>
+            </a-entity>
             <a-marker-camera preset='hiro'></a-marker-camera>
         </a-scene>
     </body>
