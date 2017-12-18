@@ -3,89 +3,90 @@
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0"/>
     <script src="https://code.jquery.com/jquery-3.1.0.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.0.5/howler.core.min.js"></script>
 
     <title>Display Webcam Stream</title>
 
     <style>
 
-    #container {
-        margin: 0px 0px;
-        width: 100vw;
-        height: 100vh;
-        border: none;
-        position: absolute;
-        left: 00%;
-        top: 0%;
-    }
+        #container {
+            margin: 0px 0px;
+            width: 100vw;
+            height: 100vh;
+            border: none;
+            position: absolute;
+            left: 00%;
+            top: 0%;
+        }
 
-    #videoElement {
-        width: 640px;
-        height: 480px;
-        background-color: #666;
-        position: absolute;
-        top: 0;
-        left: 0;
-        visibility: hidden;
-    }
+        #videoElement {
+            width: 640px;
+            height: 480px;
+            background-color: #666;
+            position: absolute;
+            top: 0;
+            left: 0;
+            visibility: hidden;
+        }
 
-    #canvas {
-        width: 100vw;
-        height: 100vh;
-        background-color: transparent;
-        position: absolute;
-        top: 0;
-        left: 0;
-    }
+        #canvas {
+            width: 100vw;
+            height: 100vh;
+            background-color: transparent;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
 
-    .output {
-        display: block;
-        font-size: 1.5rem;
-        color: blue;
-        text-align: center;
-    }
+        .output {
+            display: block;
+            font-size: 1.5rem;
+            color: blue;
+            text-align: center;
+        }
 
-    #map {
-        height: 105vh;
-        width: 105vw;
-        border: none;
-        position: absolute;
-        top: 0%;
-        left: -20px;
-    }
+        #map {
+            height: 105vh;
+            width: 105vw;
+            border: none;
+            position: absolute;
+            top: 0%;
+            left: -20px;
+        }
 
-    .concealer {
-        height: 100vh;
-        width: 100vw;
-        border: none;
-        position: absolute;
-        top: 0%;
-        left: 0%;
-        overflow: hidden;
-    }
+        .concealer {
+            height: 100vh;
+            width: 100vw;
+            border: none;
+            position: absolute;
+            top: 0%;
+            left: 0%;
+            overflow: hidden;
+        }
 
-    .refresh {
-        position: absolute;
-        bottom: 5%;
-        left: 50%;
-        transform: translateX(-50%);
-        background-color: red;
-        height: 10vmin;
-        width: 10vmin;
-        color: yellow;
-        border-radius: 100%;
-        cursor: pointer;
-    }
+        .refresh {
+            position: absolute;
+            bottom: 5%;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: red;
+            height: 10vmin;
+            width: 10vmin;
+            color: yellow;
+            border-radius: 100%;
+            cursor: pointer;
+        }
 
-    .toplayer {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100vw;
-        height: 10vmin;
-        color: yellow;
-        text-align: center;
-        font-size: 2rem;
-    }
+        .toplayer {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 10vmin;
+            color: yellow;
+            text-align: center;
+            font-size: 2rem;
+        }
 
     </style>
 </head>
@@ -101,441 +102,459 @@
 
 
 
-    //geolocation
-    var locationdata;
-    var coord;
-    var marker;
-    var average = [];
-    var startPoint;
-    var mapLoaded = false;
-    var map;
-    var target = {
-        latitude: 33.7523889,
-        longitude: -117.8637263,
-        threshold: 10
-    };
-
-    //##
-    //our general purpose call for location locationdata
-    //this could get wrapped up into a player object as a method
-    //##
-    function getLocation() {
-        console.log('getting location');
-        var options = {
-            enableHighAccuracy: true,
-            timeout: 5000,
-            maxAge: 10000
-        };
-
-        if (!coord && navigator.geolocation) {
-            //If we have not gotten a location then call for one
-            navigator.geolocation.getCurrentPosition(showSuccess,showError,options);
-        } else if (navigator.geolocation){
-            //otherwise, watch the position
-            navigator.geolocation.watchPosition(showSuccess,showError,options);
-        }else {
-            location = "Geolocation is not supported by this browser.";
+        //geolocation
+        var locationdata;
+        var coord;
+        var marker;
+        var average = [];
+        var startPoint;
+        var mapLoaded = false;
+        var map;
+        var target = {
+            latitude: 33.6350687,
+            longitude: -117.7402043,
+            threshold: 8
         }
 
-        //##
-        //Not sure about the need to have this here
-        //move outside of the parent function?
-        //##
-        function showSuccess(pos) {
-            //##
-            //pos also includes pos.timestamp
-            //which can be used for discarding spurious results
-            //when combined with a calculated distance from origin
-            //##
-            coord = pos.coords;
+        //Out front of apartment
+        // var target = {
+        //     latitude: 33.7523889,
+        //     longitude: -117.8637263,
+        //     threshold: 10
+        // };
 
-
-            if(mapLoaded === false){
-                initMap();
-
-                mapLoaded = true;
+        var sound = new Howl ({
+            src: ['../assets/0951.ogg'],
+            autoplay: true,
+            loop: true,
+            volume: 0,
+            onloaderror: function(){
+                console.log('sound load error: ' + url);
             }
-            console.log(coord);
-            let place = document.querySelector('.toplayer');
-
-
-            showCurrentLocation();
-            var distance = getDistanceFromLatLonInKm(coord.latitude,coord.longitude,target.latitude,target.longitude);
-
-            if ( distance <= target.threshold){
-                place.innerHTML= `Within 10m of location!!`;
-            } else {
-                place.innerHTML= `${coord.latitude} <br /> ${coord.longitude} <br />Success!<br />${distance}`;
-            }
-        }
-
-        function showError(err){
-            console.warn(`ERROR(${err.code}): ${err.message}`);
-            let place = document.querySelector('.toplayer');
-            place.innerHTML= `Error!`;
-        }
-    }
-
-    //##
-    //Make an initial call on load in order to bring up map data
-    getLocation();
-
-    //##
-    //This would set an interval, but since I am trying to use geolocation.watchPosition
-    //I am hoping an interval will not be necessary
-    //
-    // var autoLocationInterval = setInterval(function(){
-    //     getLocation();
-    // },60000);
-    //##
-
-
-    //##
-    //distance calc for anything we put into it
-    //takes latitude and longitude for each object
-    //maybe switch this to be passed as objects?
-    //##
-    function getDistanceFromLatLonInKm(lat1,lon1,lat2,lon2) {
-        var R = 6371; // Radius of the earth in km
-        var dLat = deg2rad(lat2-lat1);  // deg2rad below
-        var dLon = deg2rad(lon2-lon1);
-        var a = Math.sin(dLat/2) * Math.sin(dLat/2) +
-        Math.cos(deg2rad(lat1)) * Math.cos(deg2rad(lat2)) *
-        Math.sin(dLon/2) * Math.sin(dLon/2);
-        var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
-        var d = R * c; // Distance in km
-        return d * 1000; //Distance in meters
-    }
-
-    //##
-    //used in the get distance calc in order to use radians
-    //##
-    function deg2rad(deg) {
-        return deg * (Math.PI/180)
-    }
-
-
-
-    //##
-    //gets called on first location success within getLocation()
-    //##
-    function initMap() {
-        map = new google.maps.Map(document.getElementById('map'), {
-            center: {lat: coord.latitude, lng: coord.longitude},
-            zoom: 19,
-            disableDefaultUI: true,
-            draggable: false,
-            styles: [
-              {
-                "elementType": "geometry",
-                "stylers": [
-                  {
-                    "color": "#242f3e"
-                  }
-                ]
-              },
-              {
-                "elementType": "labels",
-                "stylers": [
-                  {
-                    "visibility": "off"
-                  }
-                ]
-              },
-              {
-                "elementType": "labels.text.fill",
-                "stylers": [
-                  {
-                    "color": "#746855"
-                  }
-                ]
-              },
-              {
-                "elementType": "labels.text.stroke",
-                "stylers": [
-                  {
-                    "color": "#242f3e"
-                  }
-                ]
-              },
-              {
-                "featureType": "administrative",
-                "elementType": "geometry.fill",
-                "stylers": [
-                  {
-                    "color": "#242f3e"
-                  }
-                ]
-              },
-              {
-                "featureType": "administrative",
-                "elementType": "geometry.stroke",
-                "stylers": [
-                  {
-                    "color": "#30ff27"
-                  }
-                ]
-              },
-              {
-                "featureType": "administrative.locality",
-                "elementType": "labels.text.fill",
-                "stylers": [
-                  {
-                    "color": "#d59563"
-                  }
-                ]
-              },
-              {
-                "featureType": "landscape.man_made",
-                "elementType": "geometry.stroke",
-                "stylers": [
-                  {
-                    "color": "#30ff27"
-                  },
-                  {
-                    "visibility": "on"
-                  },
-                  {
-                    "weight": 8
-                  }
-                ]
-              },
-              {
-                "featureType": "landscape.man_made",
-                "elementType": "labels",
-                "stylers": [
-                  {
-                    "visibility": "off"
-                  }
-                ]
-              },
-              {
-                "featureType": "landscape.natural",
-                "elementType": "geometry.stroke",
-                "stylers": [
-                  {
-                    "color": "#d41d1c"
-                  }
-                ]
-              },
-              {
-                "featureType": "poi",
-                "elementType": "geometry.stroke",
-                "stylers": [
-                  {
-                    "color": "#d59563"
-                  },
-                  {
-                    "visibility": "off"
-                  }
-                ]
-              },
-              {
-                "featureType": "poi",
-                "elementType": "labels.text.fill",
-                "stylers": [
-                  {
-                    "color": "#d59563"
-                  }
-                ]
-              },
-              {
-                "featureType": "poi.park",
-                "elementType": "geometry",
-                "stylers": [
-                  {
-                    "color": "#263c3f"
-                  }
-                ]
-              },
-              {
-                "featureType": "poi.park",
-                "elementType": "labels.text.fill",
-                "stylers": [
-                  {
-                    "color": "#6b9a76"
-                  }
-                ]
-              },
-              {
-                "featureType": "road",
-                "elementType": "geometry",
-                "stylers": [
-                  {
-                    "color": "#38414e"
-                  }
-                ]
-              },
-              {
-                "featureType": "road",
-                "elementType": "geometry.stroke",
-                "stylers": [
-                  {
-                    "color": "#388924"
-                  },
-                  {
-                    "visibility": "simplified"
-                  }
-                ]
-              },
-              {
-                "featureType": "road",
-                "elementType": "labels.text.fill",
-                "stylers": [
-                  {
-                    "color": "#9ca5b3"
-                  }
-                ]
-              },
-              {
-                "featureType": "road.arterial",
-                "elementType": "geometry.stroke",
-                "stylers": [
-                  {
-                    "color": "#265918"
-                  },
-                  {
-                    "visibility": "simplified"
-                  }
-                ]
-              },
-              {
-                "featureType": "road.highway",
-                "elementType": "geometry",
-                "stylers": [
-                  {
-                    "color": "#746855"
-                  }
-                ]
-              },
-              {
-                "featureType": "road.highway",
-                "elementType": "geometry.stroke",
-                "stylers": [
-                  {
-                    "color": "#265918"
-                  }
-                ]
-              },
-              {
-                "featureType": "road.highway",
-                "elementType": "labels.text.fill",
-                "stylers": [
-                  {
-                    "color": "#f3d19c"
-                  }
-                ]
-              },
-              {
-                "featureType": "road.local",
-                "elementType": "geometry.stroke",
-                "stylers": [
-                  {
-                    "color": "#265918"
-                  },
-                  {
-                    "visibility": "on"
-                  }
-                ]
-              },
-              {
-                "featureType": "transit",
-                "elementType": "geometry",
-                "stylers": [
-                  {
-                    "color": "#2f3948"
-                  }
-                ]
-              },
-              {
-                "featureType": "transit",
-                "elementType": "geometry.stroke",
-                "stylers": [
-                  {
-                    "color": "#265918"
-                  },
-                  {
-                    "visibility": "simplified"
-                  }
-                ]
-              },
-              {
-                "featureType": "transit.station",
-                "elementType": "labels.text.fill",
-                "stylers": [
-                  {
-                    "color": "#d59563"
-                  }
-                ]
-              },
-              {
-                "featureType": "water",
-                "elementType": "geometry",
-                "stylers": [
-                  {
-                    "color": "#17263c"
-                  }
-                ]
-              },
-              {
-                "featureType": "water",
-                "elementType": "labels.text.fill",
-                "stylers": [
-                  {
-                    "color": "#515c6d"
-                  }
-                ]
-              },
-              {
-                "featureType": "water",
-                "elementType": "labels.text.stroke",
-                "stylers": [
-                  {
-                    "color": "#17263c"
-                  }
-                ]
-              }
-            ]
         });
-    }
+        sound.audible = false;
+
+        //##
+        //our general purpose call for location locationdata
+        //this could get wrapped up into a player object as a method
+        //##
+        function getLocation() {
+            console.log('getting location');
+            var options = {
+                enableHighAccuracy: true,
+                timeout: 5000,
+                maxAge: 10000
+            };
+
+            if (!coord && navigator.geolocation) {
+                //If we have not gotten a location then call for one
+                navigator.geolocation.getCurrentPosition(showSuccess,showError,options);
+            } else if (navigator.geolocation){
+                //otherwise, watch the position
+                navigator.geolocation.watchPosition(showSuccess,showError,options);
+            }else {
+                location = "Geolocation is not supported by this browser.";
+            }
+
+            //##
+            //Not sure about the need to have this here
+            //move outside of the parent function?
+            //##
+            function showSuccess(pos) {
+                //##
+                //pos also includes pos.timestamp
+                //which can be used for discarding spurious results
+                //when combined with a calculated distance from origin
+                //##
+                coord = pos.coords;
 
 
-    //##
-    //Works to show location, but is not yet handling clearing the marker and replacing it in a new spot
-    //it just adds another one, Im also uncertain as to whether it is recentering the map?
-    //##
+                if(mapLoaded === false){
+                    initMap();
 
-    function showCurrentLocation(){
-        var iconBase = 'http://maps.google.com/mapfiles/kml/shapes/shaded_dot.png';
-        console.log('marker before call:', marker);
-        if(marker === undefined) {
-            marker = new google.maps.Marker({
-                position: {
-                    lat: coord.latitude,
-                    lng: coord.longitude
-                },
-                map: map,
-                icon: iconBase
-            });
-        } else {
-            marker.setVisible(false);
-            console.log('Marker before:', marker.visible);
-            marker = new google.maps.Marker({
-                position: {
-                    lat: coord.latitude,
-                    lng: coord.longitude
-                },
-                map: map,
-                icon: iconBase
+                    mapLoaded = true;
+                }
+                console.log(coord);
+                let place = document.querySelector('.toplayer');
+
+
+                showCurrentLocation();
+                var distance = getDistanceFromLatLonInKm(coord.latitude,coord.longitude,target.latitude,target.longitude);
+
+                if ( distance <= target.threshold){
+                    place.innerHTML= `Within ${target.threshold}m of location!!`;
+                    sound.fade(0,1,4000);
+                    sound.audible = true;
+
+                } else {
+                    place.innerHTML= `${coord.latitude} <br /> ${coord.longitude} <br />Success!<br />${distance}`;
+                    if (sound.audible){
+                        sound.fade(1,0,2000);
+                        sound.audible = false;
+                    }
+                }
+            }
+
+            function showError(err){
+                console.warn(`ERROR(${err.code}): ${err.message}`);
+                let place = document.querySelector('.toplayer');
+                place.innerHTML= `Error!`;
+            }
+        }
+
+        //##
+        //Make an initial call on load in order to bring up map data
+        getLocation();
+
+
+        //##
+        //distance calc for anything we put into it
+        //takes latitude and longitude for each object
+        //maybe switch this to be passed as objects?
+        //Outputs a number representing distance in meters
+        //##
+        function getDistanceFromLatLonInKm(lat1,lon1,lat2,lon2) {
+            var R = 6371; // Radius of the earth in km
+            var dLat = deg2rad(lat2-lat1);  // deg2rad below
+            var dLon = deg2rad(lon2-lon1);
+            var a = Math.sin(dLat/2) * Math.sin(dLat/2) +
+            Math.cos(deg2rad(lat1)) * Math.cos(deg2rad(lat2)) *
+            Math.sin(dLon/2) * Math.sin(dLon/2);
+            var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+            var d = R * c; // Distance in km
+            return d * 1000; //Distance in meters
+        }
+
+        //##
+        //used in the get distance calc in order to use radians
+        //##
+        function deg2rad(deg) {
+            return deg * (Math.PI/180)
+        }
+
+
+
+        //##
+        //gets called on first location success within getLocation()
+        //##
+        function initMap() {
+            map = new google.maps.Map(document.getElementById('map'), {
+                center: {lat: coord.latitude, lng: coord.longitude},
+                zoom: 19,
+                disableDefaultUI: true,
+                draggable: false,
+                styles: [
+                  {
+                    "elementType": "geometry",
+                    "stylers": [
+                      {
+                        "color": "#242f3e"
+                      }
+                    ]
+                  },
+                  {
+                    "elementType": "labels",
+                    "stylers": [
+                      {
+                        "visibility": "off"
+                      }
+                    ]
+                  },
+                  {
+                    "elementType": "labels.text.fill",
+                    "stylers": [
+                      {
+                        "color": "#746855"
+                      }
+                    ]
+                  },
+                  {
+                    "elementType": "labels.text.stroke",
+                    "stylers": [
+                      {
+                        "color": "#242f3e"
+                      }
+                    ]
+                  },
+                  {
+                    "featureType": "administrative",
+                    "elementType": "geometry.fill",
+                    "stylers": [
+                      {
+                        "color": "#242f3e"
+                      }
+                    ]
+                  },
+                  {
+                    "featureType": "administrative",
+                    "elementType": "geometry.stroke",
+                    "stylers": [
+                      {
+                        "color": "#30ff27"
+                      }
+                    ]
+                  },
+                  {
+                    "featureType": "administrative.locality",
+                    "elementType": "labels.text.fill",
+                    "stylers": [
+                      {
+                        "color": "#d59563"
+                      }
+                    ]
+                  },
+                  {
+                    "featureType": "landscape.man_made",
+                    "elementType": "geometry.stroke",
+                    "stylers": [
+                      {
+                        "color": "#30ff27"
+                      },
+                      {
+                        "visibility": "on"
+                      },
+                      {
+                        "weight": 8
+                      }
+                    ]
+                  },
+                  {
+                    "featureType": "landscape.man_made",
+                    "elementType": "labels",
+                    "stylers": [
+                      {
+                        "visibility": "off"
+                      }
+                    ]
+                  },
+                  {
+                    "featureType": "landscape.natural",
+                    "elementType": "geometry.stroke",
+                    "stylers": [
+                      {
+                        "color": "#d41d1c"
+                      }
+                    ]
+                  },
+                  {
+                    "featureType": "poi",
+                    "elementType": "geometry.stroke",
+                    "stylers": [
+                      {
+                        "color": "#d59563"
+                      },
+                      {
+                        "visibility": "off"
+                      }
+                    ]
+                  },
+                  {
+                    "featureType": "poi",
+                    "elementType": "labels.text.fill",
+                    "stylers": [
+                      {
+                        "color": "#d59563"
+                      }
+                    ]
+                  },
+                  {
+                    "featureType": "poi.park",
+                    "elementType": "geometry",
+                    "stylers": [
+                      {
+                        "color": "#263c3f"
+                      }
+                    ]
+                  },
+                  {
+                    "featureType": "poi.park",
+                    "elementType": "labels.text.fill",
+                    "stylers": [
+                      {
+                        "color": "#6b9a76"
+                      }
+                    ]
+                  },
+                  {
+                    "featureType": "road",
+                    "elementType": "geometry",
+                    "stylers": [
+                      {
+                        "color": "#38414e"
+                      }
+                    ]
+                  },
+                  {
+                    "featureType": "road",
+                    "elementType": "geometry.stroke",
+                    "stylers": [
+                      {
+                        "color": "#388924"
+                      },
+                      {
+                        "visibility": "simplified"
+                      }
+                    ]
+                  },
+                  {
+                    "featureType": "road",
+                    "elementType": "labels.text.fill",
+                    "stylers": [
+                      {
+                        "color": "#9ca5b3"
+                      }
+                    ]
+                  },
+                  {
+                    "featureType": "road.arterial",
+                    "elementType": "geometry.stroke",
+                    "stylers": [
+                      {
+                        "color": "#265918"
+                      },
+                      {
+                        "visibility": "simplified"
+                      }
+                    ]
+                  },
+                  {
+                    "featureType": "road.highway",
+                    "elementType": "geometry",
+                    "stylers": [
+                      {
+                        "color": "#746855"
+                      }
+                    ]
+                  },
+                  {
+                    "featureType": "road.highway",
+                    "elementType": "geometry.stroke",
+                    "stylers": [
+                      {
+                        "color": "#265918"
+                      }
+                    ]
+                  },
+                  {
+                    "featureType": "road.highway",
+                    "elementType": "labels.text.fill",
+                    "stylers": [
+                      {
+                        "color": "#f3d19c"
+                      }
+                    ]
+                  },
+                  {
+                    "featureType": "road.local",
+                    "elementType": "geometry.stroke",
+                    "stylers": [
+                      {
+                        "color": "#265918"
+                      },
+                      {
+                        "visibility": "on"
+                      }
+                    ]
+                  },
+                  {
+                    "featureType": "transit",
+                    "elementType": "geometry",
+                    "stylers": [
+                      {
+                        "color": "#2f3948"
+                      }
+                    ]
+                  },
+                  {
+                    "featureType": "transit",
+                    "elementType": "geometry.stroke",
+                    "stylers": [
+                      {
+                        "color": "#265918"
+                      },
+                      {
+                        "visibility": "simplified"
+                      }
+                    ]
+                  },
+                  {
+                    "featureType": "transit.station",
+                    "elementType": "labels.text.fill",
+                    "stylers": [
+                      {
+                        "color": "#d59563"
+                      }
+                    ]
+                  },
+                  {
+                    "featureType": "water",
+                    "elementType": "geometry",
+                    "stylers": [
+                      {
+                        "color": "#17263c"
+                      }
+                    ]
+                  },
+                  {
+                    "featureType": "water",
+                    "elementType": "labels.text.fill",
+                    "stylers": [
+                      {
+                        "color": "#515c6d"
+                      }
+                    ]
+                  },
+                  {
+                    "featureType": "water",
+                    "elementType": "labels.text.stroke",
+                    "stylers": [
+                      {
+                        "color": "#17263c"
+                      }
+                    ]
+                  }
+                ]
             });
         }
-        console.log('Marker:', marker.visible);
-    }
 
 
-//Not sure why this script tag is all the way down ehre instead of on m=page load at the top?
-//Remember to ask Lori about it -BE
+        //##
+        //Works to show location, but is not yet handling clearing the marker and replacing it in a new spot
+        //it just adds another one, Im also uncertain as to whether it is recentering the map?
+        //##
+
+        function showCurrentLocation(){
+            var iconBase = 'http://maps.google.com/mapfiles/kml/shapes/shaded_dot.png';
+            console.log('marker before call:', marker);
+            if(marker === undefined) {
+                marker = new google.maps.Marker({
+                    position: {
+                        lat: coord.latitude,
+                        lng: coord.longitude
+                    },
+                    map: map,
+                    icon: iconBase
+                });
+            } else {
+                marker.setVisible(false);
+                console.log('Marker before:', marker.visible);
+                marker = new google.maps.Marker({
+                    position: {
+                        lat: coord.latitude,
+                        lng: coord.longitude
+                    },
+                    map: map,
+                    icon: iconBase
+                });
+            }
+            console.log('Marker:', marker.visible);
+        }
+
 </script>
+
+<!-- Not sure why this script tag is all the way down ehre instead of on m=page load at the top?
+ Remember to ask Lori about it -BE -->
+
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCXqyuEI8wFxFvczjGjlbim35FAuco0oCU&"
 async defer></script>
 </body>
