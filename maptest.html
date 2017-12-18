@@ -125,7 +125,7 @@
 
         var sound = new Howl ({
             src: ['../assets/0951.ogg'],
-            autoplay: true,
+            autoplay: false,
             loop: true,
             volume: 0,
             onloaderror: function(){
@@ -139,6 +139,9 @@
         //this could get wrapped up into a player object as a method
         //##
         function getLocation() {
+            if (!sound.playing()){
+                sound.play();
+            }
             console.log('getting location');
             var options = {
                 enableHighAccuracy: true,

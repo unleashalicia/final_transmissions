@@ -1,66 +1,67 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <meta name="apple-mobile-web-app-capable" content="yes">
     <script src="https://code.jquery.com/jquery-3.1.0.js"></script>
 
     <title>Display Webcam Stream</title>
 
     <style>
 
-    #container {
-        margin: 0px 0px;
-        width: 100vw;
-        height: 100vh;
-        border: none;
-        position: absolute;
-        left: 0%;
-        top: 0%;
-    }
+        #container {
+            margin: 0px 0px;
+            width: 100vw;
+            height: 100vh;
+            border: none;
+            position: absolute;
+            left: 0%;
+            top: 0%;
+        }
 
-    #videoElement {
-        width: 640px;
-        height: 480px;
-        background-color: #666;
-        position: absolute;
-        top: 0;
-        left: 0;
-        visibility: hidden;
-    }
+        #videoElement {
+            width: 640px;
+            height: 480px;
+            background-color: #666;
+            position: absolute;
+            top: 0;
+            left: 0;
+            visibility: hidden;
+        }
 
-    #canvas {
-        width: 100vw;
-        height: 100vh;
-        background-color: transparent;
-        position: absolute;
-        top: 0;
-        left: 0;
-    }
+        #canvas {
+            width: 100vw;
+            height: 100vh;
+            background-color: transparent;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
 
-    .output {
-        display: block;
-        font-size: 1.5rem;
-        color: blue;
-        text-align: center;
-    }
+        .output {
+            display: block;
+            font-size: 1.5rem;
+            color: blue;
+            text-align: center;
+        }
 
-    #map {
-        height: 105vh;
-        width: 105vw;
-        border: none;
-        position: absolute;
-        top: 0%;
-        left: -20px;
-    }
+        #map {
+            height: 105vh;
+            width: 105vw;
+            border: none;
+            position: absolute;
+            top: 0%;
+            left: -20px;
+        }
 
-    .concealer {
-        height: 100vh;
-        width: 100vw;
-        border: none;
-        position: absolute;
-        top: 0%;
-        left: 0%;
-        overflow: hidden;
-    }
+        .concealer {
+            height: 100vh;
+            width: 100vw;
+            border: none;
+            position: absolute;
+            top: 0%;
+            left: 0%;
+            overflow: hidden;
+        }
 
     </style>
 </head>
@@ -80,7 +81,7 @@
     <script>
     //video
     var video = document.querySelector("#videoElement");
-    var videoConstraints = window.constraints = {video: {facingMode: "user"}, audio: false};
+    var videoConstraints = {video: {facingMode: "user"}, audio: false};
     // var iOSsystem = iOS(); <----for iOS
 	// video.setAttribute("playsinline",true); <----for iOS
 	// video.setAttribute("controls",true); <----for iOS
@@ -105,6 +106,7 @@
 
 
     function handleVideo(stream) {
+        console.log('stuff');
 	    // window.stream = stream; <----for iOS
         // video.srcObject = stream; <----for iOS
         video.src = window.URL.createObjectURL(stream);
@@ -142,7 +144,7 @@
     }
 
     function getRandom(min, max) {
-      return Math.floor(Math.random() * (max - min + 1)) + min;
+        return Math.floor(Math.random() * (max - min + 1)) + min;
     }
 
 
