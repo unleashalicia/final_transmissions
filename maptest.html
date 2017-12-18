@@ -504,18 +504,32 @@
     //Works to show location, but is not yet handling clearing the marker and replacing it in a new spot
     //it just adds another one, Im also uncertain as to whether it is recentering the map?
     //##
+
     function showCurrentLocation(){
         var iconBase = 'http://maps.google.com/mapfiles/kml/shapes/shaded_dot.png';
-        var pos = {
-            lat: coord.latitude,
-            lng: coord.longitude
-        };
-        marker = new google.maps.Marker({
-            position: pos,
-            map: map,
-            icon: iconBase
-        });
-        map.setCenter(pos);
+        console.log('marker before call:', marker);
+        if(marker === undefined) {
+            marker = new google.maps.Marker({
+                position: {
+                    lat: coord.latitude,
+                    lng: coord.longitude
+                },
+                map: map,
+                icon: iconBase
+            });
+        } else {
+            marker.setVisible(false);
+            console.log('Marker before:', marker.visible);
+            marker = new google.maps.Marker({
+                position: {
+                    lat: coord.latitude,
+                    lng: coord.longitude
+                },
+                map: map,
+                icon: iconBase
+            });
+        }
+        console.log('Marker:', marker.visible);
     }
 
 
