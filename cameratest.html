@@ -151,6 +151,45 @@
 
 
 
+    //show current location
+    //
+    //    var goldStar = {
+    //        path: 'M 125,5 155,90 245,90 175,145 200,230 125,180 50,230 75,145 5,90 95,90 z',
+    //        fillColor: 'blue',
+    ////        fillOpacity: 0.4,
+    //        scale: .2,
+    ////        strokeColor: 'gold',
+    ////        strokeWeight: 14
+    //    };
+    var marker;
+
+    function showCurrentLocation(){
+        var iconBase = 'http://maps.google.com/mapfiles/kml/shapes/shaded_dot.png';
+        console.log('marker before call:', marker);
+        if(marker === undefined) {
+            marker = new google.maps.Marker({
+                position: {
+                    lat: coord.latitude,
+                    lng: coord.longitude
+                },
+                map: map,
+                icon: iconBase
+            });
+        } else {
+            marker.setVisible(false);
+            console.log('Marker before:', marker.visible);
+            marker = new google.maps.Marker({
+                position: {
+                    lat: coord.latitude,
+                    lng: coord.longitude
+                },
+                map: map,
+                icon: iconBase
+            });
+        }
+        console.log('Marker:', marker.visible);
+    }
+
 
 </script>
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCXqyuEI8wFxFvczjGjlbim35FAuco0oCU&"
