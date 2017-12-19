@@ -7,7 +7,7 @@ button{
 }
 #landing-container{
   position: absolute;
-  background-image: url(images/ghost3.jpg);
+  background-image: url(../images/ghost3.jpg);
   background-size: cover;
   background-repeat: no-repeat;
   font-family: de-walpergens-pica, serif;
@@ -91,7 +91,7 @@ h1{
   color: grey;
 }
 #story-container{
-  background-image: url(images/ghost.jpg);
+  background-image: url(../images/ghost.jpg);
   background-size: cover;
   background-repeat: no-repeat;
   position: absolute;
@@ -148,25 +148,25 @@ h3,p{
   margin: 0;
 }
 .board1{
-  background-image: url(images/cover3.jpg);
+  background-image: url(../images/cover3.jpg);
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
 }
 .board2{
-  background-image: url(images/cover4.jpg);
+  background-image: url(../images/cover4.jpg);
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
 }
 .board3{
-  background-image: url(images/cover1.jpg);
+  background-image: url(../images/cover1.jpg);
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
 }
 .board4{
-  background-image: url(images/cover2.jpg);
+  background-image: url(../images/cover2.jpg);
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
@@ -266,22 +266,22 @@ h3,p{
       font-size: 10px;
     }
     .board1{
-      background-image: url(images/cover3.jpg);
+      background-image: url(../images/cover3.jpg);
       background-size: cover;
       background-repeat: no-repeat;
     }
     .board2{
-      background-image: url(images/cover4.jpg);
+      background-image: url(../images/cover4.jpg);
       background-size: cover;
       background-repeat: no-repeat;
     }
     .board3{
-      background-image: url(images/cover1.jpg);
+      background-image: url(../images/cover1.jpg);
       background-size: cover;
       background-repeat: no-repeat;
     }
     .board4{
-      background-image: url(images/cover2.jpg);
+      background-image: url(../images/cover2.jpg);
       background-size: cover;
       background-repeat: no-repeat;
     }
