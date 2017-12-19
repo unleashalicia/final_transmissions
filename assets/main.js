@@ -2,6 +2,10 @@ $(document).ready(init)
 
 
 function init(){
+  handleClickEvents();
+}
+
+function handleClickEvents(){
   $('.open').on('click', function(){ //go to stories to check, leaves landing page
     $('#landing-container').addClass('ghostOut').fadeOut(3000)
     setTimeout(function(){
@@ -9,10 +13,11 @@ function init(){
     },3100)
   });
   $('.experience').on('click', function(){ //go to map and camera
+    debugger;
     if(window.outerWidth < 750 ){
       window.open('map.html')
     }else{
-      console.log('modal open')
+      $('.instruction').fadeIn();
       // $('.info').fadeIn();
     }
   })
@@ -52,4 +57,7 @@ function init(){
     $('.signUp').fadeOut();
     $('.logIn').fadeOut();
   });
+  $('.instruction div div span').on('click', function(){
+    $('.instruction').fadeOut();
+  })
 }

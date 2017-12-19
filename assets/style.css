@@ -2,7 +2,9 @@ body{
   margin: 0;
   overflow: hidden;
 }
-
+button{
+  cursor: pointer;
+}
 #landing-container{
   position: absolute;
   background-image: url(images/ghost3.jpg);
@@ -68,6 +70,26 @@ h1{
 
 /**********MODAL FORM END********************/
 /**********STORY START********************/
+.instruction{
+  display: none;
+  z-index: 50;
+  position: absolute;
+  background-color: rgba(0,0,0,0.7);
+  height: 100%;
+  width: 100%;
+}
+.instruction>div{
+  position: absolute;
+  color: white;
+  font-size: 5vmin;
+  animation: float 5s infinite;
+}
+.instruction div div span{
+  cursor: pointer;
+}
+.instruction div div span:hover{
+  color: grey;
+}
 #story-container{
   background-image: url(images/ghost.jpg);
   background-size: cover;
@@ -170,14 +192,21 @@ h3,p{
       filter: blur(20px);
     }
 }
-@keyframes side {
+@keyframes float {
   0% {
-    transform-origin: 50% 50%;
-    transform: rotateY(130deg);
+    transform: translate(30%, 50%);
+  }
+  25% {
+    transform: translate(50%, 30%);
+  }
+  50% {
+    transform: translate(60%, 20%);
+  }
+  75% {
+
   }
   100%{
-    transform-origin: 50% 50%;
-    transform: rotateY(0deg);
+    transform: translate(30%, 60%);
   }
 }
 
@@ -217,6 +246,9 @@ h3,p{
     }
     h1{
       font-size: 10vmin;
+    }
+    .sign, .log{
+      width: 60%;
     }
     .open{
       font-size: 5vmin;
