@@ -2,12 +2,16 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0"/>
-    <script src="https://code.jquery.com/jquery-3.1.0.js"></script>
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.0.5/howler.core.min.js"></script>
 
     <title>Display Webcam Stream</title>
 
     <style>
+
+        body {
+            background-color: #242f3e;
+        }
 
         #container {
             margin: 0px 0px;
@@ -15,27 +19,8 @@
             height: 100vh;
             border: none;
             position: absolute;
-            left: 00%;
+            left: 0%;
             top: 0%;
-        }
-
-        #videoElement {
-            width: 640px;
-            height: 480px;
-            background-color: #666;
-            position: absolute;
-            top: 0;
-            left: 0;
-            visibility: hidden;
-        }
-
-        #canvas {
-            width: 100vw;
-            height: 100vh;
-            background-color: transparent;
-            position: absolute;
-            top: 0;
-            left: 0;
         }
 
         .output {
@@ -52,6 +37,7 @@
             position: absolute;
             top: 0%;
             left: -20px;
+            background-color: #242f3e;
         }
 
         .concealer {
@@ -129,7 +115,7 @@
             loop: true,
             volume: 0,
             onloaderror: function(){
-                console.log('sound load error: ' + url);
+                console.log('sound load error');
             }
         });
         sound.audible = false;
@@ -181,7 +167,7 @@
                 let place = document.querySelector('.toplayer');
 
 
-                showCurrentLocation();
+                showCurrentLocation(coord);
                 var distance = getDistanceFromLatLonInKm(coord.latitude,coord.longitude,target.latitude,target.longitude);
 
                 if ( distance <= target.threshold){
@@ -242,7 +228,7 @@
         //##
         function initMap() {
             map = new google.maps.Map(document.getElementById('map'), {
-                center: {lat: coord.latitude, lng: coord.longitude},
+                center: {lat: 33.6348729, lng: -117.7405317},
                 zoom: 19,
                 disableDefaultUI: true,
                 draggable: false,
@@ -260,22 +246,6 @@
                     "stylers": [
                       {
                         "visibility": "off"
-                      }
-                    ]
-                  },
-                  {
-                    "elementType": "labels.text.fill",
-                    "stylers": [
-                      {
-                        "color": "#746855"
-                      }
-                    ]
-                  },
-                  {
-                    "elementType": "labels.text.stroke",
-                    "stylers": [
-                      {
-                        "color": "#242f3e"
                       }
                     ]
                   },
@@ -298,15 +268,6 @@
                     ]
                   },
                   {
-                    "featureType": "administrative.locality",
-                    "elementType": "labels.text.fill",
-                    "stylers": [
-                      {
-                        "color": "#d59563"
-                      }
-                    ]
-                  },
-                  {
                     "featureType": "landscape.man_made",
                     "elementType": "geometry.stroke",
                     "stylers": [
@@ -322,59 +283,11 @@
                     ]
                   },
                   {
-                    "featureType": "landscape.man_made",
-                    "elementType": "labels",
-                    "stylers": [
-                      {
-                        "visibility": "off"
-                      }
-                    ]
-                  },
-                  {
                     "featureType": "landscape.natural",
                     "elementType": "geometry.stroke",
                     "stylers": [
                       {
                         "color": "#d41d1c"
-                      }
-                    ]
-                  },
-                  {
-                    "featureType": "poi",
-                    "elementType": "geometry.stroke",
-                    "stylers": [
-                      {
-                        "color": "#d59563"
-                      },
-                      {
-                        "visibility": "off"
-                      }
-                    ]
-                  },
-                  {
-                    "featureType": "poi",
-                    "elementType": "labels.text.fill",
-                    "stylers": [
-                      {
-                        "color": "#d59563"
-                      }
-                    ]
-                  },
-                  {
-                    "featureType": "poi.park",
-                    "elementType": "geometry",
-                    "stylers": [
-                      {
-                        "color": "#263c3f"
-                      }
-                    ]
-                  },
-                  {
-                    "featureType": "poi.park",
-                    "elementType": "labels.text.fill",
-                    "stylers": [
-                      {
-                        "color": "#6b9a76"
                       }
                     ]
                   },
@@ -400,66 +313,6 @@
                     ]
                   },
                   {
-                    "featureType": "road",
-                    "elementType": "labels.text.fill",
-                    "stylers": [
-                      {
-                        "color": "#9ca5b3"
-                      }
-                    ]
-                  },
-                  {
-                    "featureType": "road.arterial",
-                    "elementType": "geometry.stroke",
-                    "stylers": [
-                      {
-                        "color": "#265918"
-                      },
-                      {
-                        "visibility": "simplified"
-                      }
-                    ]
-                  },
-                  {
-                    "featureType": "road.highway",
-                    "elementType": "geometry",
-                    "stylers": [
-                      {
-                        "color": "#746855"
-                      }
-                    ]
-                  },
-                  {
-                    "featureType": "road.highway",
-                    "elementType": "geometry.stroke",
-                    "stylers": [
-                      {
-                        "color": "#265918"
-                      }
-                    ]
-                  },
-                  {
-                    "featureType": "road.highway",
-                    "elementType": "labels.text.fill",
-                    "stylers": [
-                      {
-                        "color": "#f3d19c"
-                      }
-                    ]
-                  },
-                  {
-                    "featureType": "road.local",
-                    "elementType": "geometry.stroke",
-                    "stylers": [
-                      {
-                        "color": "#265918"
-                      },
-                      {
-                        "visibility": "on"
-                      }
-                    ]
-                  },
-                  {
                     "featureType": "transit",
                     "elementType": "geometry",
                     "stylers": [
@@ -481,15 +334,6 @@
                     ]
                   },
                   {
-                    "featureType": "transit.station",
-                    "elementType": "labels.text.fill",
-                    "stylers": [
-                      {
-                        "color": "#d59563"
-                      }
-                    ]
-                  },
-                  {
                     "featureType": "water",
                     "elementType": "geometry",
                     "stylers": [
@@ -497,26 +341,18 @@
                         "color": "#17263c"
                       }
                     ]
-                  },
-                  {
-                    "featureType": "water",
-                    "elementType": "labels.text.fill",
-                    "stylers": [
-                      {
-                        "color": "#515c6d"
-                      }
-                    ]
-                  },
-                  {
-                    "featureType": "water",
-                    "elementType": "labels.text.stroke",
-                    "stylers": [
-                      {
-                        "color": "#17263c"
-                      }
-                    ]
                   }
                 ]
+            });
+
+            var iconBase = './assets/images/shaded_dot.png';
+            marker = new google.maps.Marker({
+                position: {
+                    lat: 33.6348729,
+                    lng: -117.7405317
+                },
+                map: map,
+                icon: iconBase
             });
         }
 
@@ -526,39 +362,20 @@
         //it just adds another one, Im also uncertain as to whether it is recentering the map?
         //##
 
-        function showCurrentLocation(){
-            var iconBase = 'http://maps.google.com/mapfiles/kml/shapes/shaded_dot.png';
-            console.log('marker before call:', marker);
-            if(marker === undefined) {
-                marker = new google.maps.Marker({
-                    position: {
-                        lat: coord.latitude,
-                        lng: coord.longitude
-                    },
-                    map: map,
-                    icon: iconBase
-                });
-            } else {
-                marker.setVisible(false);
-                console.log('Marker before:', marker.visible);
-                marker = new google.maps.Marker({
-                    position: {
-                        lat: coord.latitude,
-                        lng: coord.longitude
-                    },
-                    map: map,
-                    icon: iconBase
-                });
-            }
-            console.log('Marker:', marker.visible);
+        function showCurrentLocation(loc){
+            map.setCenter({lat:loc.latitude, lng:loc.longitude, alt:0});
+            marker.setPosition({lat:loc.latitude, lng:loc.longitude, alt:0});
         }
 
-</script>
+    </script>
 
 <!-- Not sure why this script tag is all the way down ehre instead of on m=page load at the top?
  Remember to ask Lori about it -BE -->
+ <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCXqyuEI8wFxFvczjGjlbim35FAuco0oCU&callback=initMap"
+ async defer></script>
 
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCXqyuEI8wFxFvczjGjlbim35FAuco0oCU&"
-async defer></script>
+ <!-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCXqyuEI8wFxFvczjGjlbim35FAuco0oCU&"
+ async defer></script> -->
+
 </body>
 </html>
