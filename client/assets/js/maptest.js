@@ -60,6 +60,7 @@ function getLocation() {
     //move outside of the parent function?
     //##
     function showSuccess(pos) {
+        document.getElementById("loading-modal").style.display = "none";
         //##
         //pos also includes pos.timestamp
         //which can be used for discarding spurious results

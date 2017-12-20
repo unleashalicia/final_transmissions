@@ -69,14 +69,15 @@ h1{
 }
 
 /**********MODAL FORM END********************/
+
 /**********STORY START********************/
 .instruction{
   display: none;
-  z-index: 50;
   position: absolute;
   background-color: rgba(0,0,0,0.7);
   height: 100%;
   width: 100%;
+  z-index: 50;
 }
 .instruction>div{
   position: absolute;
@@ -100,37 +101,46 @@ h1{
   height: 100vh;
   width: 100%;
   text-align: center;
+
 }
 .caption{
   background-color: rgba(0,0,0,0.5);
   padding: 10px;
   position: relative;
   display: none;
-  height: 90%;
+  height: 100%;
 }
 .caption h3{
   font-size: 5vmin;
 }
 .caption p{
-  font-size: 2em;
-  font: Arial;
+  height: 90%;
+  font-size: 1.5em;
+  font-family: Arial;
 }
-.caption a{
-  text-decoration: none;
-  display: inline-block;
+.experience{
   position: absolute;
-  left: 25%;
-  bottom: 0;
+  left: 5%;
+  width: 90%;
+  height: 10%;
+  bottom: 2%;
   border: 1px solid white;
   padding: 3px;
-  margin: 2%;
   color: white;
   font-size: 3vmin;
   cursor: pointer;
+  background-color: transparent;
+  border-radius: 5%;
+  text-align: center;
 }
-.caption a:hover{
+
+.experience:hover{
   color: black;
   background: white;
+}
+
+.experience:focus {
+  outline: 0;
 }
 
 .story{
