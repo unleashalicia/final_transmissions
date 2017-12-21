@@ -85,11 +85,14 @@ function getLocation() {
         coord = pos.coords;
         console.log(coord);
 
+
         var distance = getDistanceFromLatLonInKm(coord.latitude,coord.longitude,target.latitude,target.longitude);
 
-        if (distance > 100){
+        $('.test-output').text(distance);
+
+        if (distance > 100 && deviceOn){
             $('.needleGuage').css('transform','translateX(-50%) rotateZ(-75deg)');
-        } else if (distance <= 100 && distance >= 0){
+        } else if (distance <= 100 && distance >= 0 && deviceOn){
             let needleAngle = 53 - Math.round(distance);
             $('.needleGuage').css('transform','translateX(-50%) rotateZ('+needleAngle+'deg)');
         }

@@ -183,6 +183,11 @@ body * {
     height: 10%;
 }
 
+.test-output {
+    font-size: 10vmin;
+    color: white;
+}
+
 /*
 .guage-container {
     width: 70vmin;
