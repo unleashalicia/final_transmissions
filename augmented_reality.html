@@ -3,25 +3,14 @@
     <head>
             <script src="https://aframe.io/releases/0.6.1/aframe.min.js"></script>
             <script src="https://cdn.rawgit.com/jeromeetienne/AR.js/1.5.0/aframe/build/aframe-ar.js"></script>
-            <script>THREE.ArToolKitContext.baseURL = 'https://rawgit.com/jeromeetienne/ar.js/master/three.js/'</script>
+            <!--<script>THREE.ArToolKitContext.baseURL = 'https://rawgit.com/jeromeetienne/ar.js/master/three.js/'</script>-->
     </head>
     <body style='margin : 0px; overflow: hidden;'>
+    <a-scene>
         <a-assets>
-            <video src="./images/hellraiser.jpg" id="hellraiser"/>
+            <a-asset-item id="lantern" src="./images/lantern.gltf"></a-asset-item>
         </a-assets>
-        <a-scene embedded artoolkit='sourceType: webcam;'>
-            <a-entity position= "1 1 1">
-                <a-animation attribute="rotation"
-                             dur="3000"
-                             fill="forwards"
-                             easing="linear"
-                             to="0 360 0"
-                             repeat="indefinite">
-
-                </a-animation>
-                <a-box src="#hellraiser" width="2" height="2" depth="2">
-            </a-box>
-            </a-entity>
+            <a-entity gltf-model="#lantern"></a-entity>
             <a-marker-camera preset='hiro'></a-marker-camera>
         </a-scene>
     </body>
