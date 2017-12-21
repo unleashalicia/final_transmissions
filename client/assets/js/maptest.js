@@ -274,6 +274,8 @@ function initMap() {
 //##
 
 function showCurrentLocation(loc){
+    const markerPositionLong = loc.longitude + 0.000001;
+    const markerPositionLat = loc.latitude - 0.00003;
     map.setCenter({lat:loc.latitude, lng:loc.longitude, alt:0});
-    marker.setPosition({lat:loc.latitude, lng:loc.longitude, alt:0});
+    marker.setPosition({lat:markerPositionLat, lng:markerPositionLong, alt:0});
 }
