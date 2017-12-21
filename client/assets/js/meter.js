@@ -11,6 +11,9 @@ var target = {
     threshold: 8
 }
 
+
+
+
 // var sound = new Howl ({
 //     src: ['./assets/sounds/0951.ogg'],
 //     autoplay: true,
@@ -143,4 +146,12 @@ function deg2rad(deg) {
 }
 
 
-$(document).ready(getLocation());
+$(document).ready(() => {
+    //request full screen
+    var elem = document.querySelector('body');
+    if (elem.requestFullscreen) {
+      elem.requestFullscreen();
+    }
+    
+    getLocation()
+});
