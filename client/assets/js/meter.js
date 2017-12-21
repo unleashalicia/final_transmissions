@@ -5,11 +5,19 @@ var startPoint;
 var deviceOn = false;
 var watchHandler;
 
+//Out front of lfz
 var target = {
     latitude: 33.6350687,
     longitude: -117.7402043,
     threshold: 8
-}
+};
+
+//Out front of apartment
+// var target = {
+//     latitude: 33.7523889,
+//     longitude: -117.8637263,
+//     threshold: 10
+// };
 
 
 
@@ -25,15 +33,6 @@ var target = {
 // });
 // sound.audible = false;
 
-
-
-
-//Out front of apartment
-// var target = {
-//     latitude: 33.7523889,
-//     longitude: -117.8637263,
-//     threshold: 10
-// };
 
 function flipSwitch(){
     console.log('touched');
@@ -91,7 +90,7 @@ function getLocation() {
 
         var distance = getDistanceFromLatLonInKm(coord.latitude,coord.longitude,target.latitude,target.longitude);
 
-        $('.test-output').text(distance);
+        $('.test-output').text(distance.toFixed(3));
 
         if (distance > 100 && deviceOn){
             $('.needleGuage').css('transform','translateX(-50%) rotateZ(-75deg)');
@@ -148,10 +147,13 @@ function deg2rad(deg) {
 
 $(document).ready(() => {
     //request full screen
-    var elem = document.querySelector('body');
-    if (elem.requestFullscreen) {
-      elem.requestFullscreen();
-    }
-    
+    // var elem = document.querySelector('body');
+    // if (elem.requestFullscreen) {
+    //     console.log('test full screen');
+    //   elem.requestFullscreen();
+    // }
+    setTimeout(function(){
+        window.scrollTo(0,1);
+    },0);
     getLocation()
 });
