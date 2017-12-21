@@ -146,7 +146,6 @@ function deg2rad(deg) {
 
 
 $(document).ready(() => {
-    request full screen
     var elem = document.querySelector('body');
     if (elem.requestFullscreen) {
         console.log('test full screen');
