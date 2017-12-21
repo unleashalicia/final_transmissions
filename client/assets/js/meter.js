@@ -62,7 +62,11 @@ function getLocation() {
         maxAge: 10000
     };
 
-    if (navigator.geolocation) {
+    if (!coord && navigator.geolocation) {
+        //If we have not gotten a location then call for one
+        navigator.geolocation.getCurrentPosition(showSuccess,showError,options);
+    } else if (navigator.geolocation){
+        //otherwise, watch the position
         watchHandler = navigator.geolocation.watchPosition(showSuccess,showError,options);
     }else {
         location = "Geolocation is not supported by this browser.";
@@ -134,3 +138,6 @@ function getDistanceFromLatLonInKm(lat1,lon1,lat2,lon2) {
 function deg2rad(deg) {
     return deg * (Math.PI/180)
 }
+
+
+$(document).ready(getLocation());
