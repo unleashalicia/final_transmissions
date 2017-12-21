@@ -58,13 +58,19 @@ function switchRange(elem){
     debugger;
     switch ($(elem).attr('class')) {
       case "range-indicator long":
+        $('.knob-light').removeClass('selected');
+        $('.knob-light', elem).addClass('selected');
         $('#speaker>img').removeClass();
-        $('#speaker>img').addClass('long-range-knob')
+        $('#speaker>img').addClass('long-range-knob');
         break;
       case "range-indicator mid":
+        $('.knob-light').removeClass('selected');
+        $('.knob-light', elem).addClass('selected');
         $('#speaker>img').removeClass();
         break;
       case "range-indicator close":
+        $('.knob-light').removeClass('selected');
+        $('.knob-light', elem).addClass('selected');
         $('#speaker>img').removeClass();
         $('#speaker>img').addClass('close-range-knob');
         break;

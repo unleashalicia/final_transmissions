@@ -62,26 +62,34 @@ body * {
   font-size: 1.5em;
   text-transform: uppercase;
 }
-.range-indicator>img{
+.knob-light{
+  border-radius: 100%;
+  background-color: grey;
+  position: absolute;
+  left: 44%;
   height: 3vmin;
   width: 3vmin;
 }
+.selected {
+  background-color: red;
+}
+
 .range-indicator.close{
   transform: rotate(90deg);
   top: 37%;
-  right: -20px;
+  right: -7%;
 }
 
 .range-indicator.mid{
   top: -5%;
-  left: 36%;
+  left: 34%;
 }
 
 
 .range-indicator.long{
   transform: rotate(-90deg);
   top: 37%;
-  left: -20px;
+  left: -7%;
 }
 
 .long-range-knob{
@@ -150,7 +158,7 @@ body * {
 #speaker>img{
   position: relative;
   top: 20%;
-  height: 55%;
+  height: 50%;
   filter: grayscale(100%);
 }
 
