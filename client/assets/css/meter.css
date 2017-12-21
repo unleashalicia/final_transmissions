@@ -1,0 +1,247 @@
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #130c02;
+}
+
+body * {
+    box-sizing: border-box;
+}
+
+.topGuage {
+    width: 90vmin;
+    height: 41.85vmin;
+    position: absolute;
+    top: 5%;
+    left: 50%;
+    transform: translateX(-50%);
+    background-image: url('../images/esr-meter/meter-top.png');
+    background-size: contain;
+}
+
+.bottomGuage {
+    width: 100%;
+    height: 41.85vmin;
+    position: absolute;
+    bottom: -100%;
+    left: 50%;
+    transform: translateX(-50%);
+    background-image: url('../images/esr-meter/meter-bottom.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+.needleGuage {
+    background-color: red;
+    height: 100%;
+    width: 0.45%;
+    position: absolute;
+    bottom: -15%;
+    left: 50%;
+    transform: translateX(-50%) rotateZ(-75deg); /* +50 is max */
+    transform-origin: bottom;
+    box-shadow: -1vmin 1vmin 3vmin black;
+    transition-duration: 0.5s;
+}
+
+.needleBall {
+    background-color: red;
+    height: 2.5vmin;
+    width: 2.5vmin;
+    position: absolute;
+    top: 10%;
+    left: 50%;
+    transform: translateX(-50%);
+    border-radius: 100%;
+}
+
+.lightingGuage {
+    width: 98%;
+    height: 105%;
+    position: absolute;
+    bottom: -25%;
+    left: 1%;
+    display: inline-block;
+    background: linear-gradient(to bottom, rgba(255,0,0,0), rgba(227,227,82,0.1));
+    animation-name: lighting;
+    animation-duration: 3s;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+    transition-duration: 0.3s;
+}
+
+@keyframes lighting {
+    0% {background: linear-gradient(to bottom, rgba(255,0,0,0), rgba(227,227,82,0.1));}
+    10% {background: linear-gradient(to bottom, rgba(255,0,0,0), rgba(227,227,82,0.2));}
+    20% {background: linear-gradient(to bottom, rgba(255,0,0,0), rgba(227,227,82,0.4));}
+    30% {background: linear-gradient(to bottom, rgba(255,0,0,0), rgba(227,227,82,0.5));}
+    40% {background: linear-gradient(to bottom, rgba(255,0,0,0), rgba(227,227,82,0.6));}
+    50% {background: linear-gradient(to bottom, rgba(255,0,0,0), rgba(227,227,82,0.7));}
+    60% {background: linear-gradient(to bottom, rgba(255,0,0,0), rgba(227,227,82,0.6));}
+    70% {background: linear-gradient(to bottom, rgba(255,0,0,0), rgba(227,227,82,0.5));}
+    80% {background: linear-gradient(to bottom, rgba(255,0,0,0), rgba(227,227,82,0.4));}
+    90% {background: linear-gradient(to bottom, rgba(255,0,0,0), rgba(227,227,82,0.2));}
+}
+
+#switch {
+    width: 16.41vmin; /* 0.547 of height */
+    height: 30vmin;
+    background-image: url('../images/esr-meter/switch.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    position: absolute;
+    bottom: 4%;
+    left: 50%;
+    transform: translateX(-50%) rotateY(0deg);
+    filter: brightness(200%);
+}
+
+#speaker {
+    width: 50vmin;
+    height: 50vmin;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    background-image: url('../images/esr-meter/speaker.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    filter: brightness(80%);
+}
+
+#indicator {
+    width: 15vmin;
+    height: 15vmin;
+    position: absolute;
+    top: 28%;
+    left: 50%;
+    transform: translate(-50%,-50%) rotateZ(180deg);
+    background-image: url('../images/esr-meter/indicator.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    filter: brightness(100%);
+}
+
+#indicator-light{
+    width: 7vmin;
+    height: 7vmin;
+    position: absolute;
+    top: 21%;
+    left: 18%;
+    background-color: rgba(255,0,0,0.6);
+    border-radius: 100%;
+    display: none;
+    box-shadow: 0 0 0px orange;
+}
+
+.indicator-glow {
+    animation-name: glow;
+    animation-duration: 1s;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+    transition-duration: 0.5s;
+}
+
+@keyframes glow {
+    0% {box-shadow: 0px 0px 0px orange;}
+    50% {box-shadow: 1px 1px 20px orange;}
+    /* 99% {box-shadow: 0 0 0px orange;} */
+}
+
+
+
+.action-container {
+    width: 34vmin;
+    height: 56vmin;
+    top: 55%;
+    right: 6%;
+}
+
+.speaker-container {
+    width: 51vmin;
+    height: 56vmin;
+    top: 55%;
+    left: 6%;
+}
+
+.beige-border {
+    border: 1vmin ridge #d1c98c;
+    border-radius: 10%;
+    position: absolute;
+
+}
+
+.text-tape {
+    background-image: url('../images/esr-meter/text-tape.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center center;
+    position: absolute;
+    bottom: 1vmin;
+    left: 2.5%;
+    width: 95%;
+    height: 10%;
+}
+
+/*
+.guage-container {
+    width: 70vmin;
+    height: 40vmin;
+    border: 6px solid rgb(41,34,17);
+    border-radius: 5vmin;
+    background-color: rgb(235,201,132);
+    position: absolute;
+    top: 5%;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.guage-bar {
+    height: 95%;
+    width: 0.75%;
+    background-color: rgb(30,30,25);
+    position: absolute;
+    bottom: 2%;
+    left: 50%;
+    transform: translateX(-50%) rotateZ(-45deg);
+    transform-origin: bottom;
+}
+
+.guage-bar-tip {
+    background-color: red;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 15%;
+}
+
+.guage-bars {
+    width: 90%;
+    height: 40%;
+    top: 10%;
+    margin: 0 auto;
+    position: relative;
+}
+
+.bar {
+    height: 100%;
+    width: 10%;
+    margin: 0;
+    display: inline-block;
+    border-left: 1px solid black;
+    padding-left: 2px;
+    vertical-align: top;
+}
+
+.beginning {
+    background-color: yellow;
+}
+
+.middle {
+    background-color: orange;
+}
+
+.end {
+    background-color: red;
+} */
