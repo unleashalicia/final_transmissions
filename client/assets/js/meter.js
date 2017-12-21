@@ -93,7 +93,7 @@ function getLocation() {
         if (distance > 100 && deviceOn){
             $('.needleGuage').css('transform','translateX(-50%) rotateZ(-75deg)');
         } else if (distance <= 100 && distance >= 0 && deviceOn){
-            let needleAngle = 53 - Math.round(distance);
+            let needleAngle = 53 - distance;
             $('.needleGuage').css('transform','translateX(-50%) rotateZ('+needleAngle+'deg)');
         }
 
