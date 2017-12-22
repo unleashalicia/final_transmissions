@@ -14,7 +14,7 @@ function handleClickEvents(){
   });
   $('.experience').on('click', function(){ //go to map and camera
     if(window.outerWidth < 750 ){
-      window.open('maptest.html','_self')
+      window.open('meter-index.html','_self')
     }else{
       $('.instruction').fadeIn();
     }

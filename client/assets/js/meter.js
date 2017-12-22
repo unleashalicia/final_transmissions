@@ -32,7 +32,11 @@ var target = {
 //     }
 // });
 // sound.audible = false;
-
+function handleClickHandlers(){
+  $('.range-indicator').on('click', function(){
+    knobRange(this)
+  });
+}
 
 function flipSwitch(){
     console.log('touched');
@@ -52,8 +56,7 @@ function flipSwitch(){
 }
 
 
-function switchRange(elem){
-  console.log('switch range clicked')
+function knobRange(elem){
   if(deviceOn){
     switch ($(elem).attr('class')) {
       case "range-indicator long":
@@ -184,6 +187,8 @@ function fullscreen(){
     }
   }
 
-$(document).ready(
-  getLocation
+$(document).ready(function(){
+  getLocation();
+  handleClickHandlers();
+}
 )
