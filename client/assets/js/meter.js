@@ -55,7 +55,6 @@ function flipSwitch(){
 function switchRange(elem){
   console.log('switch range clicked')
   if(deviceOn){
-    debugger;
     switch ($(elem).attr('class')) {
       case "range-indicator long":
         $('.knob-light').removeClass('selected');
@@ -109,6 +108,8 @@ function getLocation() {
         //which can be used for discarding spurious results
         //when combined with a calculated distance from origin
         //##
+        $('#loading h2').fadeOut();
+        $('.loading-btn').removeClass('hide');
         coord = pos.coords;
         console.log(coord);
 
@@ -169,7 +170,20 @@ function deg2rad(deg) {
     return deg * (Math.PI/180)
 }
 
+function fullscreen(){
+  $('#loading').fadeOut();
+  var gauge = document.getElementById('gauge-wrapper');
+  if(gauge.requestFullscreen){
+      gauge.requestFullscreen()
+    } else if (gauge.webkitRequestFullscreen) {
+    	gauge.webkitRequestFullscreen();
+    } else if (gauge.mozRequestFullScreen) {
+    	gauge.mozRequestFullScreen();
+    } else if (gauge.msRequestFullscreen) {
+    	gauge.msRequestFullscreen();
+    }
+  }
 
 $(document).ready(
   getLocation
-);
+)
