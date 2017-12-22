@@ -2,13 +2,48 @@ body {
     margin: 0;
     padding: 0;
     background-color: #130c02;
-    width: 100vw;
-    height: 110vh;
 }
 
 body * {
     box-sizing: border-box;
 }
+
+#loading{
+  height: 100vh;
+  width: 100vw;
+  background: black;
+  text-align: center;
+  z-index: 5;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.loading-btn, #loading h2{
+  font-family: demonsker;
+  color: white;
+  background: transparent;
+  font-size: 21vmin;
+  display: inline-block;
+  position: absolute;
+  bottom: 35%;
+  left: 22%;
+}
+.loading-btn{
+  overflow: hidden;
+  white-space: nowrap;
+  width: 52%;
+  animation: appear 4s steps(60,end), pulse 1s linear infinite;
+}
+
+#loading h2{
+  animation: pulse 1s linear infinite;
+}
+
+.hide{
+  display: none;
+}
+
 
 .topGuage {
     width: 90vmin;
@@ -31,6 +66,7 @@ body * {
     background-image: url('../images/esr-meter/meter-bottom.png');
     background-size: contain;
     background-repeat: no-repeat;
+    text-align: center;
 }
 
 .needleGuage {
@@ -57,6 +93,50 @@ body * {
     border-radius: 100%;
 }
 
+.range-indicator{
+  position: absolute;
+  color: white;
+  font-size: 2vmin;
+  text-transform: uppercase;
+}
+.knob-light{
+  border-radius: 100%;
+  background-color: grey;
+  position: absolute;
+  left: 44%;
+  height: 3vmin;
+  width: 3vmin;
+}
+.selected {
+  background-color: red;
+}
+
+.range-indicator.close{
+  transform: rotate(90deg);
+  top: 48%;
+  right: -5%;
+}
+
+.range-indicator.mid{
+  left: 37%;
+}
+
+
+.range-indicator.long{
+  transform: rotate(-90deg);
+  top: 50%;
+  left: -5%;
+}
+
+.long-range-knob{
+  transform: rotate(-90deg);
+}
+
+.close-range-knob{
+  transform: rotate(90deg);
+}
+
+
 .lightingGuage {
     width: 98%;
     height: 105%;
@@ -72,18 +152,7 @@ body * {
     transition-duration: 0.3s;
 }
 
-@keyframes lighting {
-    0% {background: linear-gradient(to bottom, rgba(255,0,0,0), rgba(227,227,82,0.1));}
-    10% {background: linear-gradient(to bottom, rgba(255,0,0,0), rgba(227,227,82,0.2));}
-    20% {background: linear-gradient(to bottom, rgba(255,0,0,0), rgba(227,227,82,0.4));}
-    30% {background: linear-gradient(to bottom, rgba(255,0,0,0), rgba(227,227,82,0.5));}
-    40% {background: linear-gradient(to bottom, rgba(255,0,0,0), rgba(227,227,82,0.6));}
-    50% {background: linear-gradient(to bottom, rgba(255,0,0,0), rgba(227,227,82,0.7));}
-    60% {background: linear-gradient(to bottom, rgba(255,0,0,0), rgba(227,227,82,0.6));}
-    70% {background: linear-gradient(to bottom, rgba(255,0,0,0), rgba(227,227,82,0.5));}
-    80% {background: linear-gradient(to bottom, rgba(255,0,0,0), rgba(227,227,82,0.4));}
-    90% {background: linear-gradient(to bottom, rgba(255,0,0,0), rgba(227,227,82,0.2));}
-}
+
 
 #switch {
     width: 16.41vmin; /* 0.547 of height */
@@ -98,17 +167,23 @@ body * {
     filter: brightness(200%);
 }
 
-#speaker {
+#knob {
     width: 50vmin;
     height: 50vmin;
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%,-50%);
-    background-image: url('../images/esr-meter/speaker.png');
     background-size: contain;
     background-repeat: no-repeat;
     filter: brightness(80%);
+}
+
+#knob>img{
+  position: relative;
+  top: 30%;
+  height: 50%;
+  filter: grayscale(100%);
 }
 
 #indicator {
@@ -144,13 +219,6 @@ body * {
     transition-duration: 0.5s;
 }
 
-@keyframes glow {
-    0% {box-shadow: 0px 0px 0px orange;}
-    50% {box-shadow: 1px 1px 20px orange;}
-    /* 99% {box-shadow: 0 0 0px orange;} */
-}
-
-
 
 .action-container {
     width: 34vmin;
@@ -159,7 +227,7 @@ body * {
     right: 6%;
 }
 
-.speaker-container {
+.knob-container {
     width: 51vmin;
     height: 56vmin;
     top: 55%;
@@ -170,6 +238,7 @@ body * {
     border: 1vmin ridge #d1c98c;
     border-radius: 10%;
     position: absolute;
+    text-align: center;
 
 }
 
@@ -189,6 +258,53 @@ body * {
     font-size: 10vmin;
     color: white;
 }
+/**********KEY FRAMES / FONT FACE START********************/
+
+@keyframes lighting {
+    0% {background: linear-gradient(to bottom, rgba(255,0,0,0), rgba(227,227,82,0.1));}
+    10% {background: linear-gradient(to bottom, rgba(255,0,0,0), rgba(227,227,82,0.2));}
+    20% {background: linear-gradient(to bottom, rgba(255,0,0,0), rgba(227,227,82,0.4));}
+    30% {background: linear-gradient(to bottom, rgba(255,0,0,0), rgba(227,227,82,0.5));}
+    40% {background: linear-gradient(to bottom, rgba(255,0,0,0), rgba(227,227,82,0.6));}
+    50% {background: linear-gradient(to bottom, rgba(255,0,0,0), rgba(227,227,82,0.7));}
+    60% {background: linear-gradient(to bottom, rgba(255,0,0,0), rgba(227,227,82,0.6));}
+    70% {background: linear-gradient(to bottom, rgba(255,0,0,0), rgba(227,227,82,0.5));}
+    80% {background: linear-gradient(to bottom, rgba(255,0,0,0), rgba(227,227,82,0.4));}
+    90% {background: linear-gradient(to bottom, rgba(255,0,0,0), rgba(227,227,82,0.2));}
+}
+
+@keyframes glow {
+    0% {box-shadow: 0px 0px 0px orange;}
+    50% {box-shadow: 1px 1px 20px orange;}
+    /* 99% {box-shadow: 0 0 0px orange;} */
+}
+
+@keyframes appear {
+  from {width: 0; opacity: 0;}
+}
+@keyframes pulse {
+	0% { transform: scale(1); }
+	30% { transform: scale(1); }
+	40% { transform: scale(1.08); }
+	50% { transform: scale(1); }
+	60% { transform: scale(1); }
+	70% { transform: scale(1.05); }
+	80% { transform: scale(1); }
+	100% { transform: scale(1); }
+}
+
+
+@font-face {
+  font-family: victorious;
+  src: url(../fonts/victorious.ttf);
+}
+
+@font-face {
+  font-family: demonsker;
+  src: url(../fonts/demonsker.ttf)
+}
+
+/**********KEY FRAMES/ FONT FACE  END********************/
 
 /*
 .guage-container {

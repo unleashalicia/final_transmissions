@@ -32,7 +32,11 @@ var target = {
 //     }
 // });
 // sound.audible = false;
-
+function handleClickHandlers(){
+  $('.range-indicator').on('click', function(){
+    knobRange(this)
+  });
+}
 
 function flipSwitch(){
     console.log('touched');
@@ -52,6 +56,29 @@ function flipSwitch(){
 }
 
 
+function knobRange(elem){
+  if(deviceOn){
+    switch ($(elem).attr('class')) {
+      case "range-indicator long":
+        $('.knob-light').removeClass('selected');
+        $('.knob-light', elem).addClass('selected');
+        $('#speaker>img').removeClass();
+        $('#speaker>img').addClass('long-range-knob');
+        break;
+      case "range-indicator mid":
+        $('.knob-light').removeClass('selected');
+        $('.knob-light', elem).addClass('selected');
+        $('#speaker>img').removeClass();
+        break;
+      case "range-indicator close":
+        $('.knob-light').removeClass('selected');
+        $('.knob-light', elem).addClass('selected');
+        $('#speaker>img').removeClass();
+        $('#speaker>img').addClass('close-range-knob');
+        break;
+    }
+  }
+}
 //##
 //our general purpose call for location locationdata
 //this could get wrapped up into a player object as a method
@@ -84,6 +111,8 @@ function getLocation() {
         //which can be used for discarding spurious results
         //when combined with a calculated distance from origin
         //##
+        $('#loading h2').fadeOut();
+        $('.loading-btn').removeClass('hide');
         coord = pos.coords;
         console.log(coord);
 
@@ -144,15 +173,22 @@ function deg2rad(deg) {
     return deg * (Math.PI/180)
 }
 
-
-$(document).ready(() => {
-    var elem = document.querySelector('body');
-    if (elem.requestFullscreen) {
-        console.log('test full screen');
-      elem.requestFullscreen();
+function fullscreen(){
+  $('#loading').fadeOut();
+  var gauge = document.getElementById('gauge-wrapper');
+  if(gauge.requestFullscreen){
+      gauge.requestFullscreen()
+    } else if (gauge.webkitRequestFullscreen) {
+    	gauge.webkitRequestFullscreen();
+    } else if (gauge.mozRequestFullScreen) {
+    	gauge.mozRequestFullScreen();
+    } else if (gauge.msRequestFullscreen) {
+    	gauge.msRequestFullscreen();
     }
-    setTimeout(function(){
-        window.scrollTo(0,1);
-    },0);
-    getLocation()
-});
+  }
+
+$(document).ready(function(){
+  getLocation();
+  handleClickHandlers();
+}
+)
