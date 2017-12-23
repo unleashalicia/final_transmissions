@@ -305,26 +305,3 @@ body * {
 }
 
 /**********KEY FRAMES/ FONT FACE  END********************/
-
-.slider {
-    width: 20%;
-    height: 20%;
-    border-radius: 20%;
-    position: absolute;
-    top: 20%;
-    left: 50%;
-    background-color: rgb(10,10,10);
-    border: 3px ridge beige;
-    transform: translate(-50%,-50%);
-}
-
-.slider-ball {
-    width: 48%;
-    height: 98%;
-    border-radius: 20%;
-    position: absolute;
-    top: 1%;
-    left: 1%;
-    background-color: rgb(50,50,50);
-    border: 3px ridge beige;
-}
