@@ -10,6 +10,11 @@
         <script type="text/javascript" src="./assets/js/meter.js"></script>
     </head>
     <body>
+      <div id="loading">
+        <h2>Loading</h2>
+        <p onclick="fullscreen()"class="loading-btn hide">Ready?</p>
+      </div>
+      <div id="gauge-wrapper">
         <div class="topGuage">
             <div class="lightingGuage"></div>
             <div class="needleGuage">
@@ -23,8 +28,13 @@
             </div>
         </div>
 
-        <div class="speaker-container beige-border">
-            <div id="speaker"></div>
+        <div class="knob-container beige-border">
+          <div id="knob">
+            <div  class="range-indicator long"><p>Long Range</p><div class="knob-light"></div></div>
+            <div  class="range-indicator mid"><p>Mid Range</p><div class="knob-light selected" ></div></div>
+            <div  class="range-indicator close"><p>Close Range</p><div class="knob-light"></div></div>
+            <img src="assets/images/esr-meter/meter-knob.png"/>
+          </div>
         </div>
 
         <div class="action-container beige-border">
@@ -34,6 +44,9 @@
             </div>
         </div>
         <div class="text-tape"></div>
+
+      </div>
+
 
 
         <!-- <div class="guage-container">

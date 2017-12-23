@@ -12,6 +12,14 @@ var target = {
     threshold: 8
 }
 
+// var target ={ LearningFuze specific 
+//   latitude: 33.6348858 ,
+//   longitude: -117.7404633,
+//   threshold: 8
+// }
+
+
+
 //Out front of apartment
 // var target = {
 //     latitude: 33.7523889,
