@@ -145,14 +145,4 @@ function deg2rad(deg) {
 }
 
 
-$(document).ready(() => {
-    var elem = document.querySelector('body');
-    if (elem.requestFullscreen) {
-        console.log('test full screen');
-      elem.requestFullscreen();
-    }
-    setTimeout(function(){
-        window.scrollTo(0,1);
-    },0);
-    getLocation()
-});
+$(document).ready(getLocation);
