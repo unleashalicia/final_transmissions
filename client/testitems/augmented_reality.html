@@ -1,0 +1,56 @@
+<!doctype HTML>
+<html>
+    <head>
+            <script src="https://aframe.io/releases/0.6.1/aframe.min.js"></script>
+            <script src="https://cdn.rawgit.com/jeromeetienne/AR.js/1.5.0/aframe/build/aframe-ar.js"></script>
+            <script>THREE.ArToolKitContext.baseURL = 'https://rawgit.com/jeromeetienne/ar.js/master/three.js/'</script>
+    </head>
+    <body style='margin : 0px; overflow: hidden;'>
+        <a-assets>
+            <img src="./images/hellraiser.jpg" id="hellraiser"/>
+        </a-assets>
+        <a-scene embedded artoolkit='sourceType: webcam;'>
+            <a-entity position= "1 1 1">
+                <a-animation attribute="rotation"
+                             dur="3000"
+                             fill="forwards"
+                             easing="linear"
+                             to="0 360 0"
+                             repeat="indefinite">
+
+                </a-animation>
+                <a-box src="#hellraiser" width="2" height="2" depth="2">
+            </a-box>
+            </a-entity>
+            <a-marker-camera preset='hiro'></a-marker-camera>
+        </a-scene>
+        <!--<canvas id="canvas" width="640px" height="480px"></canvas>-->
+        <!--<script type="text/javascript">-->
+            <!--var canvas = document.querySelector('#canvas');-->
+            <!--var ctx = canvas.getContext("2d");-->
+            <!--var video = document.querySelector("a-scene");-->
+            <!--var videoConstraints = window.constraints = {video: {facingMode: "user"}, audio: false};-->
+
+            <!--function draw(video,context,width,height){-->
+                <!--if (getRandom(0,100) > 3){-->
+                    <!--ctx.filter = 'grayscale(90%)';-->
+                    <!--context.drawImage(video,0,0,width,height);-->
+                <!--} else {-->
+                    <!--ctx.filter = 'grayscale(40%)';-->
+                    <!--width = 640;-->
+                    <!--height = 480;-->
+                    <!--var verticalSlices = Math.round(height / 20);-->
+                    <!--var maxHorizOffset = 60;-->
+
+
+                    <!--for (var i = 0; i < verticalSlices; i++)  {-->
+                        <!--var horizOffset = getRandom(-Math.abs(maxHorizOffset), maxHorizOffset);-->
+                        <!--context.drawImage(video, 0, i * verticalSlices, width, i * verticalSlices + verticalSlices,  horizOffset, i * verticalSlices, width, i * verticalSlices + verticalSlices);-->
+                    <!--}-->
+                <!--}-->
+
+                <!--setTimeout(draw,80,video,context,width,height);-->
+            <!--}-->
+        <!--</script>-->
+    </body>
+</html>

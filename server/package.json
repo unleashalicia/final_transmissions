@@ -1,16 +1,23 @@
 {
-  "name": "server",
+  "name": "ghost-story",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "Server for ghost-story",
+  "main": "app.js",
   "scripts": {
     "start": "nodemon app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "",
+  "repository": {
+    "type": "git",
+    "url": "http://www.github.com/sloumdrone"
+  },
+  "author": "Brian Evans",
   "license": "ISC",
+  "dependencies": {
+    "express": "^4.16.2"
+  },
   "devDependencies": {
-    "morgan": "^1.9.0",
-    "nodemon": "^1.13.3"
+    "nodemon": "^1.13.3",
+    "morgan": "^1.9.0"
   }
 }

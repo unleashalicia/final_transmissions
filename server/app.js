@@ -1,13 +1,18 @@
 const express = require('express');
 const logger = require('morgan');
-
-const app = express();
+const server = express();
 const PORT = 8000;
 
-app.use(logger('dev'));
-app.use(express.json());
-app.use(express.urlencoded());
+server.use(logger('dev')); //other options exist other than dev, look into it
 
-app.listen(PORT, () => {
-    console.log("we are on the port", PORT);
-});
+
+server.use(express.json()); //takes the place of...
+server.use(express.urlencoded()); //...body-parser
+
+server.get('/',(req,res) => {
+    res.send('Booo!');
+})
+
+server.listen(PORT, () => {
+    console.log("Let's find some ghosts on port: ", PORT);
+})
