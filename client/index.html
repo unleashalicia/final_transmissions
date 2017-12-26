@@ -31,8 +31,8 @@
       <div class="sign form-group">
         <h1>Sign Up </h1>
         <div>
-          <input type="text" placeholder="First Name" required/>
-          <input type="text" placeholder="Last Name" required/>
+          <!-- <input type="text" placeholder="First Name" required/>
+          <input type="text" placeholder="Last Name" required/> -->
           <input type="text" placeholder="username" required/>
           <input type="password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" placeholder="Password" required/>
           <input type="password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" placeholder="Repeat Password" required/>
@@ -43,15 +43,15 @@
       </div>
     </div>
       <div class="formLog">
-        <div class="log form-group">
+        <form class="log form-group" action="/api/login">
           <h1>Log In</h1>
           <div>
             <input type="text" placeholder="Username"/>
             <input type="password" placeholder="Password"/>
           </div>
-          <button class="btnLog">Log In</button>
+          <button type="submit" class="btnLog">Log In</button>
           <button class="cancel">Cancel</button>
-        </div>
+      </form>
       </div>
     <div class="greeting">
       <h1>Welcome <span>Reader</span></h1>

@@ -4,12 +4,21 @@
             <script src="https://aframe.io/releases/0.6.1/aframe.min.js"></script>
             <script src="https://cdn.rawgit.com/jeromeetienne/AR.js/1.5.0/aframe/build/aframe-ar.js"></script>
             <script>THREE.ArToolKitContext.baseURL = 'https://rawgit.com/jeromeetienne/ar.js/master/three.js/'</script>
+            <style media="screen">
+                #arjsDebugUIContainer {
+                    display: none;
+                }
+
+                .a-enter-vr.embedded {
+                    display: none;
+                }
+            </style>
     </head>
     <body style='margin : 0px; overflow: hidden;'>
         <a-assets>
             <img src="./images/hellraiser.jpg" id="hellraiser"/>
         </a-assets>
-        <a-scene embedded artoolkit='sourceType: webcam;'>
+        <a-scene embedded artoolkit='sourceType: webcam;' fog="type: linear; color: #AAA">
             <a-entity position= "1 1 1">
                 <a-animation attribute="rotation"
                              dur="3000"
