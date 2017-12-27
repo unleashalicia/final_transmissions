@@ -36,10 +36,11 @@ var target = {
 // sound.audible = false;
 
 
-function handleClickHandlers(){
-  $('.range-indicator').on('click', function(){
-    knobRange(this);
-  });
+
+function handleEventHandlers(){
+  $('.range-indicator').on('click touch',knobRange); //knob switch
+
+  $(window).on('orientationchange',handleOrientation) //orientation change
 }
 
 
@@ -88,27 +89,31 @@ function flipSwitch(){
 // class = "range-indicator mid selected"
 
 function knobRange(elem){
-  if(deviceOn){
     switch ($(elem).attr('class')) {
       case "range-indicator long":
-        $('.knob-light').removeClass('selected');
-        $('.knob-light', elem).addClass('selected');
-        $('#knob>#knobImg').removeClass();
-        $('#knob>#knobImg').addClass('long-range-knob');
-        break;
+         if(deviceOn){
+            $('.knob-light').removeClass('selected');
+            $('.knob-light', elem).addClass('selected');
+          }
+          $('#knob>#knobImg').removeClass();
+          $('#knob>#knobImg').addClass('long-range-knob');
+          break;
       case "range-indicator mid":
-        $('.knob-light').removeClass('selected');
-        $('.knob-light', elem).addClass('selected');
-        $('#knob>#knobImg').removeClass();
-        break;
+          if(deviceOn){
+              $('.knob-light').removeClass('selected');
+              $('.knob-light', elem).addClass('selected');
+            }
+          $('#knob>#knobImg').removeClass();
+          break;
       case "range-indicator close":
-        $('.knob-light').removeClass('selected');
-        $('.knob-light', elem).addClass('selected');
-        $('#knob>#knobImg').removeClass();
-        $('#knob>#knobImg').addClass('close-range-knob');
-        break;
+          if(deviceOn){
+            $('.knob-light').removeClass('selected');
+            $('.knob-light', elem).addClass('selected');
+          }
+          $('#knob>#knobImg').removeClass();
+          $('#knob>#knobImg').addClass('close-range-knob');
+          break;
     }
-  }
 }
 
 //##
@@ -200,6 +205,7 @@ function deg2rad(deg) {
     return deg * (Math.PI/180)
 }
 
+//use to check if fullscreen is available by asking user permission by clicking on the "READY" (#loading ) multiple ifs for each type of browser
 function fullscreen(){
   $('#loading').fadeOut();
   var gauge = document.getElementById('gauge-wrapper');
@@ -214,7 +220,24 @@ function fullscreen(){
     }
   }
 
+
+//use to listen for device orientation change to switch from ESR or Ghost CAM
+
+function handleOrientation(event){
+  if(screen.orientation.type === 'portrait-primary'){
+    $('#gauge-wrapper').removeClass('hide');
+    $('#camera').addClass('hide');
+  }else{
+    $('#gauge-wrapper').addClass('hide');
+    $('#camera').removeClass('hide');
+  }
+}
+
+
+
+
+
 $(document).ready(function(){
   getLocation();
-  handleClickHandlers();
+  handleEventHandlers();
 });

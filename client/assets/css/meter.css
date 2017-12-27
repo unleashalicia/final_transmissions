@@ -180,6 +180,7 @@ body * {
 }
 
 #knobImg{
+  transition: 0.5s;
   position: relative;
   top: 30%;
   height: 50%;
