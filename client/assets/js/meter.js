@@ -4,20 +4,22 @@ var coord;
 var startPoint;
 var deviceOn = false;
 var watchHandler;
+var distance;
+var knobMode = 'med';
 
 //Out front of lfz
-var target = {
-    latitude: 33.6350687,
-    longitude: -117.7402043,
-    threshold: 8
-};
+// var target = {
+//     latitude: 33.6350687,
+//     longitude: -117.7402043,
+//     threshold: 8
+// };
 
 //Out front of apartment
-// var target = {
-//     latitude: 33.7523889,
-//     longitude: -117.8637263,
-//     threshold: 10
-// };
+var target = {
+    latitude: 33.7523889,
+    longitude: -117.8637263,
+    threshold: 10
+};
 
 
 
@@ -34,12 +36,37 @@ var target = {
 // sound.audible = false;
 
 
+
 function handleEventHandlers(){
-  $('.range-indicator').on('click touch', function(){ //knob switch
-    knobRange(this);
-  });
+  $('.range-indicator').on('click touch',knobRange); //knob switch
 
   $(window).on('orientationchange',handleOrientation) //orientation change
+}
+
+
+function handleMeter(){
+    if (knobMode === 'long'){
+        if (distance > 100 && deviceOn){
+            $('.needleGuage').css('transform','translateX(-50%) rotateZ(-65deg)');
+        } else if (distance <= 100 && distance >= 0 && deviceOn){
+            let needleAngle = 53 - distance;
+            $('.needleGuage').css('transform','translateX(-50%) rotateZ('+needleAngle+'deg)');
+        }
+    } else if (knobMode === 'med') {
+        if (distance > 50 && deviceOn){
+            $('.needleGuage').css('transform','translateX(-50%) rotateZ(-65deg)');
+        } else if (distance <= 50 && distance >= 0 && deviceOn){
+            let needleAngle = 53 - distance * 2;
+            $('.needleGuage').css('transform','translateX(-50%) rotateZ('+needleAngle+'deg)');
+        }
+    } else if (knobMode === 'short') {
+        if (distance > 25 && deviceOn){
+            $('.needleGuage').css('transform','translateX(-50%) rotateZ(-65deg)');
+        } else if (distance <= 25 && distance >= 0 && deviceOn){
+            let needleAngle = 53 - distance * 4;
+            $('.needleGuage').css('transform','translateX(-50%) rotateZ('+needleAngle+'deg)');
+        }
+    }
 }
 
 function flipSwitch(){
@@ -59,34 +86,36 @@ function flipSwitch(){
     }
 }
 
+// class = "range-indicator mid selected"
 
 function knobRange(elem){
     switch ($(elem).attr('class')) {
       case "range-indicator long":
-        if(deviceOn){
-          $('.knob-light').removeClass('selected');
-          $('.knob-light', elem).addClass('selected');
-        }
-        $('#knob>img').removeClass();
-        $('#knob>img').addClass('long-range-knob');
-        break;
+         if(deviceOn){
+            $('.knob-light').removeClass('selected');
+            $('.knob-light', elem).addClass('selected');
+          }
+          $('#knob>#knobImg').removeClass();
+          $('#knob>#knobImg').addClass('long-range-knob');
+          break;
       case "range-indicator mid":
-        if(deviceOn){
-          $('.knob-light').removeClass('selected');
-          $('.knob-light', elem).addClass('selected');
-        }
-        $('#knob>img').removeClass();
-        break;
+          if(deviceOn){
+              $('.knob-light').removeClass('selected');
+              $('.knob-light', elem).addClass('selected');
+            }
+          $('#knob>#knobImg').removeClass();
+          break;
       case "range-indicator close":
-      if(deviceOn){
-        $('.knob-light').removeClass('selected');
-        $('.knob-light', elem).addClass('selected');
-      }
-        $('#knob>img').removeClass();
-        $('#knob>img').addClass('close-range-knob');
-        break;
+          if(deviceOn){
+            $('.knob-light').removeClass('selected');
+            $('.knob-light', elem).addClass('selected');
+          }
+          $('#knob>#knobImg').removeClass();
+          $('#knob>#knobImg').addClass('close-range-knob');
+          break;
     }
 }
+
 //##
 //our general purpose call for location locationdata
 //this could get wrapped up into a player object as a method
@@ -125,16 +154,11 @@ function getLocation() {
         console.log(coord);
 
 
-        var distance = getDistanceFromLatLonInKm(coord.latitude,coord.longitude,target.latitude,target.longitude);
+        distance = getDistanceFromLatLonInKm(coord.latitude,coord.longitude,target.latitude,target.longitude);
 
         $('.test-output').text(distance.toFixed(3));
 
-        if (distance > 100 && deviceOn){
-            $('.needleGuage').css('transform','translateX(-50%) rotateZ(-75deg)');
-        } else if (distance <= 100 && distance >= 0 && deviceOn){
-            let needleAngle = 53 - distance;
-            $('.needleGuage').css('transform','translateX(-50%) rotateZ('+needleAngle+'deg)');
-        }
+        handleMeter();
 
         if ( distance <= target.threshold){
             console.log(`Within ${target.threshold}m of location!!`);
