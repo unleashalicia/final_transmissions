@@ -38,7 +38,9 @@ var target = {
 
 
 function handleEventHandlers(){
-  $('.range-indicator').on('click touch',knobRange); //knob switch
+  $('.range-indicator').on('click touch',function(){
+    knobRange(this)
+  }); //knob switch
 
   $(window).on('orientationchange',handleOrientation) //orientation change
 }
