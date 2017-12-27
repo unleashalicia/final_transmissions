@@ -61,27 +61,31 @@ function flipSwitch(){
 
 
 function knobRange(elem){
-  if(deviceOn){
     switch ($(elem).attr('class')) {
       case "range-indicator long":
-        $('.knob-light').removeClass('selected');
-        $('.knob-light', elem).addClass('selected');
+        if(deviceOn){
+          $('.knob-light').removeClass('selected');
+          $('.knob-light', elem).addClass('selected');
+        }
         $('#knob>img').removeClass();
         $('#knob>img').addClass('long-range-knob');
         break;
       case "range-indicator mid":
-        $('.knob-light').removeClass('selected');
-        $('.knob-light', elem).addClass('selected');
+        if(deviceOn){
+          $('.knob-light').removeClass('selected');
+          $('.knob-light', elem).addClass('selected');
+        }
         $('#knob>img').removeClass();
         break;
       case "range-indicator close":
+      if(deviceOn){
         $('.knob-light').removeClass('selected');
         $('.knob-light', elem).addClass('selected');
+      }
         $('#knob>img').removeClass();
         $('#knob>img').addClass('close-range-knob');
         break;
     }
-  }
 }
 //##
 //our general purpose call for location locationdata
