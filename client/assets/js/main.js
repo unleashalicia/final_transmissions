@@ -12,6 +12,7 @@ function handleClickEvents(){
       $('#landing-container').removeClass('ghostOut')
     },3100)
   });
+
   $('.experience').on('click', function(){ //go to map and camera
     if(window.outerWidth < 750 ){
       window.open('meter-index.html','_self')
@@ -28,17 +29,17 @@ function handleClickEvents(){
     $('.caption',this).slideUp('linear');
   });
 
-  $('.signUp').on('click',function(){
+  $('.signUp').on('click',function(){ //clicking the sign up button at the landing page
     $('.greeting').fadeOut();
     $('.formSign').fadeIn();
   });
 
-  $('.logIn').on('click',function(){
+  $('.logIn').on('click',function(){//clicking the log in button at the landing page
     $('.greeting').fadeOut();
     $('.formLog').fadeIn()
   });
 
-  $('.cancel').on('click',function(){
+  $('.cancel').on('click',function(){ // clicking the cancel on the sign up and log in forms
     $(this).parent().parent().addClass('ghostOut').fadeOut(2500)
     setTimeout(function(){
         $('.formSign, .formLog').removeClass('ghostOut')
@@ -46,7 +47,7 @@ function handleClickEvents(){
     $('.greeting').fadeIn();
   });
 
-  $('.btnLog').on('click',function(){
+  $('.btnLog').on('click',function(){ //clicking the log in button on the log in form
     $(this).parent().parent().addClass('ghostOut').fadeOut(2500)
     setTimeout(function(){
         $('.formLog').removeClass('ghostOut')
@@ -58,7 +59,7 @@ function handleClickEvents(){
     $('.greeting h1>span').text($('.log div input').val());
   });
 
-  $('.btnSign').on('click',function(){
+  $('.btnSign').on('click',function(){ //clicking the log in button on the sign up form
     $(this).parent().parent().addClass('ghostOut').fadeOut(2500)
     setTimeout(function(){
       $('.formSign').removeClass('ghostOut')
@@ -67,7 +68,7 @@ function handleClickEvents(){
     $('.signUp').fadeOut();
   });
 
-  $('.instruction div div span').on('click', function(){
+  $('.instruction div div span').on('click', function(){ // closing the instruction div on the story page
     $('.instruction').fadeOut();
   })
 }

@@ -32,10 +32,14 @@ var target = {
 //     }
 // });
 // sound.audible = false;
-function handleClickHandlers(){
-  $('.range-indicator').on('click', function(){
+
+
+function handleEventHandlers(){
+  $('.range-indicator').on('click touch', function(){ //knob switch
     knobRange(this);
   });
+
+  $(window).on('orientationchange',handleOrientation) //orientation change
 }
 
 function flipSwitch(){
@@ -57,27 +61,31 @@ function flipSwitch(){
 
 
 function knobRange(elem){
-  if(deviceOn){
     switch ($(elem).attr('class')) {
       case "range-indicator long":
-        $('.knob-light').removeClass('selected');
-        $('.knob-light', elem).addClass('selected');
-        $('#speaker>img').removeClass();
-        $('#speaker>img').addClass('long-range-knob');
+        if(deviceOn){
+          $('.knob-light').removeClass('selected');
+          $('.knob-light', elem).addClass('selected');
+        }
+        $('#knob>img').removeClass();
+        $('#knob>img').addClass('long-range-knob');
         break;
       case "range-indicator mid":
-        $('.knob-light').removeClass('selected');
-        $('.knob-light', elem).addClass('selected');
-        $('#speaker>img').removeClass();
+        if(deviceOn){
+          $('.knob-light').removeClass('selected');
+          $('.knob-light', elem).addClass('selected');
+        }
+        $('#knob>img').removeClass();
         break;
       case "range-indicator close":
+      if(deviceOn){
         $('.knob-light').removeClass('selected');
         $('.knob-light', elem).addClass('selected');
-        $('#speaker>img').removeClass();
-        $('#speaker>img').addClass('close-range-knob');
+      }
+        $('#knob>img').removeClass();
+        $('#knob>img').addClass('close-range-knob');
         break;
     }
-  }
 }
 //##
 //our general purpose call for location locationdata
@@ -173,6 +181,7 @@ function deg2rad(deg) {
     return deg * (Math.PI/180)
 }
 
+//use to check if fullscreen is available by asking user permission by clicking on the "READY" (#loading ) multiple ifs for each type of browser
 function fullscreen(){
   $('#loading').fadeOut();
   var gauge = document.getElementById('gauge-wrapper');
@@ -187,7 +196,24 @@ function fullscreen(){
     }
   }
 
+
+//use to listen for device orientation change to switch from ESR or Ghost CAM
+
+function handleOrientation(event){
+  if(screen.orientation.type === 'portrait-primary'){
+    $('#gauge-wrapper').removeClass('hide');
+    $('#camera').addClass('hide');
+  }else{
+    $('#gauge-wrapper').addClass('hide');
+    $('#camera').removeClass('hide');
+  }
+}
+
+
+
+
+
 $(document).ready(function(){
   getLocation();
-  handleClickHandlers();
+  handleEventHandlers();
 });
