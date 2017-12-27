@@ -1,4 +1,4 @@
-$(document).ready(init)
+$(document).ready(init);
 
 
 function init(){
@@ -7,7 +7,7 @@ function init(){
 
 function handleClickEvents(){
   $('.open').on('click', function(){ //go to stories to check, leaves landing page
-    $('#landing-container').addClass('ghostOut').fadeOut(3000)
+    $('#landing-container').addClass('ghostOut').fadeOut(3000);
     setTimeout(function(){
       $('#landing-container').removeClass('ghostOut')
     },3100)
@@ -70,5 +70,5 @@ function handleClickEvents(){
 
   $('.instruction div div span').on('click', function(){ // closing the instruction div on the story page
     $('.instruction').fadeOut();
-  })
+  });
 }
