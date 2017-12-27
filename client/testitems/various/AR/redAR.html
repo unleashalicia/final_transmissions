@@ -8,7 +8,20 @@
 <body style='margin : 0px; overflow: hidden;'>
 <a-scene embedded artoolkit='sourceType: webcam;'>
     <a-entity position= "1 1 1">
-        <a-ocean></a-ocean>
+        <a-dodecahedron radius="1.5" segments-height="15" position="0 0 0.5" rotation='0 0 0'>
+            <a-animation attribute="rotation"
+                         dur="5000"
+                         to="0 360 0"
+                         easing= "linear"
+                         repeat="indefinite">
+            </a-animation>
+    </a-entity>
+        </a-dodecahedron>
+    </a-entity>
+    <a-entity>
+        <a-light color="#AC0406" position="1 0 1">
+
+        </a-light>
     </a-entity>
     <a-marker-camera preset='hiro'></a-marker-camera>
 </a-scene>
