@@ -4,6 +4,11 @@ body{
 .hide{
   display: none;
 }
+
+@keyframes slideDown {
+  0%{ top: -200%}
+  100%{top: 0}
+}
 nav ul{
   text-align: center;
   padding-right: 3%;
@@ -74,6 +79,7 @@ a, .profile-details{
   position: relative;
   display: none;
   height: 93%;
+  transition: 1s;
 }
 .caption h3{
   font-size: 5vmin;
@@ -82,6 +88,11 @@ a, .profile-details{
   height: 90%;
   font-size: 1.5em;
   font-family: Arial;
+}
+
+.slideDown{
+  display: block;
+  animation: slideDown;
 }
 .experience{
   position: absolute;
