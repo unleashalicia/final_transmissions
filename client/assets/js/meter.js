@@ -40,7 +40,7 @@ var knobMode = 'med';
 //++
 function loadSound(location,loopVal){
     let source = soundEngine.addSoundSource({
-        'url': location,
+        'url': sounds.sources,
         'loop': loopVal,
         'preLoad': true,
         'fadeIn': true,
@@ -48,10 +48,11 @@ function loadSound(location,loopVal){
         'fadeInTime': 10,
         'fadeOutTime': 10,
         'callback': function(){
-            sounds.loaded++;
-            if (sounds.loaded === sounds.sources.length){
-                sounds.ready = true;
-            }
+            console.log('ready');
+            // sounds.loaded++;
+            // if (sounds.loaded === sounds.sources.length){
+            //     sounds.ready = true;
+            // }
         }
     });
     return source;
@@ -305,7 +306,7 @@ function deg2rad(deg) {
 $(document).ready(function(){
   getLocation();
   handleEventHandlers();
-  loadAll();
+  // loadAll();
 });
 //****************************************
 //****************************************
