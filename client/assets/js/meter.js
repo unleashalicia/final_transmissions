@@ -16,17 +16,19 @@ var sounds = {
     }
 };
 //Out front of lfz:
-var target = {
-    latitude: 33.6350687,
-    longitude: -117.7402043,
-    threshold: 8
-};
-//Out front of apartment:
 // var target = {
-//     latitude: 33.7523889,
-//     longitude: -117.8637263,
-//     threshold: 10
+//     latitude: 33.6350687,
+//     longitude: -117.7402043,
+//     threshold: 8
 // };
+//Out front of apartment
+var target = {
+    latitude: 33.7523889,
+    longitude: -117.8637263,
+    threshold: 10
+};
+var distance;
+var knobMode = 'med';
 //****************************************
 //****************************************
 //--|
@@ -84,10 +86,12 @@ function loadAll(){
 //########################################
 //++
 //++
-function handleClickHandlers(){
-  $('.range-indicator').on('click', function(){
-    knobRange(this);
-  });
+function handleEventHandlers(){
+  $('.range-indicator').on('click touch',function(){
+    knobRange(this)
+  }); //knob switch
+
+  $(window).on('orientationchange',handleOrientation) //orientation change
 }
 //****************************************
 //****************************************
@@ -117,43 +121,86 @@ function flipSwitch(){
 //++
 //++
 function knobRange(elem){
-  if(deviceOn){
     switch ($(elem).attr('class')) {
       case "range-indicator long":
-        $('.knob-light').removeClass('selected');
-        $('.knob-light', elem).addClass('selected');
-        $('#speaker>img').removeClass();
-        $('#speaker>img').addClass('long-range-knob');
-        break;
+         if(deviceOn){
+            $('.knob-light').removeClass('selected');
+            $('.knob-light', elem).addClass('selected');
+          }
+          $('#knob>#knobImg').removeClass();
+          $('#knob>#knobImg').addClass('long-range-knob');
+          break;
       case "range-indicator mid":
-        $('.knob-light').removeClass('selected');
-        $('.knob-light', elem).addClass('selected');
-        $('#speaker>img').removeClass();
-        break;
+          if(deviceOn){
+              $('.knob-light').removeClass('selected');
+              $('.knob-light', elem).addClass('selected');
+            }
+          $('#knob>#knobImg').removeClass();
+          break;
       case "range-indicator close":
-        $('.knob-light').removeClass('selected');
-        $('.knob-light', elem).addClass('selected');
-        $('#speaker>img').removeClass();
-        $('#speaker>img').addClass('close-range-knob');
-        break;
+          if(deviceOn){
+            $('.knob-light').removeClass('selected');
+            $('.knob-light', elem).addClass('selected');
+          }
+          $('#knob>#knobImg').removeClass();
+          $('#knob>#knobImg').addClass('close-range-knob');
+          break;
     }
-  }
+}
+//++
+//++
+function handleMeter(){
+    if (knobMode === 'long'){
+        if (distance > 100 && deviceOn){
+            $('.needleGuage').css('transform','translateX(-50%) rotateZ(-65deg)');
+        } else if (distance <= 100 && distance >= 0 && deviceOn){
+            let needleAngle = 53 - distance;
+            $('.needleGuage').css('transform','translateX(-50%) rotateZ('+needleAngle+'deg)');
+        }
+    } else if (knobMode === 'med') {
+        if (distance > 50 && deviceOn){
+            $('.needleGuage').css('transform','translateX(-50%) rotateZ(-65deg)');
+        } else if (distance <= 50 && distance >= 0 && deviceOn){
+            let needleAngle = 53 - distance * 2;
+            $('.needleGuage').css('transform','translateX(-50%) rotateZ('+needleAngle+'deg)');
+        }
+    } else if (knobMode === 'short') {
+        if (distance > 25 && deviceOn){
+            $('.needleGuage').css('transform','translateX(-50%) rotateZ(-65deg)');
+        } else if (distance <= 25 && distance >= 0 && deviceOn){
+            let needleAngle = 53 - distance * 4;
+            $('.needleGuage').css('transform','translateX(-50%) rotateZ('+needleAngle+'deg)');
+        }
+    }
 }
 //++
 //++
 function fullscreen(){
-  $('#loading').fadeOut();
-  var gauge = document.getElementById('gauge-wrapper');
-  if(gauge.requestFullscreen){
-      gauge.requestFullscreen()
+    //use to check if fullscreen is available by asking user permission by clicking on the "READY" (#loading ) multiple ifs for each type of browser
+    $('#loading').fadeOut();
+    var gauge = document.getElementById('gauge-wrapper');
+    if(gauge.requestFullscreen){
+        gauge.requestFullscreen()
     } else if (gauge.webkitRequestFullscreen) {
-    	gauge.webkitRequestFullscreen();
+        gauge.webkitRequestFullscreen();
     } else if (gauge.mozRequestFullScreen) {
-    	gauge.mozRequestFullScreen();
+        gauge.mozRequestFullScreen();
     } else if (gauge.msRequestFullscreen) {
-    	gauge.msRequestFullscreen();
+        gauge.msRequestFullscreen();
     }
-  }
+}
+//++
+//++
+function handleOrientation(event){
+    //use to listen for device orientation change to switch from ESR or Ghost CAM
+    if(screen.orientation.type === 'portrait-primary'){
+        $('#gauge-wrapper').removeClass('hide');
+        $('#camera').addClass('hide');
+    }else{
+        $('#gauge-wrapper').addClass('hide');
+        $('#camera').removeClass('hide');
+    }
+}
 //****************************************
 //****************************************
 //-|
@@ -191,16 +238,11 @@ function getLocation() {
         console.log(coord);
 
 
-        var distance = getDistanceFromLatLonInKm(coord.latitude,coord.longitude,target.latitude,target.longitude);
+        distance = getDistanceFromLatLonInKm(coord.latitude,coord.longitude,target.latitude,target.longitude);
 
         $('.test-output').text(distance.toFixed(3));
 
-        if (distance > 100 && deviceOn){
-            $('.needleGuage').css('transform','translateX(-50%) rotateZ(-75deg)');
-        } else if (distance <= 100 && distance >= 0 && deviceOn){
-            let needleAngle = 53 - distance;
-            $('.needleGuage').css('transform','translateX(-50%) rotateZ('+needleAngle+'deg)');
-        }
+        handleMeter();
 
         if ( distance <= target.threshold){
             console.log(`Within ${target.threshold}m of location!!`);
@@ -256,7 +298,7 @@ function deg2rad(deg) {
 //########################################
 $(document).ready(function(){
   getLocation();
-  handleClickHandlers();
+  handleEventHandlers();
 });
 //****************************************
 //****************************************
