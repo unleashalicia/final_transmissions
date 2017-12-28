@@ -1,38 +1,30 @@
-$(document).ready(init);
-
+document.addEventListener("DOMContentLoaded", init);
 
 function init(){
   handleClickEvents();
 }
 
 function handleClickEvents(){
-  $('.open').on('click', function(){ //go to stories to check, leaves landing page
-    $('#landing-container').addClass('ghostOut').fadeOut(3000);
+  document.querySelector('.open').onclick = function(){ //go to stories to check, leaves landing page
+    var landingContainer = document.getElementById('#landing-container');
+    landingContainer.classList.add('ghostOut').fadeOut(3000);
     setTimeout(function(){
-      $('#landing-container').removeClass('ghostOut')
+      landingContainer.removeClass('ghostOut')
     },3100)
-  });
+  };
 
-  $('.experience').on('click', function(){ //go to map and camera
+  document.querySelector('.experience').onclick = function(){ //go to map and camera
     if(window.outerWidth < 750 ){
       window.open('meter-index.html','_self')
     }else{
-      $('.instruction').fadeIn();
+      document.querySelector('.instruction').fadeIn();
     }
-  });
+  };
 
-  $('.story').click(function(){ //shows the story summary
-    $('.caption', this).slideDown('linear');
-  });
-
-  $('.story').mouseleave(function(){//hidesthe story summary
-    $('.caption',this).slideUp('linear');
-  });
-
-  $('.signUp').on('click',function(){ //clicking the sign up button at the landing page
-    $('.greeting').fadeOut();
-    $('.formSign').fadeIn();
-  });
+  document.querySelector('.signUp').onclick = function(){ //clicking the sign up button at the landing page
+    document.querySelector('.greeting').fadeOut();
+    document.querySelector('.formSign').fadeIn();
+  };
 
   $('.logIn').on('click',function(){//clicking the log in button at the landing page
     $('.greeting').fadeOut();

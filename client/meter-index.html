@@ -8,11 +8,13 @@
         <script src="https://code.jquery.com/jquery-3.1.0.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.0.5/howler.core.min.js"></script>
         <script type="text/javascript" src="./assets/js/meter.js"></script>
+
     </head>
     <body>
       <div id="loading">
-        <h2>Loading</h2>
-        <p onclick="fullscreen()"class="loading-btn hide">Ready?</p>
+        <!--<h2>Loading</h2>-->
+        <!--<p onclick="fullscreen()" class="loading-btn hide">Ready?</p>-->
+          <canvas id="canvas"></canvas>
       </div>
       <div id="gauge-wrapper">
         <div class="topGuage">
@@ -72,5 +74,6 @@
             </div>
             <div class="guage-bar"><div class="guage-bar-tip"></div></div>
         </div> -->
+      <script src="loadModal.js"></script>
     </body>
 </html>
