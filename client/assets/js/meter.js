@@ -11,7 +11,7 @@ var sounds = {
     1: null,
     2: null,
     numLoaded: 0,
-    ready: false,,
+    ready: false,
     speakingPlayed: false,
     sources: ['./assets/sounds/0951.ogg','./assets/sounds/evillaugh.ogg']
 };
