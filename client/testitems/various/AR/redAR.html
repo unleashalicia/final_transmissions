@@ -9,20 +9,17 @@
 <a-scene embedded artoolkit='sourceType: webcam;'>
     <a-marker preset='hiro'>
         <a-entity position= "1 1 1">
-            <a-dodecahedron radius="1.5" segments-height="15" position="0 0 0.5" rotation='0 0 0'>
+            <a-dodecahedron radius="3" rotation='0 0 0' material="opacity: 0.9">
                 <a-animation attribute="rotation"
-                             dur="5000"
-                             to="0 360 0"
+                             dur="3000"
+                             to="0 360 100"
                              easing= "linear"
                              repeat="indefinite">
                 </a-animation>
             </a-dodecahedron>
         </a-entity>
     </a-marker>
-    <a-entity>
-        <a-light color="#AC0406" position="1 0 1">
-        </a-light>
-    </a-entity>
+        <a-entity light="type: spot; angle: 45; color: #AC0406"></a-entity>
     <a-entity camera="userHeight: 1.6"></a-entity>
 </a-scene>
 </body>
