@@ -1,43 +1,107 @@
-//geolocation
+//########################################
+//## Global Variables  ###################
+//########################################
 var locationdata;
 var coord;
 var startPoint;
 var deviceOn = false;
 var watchHandler;
+var soundEngine = new jWebAudio.SoundEngine();
+var sounds = {
+    loaded: 0,
+    ready: false,
+    sources: ['../sounds/0951.ogg'],
+    objects: {
 
-//Out front of lfz
-var target = {
-    latitude: 33.6350687,
-    longitude: -117.7402043,
-    threshold: 8
+    }
 };
-
-//Out front of apartment
+//Out front of lfz:
 // var target = {
-//     latitude: 33.7523889,
-//     longitude: -117.8637263,
-//     threshold: 10
+//     latitude: 33.6350687,
+//     longitude: -117.7402043,
+//     threshold: 8
 // };
-
-
-
-
-// var sound = new Howl ({
-//     src: ['./assets/sounds/0951.ogg'],
-//     autoplay: true,
-//     loop: true,
-//     volume: 0,
-//     onloaderror: function(){
-//         console.log('sound load error');
-//     }
-// });
-// sound.audible = false;
-function handleClickHandlers(){
-  $('.range-indicator').on('click', function(){
-    knobRange(this);
-  });
+//Out front of apartment
+var target = {
+    latitude: 33.7523889,
+    longitude: -117.8637263,
+    threshold: 10
+};
+var distance;
+var knobMode = 'med';
+//****************************************
+//****************************************
+//--|
+//--|
+//########################################
+//## Audio controllers  ##################
+//########################################
+//++
+//++
+function loadSound(location,loopVal){
+    let source = soundEngine.addSoundSource({
+        'url': location,
+        'loop': loopVal,
+        'preLoad': true,
+        'fadeIn': true,
+        'fadeOut': true,
+        'fadeInTime': 10,
+        'fadeOutTime': 10,
+        'callback': function(){
+            sounds.loaded++;
+            if (sounds.loaded === sounds.sources.length){
+                sounds.ready = true;
+            }
+        }
+    });
+    return source;
 }
+//++
+//++
+function soundAction(audio,action){
+    if (action === 'play'){
+        audio.sound.play();
+        audio.
+    } else if (action === 'pause'){
+        audio.sound.pause();
+    } else if (action === 'stop'){
+        audio.sound.stop();
+    }
+}
+//++
+//++
+function loadAll(){
+    for (let i = 0; i < sounds.sources.length; i++){
+        let loop = i === 0 ? true : false;
+        sounds.objects[i].file = loadSound(sounds.sources[i],loop);
+        sounds.objects[i].playing = false;
+    }
+}
+//****************************************
+//****************************************
+//-|
+//-|
+//########################################
+//## Click handlers  #####################
+//########################################
+//++
+//++
+function handleEventHandlers(){
+  $('.range-indicator').on('click touch',function(){
+    knobRange(this)
+  }); //knob switch
 
+  $(window).on('orientationchange',handleOrientation) //orientation change
+}
+//****************************************
+//****************************************
+//-|
+//-|
+//########################################
+//## UI Controls  ########################
+//########################################
+//++
+//++
 function flipSwitch(){
     console.log('touched');
     if (!deviceOn){
@@ -54,36 +118,100 @@ function flipSwitch(){
         navigator.geolocation.clearWatch(watchHandler);
     }
 }
-
-
+//++
+//++
 function knobRange(elem){
-  if(deviceOn){
     switch ($(elem).attr('class')) {
       case "range-indicator long":
-        $('.knob-light').removeClass('selected');
-        $('.knob-light', elem).addClass('selected');
-        $('#speaker>img').removeClass();
-        $('#speaker>img').addClass('long-range-knob');
-        break;
+         if(deviceOn){
+            $('.knob-light').removeClass('selected');
+            $('.knob-light', elem).addClass('selected');
+          }
+          $('#knob>#knobImg').removeClass();
+          $('#knob>#knobImg').addClass('long-range-knob');
+          break;
       case "range-indicator mid":
-        $('.knob-light').removeClass('selected');
-        $('.knob-light', elem).addClass('selected');
-        $('#speaker>img').removeClass();
-        break;
+          if(deviceOn){
+              $('.knob-light').removeClass('selected');
+              $('.knob-light', elem).addClass('selected');
+            }
+          $('#knob>#knobImg').removeClass();
+          break;
       case "range-indicator close":
-        $('.knob-light').removeClass('selected');
-        $('.knob-light', elem).addClass('selected');
-        $('#speaker>img').removeClass();
-        $('#speaker>img').addClass('close-range-knob');
-        break;
+          if(deviceOn){
+            $('.knob-light').removeClass('selected');
+            $('.knob-light', elem).addClass('selected');
+          }
+          $('#knob>#knobImg').removeClass();
+          $('#knob>#knobImg').addClass('close-range-knob');
+          break;
     }
-  }
 }
-//##
-//our general purpose call for location locationdata
-//this could get wrapped up into a player object as a method
-//##
+//++
+//++
+function handleMeter(){
+    if (knobMode === 'long'){
+        if (distance > 100 && deviceOn){
+            $('.needleGuage').css('transform','translateX(-50%) rotateZ(-65deg)');
+        } else if (distance <= 100 && distance >= 0 && deviceOn){
+            let needleAngle = 53 - distance;
+            $('.needleGuage').css('transform','translateX(-50%) rotateZ('+needleAngle+'deg)');
+        }
+    } else if (knobMode === 'med') {
+        if (distance > 50 && deviceOn){
+            $('.needleGuage').css('transform','translateX(-50%) rotateZ(-65deg)');
+        } else if (distance <= 50 && distance >= 0 && deviceOn){
+            let needleAngle = 53 - distance * 2;
+            $('.needleGuage').css('transform','translateX(-50%) rotateZ('+needleAngle+'deg)');
+        }
+    } else if (knobMode === 'short') {
+        if (distance > 25 && deviceOn){
+            $('.needleGuage').css('transform','translateX(-50%) rotateZ(-65deg)');
+        } else if (distance <= 25 && distance >= 0 && deviceOn){
+            let needleAngle = 53 - distance * 4;
+            $('.needleGuage').css('transform','translateX(-50%) rotateZ('+needleAngle+'deg)');
+        }
+    }
+}
+//++
+//++
+function fullscreen(){
+    //use to check if fullscreen is available by asking user permission by clicking on the "READY" (#loading ) multiple ifs for each type of browser
+    $('#loading').fadeOut();
+    var gauge = document.getElementById('gauge-wrapper');
+    if(gauge.requestFullscreen){
+        gauge.requestFullscreen()
+    } else if (gauge.webkitRequestFullscreen) {
+        gauge.webkitRequestFullscreen();
+    } else if (gauge.mozRequestFullScreen) {
+        gauge.mozRequestFullScreen();
+    } else if (gauge.msRequestFullscreen) {
+        gauge.msRequestFullscreen();
+    }
+}
+//++
+//++
+function handleOrientation(event){
+    //use to listen for device orientation change to switch from ESR or Ghost CAM
+    if(screen.orientation.type === 'portrait-primary'){
+        $('#gauge-wrapper').removeClass('hide');
+        $('#camera').addClass('hide');
+    }else{
+        $('#gauge-wrapper').addClass('hide');
+        $('#camera').removeClass('hide');
+    }
+}
+//****************************************
+//****************************************
+//-|
+//-|
+//########################################
+//## Location Helpers  ###################
+//########################################
+//++
+//++
 function getLocation() {
+    //our general purpose call for location data
     console.log('getting location');
     var options = {
         enableHighAccuracy: true,
@@ -101,44 +229,40 @@ function getLocation() {
         location = "Geolocation is not supported by this browser.";
     }
 
-    //##
-    //Not sure about the need to have this here
-    //move outside of the parent function?
-    //##
+
     function showSuccess(pos) {
-        //##
-        //pos also includes pos.timestamp
-        //which can be used for discarding spurious results
-        //when combined with a calculated distance from origin
-        //##
+        //pos also includes pos.timestamp if needed later
         $('#loading h2').fadeOut();
         $('.loading-btn').removeClass('hide');
         coord = pos.coords;
         console.log(coord);
 
 
-        var distance = getDistanceFromLatLonInKm(coord.latitude,coord.longitude,target.latitude,target.longitude);
+        distance = getDistanceFromLatLonInKm(coord.latitude,coord.longitude,target.latitude,target.longitude);
 
         $('.test-output').text(distance.toFixed(3));
 
-        if (distance > 100 && deviceOn){
-            $('.needleGuage').css('transform','translateX(-50%) rotateZ(-75deg)');
-        } else if (distance <= 100 && distance >= 0 && deviceOn){
-            let needleAngle = 53 - distance;
-            $('.needleGuage').css('transform','translateX(-50%) rotateZ('+needleAngle+'deg)');
-        }
+        handleMeter();
 
         if ( distance <= target.threshold){
             console.log(`Within ${target.threshold}m of location!!`);
-            // sound.fade(0,1,4000);
-            // sound.audible = true;
+            //play sound here
+            if (!sounds.objects[0].playing){
+                soundAction(sounds.objects[0].file,'play');
+            } else if (distance <= target.threshold/2 && !sounds.objects[1].playing){
+                soundAction(sounds.objects[1].file,'play');
+            }
 
         } else {
-            console.log(`${coord.latitude} <br /> ${coord.longitude} <br />Success!<br />${distance}`)
-            // if (sound.audible){
-            //     sound.fade(1,0,2000);
-            //     sound.audible = false;
-            // }
+            console.log(`Success! | ${coord.latitude} | ${coord.longitude} | ${distance} meters`)
+            //fade out any playing sounds here
+            if (distance > target.threshold/2 && sounds.objects[1].playing){
+                soundAction(sounds.objects[1].file,'pause');
+            }
+            if (sounds.objects[0].playing){
+                soundAction(sounds.objects[1].file,'stop');
+            }
+
         }
     }
 
@@ -146,14 +270,8 @@ function getLocation() {
         console.warn(`ERROR(${err.code}): ${err.message}`);
     }
 }
-
-
-//##
-//distance calc for anything we put into it
-//takes latitude and longitude for each object
-//maybe switch this to be passed as objects?
-//Outputs a number representing distance in meters
-//##
+//++
+//++
 function getDistanceFromLatLonInKm(lat1,lon1,lat2,lon2) {
     var R = 6371; // Radius of the earth in km
     var dLat = deg2rad(lat2-lat1);  // deg2rad below
@@ -165,29 +283,24 @@ function getDistanceFromLatLonInKm(lat1,lon1,lat2,lon2) {
     var d = R * c; // Distance in km
     return d * 1000; //Distance in meters
 }
-
-//##
-//used in the get distance calc in order to use radians
-//##
+//++
+//++
 function deg2rad(deg) {
+    //used in the get distance calc in order to use radians
     return deg * (Math.PI/180)
 }
-
-function fullscreen(){
-  $('#loading').fadeOut();
-  var gauge = document.getElementById('gauge-wrapper');
-  if(gauge.requestFullscreen){
-      gauge.requestFullscreen()
-    } else if (gauge.webkitRequestFullscreen) {
-    	gauge.webkitRequestFullscreen();
-    } else if (gauge.mozRequestFullScreen) {
-    	gauge.mozRequestFullScreen();
-    } else if (gauge.msRequestFullscreen) {
-    	gauge.msRequestFullscreen();
-    }
-  }
-
+//****************************************
+//****************************************
+//-|
+//-|
+//########################################
+//## Entry into app/on load  #############
+//########################################
 $(document).ready(function(){
   getLocation();
-  handleClickHandlers();
+  handleEventHandlers();
 });
+//****************************************
+//****************************************
+//-|
+//-|

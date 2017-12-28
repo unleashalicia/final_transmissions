@@ -68,6 +68,7 @@ function getLocation() {
     //move outside of the parent function?
     //##
     function showSuccess(pos) {
+        document.getElementById("loading-modal").style.display = "none";
         //##
         //pos also includes pos.timestamp
         //which can be used for discarding spurious results
@@ -281,6 +282,8 @@ function initMap() {
 //##
 
 function showCurrentLocation(loc){
+    const markerPositionLong = loc.longitude + 0.000001;
+    const markerPositionLat = loc.latitude - 0.00003;
     map.setCenter({lat:loc.latitude, lng:loc.longitude, alt:0});
-    marker.setPosition({lat:loc.latitude, lng:loc.longitude, alt:0});
+    marker.setPosition({lat:markerPositionLat, lng:markerPositionLong, alt:0});
 }

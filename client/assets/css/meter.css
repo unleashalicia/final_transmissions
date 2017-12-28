@@ -129,11 +129,11 @@ body * {
 }
 
 .long-range-knob{
-  transform: rotate(-90deg);
+  transform: rotateZ(-90deg);
 }
 
 .close-range-knob{
-  transform: rotate(90deg);
+  transform: rotateZ(90deg);
 }
 
 
@@ -179,11 +179,19 @@ body * {
     filter: brightness(80%);
 }
 
-#knob>img{
+#knobImg{
+  transition: 0.5s;
   position: relative;
   top: 30%;
   height: 50%;
+  width: 50%;
+  background-image: url("../images/esr-meter/meter-knob.png");
+  background-size: contain;
+  background-position: center center;
+  background-repeat: no-repeat;
   filter: grayscale(100%);
+  transition-duration: 0.5s;
+  margin: 0 auto;
 }
 
 #indicator {
