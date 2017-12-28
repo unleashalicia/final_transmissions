@@ -11,7 +11,8 @@ var sounds = {
     1: null,
     2: null,
     numLoaded: 0,
-    ready: false,
+    ready: false,,
+    speakingPlayed: false,
     sources: ['./assets/sounds/0951.ogg','./assets/sounds/evillaugh.ogg']
 };
 var speaking;
@@ -42,7 +43,7 @@ var knobMode = 'med';
 //++
 //++
 function loadSound(location,position){
-    let setLoop = position === 0 ? true : false;
+    var setLoop = position === 0 ? true : false;
     let howl = new Howl({
         src: [location],
         preload: true,
@@ -245,22 +246,25 @@ function getLocation() {
             } else {
                 sounds[0].play(looping);
             }
-            sounds[0].fade(0,0.7,3000,looping);
+            sounds[0].fade(0,0.7,1500,looping);
 
         } else if (distance > target.loopThreshold && sounds[0].playing(looping)){
-            sounds[0].fade(0.7,0,4000,looping).once('fade',function(){
+            sounds[0].fade(0.7,0,1500,looping).once('fade',function(){
                 sounds[1].pause(looping);
             },looping);
         }
 
-        if (distance <= target.talkThreshold && !sounds[1].playing(speaking)) {
+        if (distance <= target.talkThreshold && !sounds[1].playing(speaking) && !sounds.speakingPlayed) {
             if (!speaking){
                 speaking = sounds[1].play();
+                sounds[1].on('end',function(){
+                    sounds.speakingPlayed = true;
+                },speaking);
             } else {
                 sounds[1].play(speaking);
             }
             sounds[1].fade(0,0.9,1500,speaking);
-        } else if (distance > target.talkThreshold && (sounds[1].playing(speaking))){
+        } else if (distance > target.talkThreshold && sounds[1].playing(speaking)){
             sounds[1].fade(0.9,0,1500,speaking).once('fade',function(){
                 sounds[1].pause(speaking);
             },speaking);
