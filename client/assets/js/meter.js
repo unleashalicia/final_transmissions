@@ -10,7 +10,7 @@ var soundEngine = new jWebAudio.SoundEngine();
 var sounds = {
     loaded: 0,
     ready: false,
-    sources: ['../sounds/0951.ogg'],
+    sources: ['../client/assets/sounds/0951.ogg','../client/assets/sounds/evillaugh.ogg'],
     objects: {
 
     }
@@ -61,7 +61,6 @@ function loadSound(location,loopVal){
 function soundAction(audio,action){
     if (action === 'play'){
         audio.sound.play();
-        audio.
     } else if (action === 'pause'){
         audio.sound.pause();
     } else if (action === 'stop'){
@@ -73,6 +72,7 @@ function soundAction(audio,action){
 function loadAll(){
     for (let i = 0; i < sounds.sources.length; i++){
         let loop = i === 0 ? true : false;
+        sounds.objects[i] = {};
         sounds.objects[i].file = loadSound(sounds.sources[i],loop);
         sounds.objects[i].playing = false;
     }
@@ -88,7 +88,7 @@ function loadAll(){
 //++
 function handleEventHandlers(){
   $('.range-indicator').on('click touch',function(){
-    knobRange(this)
+    knobRange(this);
   }); //knob switch
 
   $(window).on('orientationchange',handleOrientation) //orientation change
@@ -129,6 +129,8 @@ function knobRange(elem){
           }
           $('#knob>#knobImg').removeClass();
           $('#knob>#knobImg').addClass('long-range-knob');
+          knobMode = 'long';
+          handleMeter();
           break;
       case "range-indicator mid":
           if(deviceOn){
@@ -136,6 +138,8 @@ function knobRange(elem){
               $('.knob-light', elem).addClass('selected');
             }
           $('#knob>#knobImg').removeClass();
+          knobMode = 'med';
+          handleMeter();
           break;
       case "range-indicator close":
           if(deviceOn){
@@ -144,6 +148,8 @@ function knobRange(elem){
           }
           $('#knob>#knobImg').removeClass();
           $('#knob>#knobImg').addClass('close-range-knob');
+          knobMode = 'short';
+          handleMeter();
           break;
     }
 }
@@ -256,9 +262,9 @@ function getLocation() {
         } else {
             console.log(`Success! | ${coord.latitude} | ${coord.longitude} | ${distance} meters`)
             //fade out any playing sounds here
-            if (distance > target.threshold/2 && sounds.objects[1].playing){
-                soundAction(sounds.objects[1].file,'pause');
-            }
+            // if (distance > target.threshold/2 && sounds.objects[1].playing){
+            //     soundAction(sounds.objects[1].file,'pause');
+            // }
             if (sounds.objects[0].playing){
                 soundAction(sounds.objects[1].file,'stop');
             }
@@ -299,6 +305,7 @@ function deg2rad(deg) {
 $(document).ready(function(){
   getLocation();
   handleEventHandlers();
+  loadAll();
 });
 //****************************************
 //****************************************
