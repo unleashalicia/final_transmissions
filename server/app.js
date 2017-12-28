@@ -1,30 +1,54 @@
 const express = require('express');
-const logger = require('morgan');
-const path = require("path");
-const server = express();
+const logger = require('morgan'); // how does morgan work again?
+const passport = require('passport');
+const session = require('express-session');
+const path = require('path');
+
+const app = express();
 const PORT = 8000;
 
-server.use(logger('dev')); //other options exist other than dev, look into it
+app.use(logger('dev')); // ???
+app.use(express.json()); //takes the place of...
+app.use(express.urlencoded()); //...body-parser
+app.use(express.static('WHAT DO I PUT IN HERE?')); // ???
+app.use(session({ secret: 'wishbone' })); // ???
+app.use(passport.initialize()); 
+app.use(passport.session()); 
+
+require('./passport')(passport); // ???
+require('./routes/auth.js')(app, passport); // ???
 
 
-server.use(express.json()); //takes the place of...
-server.use(express.urlencoded()); //...body-parser
+
+// landing page
+app.get('/', (req, res) => {
+    res.sendFile();
+});
+
+// new user sign-up
+app.get('/signup', (req, res) => {
+    res.sendFile();
+});
+
+// returning user login
+app.get('/index', (req, res) => {
+    res.sendFile();
+});
 
 
-server.use(express.static(path.join(__dirname, '..', 'client')));
-server.get('/',(req,res) => {
-    res.sendFile(path.join(__dirname, '..', 'client/index.html'))
-})
 
-server.get('/signup', (req, res) => {
-    res.sendFile(path.join(__dirname, '..', 'client/signup.html'))
-    //console.log(path.join(__dirname, '..', 'client/index.html'));
-    //res.sendFile(path.join(__dirname, '..', 'client/index.html'))
-})
+function errorHandler (err, req, res, next) { 
+	if (res.headersSent) {
+	  return next(err);
+	}
+	res.status(500);
+	res.send('Error, something broke!');
+}
 
-server.listen(PORT, () => {
+app.listen(PORT, () => {
     console.log("Let's find some ghosts on port: ", PORT);
-})
+});
+
 
 
 //mongoose schema resources mongolabs mongo university  
