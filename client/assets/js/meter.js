@@ -249,8 +249,8 @@ function getLocation() {
             sounds[0].fade(0,0.7,1500,looping);
 
         } else if (distance > target.loopThreshold && sounds[0].playing(looping)){
-            sounds[0].fade(0.7,0,1500,looping).once('fade',function(){
-                sounds[1].pause(looping);
+            sounds[0].fade(0.7,0,500).once('fade',function(){
+                sounds[0].pause(looping);
             },looping);
         }
 
