@@ -6,27 +6,31 @@ var coord;
 var startPoint;
 var deviceOn = false;
 var watchHandler;
-var soundEngine = new jWebAudio.SoundEngine();
 var sounds = {
-    loaded: 0,
+    0: null,
+    1: null,
+    2: null,
+    numLoaded: 0,
     ready: false,
-    sources: ['../client/assets/sounds/0951.ogg','../client/assets/sounds/evillaugh.ogg'],
-    objects: {
-
-    }
+    speakingPlayed: false,
+    sources: ['./assets/sounds/0951.ogg','./assets/sounds/evillaugh.ogg']
 };
+var speaking;
+var looping;
+var effect;
 //Out front of lfz:
-// var target = {
-//     latitude: 33.6350687,
-//     longitude: -117.7402043,
-//     threshold: 8
-// };
-//Out front of apartment
 var target = {
-    latitude: 33.7523889,
-    longitude: -117.8637263,
-    threshold: 10
+    latitude: 33.6350687,
+    longitude: -117.7402043,
+    loopThreshold: 20,
+    talkThreshold: 8
 };
+//Out front of apartment
+// var target = {
+//     latitude: 33.7523889,
+//     longitude: -117.8637263,
+//     threshold: 10
+// };
 var distance;
 var knobMode = 'med';
 //****************************************
@@ -38,43 +42,30 @@ var knobMode = 'med';
 //########################################
 //++
 //++
-function loadSound(location,loopVal){
-    let source = soundEngine.addSoundSource({
-        'url': location,
-        'loop': loopVal,
-        'preLoad': true,
-        'fadeIn': true,
-        'fadeOut': true,
-        'fadeInTime': 10,
-        'fadeOutTime': 10,
-        'callback': function(){
-            sounds.loaded++;
-            if (sounds.loaded === sounds.sources.length){
-                sounds.ready = true;
+function loadSound(location,position){
+    var setLoop = position === 0 ? true : false;
+    let howl = new Howl({
+        src: [location],
+        preload: true,
+        loop: setLoop,
+        autoplay: false,
+        volume: 0,
+        onload: ()=>{
+            sounds.numLoaded++;
+            if (sounds.numLoaded >= sounds.sources.length){
+                sounds.ready = true; //used for debugging
+                $('#loading h2').fadeOut();
+                $('.loading-btn').removeClass('hide');
             }
         }
     });
-    return source;
-}
-//++
-//++
-function soundAction(audio,action){
-    if (action === 'play'){
-        audio.sound.play();
-    } else if (action === 'pause'){
-        audio.sound.pause();
-    } else if (action === 'stop'){
-        audio.sound.stop();
-    }
+    return howl;
 }
 //++
 //++
 function loadAll(){
     for (let i = 0; i < sounds.sources.length; i++){
-        let loop = i === 0 ? true : false;
-        sounds.objects[i] = {};
-        sounds.objects[i].file = loadSound(sounds.sources[i],loop);
-        sounds.objects[i].playing = false;
+        sounds[i] = loadSound(sounds.sources[i],i);
     }
 }
 //****************************************
@@ -238,8 +229,7 @@ function getLocation() {
 
     function showSuccess(pos) {
         //pos also includes pos.timestamp if needed later
-        $('#loading h2').fadeOut();
-        $('.loading-btn').removeClass('hide');
+        //moved ready modal details into audio load callback
         coord = pos.coords;
         console.log(coord);
 
@@ -250,25 +240,34 @@ function getLocation() {
 
         handleMeter();
 
-        if ( distance <= target.threshold){
-            console.log(`Within ${target.threshold}m of location!!`);
-            //play sound here
-            if (!sounds.objects[0].playing){
-                soundAction(sounds.objects[0].file,'play');
-            } else if (distance <= target.threshold/2 && !sounds.objects[1].playing){
-                soundAction(sounds.objects[1].file,'play');
+        if (distance <= target.loopThreshold && !sounds[0].playing(looping)){
+            if (!looping){
+                looping = sounds[0].play();
+            } else {
+                sounds[0].play(looping);
             }
+            sounds[0].fade(0,0.7,1500,looping);
 
-        } else {
-            console.log(`Success! | ${coord.latitude} | ${coord.longitude} | ${distance} meters`)
-            //fade out any playing sounds here
-            // if (distance > target.threshold/2 && sounds.objects[1].playing){
-            //     soundAction(sounds.objects[1].file,'pause');
-            // }
-            if (sounds.objects[0].playing){
-                soundAction(sounds.objects[1].file,'stop');
+        } else if (distance > target.loopThreshold && sounds[0].playing(looping)){
+            sounds[0].fade(0.7,0,500).once('fade',function(){
+                sounds[0].pause(looping);
+            },looping);
+        }
+
+        if (distance <= target.talkThreshold && !sounds[1].playing(speaking) && !sounds.speakingPlayed) {
+            if (!speaking){
+                speaking = sounds[1].play();
+                sounds[1].on('end',function(){
+                    sounds.speakingPlayed = true;
+                },speaking);
+            } else {
+                sounds[1].play(speaking);
             }
-
+            sounds[1].fade(0,0.9,1500,speaking);
+        } else if (distance > target.talkThreshold && sounds[1].playing(speaking)){
+            sounds[1].fade(0.9,0,1500,speaking).once('fade',function(){
+                sounds[1].pause(speaking);
+            },speaking);
         }
     }
 
@@ -303,9 +302,9 @@ function deg2rad(deg) {
 //## Entry into app/on load  #############
 //########################################
 $(document).ready(function(){
-  getLocation();
   handleEventHandlers();
   loadAll();
+  getLocation();
 });
 //****************************************
 //****************************************
