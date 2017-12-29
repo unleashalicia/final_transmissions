@@ -12,7 +12,6 @@ function handleClickEvents(){
   const logIn = document.querySelector('.logIn');
   const formLog = document.querySelector('.formLog');
   const formSign = document.querySelector('.formSign');
-  const instruction = document.querySelector('.instruction');
   const sign = document.querySelector('.sign');
 
   open.onclick = function(){ //go to stories to check, leaves landing page
@@ -20,14 +19,6 @@ function handleClickEvents(){
     setTimeout(function(){
       landingContainer.classList.remove('ghostOut');
     },3100)
-  };
-
-  document.querySelector('.experience').onclick = function(){ //go to map and camera
-    if(window.outerWidth < 750 ){
-      window.open('meter-index.html','_self')
-    }else{
-      instruction.classList.add('fade-in');
-    }
   };
 
   document.querySelector('.signUp').onclick = function(){ //clicking the sign up button at the landing page
@@ -44,13 +35,12 @@ function handleClickEvents(){
 
   document.querySelector('.cancel').onclick = function (event) {
     const parent = event.target.parentNode;
-    parent.classList.add('ghostOut');
     parent.classList.add('fade-out');
       setTimeout(function(){
-          (formSign).classList.remove('ghostOut');
+          formSign.classList.remove('ghostOut');
           formSign.classList.remove('fade-in');
-          (formLog).classList.remove('ghostOut')
-          }, 1000)
+          formLog.classList.remove('ghostOut')
+          }, 1500)
       greeting.classList.add('fade-in');
       greeting.classList.remove('fade-out');
   }
@@ -60,7 +50,7 @@ function handleClickEvents(){
     parent.classList.add('ghostOut').classList.add('fade-out');
       setTimeout(function(){
         formLog.classList.remove('ghostOut')
-        },2500);
+        },2000);
       open.classList.add('fade-in, appear');
       greeting.classList.add('fade-in');
       signUp.classList.add('fade-out');
@@ -79,7 +69,4 @@ function handleClickEvents(){
     signUp.classList.add('fade-out');
   }
 
-  document.querySelector('.instruction div div span').onclick = function() {
-    instruction.classList.add('fade-out');
-  }
 }
