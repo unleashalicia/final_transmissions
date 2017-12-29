@@ -3,10 +3,10 @@ const bcrypt = require('bcrypt-nodejs');
 module.exports = {
 	credentials: {
 		host: 'localhost',
-		port: 8000,
+		port: 3306,
 		user: 'root',
 		password: 'root',
-		database: ''
+		database: 'test_database'
 	},
 
 	crypt: {

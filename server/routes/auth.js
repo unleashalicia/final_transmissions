@@ -1,7 +1,8 @@
 const path = require('path'); 
 
 module.exports = function (app, passport) { 
-	app.get('/', function (req, res) {
+
+	app.get('/', function (req, res) { // first page user ends up going to
 		res.sendFile(path.join(__dirname, ''));
 	});
 

@@ -3,20 +3,22 @@ const LocalStrategy = require('passport-local').Strategy;
 // .Strategy is the method on the main object that is exported that way you can use the keyword, new (see below in passport.use)
 const localConfig = require('./strategies/local'); 
 const mysql = require('mysql');
-const { credentials, crypt } = require('./database'); // bcrypt encryption algorithm 
+const { credentials, crypt } = require('./database'); // bcrypt encryption algorithm - see database.js
 const connection = mysql.createConnection(credentials); // connection to database, obvi
 
 // find user profile by handle name
 function userSearchSQL(userHandle) {
 	let sql = "SELECT * FROM ?? WHERE ?? = ?";
-	let inserts = ['users', 'email', email];
+	let inserts = ['users', 'email', userHandle];
 	return mysql.format(sql, inserts); 
 }
 
 // create user handle and password (email is also required)
 function userCreateSQL(userHandle, password) {
+	
 	let sql = "INSERT INTO ?? (??, ??, ??) VALUES (?, ?, ?)";
-	let inserts = ['users', 'id', 'email', 'password', null, email, crypt.createHash(password)];
+	let inserts = ['users', 'id', 'email', 'password', null, userHandle, crypt.createHash(password)];
+	console.log(sql)
 	return mysql.format(sql, inserts);
 }
 
@@ -43,9 +45,10 @@ module.exports = function (passport) {
 
     // create new user, sign-up
 	passport.use('local-signup', new LocalStrategy(localConfig,
-		function (req, email, password, done) {
+		function (req, userHandle, password, done) {
 			process.nextTick(function () {
-				let sql = userSearchSQL(email);
+				debugger;
+				let sql = userSearchSQL(userHandle);
 
 				connection.query(sql, function (err, results, fields) {
 					if (err) { return done(err) }
@@ -53,7 +56,7 @@ module.exports = function (passport) {
 					if (results[0]) {
 						return done(null, false);
 					} else {
-						let sql = userCreateSQL(email, password);
+						let sql = userCreateSQL(userHandle, password);
 
 						connection.query(sql, function (err, results, fields) {
 							if (err) throw err;
