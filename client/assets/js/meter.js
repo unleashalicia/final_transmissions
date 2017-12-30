@@ -13,7 +13,7 @@ var sounds = {
     numLoaded: 0,
     ready: false,
     speakingPlayed: false,
-    sources: ['./assets/sounds/0951.ogg','./assets/sounds/evillaugh.ogg']
+    sources: ['./assets/sounds/CH1-MUSIC.ogg','./assets/sounds/CH1-READING.ogg']
 };
 var speaking;
 var looping;
@@ -240,18 +240,15 @@ function getLocation() {
 
         handleMeter();
 
-        if (distance <= target.loopThreshold && !sounds[0].playing(looping)){
+        if (distance <= target.loopThreshold){
             if (!looping){
                 looping = sounds[0].play();
-            } else {
-                sounds[0].play(looping);
+                sounds[0].fade(0,0.7,1500,looping);
+            } else if (sounds[0].playing(looping)){
+                sounds[0].fade(0,0.7,1500,looping);
             }
-            sounds[0].fade(0,0.7,1500,looping);
-
         } else if (distance > target.loopThreshold && sounds[0].playing(looping)){
-            sounds[0].fade(0.7,0,500).once('fade',function(){
-                sounds[0].pause(looping);
-            },looping);
+            sounds[0].fade(0.7,0,1000,looping);
         }
 
         if (distance <= target.talkThreshold && !sounds[1].playing(speaking) && !sounds.speakingPlayed) {
