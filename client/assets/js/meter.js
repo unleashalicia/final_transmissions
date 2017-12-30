@@ -22,8 +22,8 @@ var effect;
 var target = {
     latitude: 33.6350687,
     longitude: -117.7402043,
-    loopThreshold: 20,
-    talkThreshold: 8
+    loopThreshold: 40,
+    talkThreshold: 4
 };
 //Out front of apartment
 // var target = {
@@ -80,7 +80,11 @@ function loadAll(){
 function handleEventHandlers(){
   $('.range-indicator').on('click touch',function(){
     knobRange(this);
-  }); //knob switch
+  });
+
+  $('#switch').on('click touch',function(){
+      flipSwitch();
+  });
 
   $(window).on('orientationchange',handleOrientation) //orientation change
 }
@@ -107,6 +111,12 @@ function flipSwitch(){
         $('#indicator-light').hide().toggleClass('indicator-glow');
         $('.needleGuage').css('transform','translateX(-50%) rotateZ(-75deg)');
         navigator.geolocation.clearWatch(watchHandler);
+        if (sounds[1].playing(speaking)){
+            sounds[1].pause(speaking);
+        }
+        if (sounds[1].playing(looping)){
+            sounds[0].pause(looping);
+        }
     }
 }
 //++
@@ -244,8 +254,8 @@ function getLocation() {
             if (!looping){
                 looping = sounds[0].play();
                 sounds[0].fade(0,0.7,1500,looping);
-            } else if (sounds[0].playing(looping)){
-                sounds[0].fade(0,0.7,1500,looping);
+            } else if (sounds[0].volume(looping) < 0.7){
+                sounds[0].fade(sounds[0].volume(looping),0.7,1500,looping);
             }
         } else if (distance > target.loopThreshold && sounds[0].playing(looping)){
             sounds[0].fade(0.7,0,1000,looping);
