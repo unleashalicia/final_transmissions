@@ -23,7 +23,7 @@ var target = {
     latitude: 33.6350687,
     longitude: -117.7402043,
     loopThreshold: 40,
-    talkThreshold: 4
+    talkThreshold: 9
 };
 //Out front of apartment
 // var target = {
@@ -257,7 +257,7 @@ function getLocation() {
             } else if (sounds[0].volume(looping) < 0.7){
                 sounds[0].fade(sounds[0].volume(looping),0.7,1500,looping);
             }
-        } else if (distance > target.loopThreshold && sounds[0].playing(looping)){
+        } else if (distance > target.loopThreshold && sounds[0].playing(looping) && sounds[0].volume(looping) === 0.7){
             sounds[0].fade(0.7,0,1000,looping);
         }
 
