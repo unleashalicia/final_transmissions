@@ -114,8 +114,8 @@ function flipSwitch(){
         if (sounds[1].playing(speaking)){
             sounds[1].pause(speaking);
         }
-        if (sounds[1].playing(looping)){
-            sounds[0].pause(looping);
+        if (sounds[0].playing(looping)){
+            sounds[0].fade(sounds[0].volume(looping),0,100,looping);
         }
     }
 }
