@@ -34,7 +34,6 @@ var target = {
 //     threshold: 10
 // };
 var distance;
-var knobMode = 'med';
 //****************************************
 //****************************************
 //--|
@@ -110,10 +109,10 @@ function handleAudioPlayback(dist){
 //++
 //++
 function handleEventHandlers(){
-  $('.range-indicator').on('click touch',function(){
+  $('#knobImg').on('click touch',function(){
     knobRange(this);
   });
-
+  $('.loading-btn').on('click',fullscreen)
   $('#switch').on('click touch',flipSwitch);
 
   $(window).on('orientationchange',handleOrientation); //orientation change
@@ -154,56 +153,55 @@ function flipSwitch(){
 //++
 //++
 function knobRange(elem){
+  debugger;
     switch ($(elem).attr('class')) {
-      case "range-indicator long":
+      case "close-range-knob":
          if(deviceOn){
             $('.knob-light').removeClass('selected');
-            $('.knob-light', elem).addClass('selected');
+            $(".long .knob-light").addClass('selected');
           }
-          $('#knob>#knobImg').removeClass();
-          $('#knob>#knobImg').addClass('long-range-knob');
-          knobMode = 'long';
-          handleMeter();
+          $(elem).removeClass("close-range-knob");
+          $(elem).addClass("long-range-knob");
+          handleMeter('long');
           break;
-      case "range-indicator mid":
+      case "long-range-knob":
           if(deviceOn){
               $('.knob-light').removeClass('selected');
-              $('.knob-light', elem).addClass('selected');
+              $(".mid .knob-light").addClass('selected');
             }
-          $('#knob>#knobImg').removeClass();
-          knobMode = 'med';
-          handleMeter();
+          $('#knobImg').removeClass("long-range-knob");
+          $('#knobImg').addClass("mid-range-knob");
+          handleMeter('med');
           break;
-      case "range-indicator close":
+      case "mid-range-knob":
           if(deviceOn){
             $('.knob-light').removeClass('selected');
-            $('.knob-light', elem).addClass('selected');
+            $(".close .knob-light").addClass('selected');
           }
-          $('#knob>#knobImg').removeClass();
-          $('#knob>#knobImg').addClass('close-range-knob');
-          knobMode = 'short';
-          handleMeter();
+          $(elem).removeClass("mid-range-knob");
+          $(elem).addClass("close-range-knob");
+          handleMeter('short');
           break;
     }
 }
 //++
 //++
-function handleMeter(){
-    if (knobMode === 'long'){
+function handleMeter(range){
+    if (range === 'long'){
         if (distance > 100 && deviceOn){
             $('.needleGuage').css('transform','translateX(-50%) rotateZ(-65deg)');
         } else if (distance <= 100 && distance >= 0 && deviceOn){
             let needleAngle = 53 - distance;
             $('.needleGuage').css('transform','translateX(-50%) rotateZ('+needleAngle+'deg)');
         }
-    } else if (knobMode === 'med') {
+    } else if (range === 'med') {
         if (distance > 50 && deviceOn){
             $('.needleGuage').css('transform','translateX(-50%) rotateZ(-65deg)');
         } else if (distance <= 50 && distance >= 0 && deviceOn){
             let needleAngle = 53 - distance * 2;
             $('.needleGuage').css('transform','translateX(-50%) rotateZ('+needleAngle+'deg)');
         }
-    } else if (knobMode === 'short') {
+    } else if (range === 'short') {
         if (distance > 25 && deviceOn){
             $('.needleGuage').css('transform','translateX(-50%) rotateZ(-65deg)');
         } else if (distance <= 25 && distance >= 0 && deviceOn){
@@ -216,7 +214,7 @@ function handleMeter(){
 //++
 function fullscreen(){
     //use to check if fullscreen is available by asking user permission by clicking on the "READY" (#loading ) multiple ifs for each type of browser
-    $('#loading').fadeOut();
+    document.getElementById('loading').classList.add('hide');
     var gauge = document.getElementById('gauge-wrapper');
     if(gauge.requestFullscreen){
         gauge.requestFullscreen()
