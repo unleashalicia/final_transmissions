@@ -6,6 +6,8 @@ var coord;
 var startPoint;
 var deviceOn = false;
 var watchHandler;
+var errorCount = 0;
+var noSleep = new NoSleep();
 var sounds = {
     0: null,
     1: null,
@@ -22,8 +24,8 @@ var effect;
 var target = {
     latitude: 33.6350687,
     longitude: -117.7402043,
-    loopThreshold: 20,
-    talkThreshold: 8
+    loopThreshold: 40,
+    talkThreshold: 9
 };
 //Out front of apartment
 // var target = {
@@ -68,6 +70,36 @@ function loadAll(){
         sounds[i] = loadSound(sounds.sources[i],i);
     }
 }
+//++
+//++
+function handleAudioPlayback(dist){
+    if (dist <= target.loopThreshold && deviceOn){
+        if (!looping){
+            looping = sounds[0].play();
+            sounds[0].fade(0,0.7,1500,looping);
+        } else if (sounds[0].volume(looping) < 0.7){
+            sounds[0].fade(sounds[0].volume(looping),0.7,1500,looping);
+        }
+    } else if (dist > target.loopThreshold && sounds[0].playing(looping) && sounds[0].volume(looping) === 0.7){
+        sounds[0].fade(0.7,0,1000,looping);
+    }
+
+    if (dist <= target.talkThreshold && !sounds[1].playing(speaking) && !sounds.speakingPlayed && deviceOn) {
+        if (!speaking){
+            speaking = sounds[1].play();
+            sounds[1].on('end',function(){
+                sounds.speakingPlayed = true;
+            },speaking);
+        } else {
+            sounds[1].play(speaking);
+        }
+        sounds[1].fade(0,0.9,1500,speaking);
+    } else if (dist > target.talkThreshold && sounds[1].playing(speaking)){
+        sounds[1].fade(0.9,0,1500,speaking).once('fade',function(){
+            sounds[1].pause(speaking);
+        },speaking);
+    }
+}
 //****************************************
 //****************************************
 //-|
@@ -80,9 +112,11 @@ function loadAll(){
 function handleEventHandlers(){
   $('.range-indicator').on('click touch',function(){
     knobRange(this);
-  }); //knob switch
+  });
 
-  $(window).on('orientationchange',handleOrientation) //orientation change
+  $('#switch').on('click touch',flipSwitch);
+
+  $(window).on('orientationchange',handleOrientation); //orientation change
 }
 //****************************************
 //****************************************
@@ -96,17 +130,25 @@ function handleEventHandlers(){
 function flipSwitch(){
     console.log('touched');
     if (!deviceOn){
+        noSleep.enable();
         deviceOn = true;
         $('#switch').css('transform','translateX(-50%) rotateX(180deg)');
         $('#indicator-light').show().toggleClass('indicator-glow');
         getLocation();
 
     } else if (deviceOn){
+        noSleep.disable();
         deviceOn = false;
         $('#switch').css('transform','translateX(-50%) rotateX(0deg)');
         $('#indicator-light').hide().toggleClass('indicator-glow');
         $('.needleGuage').css('transform','translateX(-50%) rotateZ(-75deg)');
         navigator.geolocation.clearWatch(watchHandler);
+        if (sounds[1].playing(speaking)){
+            sounds[1].pause(speaking);
+        }
+        if (sounds[0].playing(looping)){
+            sounds[0].fade(sounds[0].volume(looping),0,100,looping);
+        }
     }
 }
 //++
@@ -228,6 +270,9 @@ function getLocation() {
 
 
     function showSuccess(pos) {
+        //Since we succeeded, clear the errors
+        errorCount = 0;
+
         //pos also includes pos.timestamp if needed later
         //moved ready modal details into audio load callback
         coord = pos.coords;
@@ -236,40 +281,25 @@ function getLocation() {
 
         distance = getDistanceFromLatLonInKm(coord.latitude,coord.longitude,target.latitude,target.longitude);
 
-        $('.test-output').text(distance.toFixed(3));
+        //This will output the distance to the main point from where you are to the screen
+        //used for testing purposes
+        // $('.test-output').text(distance.toFixed(3));
 
+        //Update the meter needle position
         handleMeter();
 
-        if (distance <= target.loopThreshold){
-            if (!looping){
-                looping = sounds[0].play();
-                sounds[0].fade(0,0.7,1500,looping);
-            } else if (sounds[0].playing(looping)){
-                sounds[0].fade(0,0.7,1500,looping);
-            }
-        } else if (distance > target.loopThreshold && sounds[0].playing(looping)){
-            sounds[0].fade(0.7,0,1000,looping);
-        }
-
-        if (distance <= target.talkThreshold && !sounds[1].playing(speaking) && !sounds.speakingPlayed) {
-            if (!speaking){
-                speaking = sounds[1].play();
-                sounds[1].on('end',function(){
-                    sounds.speakingPlayed = true;
-                },speaking);
-            } else {
-                sounds[1].play(speaking);
-            }
-            sounds[1].fade(0,0.9,1500,speaking);
-        } else if (distance > target.talkThreshold && sounds[1].playing(speaking)){
-            sounds[1].fade(0.9,0,1500,speaking).once('fade',function(){
-                sounds[1].pause(speaking);
-            },speaking);
-        }
+        //decide whether to play or stop current audio tracks
+        handleAudioPlayback(distance);
     }
 
     function showError(err){
-        console.warn(`ERROR(${err.code}): ${err.message}`);
+        errorCount++;
+        console.warn(`ERROR(${err.code}) - (${errorCount}) bad calls`);
+
+        if (errorCount > 10){
+            //tell the user they are having issues with their gps connection
+            //possibly end app usage for later resume
+        }
     }
 }
 //++
