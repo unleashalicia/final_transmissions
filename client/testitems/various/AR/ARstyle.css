@@ -1,4 +1,4 @@
 
 #arjsDebugUIContainer, .a-enter-vr-button {
-    visibility: hidden;
+    display: none;
 }
