@@ -17,4 +17,27 @@ function handleEventHandlers(){
   }));
   profile.addEventListener("click", function(){   profileContainer.classList.toggle("hide")});
   stories.addEventListener("click", function(){ profileContainer.classList.add("hide")});
+  var edit = document.getElementsByClassName("edit");
+  var account = document.querySelectorAll(".account-settings")[0];
+  debugger;
+  Array.from(edit).forEach(elem => elem.addEventListener('click', function() {
+  account.classList.remove("hide")
+  }));
+  var submitBtn = document.querySelectorAll(".submit")[0];
+  submitBtn.addEventListener("click",handleSubmit)
+}
+
+
+function handleSubmit(){
+  event.preventDefault();
+  var usernameInput = document.querySelector(".username").value;
+  var emailInput= document.querySelector(".email").value;
+  var account = document.querySelectorAll(".account-settings")[0];
+  account.classList.add("hide")
+  console.log(".username", usernameInput, "& .email" , emailInput);
+
+}
+
+function handleCancel(){
+
 }

@@ -1,9 +1,7 @@
 body{
   margin: 0;
 }
-.hide{
-  display: none;
-}
+
 
 @keyframes slideDown {
   0%{ top: -200%}
@@ -24,6 +22,72 @@ nav ul li {
   pointer: cursor;
 }
 
+/****************PROFILE MENU START*******/
+.profile-container{
+  color: white;
+  position: absolute;
+  z-index: 2;
+  background-color: black;
+  width: 100%;
+  height: 95%;
+}
+
+.profile-photo{
+  border-radius: 50%;
+  width: 35%;
+}
+
+.profile-data{
+  text-align: left;
+  padding-left: 5%;
+  line-height: 2em;
+}
+
+a, .profile-details{
+  text-decoration: none;
+  color: red;
+}
+
+.account-settings{
+  margin: 2% 2%;
+  display: flex;
+  flex-direction: column;
+}
+
+.account-settings input{
+  width: 60% ;
+  margin: 2% 0;
+}
+.edit{
+  border: 1px solid white;
+  margin-right: 5%;
+  float: right;
+  clear: both;
+  padding: 0 10px;
+}
+
+.edit:hover, .edit:active{
+  border-color: black;
+  color: black;
+  background-color: white;
+}
+.button-holder{
+  width: 60%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.submit, .cancel{
+  width: 45%;
+  background-color: black;
+  color: white;
+}
+
+
+
+
+
+/****************PROFILE MENU END*******/
 .instruction{
   display: none;
   position: absolute;
@@ -44,26 +108,7 @@ nav ul li {
 .instruction div div span:hover{
   color: grey;
 }
-.profile-container{
-  color: white;
-  position: absolute;
-  z-index: 2;
-  background-color: black;
-  width: 100%;
-  height: 95%;
-}
-.profile-photo{
-  border-radius: 50%;
-  width: 35%;
-}
-.profile-data{
-  text-align: left;
-  padding-left: 5%;
-}
-a, .profile-details{
-  text-decoration: none;
-  color: red;
-}
+
 #user-container{
   position: absolute;
   background: black;
@@ -158,6 +203,9 @@ h3,p{
   background-repeat: no-repeat;
 }
 /**********PROFILE END************************/
+.hide{
+  display: none;
+}
 
 /*******MOBILE STYLING  START**********/
 @media only screen and (max-width: 770px) {
