@@ -34,6 +34,7 @@ var target = {
 //     threshold: 10
 // };
 var distance;
+var knobMode='med';
 //****************************************
 //****************************************
 //--|
@@ -162,7 +163,8 @@ function knobRange(elem){
           }
           $(elem).removeClass("close-range-knob");
           $(elem).addClass("long-range-knob");
-          handleMeter('long');
+          knobMode='long';
+          handleMeter();
           break;
       case "long-range-knob":
           if(deviceOn){
@@ -171,7 +173,8 @@ function knobRange(elem){
             }
           $('#knobImg').removeClass("long-range-knob");
           $('#knobImg').addClass("mid-range-knob");
-          handleMeter('med');
+          knobMode='med';
+          handleMeter();
           break;
       case "mid-range-knob":
           if(deviceOn){
@@ -180,28 +183,29 @@ function knobRange(elem){
           }
           $(elem).removeClass("mid-range-knob");
           $(elem).addClass("close-range-knob");
-          handleMeter('short');
+          knobMode='short';
+          handleMeter();
           break;
     }
 }
 //++
 //++
-function handleMeter(range){
-    if (range === 'long'){
+function handleMeter(){
+    if (knobMode === 'long'){
         if (distance > 100 && deviceOn){
             $('.needleGuage').css('transform','translateX(-50%) rotateZ(-65deg)');
         } else if (distance <= 100 && distance >= 0 && deviceOn){
             let needleAngle = 53 - distance;
             $('.needleGuage').css('transform','translateX(-50%) rotateZ('+needleAngle+'deg)');
         }
-    } else if (range === 'med') {
+    } else if (knobMode === 'med') {
         if (distance > 50 && deviceOn){
             $('.needleGuage').css('transform','translateX(-50%) rotateZ(-65deg)');
         } else if (distance <= 50 && distance >= 0 && deviceOn){
             let needleAngle = 53 - distance * 2;
             $('.needleGuage').css('transform','translateX(-50%) rotateZ('+needleAngle+'deg)');
         }
-    } else if (range === 'short') {
+    } else if (knobMode === 'short') {
         if (distance > 25 && deviceOn){
             $('.needleGuage').css('transform','translateX(-50%) rotateZ(-65deg)');
         } else if (distance <= 25 && distance >= 0 && deviceOn){
