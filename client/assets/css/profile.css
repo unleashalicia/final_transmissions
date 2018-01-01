@@ -118,12 +118,20 @@ a, .profile-details{
   text-align: center;
 
 }
+.list-container{
+  padding:0 10%;
+}
+.story-list{
+  color: white;
+  list-style-type: none;
+  border: 1px solid white;
+
+}
 .caption{
   background-color: rgba(0,0,0,0.5);
   padding: 10px;
   position: relative;
-  display: none;
-  height: 93%;
+  height: 100%;
   transition: 1s;
 }
 .caption h3{
@@ -135,10 +143,7 @@ a, .profile-details{
   font-family: Arial;
 }
 
-.slideDown{
-  display: block;
-  animation: slideDown;
-}
+
 .experience{
   position: absolute;
   left: 5%;
@@ -166,8 +171,9 @@ a, .profile-details{
 
 .story{
   margin: 0;
-  height: 100%;
-  width: 25%;
+  height: 70vh;
+  width: 100%;
+  display: none;
   float: left;
   border: 5px solid black;
   box-sizing: border-box;
@@ -175,6 +181,7 @@ a, .profile-details{
   transition: 1s;
   transform-style: preserve-3d;
 }
+
 h3,p{
   margin: 0;
 }
@@ -207,16 +214,19 @@ h3,p{
   display: none;
 }
 
+.slideDown{
+  display: block;
+  animation: slideDown;
+}
+
 /*******MOBILE STYLING  START**********/
 @media only screen and (max-width: 770px) {
     .story{
-      display: inline-block;
       text-align: left;
-      height: 45%;
-      width: 48%;
+      height: 70vh;
+      width: 100%;
       border: 0;
       color: white;
-      margin: 1%;
     }
     .caption p{
       font-size: 80%;
