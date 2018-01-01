@@ -21,7 +21,35 @@ nav ul li {
   list-style-type: none;
   pointer: cursor;
 }
+/******LOG OUT*************************/
+.logOut-container{
+  position: absolute;
+  z-index: 5;
+  color: white;
+  width: 100%;
+  background-color: rgba(0,0,0,0.8);
+  height: 100%;
+}
 
+.logOut{
+  position: relative;
+  margin: 50% auto;
+  text-align: center;
+}
+
+.logOut button{
+  background-color: black;
+  color: white;
+  border: 1.5px solid white;
+  pointer: cursor;
+}
+.logOut button:hover{
+  background-color: white
+  color: black;
+  border: black;
+}
+
+/******LOG OUT*************************/
 /****************PROFILE MENU START*******/
 .profile-container{
   color: white;
@@ -31,19 +59,29 @@ nav ul li {
   width: 100%;
   height: 95%;
 }
+.profile-container div:nth-child(1){
+  background: white;
+  border-radius: 50%;
+  width: 27vmin;
+  height: 27vmin;
+  margin: auto;
+  padding: 1.5% .5%;
+}
 
 .profile-photo{
   border-radius: 50%;
-  width: 35%;
+  width: 92%;
 }
 
 .profile-data{
+  margin-top: 10%;
   text-align: left;
   padding-left: 5%;
   line-height: 2em;
 }
 
 a, .profile-details{
+  margin-right: 2%;
   text-decoration: none;
   color: red;
 }
@@ -63,6 +101,7 @@ a, .profile-details{
   margin-right: 5%;
   float: right;
   clear: both;
+  font-size: 10px;
   padding: 0 10px;
 }
 
@@ -89,7 +128,6 @@ a, .profile-details{
 
 /****************PROFILE MENU END*******/
 .instruction{
-  display: none;
   position: absolute;
   background-color: rgba(0,0,0,0.7);
   height: 100%;
@@ -119,19 +157,19 @@ a, .profile-details{
 
 }
 .list-container{
+  margin-top: 15%;
   padding:0 10%;
 }
 .story-list{
   color: white;
   list-style-type: none;
   border: 1px solid white;
-
 }
 .caption{
   background-color: rgba(0,0,0,0.5);
   padding: 10px;
   position: relative;
-  height: 100%;
+  height: 96%;
   transition: 1s;
 }
 .caption h3{

@@ -1,13 +1,9 @@
-(function ready(fn) {
-  if (document.attachEvent ? document.readyState === "complete" : document.readyState !== "loading"){
-    fn();
-  } else {
-    document.addEventListener('DOMContentLoaded', fn);
-  }
-})(handleEventHandlers)
+document.addEventListener('DOMContentLoaded', handleEventHandlers);
+
 
 
 function handleEventHandlers(){
+  //**will segregate these handlers in later configurations**//
     var profile = document.querySelectorAll(".profile")[0];
     var stories = document.querySelectorAll(".stories")[0];
     var profileContainer = document.querySelectorAll(".profile-container")[0];
@@ -16,10 +12,10 @@ function handleEventHandlers(){
     var story = document.getElementsByClassName("story");
     var submitBtn = document.querySelectorAll(".submit")[0];
     var cancelBtn = document.querySelectorAll(".cancel")[0];
-    var storylist = document.querySelectorAll(".story-list")[0];
-    Array.from(story).forEach(elem => elem.addEventListener('click', function() {
-    this.children[0].classList.add("slideDown")
-    }));
+    var storylist = document.querySelectorAll(".story-list");
+    var logOut = document.getElementsByClassName("log-out")[0];
+    var experience = document.querySelectorAll(".experience");
+    Array.from(storylist).forEach(elem => elem.addEventListener('click',showStory));
     profile.addEventListener("click", function(){   profileContainer.classList.toggle("hide")});
     stories.addEventListener("click", function(){ profileContainer.classList.add("hide")});
     Array.from(edit).forEach(elem => elem.addEventListener('click', function() {
@@ -27,15 +23,40 @@ function handleEventHandlers(){
     }));
     submitBtn.addEventListener("click",handleSubmit);
     cancelBtn.addEventListener("click",handleCancel);
-    storylist.addEventListener("click",showStory);
+    logOut.addEventListener("click", function(){
+      document.getElementsByClassName("logOut-container")[0].classList.remove("hide");
+    });
+    document.querySelectorAll(".logOut button")[1].addEventListener("click", function(){
+        document.getElementsByClassName("logOut-container")[0].classList.add("hide")
+    });
+    document.querySelectorAll(".logOut button")[0].addEventListener("click", loggingOut);
+    Array.from(experience).forEach(elem => elem.addEventListener('click',goToExperience));
+    document.querySelectorAll(".instruction span")[0].addEventListener("click", function(){
+      document.querySelectorAll(".instruction")[0].classList.add("hide");
+    })
+}
 
+function goToExperience(){
+  if(window.outerWidth < 750){
+    window.open("meter-index.html","_self");
+  }else{
+    document.querySelectorAll(".instruction")[0].classList.remove("hide");
+  }
+}
+
+function loggingOut(){
+  window.open("index.html","_self");
 }
 
 function showStory(){
-  this.firstElementChild.classList.remove("hide");
-  this.firstElementChild.classList.add("slideDown");
-  console.log(this)
+  var story = document.querySelectorAll(".story");
+  if(!this.firstElementChild.classList.contains("slideDown")){
+    Array.from(story).forEach(elem => elem.classList.remove("slideDown"));
+  }
+  this.firstElementChild.classList.toggle("slideDown");
 }
+
+
 
 function handleSubmit(){
     event.preventDefault();
