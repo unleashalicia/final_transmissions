@@ -13,6 +13,7 @@ function handleClickEvents(){
   const formLog = document.querySelector('.formLog');
   const formSign = document.querySelector('.formSign');
   const sign = document.querySelector('.sign');
+  const cancelBtns = document.querySelectorAll('.cancel');
 
   open.onclick = function(){ //go to stories to check, leaves landing page
     landingContainer.classList.add('ghostOut').classList.add('fade-out-transition');
@@ -30,19 +31,23 @@ function handleClickEvents(){
 
   document.querySelector('.logIn').onclick = function(){//clicking the log in button at the landing page
     greeting.classList.add('fade-out');
+    greeting.classList.remove('fade-in');
     formLog.classList.add('fade-in');
   };
 
-  document.querySelector('.cancel').onclick = function (event) {
-    const parent = event.target.parentNode;
-    parent.classList.add('fade-out');
-      setTimeout(function(){
-          formSign.classList.remove('ghostOut');
-          formSign.classList.remove('fade-in');
-          formLog.classList.remove('ghostOut')
-          }, 1500)
+  for(let i = 0; i < cancelBtns.length; i++) {
+    cancelBtns[i].onclick = function (event) {
+      event.preventDefault();
+      const grandParent = event.target.parentNode.parentNode;
+      grandParent.classList.add('fade-out');
+      setTimeout(function () {
+        grandParent.classList.remove('ghostOut');
+        grandParent.classList.remove('fade-in');
+        grandParent.classList.remove('fade-out');
+      }, 1500);
       greeting.classList.add('fade-in');
       greeting.classList.remove('fade-out');
+    };
   }
 
   document.querySelector('.btnLog').onclick = function(event) {
@@ -51,22 +56,22 @@ function handleClickEvents(){
       setTimeout(function(){
         formLog.classList.remove('ghostOut')
         },2000);
-      open.classList.add('fade-in, appear');
+      open.classList.add('fade-in appear');
       greeting.classList.add('fade-in');
       signUp.classList.add('fade-out');
       logIn.classList.add('fade-out');
       document.querySelector('.greeting h1>span').text(document.querySelector('.username').value);
-  }
+  };
 
   document.querySelector('.btnSign').onclick = function(event) {
     const parent = event.target.parentNode;
     parent.classList.add('ghostOut');
     parent.classList.add('fade-out');
     setTimeout(function () {
-        formSign.classList.remove('fade-in')
-    }, 2500);
-    greeting.classList.add('fade-in');
-    signUp.classList.add('fade-out');
-  }
+        formSign.classList.remove('fade-in');
+        greeting.classList.remove('fade-out');
+        greeting.classList.add('fade-in');
+    }, 1500);
+  };
 
 }
