@@ -10,7 +10,7 @@ const PORT = 8000;
 app.use(logger('dev')); 
 app.use(express.json()); //takes the place of...
 app.use(express.urlencoded()); //...body-parser
-app.use(express.static('WHAT DO I PUT IN HERE?')); // 
+app.use('/assets', express.static(path.join(__dirname, '..', 'client', 'assets'))); // <---- get advice here 
 app.use(session({ secret: 'wishbone' })); // 
 app.use(passport.initialize()); 
 app.use(passport.session()); 
@@ -20,21 +20,25 @@ require('./routes/auth.js')(app, passport); //
 
 
 
-// landing page
+
 app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname,'..', 'client', 'index.html'));
 });
 
-// new user sign-up
+
 app.get('/signup', (req, res) => {
-    res.sendFile();
+    res.sendFile(path.join(__dirname,'..', 'client', 'signup.html'));
 });
 
-// returning user login
-app.get('/index', (req, res) => {
-    res.sendFile();
+
+app.get('/login', (req, res) => {
+    res.sendFile(path.join(__dirname,'..', 'client', 'login.html'));
 });
 
+
+app.get('/profile', (req, res) => {
+    res.sendFile(path.join(__dirname,'..', 'client', 'profile.html'));
+});
 
 
 function errorHandler (err, req, res, next) { 

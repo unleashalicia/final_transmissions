@@ -2,13 +2,13 @@ const path = require('path');
 
 module.exports = function (app, passport) { 
 
-	app.get('/', function (req, res) { // first page user ends up going to
-		res.sendFile(path.join(__dirname, ''));
-	});
+	// app.get('/', function (req, res) { // first page user ends up going to aka root page
+	// 	res.sendFile(path.join(__dirname, ''));
+	// });
 
-	app.get('/login', function (req, res) {
-		res.sendFile(path.join(__dirname, ''));
-	});
+	// app.get('/login', function (req, res) {
+	// 	res.sendFile(path.join(__dirname, ''));
+	// });
 
 	app.post('/login',
 		passport.authenticate('local-signin', {
@@ -17,9 +17,9 @@ module.exports = function (app, passport) {
 		})
 	);
 
-	app.get('/signup', function (req, res) {
-		res.sendFile(path.join(__dirname, ''));
-	});
+	// app.get('/signup', function (req, res) {
+	// 	res.sendFile(path.join(__dirname, ''));
+	// });
 
 	app.post('/signup',
 		passport.authenticate('local-signup', {
@@ -28,9 +28,9 @@ module.exports = function (app, passport) {
 		})
 	);
 
-	app.get('/profile', isLoggedIn, function (req, res) {
-		res.sendFile(path.join(__dirname, ''));
-	});
+	// app.get('/profile', isLoggedIn, function (req, res) {
+	// 	res.sendFile(path.join(__dirname, ''));
+	// });
 
 	app.get('/logout', function (req, res) {
 		req.logout();

@@ -14,11 +14,11 @@ function userSearchSQL(userHandle) {
 }
 
 // create user handle and password (email is also required)
-function userCreateSQL(userHandle, password) {
-	
-	let sql = "INSERT INTO ?? (??, ??, ??) VALUES (?, ?, ?)";
-	let inserts = ['users', 'id', 'email', 'password', null, userHandle, crypt.createHash(password)];
-	console.log(sql)
+function userCreateSQL(userinfo) {
+	let { email, password, user_name } = userinfo;
+	let sql = "INSERT INTO ?? (??, ??, ??, ??) VALUES (?, ?, ?, ?)";
+	let inserts = ['users', 'id', 'email', 'password', 'user_name', null, email, crypt.createHash(password), user_name];
+
 	return mysql.format(sql, inserts);
 }
 
@@ -56,8 +56,8 @@ module.exports = function (passport) {
 					if (results[0]) {
 						return done(null, false);
 					} else {
-						let sql = userCreateSQL(userHandle, password);
-
+						let sql = userCreateSQL(req.body);
+						
 						connection.query(sql, function (err, results, fields) {
 							if (err) throw err;
 
