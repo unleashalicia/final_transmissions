@@ -12,11 +12,19 @@
     </a-assets>
     <a-marker preset='hiro'><!--Will change-->
         <a-entity>
-            <a-tetrahedron src='#fire' radius="1.5" material="opacity: 0.9" position="0 3 0">
+            <a-tetrahedron src='#fire' radius="2" material="opacity: 0.9" position="0 3 0">
                 <a-animation attribute="rotation"
                              dur="3000"
                              to="360 360 360"
                              easing= "linear"
+                             repeat="indefinite">
+                </a-animation>
+                <a-animation attribute="scale"
+                             dur="3000"
+                             from="1 1 1"
+                             to="3 3 3"
+                             direction="alternate-reverse"
+                             easing= "ease-in-out-circ"
                              repeat="indefinite">
                 </a-animation>
             </a-tetrahedron>
