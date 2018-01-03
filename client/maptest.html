@@ -5,7 +5,8 @@
     <script src="https://code.jquery.com/jquery-3.1.0.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.0.5/howler.core.min.js"></script>
     <script type="text/javascript" src="./assets/js/maptest.js"></script>
-    <link rel="stylesheet" href="./assets/maptest.css">
+    <script src="main.js"></script>
+    <link rel="stylesheet" href="./assets/css/maptest.css">
     <title>Test Page for Proximity Mapping</title>
 </head>
 
@@ -15,7 +16,9 @@
     </div>
     <div class="toplayer"></div>
     <div class="refresh" ontouchstart="getLocation()"></div>
-
+    <section id="loading-modal">
+        <button class="load-modal-start-btn">Start</button>
+    </section>
      <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCXqyuEI8wFxFvczjGjlbim35FAuco0oCU&callback=initMap" async defer></script>
 
 </body>
