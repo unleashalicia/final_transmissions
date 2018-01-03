@@ -9,7 +9,7 @@
             "type": "node",
             "request": "launch",
             "name": "Launch Program",
-            "program": "${workspaceFolder}/server/passport.js"
+            "program": "${workspaceFolder}/server/app.js"
         }
     ]
 }

@@ -9,7 +9,7 @@ const connection = mysql.createConnection(credentials); // connection to databas
 // find user profile by handle name
 function userSearchSQL(userHandle) {
 	let sql = "SELECT * FROM ?? WHERE ?? = ?";
-	let inserts = ['users', 'email', userHandle];
+	let inserts = ['users', 'user_name', userHandle];
 	return mysql.format(sql, inserts); 
 }
 

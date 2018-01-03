@@ -1,5 +1,5 @@
 module.exports = {
-	usernameField: 'email',
+	usernameField: 'user_name',
 	passwordField: 'password',
 	passReqToCallback: true
 }
