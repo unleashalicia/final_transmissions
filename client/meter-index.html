@@ -6,15 +6,15 @@
         <title>Ghost Meter</title>
         <link rel="stylesheet" href="./assets/css/meter.css">
         <script src="https://code.jquery.com/jquery-3.1.0.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.0.5/howler.core.min.js"></script>
+        <script src="./assets/lib/noSleep.min.js"></script>
+        <script src="./assets/lib/howler.js"></script>
         <script type="text/javascript" src="./assets/js/meter.js"></script>
 
     </head>
     <body>
       <div id="loading">
-        <!--<h2>Loading</h2>-->
-        <!--<p onclick="fullscreen()" class="loading-btn hide">Ready?</p>-->
-          <canvas id="canvas"></canvas>
+        <h2>Loading</h2>
+        <p class="loading-btn hide">Ready?</p>
       </div>
       <div id="gauge-wrapper">
         <div class="topGuage">
@@ -30,14 +30,14 @@
         <div class="knob-container beige-border">
           <div id="knob">
             <div class="range-indicator long"><p>Long Range</p><div class="knob-light"></div></div>
-            <div class="range-indicator mid"><p>Mid Range</p><div class="knob-light" ></div></div>
+            <div class="range-indicator mid"><p>Mid Range</p><div class="knob-light selected" ></div></div>
             <div class="range-indicator close"><p>Close Range</p><div class="knob-light"></div></div>
-            <div id="knobImg"></div>
+            <div id="knobImg" class="mid-range-knob"></div>
           </div>
         </div>
 
         <div class="action-container beige-border">
-            <div id="switch" ontouchstart="flipSwitch()"></div>
+            <div id="switch"></div>
             <div id="indicator">
                 <div id="indicator-light"></div>
             </div>
@@ -47,33 +47,5 @@
       <div id="camera">
         <h1> Camera is on landscape </h1>
       </div>
-
-
-        <!-- <div class="guage-container">
-            <div class="guage-bars">
-                <div class="bar">1<br />0<br />0<br />+</div>
-                <div class="bar">9<br />0</div>
-                <div class="bar">8<br />0</div>
-                <div class="bar ">7<br />0</div>
-                <div class="bar">6<br />0</div>
-                <div class="bar">5<br />0</div>
-                <div class="bar">4<br />0</div>
-                <div class="bar beginning">3<br />0</div>
-                <div class="bar middle">2<br />0</div>
-                <div class="bar end">1<br />0</div>
-            </div>
-             <div class="guage-scale">
-                <div class="bar"></div>
-                <div class="bar"></div>
-                <div class="bar"></div>
-                <div class="bar"></div>
-                <div class="bar"></div>
-                <div class="bar"></div>
-                <div class="bar"></div>
-                <div class="bar"></div>
-            </div>
-            <div class="guage-bar"><div class="guage-bar-tip"></div></div>
-        </div> -->
-      <script src="loadModal.js"></script>
     </body>
 </html>

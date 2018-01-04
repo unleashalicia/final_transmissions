@@ -1,0 +1,30 @@
+<!doctype HTML>
+<html>
+<head>
+    <link rel="stylesheet" type="text/css" href="ARstyle.css" />
+    <script src="https://aframe.io/releases/0.6.1/aframe.min.js"></script>
+    <script src="https://cdn.rawgit.com/jeromeetienne/AR.js/1.5.0/aframe/build/aframe-ar.js"></script>
+</head>
+<body style='margin : 0px; overflow: hidden;'>
+<a-scene embedded artoolkit='sourceType: webcam;'>
+    <a-assets>
+        <video src="./Rain%20-%2078.mp4" id="water" autoplay loop="true"></video>
+    </a-assets>
+    <a-marker preset='hiro'><!--Will change-->
+        <a-entity>
+            <a-octahedron src='#water' radius="1.5" material="opacity: 0.9" position="0 3 0">
+                <a-animation attribute="rotation"
+                             dur="5000"
+                             to="360 360 360"
+                             easing= "linear"
+                             repeat="indefinite">
+                </a-animation>
+            </a-octahedron>
+        </a-entity>
+    </a-marker>
+    <a-entity light="type: ambient; color: #ccc; intensity: 3.0"></a-entity>
+    <a-entity light="type: spot; angle: 45; color: #3A43D4; intensity: 3.0" id="blue"></a-entity>
+    <a-entity camera="userHeight: 1.6"></a-entity>
+</a-scene>
+</body>
+</html>
