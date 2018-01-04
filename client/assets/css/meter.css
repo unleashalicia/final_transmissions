@@ -36,9 +36,9 @@ body * {
   animation: appear 4s steps(60,end), pulse 1s linear infinite;
 }
 
-#loading h2{
-  animation: pulse 1s linear infinite;
-}
+/*#loading h2{*/
+  /*animation: pulse 1s linear infinite;*/
+/*}*/
 
 .hide{
   display: none;

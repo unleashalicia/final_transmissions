@@ -1,74 +1,77 @@
-$(document).ready(init);
-
+document.addEventListener("DOMContentLoaded", init);
 
 function init(){
   handleClickEvents();
 }
 
 function handleClickEvents(){
-  $('.open').on('click', function(){ //go to stories to check, leaves landing page
-    $('#landing-container').addClass('ghostOut').fadeOut(3000);
+  const greeting = document.querySelector('.greeting');
+  const landingContainer = document.getElementById('#landing-container');
+  const open = document.querySelector('.open');
+  const signUp = document.querySelector('.signUp');
+  const logIn = document.querySelector('.logIn');
+  const formLog = document.querySelector('.formLog');
+  const formSign = document.querySelector('.formSign');
+  const sign = document.querySelector('.sign');
+  const cancelBtns = document.querySelectorAll('.cancel');
+
+  open.onclick = function(){ //go to stories to check, leaves landing page
+    landingContainer.classList.add('ghostOut').classList.add('fade-out-transition');
     setTimeout(function(){
-      $('#landing-container').removeClass('ghostOut')
+      landingContainer.classList.remove('ghostOut');
     },3100)
-  });
+  };
 
-  $('.experience').on('click', function(){ //go to map and camera
-    if(window.outerWidth < 750 ){
-      window.open('meter-index.html','_self')
-    }else{
-      $('.instruction').fadeIn();
-    }
-  });
+  document.querySelector('.signUp').onclick = function(){ //clicking the sign up button at the landing page
+    greeting.classList.add('fade-out');
+    formSign.classList.add('fade-in');
+    sign.classList.remove('fade-out');
+    sign.classList.remove('ghostOut');
+  };
 
-  $('.story').click(function(){ //shows the story summary
-    $('.caption', this).slideDown('linear');
-  });
+  document.querySelector('.logIn').onclick = function(){//clicking the log in button at the landing page
+    greeting.classList.add('fade-out');
+    greeting.classList.remove('fade-in');
+    formLog.classList.add('fade-in');
+  };
 
-  $('.story').mouseleave(function(){//hidesthe story summary
-    $('.caption',this).slideUp('linear');
-  });
+  for(let i = 0; i < cancelBtns.length; i++) {
+    cancelBtns[i].onclick = function (event) {
+      event.preventDefault();
+      const grandParent = event.target.parentNode.parentNode;
+      grandParent.classList.add('fade-out');
+      setTimeout(function () {
+        grandParent.classList.remove('ghostOut');
+        grandParent.classList.remove('fade-in');
+        grandParent.classList.remove('fade-out');
+      }, 1500);
+      greeting.classList.add('fade-in');
+      greeting.classList.remove('fade-out');
+    };
+  }
 
-  $('.signUp').on('click',function(){ //clicking the sign up button at the landing page
-    $('.greeting').fadeOut();
-    $('.formSign').fadeIn();
-  });
+  document.querySelector('.btnLog').onclick = function(event) {
+    const parent = event.target.parentNode;
+    parent.classList.add('ghostOut').classList.add('fade-out');
+      setTimeout(function(){
+        formLog.classList.remove('ghostOut')
+        },2000);
+      open.classList.add('fade-in appear');
+      greeting.classList.add('fade-in');
+      signUp.classList.add('fade-out');
+      logIn.classList.add('fade-out');
+      document.querySelector('.greeting h1>span').text(document.querySelector('.username').value);
+  };
 
-  $('.logIn').on('click',function(){//clicking the log in button at the landing page
-    $('.greeting').fadeOut();
-    $('.formLog').fadeIn()
-  });
+  document.querySelector('.btnSign').onclick = function(event) {
+    const parent = event.target.parentNode;
+    parent.classList.add('ghostOut');
+    parent.classList.add('fade-out');
+    setTimeout(function () {
+        formSign.classList.remove('fade-in');
+        greeting.classList.remove('fade-out');
+        greeting.classList.add('fade-in');
+    }, 1500);
+  };
 
-  $('.cancel').on('click',function(){ // clicking the cancel on the sign up and log in forms
-    $(this).parent().parent().addClass('ghostOut').fadeOut(2500)
-    setTimeout(function(){
-        $('.formSign, .formLog').removeClass('ghostOut')
-    },3100)
-    $('.greeting').fadeIn();
-  });
-
-  $('.btnLog').on('click',function(){ //clicking the log in button on the log in form
-    $(this).parent().parent().addClass('ghostOut').fadeOut(2500)
-    setTimeout(function(){
-        $('.formLog').removeClass('ghostOut')
-    },3100);
-    $('.open').fadeIn(4000).addClass('appear');
-    $('.greeting').fadeIn();
-    $('.signUp').fadeOut();
-    $('.logIn').fadeOut();
-    $('.greeting h1>span').text($('.log div input').val());
-  });
-
-  $('.btnSign').on('click',function(){ //clicking the log in button on the sign up form
-    $(this).parent().parent().addClass('ghostOut').fadeOut(2500)
-    setTimeout(function(){
-      $('.formSign').removeClass('ghostOut')
-      },3100);
-    $('.greeting').fadeIn();
-    $('.signUp').fadeOut();
-  });
-
-  $('.instruction div div span').on('click', function(){ // closing the instruction div on the story page
-    $('.instruction').fadeOut();
-  });
 }
