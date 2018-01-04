@@ -12,7 +12,7 @@
     </a-assets>
     <a-marker preset='hiro'><!--Will change-->
         <a-entity>
-            <a-sphere src='#fire' radius="1" material="opacity: 0.9" position="0 3 0">
+            <a-torus-knot src='#fire' p="3" q="-8" radius="1" material="opacity: 0.9" position="0 3 0">
                 <a-animation attribute="scale"
                     dur="3000"
                     from="0 0 0"
@@ -26,7 +26,7 @@
                     to="0 0 360"
                     repeat="indefinite">
                 </a-animation>
-            </a-sphere>
+            </a-torus-knot>
         </a-entity>
     </a-marker>
         <a-entity light="type: spot; angle: 45; color: #AC0406; intensity: 1.0" id="red"></a-entity>
