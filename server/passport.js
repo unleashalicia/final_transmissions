@@ -1,19 +1,15 @@
 const LocalStrategy = require('passport-local').Strategy;
-// uppercase bc of the object constructor convention
-// .Strategy is the method on the main object that is exported that way you can use the keyword, new (see below in passport.use)
 const localConfig = require('./strategies/local'); 
 const mysql = require('mysql');
-const { credentials, crypt } = require('./database'); // bcrypt encryption algorithm - see database.js
-const connection = mysql.createConnection(credentials); // connection to database, obvi
+const { credentials, crypt } = require('./database'); 
+const connection = mysql.createConnection(credentials); 
 
-// find user profile by handle name
 function userSearchSQL(userHandle) {
 	let sql = "SELECT * FROM ?? WHERE ?? = ?";
 	let inserts = ['users', 'user_name', userHandle];
 	return mysql.format(sql, inserts); 
 }
 
-// create user handle and password (email is also required)
 function userCreateSQL(userinfo) {
 	let { email, password, user_name } = userinfo;
 	let sql = "INSERT INTO ?? (??, ??, ??, ??) VALUES (?, ?, ?, ?)";
@@ -23,21 +19,17 @@ function userCreateSQL(userinfo) {
 }
 
 module.exports = function (passport) {
-	passport.serializeUser(function (user, done) { // determines, which data of the user object should be stored in the session
+	passport.serializeUser(function (user, done) { 
         done(null, user);
-        // The user id (you provide as the second argument of the done function) is saved in 
-        // the session and is later used to retrieve the whole object via the deserializeUser function
 	});
 
-	passport.deserializeUser(function (user, done) { // The first argument of deserializeUser corresponds to the key of the user object that was given to the done function (line 25)
-        // So your whole object is retrieved with help of that key. That key here is the user id (key can be any key of the user object i.e. name,email etc). 
-        // In deserializeUser that key is matched within the memory array / database or any data resource.
+	passport.deserializeUser(function (user, done) { 
         let sql = "SELECT * FROM ?? WHERE ?? = ?";
 		let inserts = ['users', 'id', user.insertId];
 		sql = mysql.format(sql, inserts);
 
 		connection.query(sql, 
-			function (err, results, fields) { // unsure about what is happening here
+			function (err, results, fields) { 
 				done(err, results)
 			}
 		);	
@@ -87,3 +79,4 @@ module.exports = function (passport) {
 		}));
 	
 };
+

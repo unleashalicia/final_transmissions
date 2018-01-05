@@ -8,17 +8,15 @@ const app = express();
 const PORT = 8000;
 
 app.use(logger('dev')); 
-app.use(express.json()); //takes the place of...
-app.use(express.urlencoded()); //...body-parser
-app.use('/assets', express.static(path.join(__dirname, '..', 'client', 'assets'))); // <---- get advice here 
-app.use(session({ secret: 'wishbone' })); // 
+app.use(express.json()); 
+app.use(express.urlencoded()); 
+app.use('/assets', express.static(path.join(__dirname, '..', 'client', 'assets'))); 
+app.use(session({ secret: 'wishbone' })); 
 app.use(passport.initialize()); 
 app.use(passport.session()); 
 
-require('./passport')(passport); // similar to scope, having access to certain variables
-require('./routes/auth.js')(app, passport); // 
-
-
+require('./passport')(passport); 
+require('./routes/auth.js')(app, passport); /
 
 
 app.get('/', (req, res) => {
@@ -53,6 +51,3 @@ app.listen(PORT, () => {
     console.log("Let's find some ghosts on port: ", PORT);
 });
 
-
-
-//mongoose schema resources mongolabs mongo university  
