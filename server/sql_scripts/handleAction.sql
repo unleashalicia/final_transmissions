@@ -9,13 +9,17 @@ CREATE PROCEDURE `handleUserAction` (
   )  MODIFIES SQL DATA
 
   BEGIN
-    SELECT sa.next_state_id FROM users AS u
-      JOIN state_actions AS sa
-      ON sa.state_id = u.state_id
-      WHERE userId = u.ID AND user_action = sa.action
-    ;
-      SELECT * from users
-    ;
+    SET @next_state = (
+      SELECT sa.next_state_id FROM users AS u
+        JOIN state_actions AS sa
+        ON sa.state_id = u.state_id
+        WHERE userId = u.ID AND user_action = sa.action)
+      ;
+      UPDATE users SET users.state_id = @next_state
+      	WHERE users.ID = userId
+      ;
+   	  CALL getUserStateDetails(userId)
+      ;
   END
     $$
 
