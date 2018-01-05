@@ -107,133 +107,54 @@ button{
 
 /**********MODAL FORM END********************/
 
-/**********STORY START********************/
-nav ul{
-  text-align: right;
-  padding-right: 3%;
-}
 
-nav ul li {
-  color: white;
-  list-style-type: none;
-  pointer: cursor;
-}
-
-.instruction{
-  display: none;
-  position: absolute;
-  background-color: rgba(0,0,0,0.7);
-  height: 100%;
-  width: 100%;
-  z-index: 50;
-}
-.instruction>div{
-  position: absolute;
-  color: white;
-  font-size: 5vmin;
-  animation: float 5s infinite;
-}
-.instruction div div span{
-  cursor: pointer;
-}
-.instruction div div span:hover{
-  color: grey;
-}
-#story-container{
-  background-image: url(../images/ghost.jpg);
-  background-size: cover;
-  background-repeat: no-repeat;
-  position: absolute;
-  background: black;
-  font-family: de-walpergens-pica, serif;
-  height: 100vh;
-  width: 100%;
-  text-align: center;
-
-}
-.caption{
-  background-color: rgba(0,0,0,0.5);
-  padding: 10px;
-  position: relative;
-  display: none;
-  height: 93%;
-}
-.caption h3{
-  font-size: 5vmin;
-}
-.caption p{
-  height: 90%;
-  font-size: 1.5em;
-  font-family: Arial;
-}
-.experience{
-  position: absolute;
-  left: 5%;
-  width: 90%;
-  height: 10%;
-  bottom: 2%;
-  border: 1px solid white;
-  padding: 3px;
-  color: white;
-  font-size: 3vmin;
-  cursor: pointer;
-  background-color: transparent;
-  border-radius: 5%;
-  text-align: center;
-}
-
-.experience:hover{
-  color: black;
-  background: white;
-}
-
-.experience:focus {
-  outline: 0;
-}
-
-.story{
-  margin: 0;
-  height: 100%;
-  width: 25%;
-  float: left;
-  border: 5px solid black;
-  box-sizing: border-box;
-  color: white;
-  transition: 1s;
-  transform-style: preserve-3d;
-}
-h3,p{
-  margin: 0;
-}
-.board1{
-  background-image: url(../images/cover3.jpg);
-  background-position: center;
-  background-size: cover;
-  background-repeat: no-repeat;
-}
-.board2{
-  background-image: url(../images/cover4.jpg);
-  background-position: center;
-  background-size: cover;
-  background-repeat: no-repeat;
-}
-.board3{
-  background-image: url(../images/cover1.jpg);
-  background-position: center;
-  background-size: cover;
-  background-repeat: no-repeat;
-}
-.board4{
-  background-image: url(../images/cover2.jpg);
-  background-position: center;
-  background-size: cover;
-  background-repeat: no-repeat;
+.fade-in {
+  opacity: 0;
+  animation: fadeIn .5s ease-in 1 forwards;
+  -webkit-transition: opacity 2s ease-in;
+  -moz-transition: opacity 2s ease-in;
+  -o-transition: opacity 2s ease-in;
+  -ms-transition: opacity 2s ease-in;
+  transition: opacity 2s ease-in;
+  display: block;
 }
 
 
 
-/**********STORY START********************/
+.fade-out {
+  opacity: 1;
+  animation: fadeOut .5s ease-out 1 forwards;
+  -webkit-transition: opacity 2s ease-out;
+  -moz-transition: opacity 2s ease-out;
+  -o-transition: opacity 2s ease-out;
+  -ms-transition: opacity 2s ease-out;
+  transition: opacity 2s ease-out;
+}
+
+.fade-out-transition {
+  opacity: 1;
+  animation: fadeOut 2s ease-out 1 forwards;
+  -webkit-transition: opacity 2.5s ease-out;
+  -moz-transition: opacity 2.5s ease-out;
+  -o-transition: opacity 2.5s ease-out;
+  -ms-transition: opacity 2.5s ease-out;
+  transition: opacity 2.5s ease-out;
+}
+
+
 /**********KEY FRAMES START********************/
+
+@keyframes fadeIn {
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeOut {
+  to {
+    opacity: 0;
+  }
+}
 
 @keyframes vanish {
     0% {
@@ -312,39 +233,6 @@ h3,p{
     .open{
       font-size: 5vmin;
     }
-    .story{
-      display: inline-block;
-      text-align: left;
-      height: 45%;
-      width: 48%;
-      border: 0;
-      color: white;
-      margin: 1%;
-    }
-    .caption p{
-      font-size: 80%;
-    }
-    .board1{
-      background-image: url(../images/cover3.jpg);
-      background-size: cover;
-      background-repeat: no-repeat;
-    }
-    .board2{
-      background-image: url(../images/cover4.jpg);
-      background-size: cover;
-      background-repeat: no-repeat;
-    }
-    .board3{
-      background-image: url(../images/cover1.jpg);
-      background-size: cover;
-      background-repeat: no-repeat;
-    }
-    .board4{
-      background-image: url(../images/cover2.jpg);
-      background-size: cover;
-      background-repeat: no-repeat;
-    }
-
 
 }
 
