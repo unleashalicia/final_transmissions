@@ -13,10 +13,10 @@ CREATE PROCEDURE `handleUserAction` (
       SELECT sa.next_state_id FROM users AS u
         JOIN state_actions AS sa
         ON sa.state_id = u.state_id
-        WHERE userId = u.ID AND user_action = sa.action)
+        WHERE userId = u.id AND user_action = sa.action)
       ;
       UPDATE users SET users.state_id = @next_state
-      	WHERE users.ID = userId
+      	WHERE users.id = userId
       ;
    	  CALL getUserStateDetails(userId)
       ;

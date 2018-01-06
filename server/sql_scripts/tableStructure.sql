@@ -4,7 +4,7 @@ START TRANSACTION;
 SET time_zone = "+00:00";
 
 /*
-I have no idea what the above four lines of code is doing
+I have no idea what the above four lines of code are doing
 */
 
 
@@ -24,11 +24,14 @@ CREATE TABLE `state_actions` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 
-DROP TABLE if EXISTS `users`;
-CREATE TABLE `users` (
-  `ID` mediumint(9) NOT NULL AUTO_INCREMENT,
+DROP TABLE IF EXISTS `users`;
+CREATE TABLE IF NOT EXISTS `users` (
+  `id` int(50) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `email` varchar(100) NOT NULL,
+  `password` varchar(100) NOT NULL,
+  `user_name` varchar(100) NOT NULL,
   `state_id` varchar(10) NOT NULL,
-  PRIMARY KEY (`ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
 
 COMMIT;
