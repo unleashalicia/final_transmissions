@@ -16,7 +16,7 @@ app.use(passport.initialize());
 app.use(passport.session()); 
 
 require('./passport')(passport); 
-require('./routes/auth.js')(app, passport); /
+require('./routes/auth.js')(app, passport); 
 
 
 app.get('/', (req, res) => {
