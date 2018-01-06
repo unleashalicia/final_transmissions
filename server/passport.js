@@ -18,65 +18,75 @@ function userCreateSQL(userinfo) {
 	return mysql.format(sql, inserts);
 }
 
-module.exports = function (passport) {
-	passport.serializeUser(function (user, done) { 
-        done(null, user);
-	});
+module.exports = {
+    passportMethod: function (passport) {
+        passport.serializeUser(function (user, done) {
+            done(null, user);
+        });
 
-	passport.deserializeUser(function (user, done) { 
-        let sql = "SELECT * FROM ?? WHERE ?? = ?";
-		let inserts = ['users', 'id', user.insertId];
-		sql = mysql.format(sql, inserts);
+        passport.deserializeUser(function (user, done) {
+            let sql = "SELECT * FROM ?? WHERE ?? = ?";
+            let inserts = ['users', 'id', user.insertId];
+            sql = mysql.format(sql, inserts);
 
-		connection.query(sql, 
-			function (err, results, fields) { 
-				done(err, results)
-			}
-		);	
-	});
+            connection.query(sql,
+                function (err, results, fields) {
+                    done(err, results)
+                }
+            );
+        });
 
-    // create new user, sign-up
-	passport.use('local-signup', new LocalStrategy(localConfig,
-		function (req, userHandle, password, done) {
-			process.nextTick(function () {
-				debugger;
-				let sql = userSearchSQL(userHandle);
+        // create new user, sign-up
+        passport.use('local-signup', new LocalStrategy(localConfig,
+            function (req, userHandle, password, done) {
+                process.nextTick(function () {
+                    debugger;
+                    let sql = userSearchSQL(userHandle);
 
-				connection.query(sql, function (err, results, fields) {
-					if (err) { return done(err) }
+                    connection.query(sql, function (err, results, fields) {
+                        if (err) {
+                            return done(err)
+                        }
 
-					if (results[0]) {
-						return done(null, false);
-					} else {
-						let sql = userCreateSQL(req.body);
-						
-						connection.query(sql, function (err, results, fields) {
-							if (err) throw err;
+                        if (results[0]) {
+                            return done(null, false);
+                        } else {
+                            let sql = userCreateSQL(req.body);
 
-							return done(null, results);
-						});
-					}
+                            connection.query(sql, function (err, results, fields) {
+                                if (err) throw err;
 
-				});
-			});
-		}));
+                                return done(null, results);
+                            });
+                        }
 
-    // regular user sign-in
-	passport.use('local-signin', new LocalStrategy(localConfig,
-		function (req, userHandle, password, done) { 
-			let sql = userSearchSQL(userHandle);
+                    });
+                });
+            }));
 
-			connection.query(sql, function (err, results, fields) {
+        // regular user sign-in
+        passport.use('local-signin', new LocalStrategy(localConfig,
+            function (req, userHandle, password, done) {
+                let sql = userSearchSQL(userHandle);
 
-				if (err) { return done(err); }
+                connection.query(sql, function (err, results, fields) {
 
-				if (!results[0]) { return done(null, false); }
+                    if (err) {
+                        return done(err);
+                    }
 
-				if (!crypt.checkPassword(password, results[0].password)) { return done(null, false); }
+                    if (!results[0]) {
+                        return done(null, false);
+                    }
 
-				return done(null, results);
-			});
-		}));
-	
+                    if (!crypt.checkPassword(password, results[0].password)) {
+                        return done(null, false);
+                    }
+
+                    return done(null, results);
+                });
+            }));
+    },
+    connection: connection
 };
 

@@ -14,12 +14,12 @@
   "author": "Brian Evans",
   "license": "ISC",
   "dependencies": {
-		"bcrypt-nodejs": "0.0.3",
-		"express": "^4.16.2",
-		"express-session": "^1.15.6",
-		"mysql": "^2.15.0",
-		"passport": "^0.4.0",
-		"passport-local": "^1.0.0"
+    "bcrypt-nodejs": "0.0.3",
+    "express": "^4.16.2",
+    "express-session": "^1.15.6",
+    "mysql": "^2.15.0",
+    "passport": "^0.4.0",
+    "passport-local": "^1.0.0"
   },
   "devDependencies": {
     "nodemon": "^1.13.3",

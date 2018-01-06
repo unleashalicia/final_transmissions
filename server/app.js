@@ -15,8 +15,10 @@ app.use(session({ secret: 'wishbone' }));
 app.use(passport.initialize()); 
 app.use(passport.session()); 
 
-require('./passport')(passport); 
-require('./routes/auth.js')(app, passport); /
+const {passportMethod, connection} = require('./passport');
+
+passportMethod(passport);
+require('./routes/auth.js')(app, passport);
 
 
 app.get('/', (req, res) => {
@@ -37,6 +39,31 @@ app.get('/login', (req, res) => {
 app.get('/profile', (req, res) => {
     res.sendFile(path.join(__dirname,'..', 'client', 'profile.html'));
 });
+
+
+
+app.post('/action', (req, res) => {
+    let output = {
+        success: false,
+        data: null,
+        errors: null
+    };
+
+    const query = `CALL handleUserAction(${req.body.id}, '${req.body.action}')`;
+
+    connection.query(query, function(error, data){
+
+        if (!error){
+            output.success = true;
+            output.data = data[0][0];
+        } else {
+            output.errors = "there was an error"; // being the mean backend is so fun
+        }
+
+        res.send(output);
+    });
+});
+
 
 
 function errorHandler (err, req, res, next) { 
