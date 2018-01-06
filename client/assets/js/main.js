@@ -27,13 +27,13 @@ function handleClickEvents(){
     formSign.classList.add('fade-in');
     sign.classList.remove('fade-out');
     sign.classList.remove('ghostOut');
-  };
+  });
 
   document.querySelector('.logIn').addEventListener('click', function(){//clicking the log in button at the landing page
     greeting.classList.add('fade-out');
     greeting.classList.remove('fade-in');
     formLog.classList.add('fade-in');
-  };
+  });
 
   for(let i = 0; i < cancelBtns.length; i++) {
     cancelBtns[i].addEventListener('click', function (event) {
@@ -47,7 +47,7 @@ function handleClickEvents(){
       }, 1500);
       greeting.classList.add('fade-in');
       greeting.classList.remove('fade-out');
-    };
+    });
   }
 
   document.querySelector('.btnLog').addEventListener('click', function(event) {
@@ -61,7 +61,7 @@ function handleClickEvents(){
       signUp.classList.add('fade-out');
       logIn.classList.add('fade-out');
       document.querySelector('.greeting h1>span').text(document.querySelector('.username').value);
-  };
+  });
 
   document.querySelector('.btnSign').addEventListener('click', function(event) {
     const parent = event.target.parentNode;
