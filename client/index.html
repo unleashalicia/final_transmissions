@@ -5,15 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src='http://use.edgefonts.net/de-walpergens-pica.js'></script>
     <!--<script src="https://code.jquery.com/jquery-3.1.0.js"></script>-->
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script src="assets/js/main.js" type="text/javascript"></script>
     <link rel="stylesheet" href="assets/css/index.css" type="text/css"/>
     <title>A Ghost Story</title>
-    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 </head>
 <body>
 <div id="landing-container">
     <div class="formSign">
-      <form class="sign form-group">
+      <form class="sign form-group" action="/signup" method="post">
         <h1>Sign Up </h1>
         <div>
 
@@ -51,14 +51,15 @@
 </body>
 <script>
     function submitSignup() {
+        console.log('where am i????');
         axios({
             url: "/signup",
             method: "POST",
             responseType: "document",
             data: {
-                email: $(".sign input[name='email']").val(),
-                password: $(".sign input[name='password']").val(),
-                user_name: $(".sign input[name='user_name']").val()
+                email: document.querySelector(".sign input[name='email']").value,
+                password: document.querySelector(".sign input[name='password']").value,
+                user_name: document.querySelector(".sign input[name='user_name']").value
             }
         }).then(function(response) {
             console.log(response);
