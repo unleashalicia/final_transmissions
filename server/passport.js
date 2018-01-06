@@ -41,7 +41,7 @@ module.exports = function (passport) {
 			process.nextTick(function () {
 				debugger;
 				let sql = userSearchSQL(userHandle);
-
+				console.log('signup search sql: ', sql)
 				connection.query(sql, function (err, results, fields) {
 					if (err) { return done(err) }
 

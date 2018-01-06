@@ -22,21 +22,21 @@ function handleClickEvents(){
     },3100)
   };
 
-  document.querySelector('.signUp').onclick = function(){ //clicking the sign up button at the landing page
+  document.querySelector('.signUp').addEventListener('click', function(){ //clicking the sign up button at the landing page
     greeting.classList.add('fade-out');
     formSign.classList.add('fade-in');
     sign.classList.remove('fade-out');
     sign.classList.remove('ghostOut');
   };
 
-  document.querySelector('.logIn').onclick = function(){//clicking the log in button at the landing page
+  document.querySelector('.logIn').addEventListener('click', function(){//clicking the log in button at the landing page
     greeting.classList.add('fade-out');
     greeting.classList.remove('fade-in');
     formLog.classList.add('fade-in');
   };
 
   for(let i = 0; i < cancelBtns.length; i++) {
-    cancelBtns[i].onclick = function (event) {
+    cancelBtns[i].addEventListener('click', function (event) {
       event.preventDefault();
       const grandParent = event.target.parentNode.parentNode;
       grandParent.classList.add('fade-out');
@@ -50,7 +50,7 @@ function handleClickEvents(){
     };
   }
 
-  document.querySelector('.btnLog').onclick = function(event) {
+  document.querySelector('.btnLog').addEventListener('click', function(event) {
     const parent = event.target.parentNode;
     parent.classList.add('ghostOut').classList.add('fade-out');
       setTimeout(function(){
@@ -63,7 +63,7 @@ function handleClickEvents(){
       document.querySelector('.greeting h1>span').text(document.querySelector('.username').value);
   };
 
-  document.querySelector('.btnSign').onclick = function(event) {
+  document.querySelector('.btnSign').addEventListener('click', function(event) {
     const parent = event.target.parentNode;
     parent.classList.add('ghostOut');
     parent.classList.add('fade-out');
@@ -72,6 +72,6 @@ function handleClickEvents(){
         greeting.classList.remove('fade-out');
         greeting.classList.add('fade-in');
     }, 1500);
-  };
+  });
 
 }
