@@ -22,11 +22,11 @@ module.exports = function (app, passport) {
 	});
 
 	app.get('/profile', isLoggedIn, (req, res) => {
-	    res.sendFile(path.join(__dirname,'..', 'client', 'profile.html'));
+	    res.sendFile(path.join(__dirname,'..', '..', 'client', 'profile.html'));
 	});
 
 	app.get('/play', isLoggedIn, (req, res) => {
-	    res.sendFile(path.join(__dirname,'..', 'client', 'meter-index.html'));
+	    res.sendFile(path.join(__dirname,'..','..','client', 'meter-index.html'));
 	});
 }
 
