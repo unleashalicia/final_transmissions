@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Earth Test</title>
+    <script src="../../../assets/lib/aframe.min.js"></script>
+</head>
+<body style='margin : 0px; overflow: hidden;'>
+<a-scene>
+    <a-sky color="gray"></a-sky>
+    <a-assets>
+        <video src="./dust.ogv" id="dust" autoplay loop="true"></video>
+    </a-assets>
+        <a-entity>
+            <a-box src='#dust' height="2" width="2" depth="2" material="opacity: 0.9" position="0 2 -5">
+                <a-animation attribute="rotation"
+                             dur="5000"
+                             to="0 360 0"
+                             repeat="indefinite">
+                </a-animation>
+            </a-box>
+        </a-entity>
+</a-scene>
+
+</body>
+</html>
