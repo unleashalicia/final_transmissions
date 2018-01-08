@@ -36,13 +36,7 @@ app.get('/login', (req, res) => {
 });
 
 
-app.get('/profile', (req, res) => {
-    res.sendFile(path.join(__dirname,'..', 'client', 'profile.html'));
-});
 
-app.get('/play', (req, res) => {
-    res.sendFile(path.join(__dirname,'..', 'client', 'meter-index.html'));
-});
 
 
 
