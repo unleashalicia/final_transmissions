@@ -27,7 +27,7 @@ CREATE TABLE `users` (
   `email` VARCHAR(100) NOT NULL,
   `password` VARCHAR(100) NOT NULL,
   `user_name` VARCHAR(100) NOT NULL,
-  `state_id` SMALLINT(3) NOT NULL,
+  `state_id` SMALLINT (3) NOT NULL DEFAULT '10'
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
 
