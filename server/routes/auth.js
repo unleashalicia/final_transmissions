@@ -23,7 +23,7 @@ module.exports = function (app, passport) {
 
 	app.get('/profile', isLoggedIn, (req, res) => {
 	    res.render("profile",{
-			data: req
+			data: 'This is a test'
 		});
 	});
 
