@@ -5,6 +5,12 @@
         <meta name="mobile-web-app-capable" content="yes">
         <title>Ghost Meter</title>
         <link rel="stylesheet" href="./assets/css/meter.css">
+
+        <link rel="stylesheet" type="text/css" href="./testitems/various/AR/ARstyle.css" />
+
+        <script src="./assets/lib/AR.js-master/aframe/examples/vendor/aframe/build/aframe.js"></script>
+        <script src="./assets/lib/AR.js-master/aframe/build/aframe-ar.js"></script>
+
         <script src="https://code.jquery.com/jquery-3.1.0.js"></script>
         <script src="./assets/lib/noSleep.min.js"></script>
         <script src="./assets/lib/howler.js"></script>
@@ -45,7 +51,22 @@
         <div class="text-tape"></div>
       </div>
       <div id="camera">
-        <h1> Camera is on landscape </h1>
+        <a-scene>
+            <a-assets>
+                <video src="./dust.ogv" id="dust" autoplay loop="true" preload="auto"></video>
+            </a-assets>
+            <a-marker preset='hiro'>
+                <a-entity>
+                    <a-box src='#dust' height="2" width="2" depth="2" material="opacity: 0.9" position="0 0.5 0">
+                        <a-animation attribute="rotation"
+                                     dur="5000"
+                                     to="0 0 360"
+                                     repeat="indefinite">
+                        </a-animation>
+                    </a-box>
+                </a-entity>
+            </a-marker>
+        </a-scene>
       </div>
     </body>
 </html>

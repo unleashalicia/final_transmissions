@@ -1,0 +1,224 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Finale Test</title>
+    <link rel="stylesheet" type="text/css" href="ARstyle.css" />
+
+    <script src="../../../assets/lib/aframe.min.js"></script>
+</head>
+<body style='margin : 0px; overflow: hidden;'>
+
+<a-scene>
+    <a-sky color="grey"></a-sky>
+    <a-assets>
+        <img id="wood" src="../../../assets/images/wood.jpg"/>
+    </a-assets>
+    <!--<a-marker preset='hiro'>-->
+
+    <!--<a-entity>-->
+        <!--<a-box src="#wood" height="2" width="2" depth="2" position="0 1 -5" rotation="0 135 0">-->
+        <!--</a-box>-->
+    <!--</a-entity>-->
+
+    <!--<a-entity>-->
+        <!--<a-sphere color="white" radius="0.25">-->
+            <!--<a-animation attribute="position"-->
+                         <!--dur="1000"-->
+                         <!--from="0 1 -5"-->
+                         <!--to="0 5 -5"-->
+                         <!--easing="linear">-->
+            <!--</a-animation>-->
+            <!--<a-animation attribute="opacity"-->
+                         <!--dur="1000"-->
+                         <!--from="1"-->
+                         <!--to="0"-->
+                         <!--easing="linear">-->
+            <!--</a-animation>-->
+        <!--</a-sphere>-->
+    <!--</a-entity>-->
+
+    <!--<a-entity>-->
+        <!--<a-sphere color="white" radius="0.25">-->
+            <!--<a-animation attribute="position"-->
+                         <!--begin = "1000"-->
+                         <!--dur="1000"-->
+                         <!--from="0 1 -5"-->
+                         <!--to="-2 5 -5"-->
+                         <!--easing="linear">-->
+            <!--</a-animation>-->
+            <!--<a-animation attribute="opacity"-->
+                         <!--begin = "1000"-->
+                         <!--dur="1000"-->
+                         <!--from="1"-->
+                         <!--to="0"-->
+                         <!--easing="linear">-->
+            <!--</a-animation>-->
+        <!--</a-sphere>-->
+    <!--</a-entity>-->
+
+    <!--<a-entity>-->
+        <!--<a-sphere color="white" radius="0.25">-->
+            <!--<a-animation attribute="position"-->
+                         <!--begin="2000"-->
+                         <!--dur="1000"-->
+                         <!--from="0 1 -5"-->
+                         <!--to="2 5 -5"-->
+                         <!--easing="linear">-->
+            <!--</a-animation>-->
+            <!--<a-animation attribute="opacity"-->
+                         <!--begin="2000"-->
+                         <!--dur="1000"-->
+                         <!--from="1"-->
+                         <!--to="0"-->
+                         <!--easing="linear">-->
+            <!--</a-animation>-->
+        <!--</a-sphere>-->
+    <!--</a-entity>-->
+
+    <!--<a-entity>-->
+        <!--<a-sphere color="white" radius="0.25">-->
+            <!--<a-animation attribute="position"-->
+                         <!--begin="2500"-->
+                         <!--dur="1000"-->
+                         <!--from="0 1 -5"-->
+                         <!--to="2.5 5 -5"-->
+                         <!--easing="linear">-->
+            <!--</a-animation>-->
+            <!--<a-animation attribute="opacity"-->
+                         <!--begin="3000"-->
+                         <!--dur="1000"-->
+                         <!--from="1"-->
+                         <!--to="0"-->
+                         <!--easing="linear">-->
+            <!--</a-animation>-->
+        <!--</a-sphere>-->
+    <!--</a-entity>-->
+
+    <!--<a-entity-->
+            <!--id="red"-->
+            <!--light="color: #AC0406;-->
+                       <!--type: directional;-->
+                       <!--intensity: 1.0"-->
+            <!--position="0 0 9"-->
+            <!--rotation="0 0 90"-->
+            <!--target="0 1 -5"-->
+    <!--&gt;-->
+    <!--</a-entity>-->
+    <!--<a-entity-->
+            <!--id="blue"-->
+            <!--light="color: #3A43D4;-->
+                       <!--type: directional;-->
+                       <!--intensity: 1.0"-->
+            <!--position="9 0 0"-->
+            <!--rotation="90 0 0"-->
+            <!--target="0 1 -5"-->
+    <!--&gt;-->
+    <!--</a-entity>-->
+    <!--<a-entity-->
+            <!--id="green"-->
+            <!--light="color: #185900;-->
+                       <!--type: directional;-->
+                       <!--intensity: 1.0"-->
+            <!--position="0 0 -9"-->
+            <!--rotation="180 0 0"-->
+            <!--target="0 1 -5"-->
+    <!--&gt;-->
+    <!--</a-entity>-->
+    <!--<a-entity-->
+            <!--id="yellow"-->
+            <!--light="color: #F0A000;-->
+                       <!--type: directional;-->
+                       <!--intensity: 1.0"-->
+            <!--position="-9 0 0"-->
+            <!--rotation="270 0 0"-->
+            <!--target="0 1 -5"-->
+    <!--&gt;-->
+    <!--</a-entity>-->
+    <!--</a-marker>-->
+</a-scene>
+
+<script>
+
+
+
+
+    window.addEventListener("load", function () {
+        createSpheres(5);
+    });
+
+    const findRange = (start,end) => {
+        return (Math.random() * (end-start) ) + start;
+    };
+
+    let posZ = -5;
+
+    const createSpheres = (amount) => {
+        const scene = document.querySelector('a-scene');
+        const colorArray = ["blue", "red", "purple", "yellow", "green", "black", "orange"];
+
+
+
+        for (let creator=0; creator<amount; creator++){
+            let entity = document.createElement('a-entity');
+            let sphere = document.createElement('a-sphere');
+            let animation = document.createElement('a-animation');
+
+            let color = colorArray[Math.floor(Math.random()*colorArray.length)];
+            let size = findRange(0.5, 2);
+
+            let posX = findRange(-3, 3);
+            let posXdest = findRange(-3,3);
+
+            let posY = findRange(0, 3);
+            let posYdest = findRange(0, 3);
+
+            let dur = findRange(1000, 5000);
+
+
+
+            entity.setAttribute('position', {x: posX, y: posY, z: posZ});
+
+            sphere.setAttribute('material', 'color', color);
+
+            sphere.setAttribute('scale', 'radius', size);
+
+            animation.setAttribute('attribute', 'position');
+            animation.setAttribute('dur', dur);
+            animation.setAttribute('from', posX + ' ' + posY + ' -5');
+            animation.setAttribute('to', posXdest + ' ' + posYdest + ' -5');
+            animation.setAttribute('direction', 'alternate-reverse');
+            animation.setAttribute('easing', 'ease-in-out-circ');
+            animation.setAttribute('repeat', 'indefinite');
+
+            posZ = posZ-2;
+
+            entity.appendChild(animation);
+            entity.appendChild(sphere);
+            scene.appendChild(entity);
+
+
+
+        }
+    }
+
+
+
+
+//var sphereEl = document.createElement('a-sphere');
+//sphereEl.setAttribute('radius', 0.5);
+//sphereEl.setAttribute('material', 'color', 'blue');
+//sphereEl.setAttribute('position', {x: 0, y: 1, z:-5});
+//document.querySelector('a-scene').appendChild(sphereEl);
+//sphereEl.addEventListener('loaded', function () {
+//    console.log('sphere attached');
+//});
+
+
+</script>
+
+</body>
+</html>
