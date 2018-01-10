@@ -51,38 +51,27 @@ function handleClickEvents(){
   }
 
   document.querySelector('.btnLog').addEventListener('click', function(event) {
-    // function submitSignup() {
-      console.log('login???');
-      axios({
-          url: "/login",
-          method: "POST",
-          responseType: "document",
-          data: {
-              password: document.querySelector(".sign input[name='password']").value,
-              user_name: document.querySelector(".sign input[name='user_name']").value
-          }
-      }).then(function(response) {
-          console.log(response);
-          console.log("This is the page that will be redirected to: ", response.data.URL);
-          window.location = response.data.URL; // Will need to be modified
-                                               // Essentially is used to redirect when you have a successful response
-      }).catch(function(error) {
-          console.log(error);
-          // Looks like you may want to implement the 
-      });  
-      
-  });
-    // const parent = event.target.parentNode;
-    // parent.classList.add('ghostOut').classList.add('fade-out');
-    //   setTimeout(function(){
-    //     formLog.classList.remove('ghostOut')
-    //   },2000);
-    //   open.classList.add('fade-in appear');
-    //   greeting.classList.add('fade-in');
-    //   signUp.classList.add('fade-out');
-    //   logIn.classList.add('fade-out');
-      //document.querySelector('.greeting h1>span').text(document.querySelector('.username').value);
-  // });
+      // function submitSignup() {
+        console.log('login???');
+        axios({
+            url: "/login",
+            method: "POST",
+            responseType: "document",
+            data: {
+                password: document.querySelector(".sign input[name='password']").value,
+                user_name: document.querySelector(".sign input[name='user_name']").value
+            }
+        }).then(function(response) {
+            console.log(response);
+            console.log("This is the page that will be redirected to: ", response.data.URL);
+            window.location = response.data.URL; // Will need to be modified
+                                                 // Essentially is used to redirect when you have a successful response
+        }).catch(function(error) {
+            console.log(error);
+            // Looks like you may want to implement the
+        });
+
+    });
 
   document.querySelector('.btnSign').addEventListener('click', function(event) {
     const parent = event.target.parentNode;
