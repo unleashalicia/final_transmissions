@@ -36,6 +36,7 @@ var target = {
     talkThreshold: 9
 };
 
+
 //Out front of apartment
 // var target = {
 //     latitude: 33.7523889,
