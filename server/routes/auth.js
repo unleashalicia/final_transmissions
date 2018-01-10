@@ -24,8 +24,8 @@ module.exports = function (app, passport) {
 
 	app.get('/profile', isLoggedIn, (req, res) => {
 	    res.render("profile",{
-			username: req.user[0].user_name,
-			email: req.user[0].email
+			username: JSON.stringify(req.user),
+			email: JSON.stringify(req.user)
 		});
 	});
 
