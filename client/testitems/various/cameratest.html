@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <script src="https://code.jquery.com/jquery-3.1.0.js"></script>
+
+    <title>Display Webcam Stream</title>
+
+    <style>
+
+        #container {
+            margin: 0px 0px;
+            width: 100vw;
+            height: 100vh;
+            border: none;
+            position: absolute;
+            left: 0%;
+            top: 0%;
+        }
+
+        #videoElement {
+            width: 640px;
+            height: 480px;
+            background-color: #666;
+            position: absolute;
+            top: 0;
+            left: 0;
+            visibility: hidden;
+        }
+
+        #canvas {
+            width: 100vw;
+            height: 100vh;
+            background-color: transparent;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+
+        .output {
+            display: block;
+            font-size: 1.5rem;
+            color: blue;
+            text-align: center;
+        }
+
+        #map {
+            height: 105vh;
+            width: 105vw;
+            border: none;
+            position: absolute;
+            top: 0%;
+            left: -20px;
+        }
+
+        .concealer {
+            height: 100vh;
+            width: 100vw;
+            border: none;
+            position: absolute;
+            top: 0%;
+            left: 0%;
+            overflow: hidden;
+        }
+
+    </style>
+</head>
+
+<body>
+    <div id="container">
+        <video autoplay="true" id="videoElement" width="640px" height="480px"></video>
+        <canvas id="canvas" width="640px" height="480px"></canvas>
+    </div>
+    <div class="output">
+
+    </div>
+    <div class="concealer">
+            <div id="map"></div>
+    </div>
+
+    <script>
+    //video
+    var video = document.querySelector("#videoElement");
+    var videoConstraints = {video: {facingMode: "user"}, audio: false};
+    // var iOSsystem = iOS(); <----for iOS
+	// video.setAttribute("playsinline",true); <----for iOS
+	// video.setAttribute("controls",true); <----for iOS
+
+
+    // function iOS() { <----for iOS
+    //     var iDevices = [
+    //         'iPad',
+    //         'iPhone',
+    //         'iPod'
+    //     ];
+    //
+    //     if (!!navigator.platform) {
+    //         while (iDevices.length) {
+    //             if (navigator.platform === iDevices.pop()){ return true; }
+    //         }
+    //     }
+    //     return false;
+    // }
+
+    navigator.mediaDevices.getUserMedia(videoConstraints).then(handleVideo).catch(videoError);
+
+
+    function handleVideo(stream) {
+        console.log('stuff');
+	    // window.stream = stream; <----for iOS
+        // video.srcObject = stream; <----for iOS
+        video.src = window.URL.createObjectURL(stream);
+        // if (iOS) {<----for iOS
+        //     $('canvas').css('display','none');<----for iOS
+        //     $('video').css('visibility','visible');<----for iOS
+        // } else {<----for iOS
+        draw(video,ctx,412,732);
+        // }<----for iOS
+    }
+
+    function videoError(e) {
+        console.log('denied or nonexistent');
+    }
+
+    function draw(video,context,width,height){
+        if (getRandom(0,100) > 3){
+            ctx.filter = 'grayscale(90%)';
+            context.drawImage(video,0,0,width,height);
+        } else {
+            ctx.filter = 'grayscale(40%)';
+            width = 640;
+            height = 480;
+            var verticalSlices = Math.round(height / 20);
+            var maxHorizOffset = 60;
+
+
+            for (var i = 0; i < verticalSlices; i++)  {
+                var horizOffset = getRandom(-Math.abs(maxHorizOffset), maxHorizOffset);
+                context.drawImage(video, 0, i * verticalSlices, width, i * verticalSlices + verticalSlices,  horizOffset, i * verticalSlices, width, i * verticalSlices + verticalSlices);
+            }
+        }
+
+        setTimeout(draw,80,video,context,width,height);
+    }
+
+    function getRandom(min, max) {
+        return Math.floor(Math.random() * (max - min + 1)) + min;
+    }
+
+
+    var canvas = document.querySelector('#canvas');
+    var ctx = canvas.getContext("2d");
+
+
+
+    //show current location
+    //
+    //    var goldStar = {
+    //        path: 'M 125,5 155,90 245,90 175,145 200,230 125,180 50,230 75,145 5,90 95,90 z',
+    //        fillColor: 'blue',
+    ////        fillOpacity: 0.4,
+    //        scale: .2,
+    ////        strokeColor: 'gold',
+    ////        strokeWeight: 14
+    //    };
+    var marker;
+
+    function showCurrentLocation(){
+        var iconBase = 'http://maps.google.com/mapfiles/kml/shapes/shaded_dot.png';
+        console.log('marker before call:', marker);
+        if(marker === undefined) {
+            marker = new google.maps.Marker({
+                position: {
+                    lat: coord.latitude,
+                    lng: coord.longitude
+                },
+                map: map,
+                icon: iconBase
+            });
+        } else {
+            marker.setVisible(false);
+            console.log('Marker before:', marker.visible);
+            marker = new google.maps.Marker({
+                position: {
+                    lat: coord.latitude,
+                    lng: coord.longitude
+                },
+                map: map,
+                icon: iconBase
+            });
+        }
+        console.log('Marker:', marker.visible);
+    }
+
+
+</script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCXqyuEI8wFxFvczjGjlbim35FAuco0oCU&"
+async defer></script>
+</body>
+</html>

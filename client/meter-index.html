@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="mobile-web-app-capable" content="yes">
+        <title>Ghost Meter</title>
+        <link rel="stylesheet" href="./assets/css/meter.css">
+        <script src="https://code.jquery.com/jquery-3.1.0.js"></script>
+        <script src="./assets/lib/noSleep.min.js"></script>
+        <script src="./assets/lib/howler.js"></script>
+        <script type="text/javascript" src="./assets/js/meter.js"></script>
+
+    </head>
+    <body>
+      <div id="loading">
+        <h2>Loading</h2>
+        <p class="loading-btn hide">Ready?</p>
+      </div>
+      <div id="gauge-wrapper">
+        <div class="topGuage">
+            <div class="lightingGuage"></div>
+            <div class="needleGuage">
+                <div class="needleBall"></div>
+            </div>
+            <div class="bottomGuage">
+                <span class="test-output"></span>
+            </div>
+        </div>
+
+        <div class="knob-container beige-border">
+          <div id="knob">
+            <div class="range-indicator long"><p>Long Range</p><div class="knob-light"></div></div>
+            <div class="range-indicator mid"><p>Mid Range</p><div class="knob-light selected" ></div></div>
+            <div class="range-indicator close"><p>Close Range</p><div class="knob-light"></div></div>
+            <div id="knobImg" class="mid-range-knob"></div>
+          </div>
+        </div>
+
+        <div class="action-container beige-border">
+            <div id="switch"></div>
+            <div id="indicator">
+                <div id="indicator-light"></div>
+            </div>
+        </div>
+        <div class="text-tape"></div>
+      </div>
+      <div id="camera">
+        <h1> Camera is on landscape </h1>
+      </div>
+    </body>
+</html>
