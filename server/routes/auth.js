@@ -1,4 +1,6 @@
 const path = require('path');
+var fs = require('fs');
+
 
 module.exports = function (app, passport) {
 
@@ -22,6 +24,8 @@ module.exports = function (app, passport) {
 	});
 
 	app.get('/profile', isLoggedIn, (req, res) => {
+		// fs.writeFile("./reqInfo",req
+		let user = req.user.sessionID
 	    res.render("profile",{
 			data: 'This is a test'
 		});
