@@ -168,7 +168,7 @@ body * {
 }
 
 .flipped {
-    transform: translateX(-50%) rotateX(180deg);
+    transform: translateX(-50%) rotateX(180deg) !important;
 }
 
 #knob {
@@ -270,6 +270,27 @@ body * {
     font-size: 10vmin;
     color: white;
 }
+
+.fade-out {
+  opacity: 1;
+  animation: fadeOut .5s ease-out 1 forwards;
+  -webkit-transition: opacity 2s ease-out;
+  -moz-transition: opacity 2s ease-out;
+  -o-transition: opacity 2s ease-out;
+  -ms-transition: opacity 2s ease-out;
+  transition: opacity 2s ease-out;
+}
+
+.fade-out-transition {
+  opacity: 1;
+  animation: fadeOut 2s ease-out 1 forwards;
+  -webkit-transition: opacity 2.5s ease-out;
+  -moz-transition: opacity 2.5s ease-out;
+  -o-transition: opacity 2.5s ease-out;
+  -ms-transition: opacity 2.5s ease-out;
+  transition: opacity 2.5s ease-out;
+}
+
 /**********KEY FRAMES / FONT FACE START********************/
 
 @keyframes lighting {
@@ -314,6 +335,12 @@ body * {
 @font-face {
   font-family: demonsker;
   src: url(../fonts/demonsker.ttf)
+}
+
+@keyframes fadeOut {
+  to {
+    opacity: 0;
+  }
 }
 
 /**********KEY FRAMES/ FONT FACE  END********************/

@@ -65,9 +65,12 @@ function loadSound(location,position){
         onload: ()=>{
             sounds.numLoaded++;
             if (sounds.numLoaded >= sounds.sources.length){
+                const loadingBtn = document.querySelector('.loading-btn');
+                const headerFade = document.querySelector('#loading h2');
+
                 sounds.ready = true; //used for debugging
-                $('#loading h2').fadeOut();
-                $('.loading-btn').removeClass('hide');
+                headerFade.classList.add('fade-out');
+                loadingBtn.classList.remove('hide');
             }
         }
     });
@@ -126,12 +129,13 @@ function handleEventHandlers(){
 
     loadingBtn.addEventListener('click', fullscreen);
 
-    knobImg.addEventListener('click touch', function(){
+    knobImg.addEventListener('click', function(){
+        console.log('click knob');
         knobRange(this);
     });
 
 
-    uiSwitch.addEventListener('click touch',flipSwitch);
+    uiSwitch.addEventListener('click',flipSwitch);
 
     window.addEventListener('orientationchange',handleOrientation);
 }
@@ -145,9 +149,10 @@ function handleEventHandlers(){
 //++
 //++
 function flipSwitch(){
+    console.log('Switch flipped');
     const uiSwitch = document.getElementById('switch');
     const indicatorLight = document.getElementById('indicator-light');
-    const needleGuage = document.querySelector('.needleGuage');
+    const needlegauge = document.querySelector('.needlegauge');
 
     if (!deviceOn){
         noSleep.enable();
@@ -164,7 +169,7 @@ function flipSwitch(){
         indicatorLight.style.display = 'none';
         indicatorLight.classList.toggle('indicator-glow');
 
-        needleGuage.style.transform = 'translateX(-50%) rotateZ(-75deg)';
+        needlegauge.style.transform = 'translateX(-50%) rotateZ(-75deg)';
 
         navigator.geolocation.clearWatch(watchHandler);
         if (sounds[1].playing(speaking)){
@@ -179,7 +184,7 @@ function flipSwitch(){
 //++
 function knobRange(elem){
     debugger;
-    switch ($(elem).attr('class')) {
+    switch (elem.className) {
         case "close-range-knob":
         if(deviceOn){
             $('.knob-light').removeClass('selected');
@@ -215,28 +220,28 @@ function knobRange(elem){
 //++
 //++
 function handleMeter(){
-    const needleGuage = document.querySelector('.needleGuage');
+    const needlegauge = document.querySelector('.needlegauge');
 
     if (knobMode === 'long'){
         if (distance > 100 && deviceOn){
-            needleGuage.style.transform = 'translateX(-50%) rotateZ(-65deg)';
+            needlegauge.style.transform = 'translateX(-50%) rotateZ(-65deg)';
         } else if (distance <= 100 && distance >= 0 && deviceOn){
             let needleAngle = 53 - distance;
-            needleGuage.style.transform = 'translateX(-50%) rotateZ('+needleAngle+'deg)';
+            needlegauge.style.transform = 'translateX(-50%) rotateZ('+needleAngle+'deg)';
         }
     } else if (knobMode === 'med') {
         if (distance > 50 && deviceOn){
-            needleGuage.style.transform = 'transform','translateX(-50%) rotateZ(-65deg)';
+            needlegauge.style.transform = 'transform','translateX(-50%) rotateZ(-65deg)';
         } else if (distance <= 50 && distance >= 0 && deviceOn){
             let needleAngle = 53 - distance * 2;
-            needleGuage.style.transform = 'translateX(-50%) rotateZ('+needleAngle+'deg)';
+            needlegauge.style.transform = 'translateX(-50%) rotateZ('+needleAngle+'deg)';
         }
     } else if (knobMode === 'short') {
         if (distance > 25 && deviceOn){
-            needleGuage.style.transform = 'transform','translateX(-50%) rotateZ(-65deg)';
+            needlegauge.style.transform = 'transform','translateX(-50%) rotateZ(-65deg)';
         } else if (distance <= 25 && distance >= 0 && deviceOn){
             let needleAngle = 53 - distance * 4;
-            needleGuage.style.transform = 'translateX(-50%) rotateZ('+needleAngle+'deg)';
+            needlegauge.style.transform = 'translateX(-50%) rotateZ('+needleAngle+'deg)';
         }
     }
 }
@@ -260,12 +265,15 @@ function fullscreen(){
 //++
 function handleOrientation(event){
     //use to listen for device orientation change to switch from ESR or Ghost CAM
+    const gaugeWrapper = document.getElementById('gauge-wrapper');
+    const camera = document.getElementById('camera');
+
     if(screen.orientation.type === 'portrait-primary'){
-        $('#gauge-wrapper').removeClass('hide');
-        $('#camera').addClass('hide');
+        gaugeWrapper.classList.remove('hide');
+        camera.classList.add('hide');
     }else{
-        $('#gauge-wrapper').addClass('hide');
-        $('#camera').removeClass('hide');
+        gaugeWrapper.classList.add('hide');
+        camera.classList.remove('hide');
     }
 }
 //****************************************
@@ -356,11 +364,13 @@ function deg2rad(deg) {
 //########################################
 //## Entry into app/on load  #############
 //########################################
-$(document).ready(function(){
+document.addEventListener("DOMContentLoaded", onLoad);
+
+function onLoad(){
     handleEventHandlers();
     loadAll();
     getLocation();
-});
+};
 //****************************************
 //****************************************
 //-|
