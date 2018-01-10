@@ -65,9 +65,12 @@ function loadSound(location,position){
         onload: ()=>{
             sounds.numLoaded++;
             if (sounds.numLoaded >= sounds.sources.length){
+                const loadingBtn = document.querySelector('.loading-btn');
+                const headerFade = document.querySelector('#loading h2');
+
                 sounds.ready = true; //used for debugging
-                $('#loading h2').fadeOut();
-                $('.loading-btn').removeClass('hide');
+                headerFade.classList.add('fade-out');
+                loadingBtn.classList.remove('hide');
             }
         }
     });
@@ -120,13 +123,21 @@ function handleAudioPlayback(dist){
 //++
 //++
 function handleEventHandlers(){
-  $('#knobImg').on('click touch',function(){
-    knobRange(this);
-  });
-  $('.loading-btn').on('click',fullscreen)
-  $('#switch').on('click touch',flipSwitch);
+    const knobImg = document.getElementById('knobImg');
+    const loadingBtn = document.querySelector('.loading-btn');
+    const uiSwitch = document.getElementById('switch');
 
-  $(window).on('orientationchange',handleOrientation); //orientation change
+    loadingBtn.addEventListener('click', fullscreen);
+
+    knobImg.addEventListener('click', function(){
+        console.log('click knob');
+        knobRange(this);
+    });
+
+
+    uiSwitch.addEventListener('click',flipSwitch);
+
+    window.addEventListener('orientationchange',handleOrientation);
 }
 //****************************************
 //****************************************
@@ -138,20 +149,28 @@ function handleEventHandlers(){
 //++
 //++
 function flipSwitch(){
-    console.log('touched');
+    console.log('Switch flipped');
+    const uiSwitch = document.getElementById('switch');
+    const indicatorLight = document.getElementById('indicator-light');
+    const needlegauge = document.querySelector('.needlegauge');
+
     if (!deviceOn){
         noSleep.enable();
         deviceOn = true;
-        $('#switch').css('transform','translateX(-50%) rotateX(180deg)');
-        $('#indicator-light').show().toggleClass('indicator-glow');
+        uiSwitch.classList.toggle('flipped');
+        indicatorLight.style.display = 'block';
+        indicatorLight.classList.toggle('indicator-glow');
         getLocation();
 
     } else if (deviceOn){
         noSleep.disable();
         deviceOn = false;
-        $('#switch').css('transform','translateX(-50%) rotateX(0deg)');
-        $('#indicator-light').hide().toggleClass('indicator-glow');
-        $('.needleGuage').css('transform','translateX(-50%) rotateZ(-75deg)');
+        uiSwitch.classList.toggle('flipped');
+        indicatorLight.style.display = 'none';
+        indicatorLight.classList.toggle('indicator-glow');
+
+        needlegauge.style.transform = 'translateX(-50%) rotateZ(-75deg)';
+
         navigator.geolocation.clearWatch(watchHandler);
         if (sounds[1].playing(speaking)){
             sounds[1].pause(speaking);
@@ -164,63 +183,65 @@ function flipSwitch(){
 //++
 //++
 function knobRange(elem){
-  debugger;
-    switch ($(elem).attr('class')) {
-      case "close-range-knob":
-         if(deviceOn){
+    debugger;
+    switch (elem.className) {
+        case "close-range-knob":
+        if(deviceOn){
             $('.knob-light').removeClass('selected');
             $(".long .knob-light").addClass('selected');
-          }
-          $(elem).removeClass("close-range-knob");
-          $(elem).addClass("long-range-knob");
-          knobMode='long';
-          handleMeter();
-          break;
-      case "long-range-knob":
-          if(deviceOn){
-              $('.knob-light').removeClass('selected');
-              $(".mid .knob-light").addClass('selected');
-            }
-          $('#knobImg').removeClass("long-range-knob");
-          $('#knobImg').addClass("mid-range-knob");
-          knobMode='med';
-          handleMeter();
-          break;
-      case "mid-range-knob":
-          if(deviceOn){
+        }
+        $(elem).removeClass("close-range-knob");
+        $(elem).addClass("long-range-knob");
+        knobMode='long';
+        handleMeter();
+        break;
+        case "long-range-knob":
+        if(deviceOn){
+            $('.knob-light').removeClass('selected');
+            $(".mid .knob-light").addClass('selected');
+        }
+        $('#knobImg').removeClass("long-range-knob");
+        $('#knobImg').addClass("mid-range-knob");
+        knobMode='med';
+        handleMeter();
+        break;
+        case "mid-range-knob":
+        if(deviceOn){
             $('.knob-light').removeClass('selected');
             $(".close .knob-light").addClass('selected');
-          }
-          $(elem).removeClass("mid-range-knob");
-          $(elem).addClass("close-range-knob");
-          knobMode='short';
-          handleMeter();
-          break;
+        }
+        $(elem).removeClass("mid-range-knob");
+        $(elem).addClass("close-range-knob");
+        knobMode='short';
+        handleMeter();
+        break;
     }
 }
 //++
 //++
 function handleMeter(){
+    const needlegauge = document.querySelector('.needlegauge');
+
     if (knobMode === 'long'){
         if (distance > 100 && deviceOn){
-            $('.needleGuage').css('transform','translateX(-50%) rotateZ(-65deg)');
+            needlegauge.style.transform = 'translateX(-50%) rotateZ(-65deg)';
         } else if (distance <= 100 && distance >= 0 && deviceOn){
             let needleAngle = 53 - distance;
-            $('.needleGuage').css('transform','translateX(-50%) rotateZ('+needleAngle+'deg)');
+            needlegauge.style.transform = 'translateX(-50%) rotateZ('+needleAngle+'deg)';
         }
     } else if (knobMode === 'med') {
         if (distance > 50 && deviceOn){
-            $('.needleGuage').css('transform','translateX(-50%) rotateZ(-65deg)');
+            needlegauge.style.transform = 'transform','translateX(-50%) rotateZ(-65deg)';
         } else if (distance <= 50 && distance >= 0 && deviceOn){
             let needleAngle = 53 - distance * 2;
-            $('.needleGuage').css('transform','translateX(-50%) rotateZ('+needleAngle+'deg)');
+            needlegauge.style.transform = 'translateX(-50%) rotateZ('+needleAngle+'deg)';
         }
     } else if (knobMode === 'short') {
         if (distance > 25 && deviceOn){
-            $('.needleGuage').css('transform','translateX(-50%) rotateZ(-65deg)');
+            needlegauge.style.transform = 'transform','translateX(-50%) rotateZ(-65deg)';
         } else if (distance <= 25 && distance >= 0 && deviceOn){
             let needleAngle = 53 - distance * 4;
-            $('.needleGuage').css('transform','translateX(-50%) rotateZ('+needleAngle+'deg)');
+            needlegauge.style.transform = 'translateX(-50%) rotateZ('+needleAngle+'deg)';
         }
     }
 }
@@ -244,12 +265,15 @@ function fullscreen(){
 //++
 function handleOrientation(event){
     //use to listen for device orientation change to switch from ESR or Ghost CAM
+    const gaugeWrapper = document.getElementById('gauge-wrapper');
+    const camera = document.getElementById('camera');
+
     if(screen.orientation.type === 'portrait-primary'){
-        $('#gauge-wrapper').removeClass('hide');
-        $('#camera').addClass('hide');
+        gaugeWrapper.classList.remove('hide');
+        camera.classList.add('hide');
     }else{
-        $('#gauge-wrapper').addClass('hide');
-        $('#camera').removeClass('hide');
+        gaugeWrapper.classList.add('hide');
+        camera.classList.remove('hide');
     }
 }
 //****************************************
@@ -340,11 +364,13 @@ function deg2rad(deg) {
 //########################################
 //## Entry into app/on load  #############
 //########################################
-$(document).ready(function(){
-  handleEventHandlers();
-  loadAll();
-  getLocation();
-});
+document.addEventListener("DOMContentLoaded", onLoad);
+
+function onLoad(){
+    handleEventHandlers();
+    loadAll();
+    getLocation();
+};
 //****************************************
 //****************************************
 //-|
