@@ -47,7 +47,7 @@ function handleLandingBtn(){
   }
 }
 
-function userCall(event){
+function userCall(event){ 
   event.preventDefault()
   console.log('user calling from', this.className);
   let inputData={}
