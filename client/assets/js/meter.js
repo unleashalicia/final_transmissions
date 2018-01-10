@@ -21,12 +21,21 @@ var speaking;
 var looping;
 var effect;
 //Out front of lfz:
+// var target = {
+//     latitude: 33.6350687,
+//     longitude: -117.7402043,
+//     loopThreshold: 40,
+//     talkThreshold: 9
+// };
+
+//lfz back room
 var target = {
-    latitude: 33.6350687,
-    longitude: -117.7402043,
-    loopThreshold: 40,
+    latitude: 33.634697,
+    longitude: -117.740578,
+    loopThreshold: 20,
     talkThreshold: 9
 };
+
 //Out front of apartment
 // var target = {
 //     latitude: 33.7523889,
