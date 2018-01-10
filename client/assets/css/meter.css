@@ -167,6 +167,10 @@ body * {
     filter: brightness(200%);
 }
 
+.flipped {
+    transform: translateX(-50%) rotateX(180deg);
+}
+
 #knob {
     width: 50vmin;
     height: 50vmin;

@@ -120,13 +120,20 @@ function handleAudioPlayback(dist){
 //++
 //++
 function handleEventHandlers(){
-  $('#knobImg').on('click touch',function(){
-    knobRange(this);
-  });
-  $('.loading-btn').on('click',fullscreen)
-  $('#switch').on('click touch',flipSwitch);
+    const knobImg = document.getElementById('knobImg');
+    const loadingBtn = document.querySelector('.loading-btn');
+    const uiSwitch = document.getElementById('switch');
 
-  $(window).on('orientationchange',handleOrientation); //orientation change
+    loadingBtn.addEventListener('click', fullscreen);
+
+    knobImg.addEventListener('click touch', function(){
+        knobRange(this);
+    });
+
+
+    uiSwitch.addEventListener('click touch',flipSwitch);
+
+    window.addEventListener('orientationchange',handleOrientation);
 }
 //****************************************
 //****************************************
@@ -138,20 +145,27 @@ function handleEventHandlers(){
 //++
 //++
 function flipSwitch(){
-    console.log('touched');
+    const uiSwitch = document.getElementById('switch');
+    const indicatorLight = document.getElementById('indicator-light');
+    const needleGuage = document.querySelector('.needleGuage');
+
     if (!deviceOn){
         noSleep.enable();
         deviceOn = true;
-        $('#switch').css('transform','translateX(-50%) rotateX(180deg)');
-        $('#indicator-light').show().toggleClass('indicator-glow');
+        uiSwitch.classList.toggle('flipped');
+        indicatorLight.style.display = 'block';
+        indicatorLight.classList.toggle('indicator-glow');
         getLocation();
 
     } else if (deviceOn){
         noSleep.disable();
         deviceOn = false;
-        $('#switch').css('transform','translateX(-50%) rotateX(0deg)');
-        $('#indicator-light').hide().toggleClass('indicator-glow');
-        $('.needleGuage').css('transform','translateX(-50%) rotateZ(-75deg)');
+        uiSwitch.classList.toggle('flipped');
+        indicatorLight.style.display = 'none';
+        indicatorLight.classList.toggle('indicator-glow');
+
+        needleGuage.style.transform = 'translateX(-50%) rotateZ(-75deg)';
+
         navigator.geolocation.clearWatch(watchHandler);
         if (sounds[1].playing(speaking)){
             sounds[1].pause(speaking);
@@ -164,63 +178,65 @@ function flipSwitch(){
 //++
 //++
 function knobRange(elem){
-  debugger;
+    debugger;
     switch ($(elem).attr('class')) {
-      case "close-range-knob":
-         if(deviceOn){
+        case "close-range-knob":
+        if(deviceOn){
             $('.knob-light').removeClass('selected');
             $(".long .knob-light").addClass('selected');
-          }
-          $(elem).removeClass("close-range-knob");
-          $(elem).addClass("long-range-knob");
-          knobMode='long';
-          handleMeter();
-          break;
-      case "long-range-knob":
-          if(deviceOn){
-              $('.knob-light').removeClass('selected');
-              $(".mid .knob-light").addClass('selected');
-            }
-          $('#knobImg').removeClass("long-range-knob");
-          $('#knobImg').addClass("mid-range-knob");
-          knobMode='med';
-          handleMeter();
-          break;
-      case "mid-range-knob":
-          if(deviceOn){
+        }
+        $(elem).removeClass("close-range-knob");
+        $(elem).addClass("long-range-knob");
+        knobMode='long';
+        handleMeter();
+        break;
+        case "long-range-knob":
+        if(deviceOn){
+            $('.knob-light').removeClass('selected');
+            $(".mid .knob-light").addClass('selected');
+        }
+        $('#knobImg').removeClass("long-range-knob");
+        $('#knobImg').addClass("mid-range-knob");
+        knobMode='med';
+        handleMeter();
+        break;
+        case "mid-range-knob":
+        if(deviceOn){
             $('.knob-light').removeClass('selected');
             $(".close .knob-light").addClass('selected');
-          }
-          $(elem).removeClass("mid-range-knob");
-          $(elem).addClass("close-range-knob");
-          knobMode='short';
-          handleMeter();
-          break;
+        }
+        $(elem).removeClass("mid-range-knob");
+        $(elem).addClass("close-range-knob");
+        knobMode='short';
+        handleMeter();
+        break;
     }
 }
 //++
 //++
 function handleMeter(){
+    const needleGuage = document.querySelector('.needleGuage');
+
     if (knobMode === 'long'){
         if (distance > 100 && deviceOn){
-            $('.needleGuage').css('transform','translateX(-50%) rotateZ(-65deg)');
+            needleGuage.style.transform = 'translateX(-50%) rotateZ(-65deg)';
         } else if (distance <= 100 && distance >= 0 && deviceOn){
             let needleAngle = 53 - distance;
-            $('.needleGuage').css('transform','translateX(-50%) rotateZ('+needleAngle+'deg)');
+            needleGuage.style.transform = 'translateX(-50%) rotateZ('+needleAngle+'deg)';
         }
     } else if (knobMode === 'med') {
         if (distance > 50 && deviceOn){
-            $('.needleGuage').css('transform','translateX(-50%) rotateZ(-65deg)');
+            needleGuage.style.transform = 'transform','translateX(-50%) rotateZ(-65deg)';
         } else if (distance <= 50 && distance >= 0 && deviceOn){
             let needleAngle = 53 - distance * 2;
-            $('.needleGuage').css('transform','translateX(-50%) rotateZ('+needleAngle+'deg)');
+            needleGuage.style.transform = 'translateX(-50%) rotateZ('+needleAngle+'deg)';
         }
     } else if (knobMode === 'short') {
         if (distance > 25 && deviceOn){
-            $('.needleGuage').css('transform','translateX(-50%) rotateZ(-65deg)');
+            needleGuage.style.transform = 'transform','translateX(-50%) rotateZ(-65deg)';
         } else if (distance <= 25 && distance >= 0 && deviceOn){
             let needleAngle = 53 - distance * 4;
-            $('.needleGuage').css('transform','translateX(-50%) rotateZ('+needleAngle+'deg)');
+            needleGuage.style.transform = 'translateX(-50%) rotateZ('+needleAngle+'deg)';
         }
     }
 }
@@ -341,9 +357,9 @@ function deg2rad(deg) {
 //## Entry into app/on load  #############
 //########################################
 $(document).ready(function(){
-  handleEventHandlers();
-  loadAll();
-  getLocation();
+    handleEventHandlers();
+    loadAll();
+    getLocation();
 });
 //****************************************
 //****************************************
