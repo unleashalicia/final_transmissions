@@ -8251,11 +8251,12 @@ AFRAME.registerComponent('arjs-anchor', {
 		arWorldRoot.updateMatrixWorld(true)		
 		arWorldRoot.matrixWorld.decompose(this.el.object3D.position, this.el.object3D.quaternion, this.el.object3D.scale)
 
-		//////////////////////////////////////////////////////////////////////////////
+		////////////////////////;//////////////////////////////////////////////////////
 		//		honor visibility
 		//////////////////////////////////////////////////////////////////////////////
 		if( _this._arAnchor.parameters.changeMatrixMode === 'modelViewMatrix' ){
-			_this.el.object3D.visible = this._arAnchor.object3d.visible
+			_this.el.object3D.visible = this._arAnchor.object3d.visible;
+            if(_this.el.object3D.visible) { this.el.emit('markerFound'); }
 		}else if( _this._arAnchor.parameters.changeMatrixMode === 'cameraTransformMatrix' ){
 			_this.el.sceneEl.object3D.visible = this._arAnchor.object3d.visible
 		}else console.assert(false)

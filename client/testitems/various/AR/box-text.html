@@ -147,18 +147,20 @@
 
 
     window.addEventListener("load", function () {
-        createSpheres(5);
+        createSpheres(50);
     });
 
     const findRange = (start,end) => {
         return (Math.random() * (end-start) ) + start;
     };
 
-    let posZ = -5;
+
 
     const createSpheres = (amount) => {
         const scene = document.querySelector('a-scene');
         const colorArray = ["blue", "red", "purple", "yellow", "green", "black", "orange"];
+//        const colorArray = ["green"];
+
 
 
 
@@ -168,33 +170,40 @@
             let animation = document.createElement('a-animation');
 
             let color = colorArray[Math.floor(Math.random()*colorArray.length)];
-            let size = findRange(0.5, 2);
+            let size = findRange(0.5, 6);
 
-            let posX = findRange(-3, 3);
-            let posXdest = findRange(-3,3);
+            let posX = findRange(-7, 7);
+            let posXdest = findRange(-7,7);
 
-            let posY = findRange(0, 3);
-            let posYdest = findRange(0, 3);
+            let posY = findRange(-7, 7);
+            let posYdest = findRange(-7, 7);
 
-            let dur = findRange(1000, 5000);
+            let posZ = -5;
+
+            let dur = findRange(1000, 10000);
 
 
 
-            entity.setAttribute('position', {x: posX, y: posY, z: posZ});
+
+//            entity.setAttribute('position', {x: posX, y: posY, z: posZ});
 
             sphere.setAttribute('material', 'color', color);
 
             sphere.setAttribute('scale', 'radius', size);
 
+//            animation.setAttribute('attribute', 'scale');
+//            animation.setAttribute('from', '0.5');
+//            animation.setAttribute('to', '4');
+
             animation.setAttribute('attribute', 'position');
             animation.setAttribute('dur', dur);
-            animation.setAttribute('from', posX + ' ' + posY + ' -5');
+            animation.setAttribute('from', '0' + ' ' + '1.5' + ' -5');
             animation.setAttribute('to', posXdest + ' ' + posYdest + ' -5');
             animation.setAttribute('direction', 'alternate-reverse');
             animation.setAttribute('easing', 'ease-in-out-circ');
             animation.setAttribute('repeat', 'indefinite');
 
-            posZ = posZ-2;
+//            posZ = posZ-2;
 
             entity.appendChild(animation);
             entity.appendChild(sphere);
