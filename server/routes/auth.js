@@ -1,5 +1,6 @@
 const path = require('path');
 
+
 module.exports = function (app, passport) {
 
 	app.post('/login',
@@ -22,12 +23,15 @@ module.exports = function (app, passport) {
 	});
 
 	app.get('/profile', isLoggedIn, (req, res) => {
-	    res.sendFile(path.join(__dirname,'..', '..', 'client', 'profile.html'));
+	    res.render("profile",{
+			data: 'This is a test'
+		});
 	});
 
 	app.get('/play', isLoggedIn, (req, res) => {
-	    res.sendFile(path.join(__dirname,'..','..','client', 'meter-index.html'));
+	    res.sendFile(path.join(__dirname, '..', '..', 'client', 'meter-index.html'));
 	});
+
 }
 
 
