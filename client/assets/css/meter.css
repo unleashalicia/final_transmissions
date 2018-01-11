@@ -45,7 +45,7 @@ body * {
 }
 
 
-.topGuage {
+.topGauge {
     width: 90vmin;
     height: 41.85vmin;
     position: absolute;
@@ -56,7 +56,7 @@ body * {
     background-size: contain;
 }
 
-.bottomGuage {
+.bottomGauge {
     width: 100%;
     height: 41.85vmin;
     position: absolute;
@@ -69,7 +69,7 @@ body * {
     text-align: center;
 }
 
-.needleGuage {
+.needleGauge {
     background-color: red;
     height: 100%;
     width: 0.45%;
@@ -137,7 +137,7 @@ body * {
 }
 
 
-.lightingGuage {
+.lightingGauge {
     width: 98%;
     height: 105%;
     position: absolute;
@@ -165,6 +165,10 @@ body * {
     left: 50%;
     transform: translateX(-50%) rotateY(0deg);
     filter: brightness(200%);
+}
+
+.flipped {
+    transform: translateX(-50%) rotateX(180deg) !important;
 }
 
 #knob {
@@ -266,6 +270,27 @@ body * {
     font-size: 10vmin;
     color: white;
 }
+
+.fade-out {
+  opacity: 1;
+  animation: fadeOut .5s ease-out 1 forwards;
+  -webkit-transition: opacity 2s ease-out;
+  -moz-transition: opacity 2s ease-out;
+  -o-transition: opacity 2s ease-out;
+  -ms-transition: opacity 2s ease-out;
+  transition: opacity 2s ease-out;
+}
+
+.fade-out-transition {
+  opacity: 1;
+  animation: fadeOut 2s ease-out 1 forwards;
+  -webkit-transition: opacity 2.5s ease-out;
+  -moz-transition: opacity 2.5s ease-out;
+  -o-transition: opacity 2.5s ease-out;
+  -ms-transition: opacity 2.5s ease-out;
+  transition: opacity 2.5s ease-out;
+}
+
 /**********KEY FRAMES / FONT FACE START********************/
 
 @keyframes lighting {
@@ -310,6 +335,12 @@ body * {
 @font-face {
   font-family: demonsker;
   src: url(../fonts/demonsker.ttf)
+}
+
+@keyframes fadeOut {
+  to {
+    opacity: 0;
+  }
 }
 
 /**********KEY FRAMES/ FONT FACE  END********************/
