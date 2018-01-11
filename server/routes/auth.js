@@ -24,7 +24,7 @@ module.exports = function (app, passport) {
 
 	app.get('/profile', isLoggedIn, (req, res) => {
 		let sql = ```SELECT * FROM users WHERE id = ${req.user.id}```;
-		return mysql.query(sql,(err,result,fields)=>{
+		mysql.query(sql,(err,result,fields)=>{
 			res.render("profile",{
 				username: result[0].user_name,
 				email: result[0].user_name
