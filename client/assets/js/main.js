@@ -22,21 +22,21 @@ function handleClickEvents(){
     },3100)
   };
 
-  document.querySelector('.signUp').onclick = function(){ //clicking the sign up button at the landing page
+  document.querySelector('.signUp').addEventListener('click', function(){ //clicking the sign up button at the landing page
     greeting.classList.add('fade-out');
     formSign.classList.add('fade-in');
     sign.classList.remove('fade-out');
     sign.classList.remove('ghostOut');
-  };
+  });
 
-  document.querySelector('.logIn').onclick = function(){//clicking the log in button at the landing page
+  document.querySelector('.logIn').addEventListener('click', function(){//clicking the log in button at the landing page
     greeting.classList.add('fade-out');
     greeting.classList.remove('fade-in');
     formLog.classList.add('fade-in');
-  };
+  });
 
   for(let i = 0; i < cancelBtns.length; i++) {
-    cancelBtns[i].onclick = function (event) {
+    cancelBtns[i].addEventListener('click', function (event) {
       event.preventDefault();
       const grandParent = event.target.parentNode.parentNode;
       grandParent.classList.add('fade-out');
@@ -47,23 +47,33 @@ function handleClickEvents(){
       }, 1500);
       greeting.classList.add('fade-in');
       greeting.classList.remove('fade-out');
-    };
+    });
   }
 
-  document.querySelector('.btnLog').onclick = function(event) {
-    const parent = event.target.parentNode;
-    parent.classList.add('ghostOut').classList.add('fade-out');
-      setTimeout(function(){
-        formLog.classList.remove('ghostOut')
-        },2000);
-      open.classList.add('fade-in appear');
-      greeting.classList.add('fade-in');
-      signUp.classList.add('fade-out');
-      logIn.classList.add('fade-out');
-      document.querySelector('.greeting h1>span').text(document.querySelector('.username').value);
-  };
+  document.querySelector('.btnLog').addEventListener('click', function(event) {
+      // function submitSignup() {
+        console.log('login???');
+        axios({
+            url: "/login",
+            method: "POST",
+            responseType: "document",
+            data: {
+                password: document.querySelector(".sign input[name='password']").value,
+                user_name: document.querySelector(".sign input[name='user_name']").value
+            }
+        }).then(function(response) {
+            console.log(response);
+            console.log("This is the page that will be redirected to: ", response.data.URL);
+            window.location = response.data.URL; // Will need to be modified
+                                                 // Essentially is used to redirect when you have a successful response
+        }).catch(function(error) {
+            console.log(error);
+            // Looks like you may want to implement the
+        });
 
-  document.querySelector('.btnSign').onclick = function(event) {
+    });
+
+  document.querySelector('.btnSign').addEventListener('click', function(event) {
     const parent = event.target.parentNode;
     parent.classList.add('ghostOut');
     parent.classList.add('fade-out');
@@ -72,6 +82,6 @@ function handleClickEvents(){
         greeting.classList.remove('fade-out');
         greeting.classList.add('fade-in');
     }, 1500);
-  };
+  });
 
 }

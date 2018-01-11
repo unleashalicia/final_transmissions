@@ -1,0 +1,60 @@
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
+START TRANSACTION;
+SET time_zone = "+00:00";
+
+
+DROP TABLE if EXISTS `states`;
+CREATE TABLE `states` (
+  `state_id` SMALLINT(3) NOT NULL,
+  `state_details` VARCHAR(50) NOT NULL,
+  `story` TINYINT(3) NOT NULL,
+  `chapter` TINYINT(3) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+
+DROP TABLE if EXISTS `state_actions`;
+CREATE TABLE `state_actions` (
+  `state_id` SMALLINT(3) NOT NULL,
+  `action` VARCHAR(15) NOT NULL,
+  `next_state_id` VARCHAR(10) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+
+DROP TABLE IF EXISTS `users`;
+CREATE TABLE `users` (
+  `id` int(50) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `email` VARCHAR(100) NOT NULL,
+  `password` VARCHAR(100) NOT NULL,
+  `user_name` VARCHAR(100) NOT NULL,
+  `state_id` SMALLINT (3) NOT NULL DEFAULT '10'
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
+
+
+DROP TABLE IF EXISTS `location`;
+CREATE TABLE `location` (
+  `state_id` SMALLINT(3) NOT NULL,
+  `latitude` VARCHAR(30) NOT NULL,
+  `longitude` VARCHAR(30) NOT NULL,
+  `outer_threshold` SMALLINT(3) NOT NULL,
+  `inner_threshold` SMALLINT(3) NOT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
+
+
+DROP TABLE IF EXISTS `audio`;
+CREATE TABLE `audio` (
+  `state_id` SMALLINT(3) NOT NULL,
+  `outer_audio_url` VARCHAR(30) NOT NULL,
+  `inner_audio_url` VARCHAR(30) NOT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
+
+
+DROP TABLE IF EXISTS `augmented_reality`;
+CREATE TABLE `augmented_reality` (
+  `state_id` SMALLINT(3) NOT NULL,
+  `marker` VARCHAR(20) NOT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
+
+
+COMMIT;

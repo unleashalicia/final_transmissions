@@ -8,11 +8,11 @@
 <body style='margin : 0px; overflow: hidden;'>
 <a-scene embedded artoolkit='sourceType: webcam;'>
     <a-assets>
-        <video src="sky.mp4" id="air" autoplay loop="true"></video>
+        <video src="sky.mp4" id="air" autoplay loop="true" playback-rate="2.0"></video>
     </a-assets>
     <a-marker preset='hiro'><!--Will change-->
         <a-entity>
-            <a-icosahedron src='#air' radius="2" material="opacity: 0.9" position="0 3 0">
+            <a-icosahedron src='#air' radius="2" material="opacity: 0.9" position="0 0.5 0">
                 <a-animation attribute="position"
                              dur="5000"
                              from="0 3 0"
