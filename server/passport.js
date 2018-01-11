@@ -25,15 +25,15 @@ module.exports = {
         });
 
         passport.deserializeUser(function (user, done) {
-            // let sql = "SELECT * FROM ?? WHERE ?? = ?";
-            // let inserts = ['users', 'id', user.insertId];
-            // sql = mysql.format(sql, inserts);
-            //
-            // connection.query(sql,
-            //     function (err, results, fields) {
+            let sql = "SELECT * FROM ?? WHERE ?? = ?";
+            let inserts = ['users', 'id', user.insertId];
+            sql = mysql.format(sql, inserts);
+
+            connection.query(sql,
+                function (err, results, fields) {
                     done(null, user)
-            //     }
-            // );
+                }
+            );
         });
 
         // create new user, sign-up
@@ -85,7 +85,7 @@ module.exports = {
 
 					console.log('Results:', results);
 
-                    return done(null, results);
+                    return done(null, results[0]);
                 });
             }));
     },

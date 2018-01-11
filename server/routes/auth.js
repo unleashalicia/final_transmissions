@@ -24,8 +24,8 @@ module.exports = function (app, passport) {
 
 	app.get('/profile', isLoggedIn, (req, res) => {
 	    res.render("profile",{
-			username: JSON.stringify(req.user),
-			email: JSON.stringify(req.user)
+			username: req.user,
+			email: req.user
 		});
 	});
 
@@ -36,13 +36,9 @@ module.exports = function (app, passport) {
 }
 
 
-
-
-
 function isLoggedIn(req, res, next) {
 	if (req.isAuthenticated()) {
 		return next();
 	}
-
 	res.redirect('/');
 }
