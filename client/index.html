@@ -3,20 +3,18 @@
 <head>
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src='http://use.edgefonts.net/de-walpergens-pica.js'></script>
-    <!--<script src="https://code.jquery.com/jquery-3.1.0.js"></script>-->
-    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-    <script src="assets/js/main.js" type="text/javascript"></script>
+    <script src="./assets/lib/de-walpergens-pica.js"></script>
+    <script src="./assets/lib/axios.min.js"></script>
+    <script src="./assets/js/main.js" type="text/javascript"></script>
     <link rel="stylesheet" href="assets/css/index.css" type="text/css"/>
     <title>A Ghost Story</title>
 </head>
 <body>
 <div id="landing-container">
     <div class="formSign">
-      <form class="sign form-group" action="/signup" method="post">
+      <form class="sign form-group" >
         <h1>Sign Up </h1>
         <div>
-
           <!-- <input type="text" placeholder="First Name" required/>
           <input type="text" placeholder="Last Name" required/> -->
 
@@ -25,9 +23,9 @@
           <input type="password" placeholder="Password" name="password" value="bluelambchops" required/>
           <input type="password" placeholder="Repeat Password" name="password" value="bluelambchops" required/>
           <input type="email" placeholder="Email" name="email" value="prettypotato@taters.com" required/>
-          
+
         </div>
-        <button type="button" class="btnSign" onclick="submitSignup()">Confirm</button>
+        <button type="button" class="formButton btnSign" >Confirm</button>
         <button class="cancel">Cancel</button>
     </form>
     </div>
@@ -39,39 +37,14 @@
             <input type="text" placeholder="Username" name="username" value="ceskamo" />
             <input type="password" placeholder="Password" name="password" value="bluelambchops" />
           </div>
-          <button type="button" class="btnLog">Log In</button>
+          <button type="button" class="formButton btnLog">Log In</button>
           <button class="cancel">Cancel</button>
         </form>
       </div>
     <div class="greeting">
-      <h1>Welcome <span>Listener</span></h1>
+      <h1>Final <span>Transmissions</span></h1>
       <span class='landingbtn signUp'>Sign Up</span><span class='landingbtn logIn'>Log In</span>
-      <span class='landingbtn open'> Experience My Story </span>
     </div>
 </div>
 </body>
-<script>
-    function submitSignup() {
-        console.log('where am i????');
-        axios({
-            url: "/signup",
-            method: "POST",
-            responseType: "document",
-            data: {
-                email: document.querySelector(".sign input[name='email']").value,
-                password: document.querySelector(".sign input[name='password']").value,
-                user_name: document.querySelector(".sign input[name='user_name']").value
-            }
-        }).then(function(response) {
-            console.log(response);
-            console.log("This is the page that will be redirected to: ", response.data.URL);
-            window.location = response.data.URL; // Will need to be modified
-                                                 // Essentially is used to redirect when you have a successful response
-        }).catch(function(error) {
-            console.log(error);
-            // Looks like you may want to implement the 
-        });  
-        
-    }
-</script>
 </html>

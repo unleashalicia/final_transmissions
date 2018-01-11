@@ -1,13 +1,13 @@
 const LocalStrategy = require('passport-local').Strategy;
-const localConfig = require('./strategies/local'); 
+const localConfig = require('./strategies/local');
 const mysql = require('mysql');
-const { credentials, crypt } = require('./database'); 
-const connection = mysql.createConnection(credentials); 
+const { credentials, crypt } = require('./database');
+const connection = mysql.createConnection(credentials);
 
 function userSearchSQL(userHandle) {
 	let sql = "SELECT * FROM ?? WHERE ?? = ?";
 	let inserts = ['users', 'user_name', userHandle];
-	return mysql.format(sql, inserts); 
+	return mysql.format(sql, inserts);
 }
 
 function userCreateSQL(userinfo) {
@@ -25,13 +25,13 @@ module.exports = {
         });
 
         passport.deserializeUser(function (user, done) {
-            let sql = "SELECT * FROM ?? WHERE ?? = ?";
-            let inserts = ['users', 'id', user.insertId];
+            let sql = "SELECT id FROM ?? WHERE ?? = ?";
+            let inserts = ['users', 'id', user];
             sql = mysql.format(sql, inserts);
 
             connection.query(sql,
                 function (err, results, fields) {
-                    done(err, results)
+                    done(null, results[0])
                 }
             );
         });
@@ -42,7 +42,7 @@ module.exports = {
                 process.nextTick(function () {
                     debugger;
                     let sql = userSearchSQL(userHandle);
-
+		    console.log("This is the SQL while signing up", sql);
                     connection.query(sql, function (err, results, fields) {
                         if (err) {
                             return done(err)
@@ -56,7 +56,7 @@ module.exports = {
                             connection.query(sql, function (err, results, fields) {
                                 if (err) throw err;
 
-                                return done(null, results);
+                                return done(null, results.insertId);
                             });
                         }
 
@@ -83,10 +83,11 @@ module.exports = {
                         return done(null, false);
                     }
 
-                    return done(null, results);
+					console.log('Results:', results);
+
+                    return done(null, results[0].id);
                 });
             }));
     },
     connection: connection
 };
-
