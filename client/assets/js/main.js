@@ -63,8 +63,8 @@ function userCall(event){
         errorMsg="Something has happened signing in to the server";
     }else if(this.classList.contains('btnLog')){
         inputData={
-          password: document.querySelector(".sign input[name='password']").value,
-          user_name: document.querySelector(".sign input[name='user_name']").value
+          password: document.querySelector(".formLog input[name='password']").value,
+          user_name: document.querySelector(".formLog input[name='username']").value
         };
         urlStr="/login";
         errorMsg="Something has happened logging in to the server";
