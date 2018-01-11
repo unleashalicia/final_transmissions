@@ -152,7 +152,7 @@ function flipSwitch(){
     console.log('Switch flipped');
     const uiSwitch = document.getElementById('switch');
     const indicatorLight = document.getElementById('indicator-light');
-    const needlegauge = document.querySelector('.needlegauge');
+    const needlegauge = document.querySelector('.needleGauge');
 
     if (!deviceOn){
         noSleep.enable();
@@ -220,7 +220,7 @@ function knobRange(elem){
 //++
 //++
 function handleMeter(){
-    const needlegauge = document.querySelector('.needlegauge');
+    const needlegauge = document.querySelector('.needleGauge');
 
     if (knobMode === 'long'){
         if (distance > 100 && deviceOn){
