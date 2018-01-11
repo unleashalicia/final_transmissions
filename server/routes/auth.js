@@ -29,7 +29,7 @@ module.exports = function (app, passport) {
 		connection.query(sql,(err,result,fields)=>{
 			res.render("profile",{
 				username: result[0].user_name,
-				email: result[0].user_name
+				email: result[0].email
 			});
 		});
 	});
