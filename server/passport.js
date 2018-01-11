@@ -31,7 +31,7 @@ module.exports = {
 
             connection.query(sql,
                 function (err, results, fields) {
-                    done(null, user)
+                    done(null, results[0])
                 }
             );
         });
@@ -56,7 +56,7 @@ module.exports = {
                             connection.query(sql, function (err, results, fields) {
                                 if (err) throw err;
 
-                                return done(null, results);
+                                return done(null, results.insertId);
                             });
                         }
 
@@ -85,7 +85,7 @@ module.exports = {
 
 					console.log('Results:', results);
 
-                    return done(null, results[0]);
+                    return done(null, results[0].id);
                 });
             }));
     },
