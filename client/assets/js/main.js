@@ -58,8 +58,8 @@ function handleClickEvents(){
             method: "POST",
             responseType: "document",
             data: {
-                password: document.querySelector(".sign input[name='password']").value,
-                user_name: document.querySelector(".sign input[name='user_name']").value
+                password: document.querySelector(".formLog input[name='password']").value,
+                user_name: document.querySelector(".formLog input[name='username']").value
             }
         }).then(function(response) {
             console.log(response);
