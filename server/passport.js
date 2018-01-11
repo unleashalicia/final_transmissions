@@ -25,7 +25,7 @@ module.exports = {
         });
 
         passport.deserializeUser(function (user, done) {
-            let sql = "SELECT * FROM ?? WHERE ?? = ?";
+            let sql = "SELECT id FROM ?? WHERE ?? = ?";
             let inserts = ['users', 'id', user];
             sql = mysql.format(sql, inserts);
 
