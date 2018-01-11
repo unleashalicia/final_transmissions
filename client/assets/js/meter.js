@@ -130,7 +130,6 @@ function handleEventHandlers(){
     loadingBtn.addEventListener('click', fullscreen);
 
     knobImg.addEventListener('click', function(){
-        console.log('click knob');
         knobRange(this);
     });
 
@@ -152,9 +151,10 @@ function flipSwitch(){
     console.log('Switch flipped');
     const uiSwitch = document.getElementById('switch');
     const indicatorLight = document.getElementById('indicator-light');
-    const needlegauge = document.querySelector('.needlegauge');
+    const needlegauge = document.querySelector('.needleGauge');
 
     if (!deviceOn){
+        knobLightOn("on")
         noSleep.enable();
         deviceOn = true;
         uiSwitch.classList.toggle('flipped');
@@ -163,6 +163,7 @@ function flipSwitch(){
         getLocation();
 
     } else if (deviceOn){
+        knobLightOff()
         noSleep.disable();
         deviceOn = false;
         uiSwitch.classList.toggle('flipped');
@@ -182,45 +183,70 @@ function flipSwitch(){
 }
 //++
 //++
+function knobLightOn(switchCall){
+  const knob = document.querySelector('#knobImg')
+  if(knob.classList.contains('mid-range-knob')){
+    knobLightOff()
+    switchCall ?  document.querySelector('.knob-light.mid').classList.add('selected') :  document.querySelector('.knob-light.close').classList.add('selected')
+  }else if(knob.classList.contains('long-range-knob')){
+    knobLightOff()
+    switchCall ?  document.querySelector('.knob-light.long').classList.add('selected') :  document.querySelector('.knob-light.mid').classList.add('selected');
+  }else{
+    knobLightOff()
+    switchCall ?  document.querySelector('.knob-light.close').classList.add('selected') : document.querySelector('.knob-light.long').classList.add('selected');
+  }
+}
+//++
+//++
+function knobLightOff(){
+  const knob = document.querySelector('#knobImg')
+  if(knob.classList.contains('mid-range-knob')){
+    document.querySelector('.knob-light.mid').classList.remove('selected');
+  }else if(knob.classList.contains('long-range-knob')){
+    document.querySelector('.knob-light.long').classList.remove('selected');
+  }else{
+    document.querySelector('.knob-light.close').classList.remove('selected');
+  }
+}
+//++
+//++
 function knobRange(elem){
     debugger;
+    console.log('click knob');
     switch (elem.className) {
         case "close-range-knob":
-        if(deviceOn){
-            $('.knob-light').removeClass('selected');
-            $(".long .knob-light").addClass('selected');
-        }
-        $(elem).removeClass("close-range-knob");
-        $(elem).addClass("long-range-knob");
-        knobMode='long';
-        handleMeter();
-        break;
+            if(deviceOn){
+              knobLightOn()
+              }
+              elem.classList.remove("close-range-knob");
+              elem.classList.add("long-range-knob");
+              knobMode='long';
+              handleMeter();
+              break;
         case "long-range-knob":
-        if(deviceOn){
-            $('.knob-light').removeClass('selected');
-            $(".mid .knob-light").addClass('selected');
-        }
-        $('#knobImg').removeClass("long-range-knob");
-        $('#knobImg').addClass("mid-range-knob");
-        knobMode='med';
-        handleMeter();
-        break;
+            if(deviceOn){
+              knobLightOn()
+              }
+              elem.classList.remove("long-range-knob");
+              elem.classList.add("mid-range-knob");
+              knobMode='med';
+              handleMeter();
+              break;
         case "mid-range-knob":
-        if(deviceOn){
-            $('.knob-light').removeClass('selected');
-            $(".close .knob-light").addClass('selected');
-        }
-        $(elem).removeClass("mid-range-knob");
-        $(elem).addClass("close-range-knob");
-        knobMode='short';
-        handleMeter();
-        break;
+            if(deviceOn){
+              knobLightOn()
+              }
+              elem.classList.remove("mid-range-knob");
+              elem.classList.add("close-range-knob");
+              knobMode='short';
+              handleMeter();
+              break;
     }
 }
 //++
 //++
 function handleMeter(){
-    const needlegauge = document.querySelector('.needlegauge');
+    const needlegauge = document.querySelector('.needleGauge');
 
     if (knobMode === 'long'){
         if (distance > 100 && deviceOn){
