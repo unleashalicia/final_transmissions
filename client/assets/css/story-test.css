@@ -1,0 +1,183 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: de-walpergens-pica, serif;
+}
+
+#story-container {
+    width: 100vw;
+    height: 100vh;
+    /*background-image: url('../images/story/kitchen.jpg');*/
+    /*background-repeat: no-repeat;*/
+    /*background-position: center;*/
+    /*background-size: cover;*/
+}
+
+.button-container {
+    height: 7%;
+    width: 95%;
+    margin: auto;
+    display: flex;
+    justify-content: space-between;
+}
+
+button {
+    border: 2px solid whitesmoke;
+    border-radius: 5%;
+    background-color: rgba(235, 235, 235, .3);
+    color: whitesmoke;
+    font-size: .9em;
+    font-family: de-walpergens-pica, serif;
+    font-weight: bold;
+    letter-spacing: 1.25px;
+    text-shadow: 1px 1px #252222;
+    z-index: 1000;
+}
+
+button:hover {
+    background-color: rgba(235, 235, 235, .7);
+    color: #252222;
+    text-shadow: none;
+}
+
+.nav-btn {
+    height: 100%;
+    width: 28vw;
+    margin-top: 4%;
+}
+
+.triangle-left {
+    width: 0;
+    height: 0;
+    border-top: 10px solid transparent;
+    border-right: 20px solid rgba(235, 235, 235,.9);
+    border-bottom: 10px solid transparent;
+    position: absolute;
+    top: 50%;
+    left: 20px;
+    transform: translate(-50%, -50%);
+    z-index: 200;
+}
+
+.triangle-right {
+    width: 0;
+    height: 0;
+    border-top: 10px solid transparent;
+    border-left: 20px solid rgba(235, 235, 235,.9);
+    border-bottom: 10px solid transparent;
+    position: absolute;
+    top: 50%;
+    right: 0%;
+    transform: translate(-50%, -50%);
+    z-index: 200;
+
+}
+
+.title {
+    height: 20%;
+    position: absolute;
+    bottom: 10%;
+    background-color: rgba(235, 235, 235, .5);
+    width: 100%;
+    color: whitesmoke;
+    text-align: center;
+    z-index: 1000;
+}
+
+.title > h1 {
+    position: relative;
+    top: 30%;
+    margin: 0;
+    font-size: 2.5em;
+    text-shadow: 1px 1px #252222;
+}
+
+.go-btn {
+    position: absolute;
+    bottom: 2%;
+    height: 6%;
+    right: 3%;
+    width: 20vw;
+}
+
+/**************** swipe css ****************/
+
+.el, .el2, .el3 {
+    margin: auto;
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    width: 100vw;
+    height: 100vh;
+    line-height: 250px;
+    text-align: center;
+}
+
+/*#el {*/
+    /*z-index: 100;*/
+/*}*/
+
+.el2 {
+    display: none;
+}
+
+.el3 {
+    display: none;
+}
+
+.hide-img {
+    display: none;
+}
+
+.show-img {
+    display: block;
+}
+
+/*#el:before, #el:after {*/
+    /*display: block;*/
+    /*width: 30px;*/
+    /*height: 30px;*/
+    /*position: absolute;*/
+    /*top: 0;*/
+    /*bottom: 0;*/
+    /*font-size: 500%;*/
+/*}*/
+
+/*#el:before, #el2:before {*/
+    /*content: "\2039";*/
+    /*left: 0px;*/
+    /*color: white;*/
+/*}*/
+/*#el:after, #el2:after {*/
+    /*content: "\203A";*/
+    /*right: 0px;*/
+    /*color: white;*/
+/*}*/
+
+/*#el2:before, #el:after {*/
+    /*display: block;*/
+    /*width: 30px;*/
+    /*height: 30px;*/
+    /*position: absolute;*/
+    /*top: 0;*/
+    /*bottom: 0;*/
+    /*font-size: 500%;*/
+/*}*/
+
+/*#el2:before {*/
+    /*content: "\2039";*/
+    /*left: 0px;*/
+    /*color: white;*/
+/*}*/
+/*#el2:after {*/
+    /*content: "\203A";*/
+    /*right: 0px;*/
+    /*color: white;*/
+/*}*/
+

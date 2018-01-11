@@ -1,0 +1,108 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: de-walpergens-pica, serif;
+}
+
+#story-container {
+    width: 100vw;
+    height: 100vh;
+    background-image: url('../images/story/kitchen.jpg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+}
+
+/*.slide-img {*/
+    /*height: 100vh;*/
+    /*width: 100vw;*/
+/*}*/
+
+.button-container {
+    height: 7%;
+    width: 95%;
+    margin: auto;
+    display: flex;
+    justify-content: space-between;
+}
+
+button {
+    border: 2px solid whitesmoke;
+    border-radius: 5%;
+    background-color: rgba(235, 235, 235, .3);
+    color: whitesmoke;
+    font-size: 1em;
+    font-family: de-walpergens-pica, serif;
+    font-weight: bold;
+    letter-spacing: 1.25px;
+    text-shadow: 1px 1px #252222;
+}
+
+button:hover {
+    background-color: rgba(235, 235, 235, .7);
+    color: #252222;
+    text-shadow: none;
+}
+
+.nav-btn {
+    height: 100%;
+    width: 28vw;
+    margin-top: 4%;
+}
+
+
+.triangle-left {
+    width: 0;
+    height: 0;
+    border-top: 10px solid transparent;
+    border-right: 20px solid rgba(235, 235, 235,.9);
+    border-bottom: 10px solid transparent;
+    position: absolute;
+    top: 50%;
+    left: 20px;
+    transform: translate(-50%, -50%);
+}
+
+.triangle-right {
+    width: 0;
+    height: 0;
+    border-top: 10px solid transparent;
+    border-left: 20px solid rgba(235, 235, 235,.9);
+    border-bottom: 10px solid transparent;
+    position: absolute;
+    top: 50%;
+    right: 0%;
+    transform: translate(-50%, -50%);
+}
+
+.title {
+    height: 20%;
+    position: absolute;
+    bottom: 10%;
+    background-color: rgba(235, 235, 235, .5);
+    width: 100%;
+    color: whitesmoke;
+    text-align: center;
+}
+
+.title > h1 {
+    position: relative;
+    top: 30%;
+    margin: 0;
+    font-size: 2.5em;
+    text-shadow: 1px 1px #252222;
+}
+
+.go-btn {
+    position: absolute;
+    bottom: 2%;
+    height: 6%;
+    right: 3%;
+    width: 20vw;
+}
+
+/**************** swipe css ****************/
