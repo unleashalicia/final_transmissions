@@ -16,6 +16,8 @@ var touchStartCoords =  {'x':-1, 'y':-1}, // X and Y coordinates on mousedown or
     elArr = [el2, el1, el3],
     currentSpot = 1,
     newSpot = null,
+    triangleLeft = document.querySelector('.triangle-left'),
+    triangleRight = document.querySelector('.triangle-right'),
     targetElement = elArr[currentSpot];
     console.log(targetElement);
 
@@ -46,16 +48,21 @@ function swipeEnd(e) {
                     if(elArr[currentSpot] === undefined){
                         break;
                     } else {
+                        if(elArr[currentSpot + 1] === undefined){
+                            triangleRight.classList.remove('show-img');
+                            triangleRight.classList.add('hide-img');
+                        } else {
+                            triangleLeft.classList.add('show-img');
+                        }
                         newSpot = elArr[currentSpot];
                         targetElement.classList.remove('show-img');
                         targetElement.classList.add('hide-img');
                         newSpot.classList.remove('hide-img');
                         newSpot.classList.add('show-img');
-                        // targetElement.classList.add('show-img');
                         targetElement = newSpot;
-                        console.log(targetElement);
+                        console.log('currentSpot:', currentSpot);
                         initEventListeners();
-                        // document.querySelector('.title-text').textContent = "New Title Here";
+                        document.querySelector('.title-text').textContent = "New Title Here";
                         break;
                     }
                 case 'right':
@@ -63,6 +70,12 @@ function swipeEnd(e) {
                     if(elArr[currentSpot] === undefined){
                         break;
                     } else {
+                        if(elArr[currentSpot - 1] === undefined){
+                            triangleLeft.classList.remove('show-img');
+                            triangleLeft.classList.add('hide-img');
+                        } else {
+                            triangleRight.classList.add('show-img');
+                        }
                         newSpot = elArr[currentSpot];
                         targetElement.classList.remove('show-img');
                         targetElement.classList.add('hide-img');
