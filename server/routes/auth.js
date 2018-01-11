@@ -1,5 +1,7 @@
 const path = require('path');
-
+const mysql = require('mysql');
+const { credentials } = require('./database');
+const connection = mysql.createConnection(credentials);
 
 module.exports = function (app, passport) {
 
@@ -24,7 +26,7 @@ module.exports = function (app, passport) {
 
 	app.get('/profile', isLoggedIn, (req, res) => {
 		let sql = ```SELECT * FROM users WHERE id = ${req.user.id}```;
-		mysql.query(sql,(err,result,fields)=>{
+		connection.query(sql,(err,result,fields)=>{
 			res.render("profile",{
 				username: result[0].user_name,
 				email: result[0].user_name
