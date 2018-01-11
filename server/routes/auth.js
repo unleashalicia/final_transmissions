@@ -1,6 +1,6 @@
 const path = require('path');
 const mysql = require('mysql');
-const { credentials } = require('./database');
+const { credentials } = require('../database');
 const connection = mysql.createConnection(credentials);
 
 module.exports = function (app, passport) {
