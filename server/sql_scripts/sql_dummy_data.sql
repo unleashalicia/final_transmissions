@@ -35,16 +35,5 @@ INSERT INTO `stories` (`name`, `story_id`, `story_img`, `status`) VALUES
 ('The Spaghetti Monster', 1, 'images/spaghetti.jpeg', 1);
 
 
-INSERT INTO `users` (`id`, `email`, `password`, `user_name`) VALUES
-(34, 'asdf@asdf.com', '$2a$10$3EErFVRAKiOZxgiUWBqiQO2GuOrq1Xe8.a.GB.ZftJxae/kU.nqY2', 'asdf'),
-(35, 'prettypotato@taters.com', '$2a$10$KQCBPRzQUfGGYG335MQ44OwV8CDTJlp7HAZGTWP3qwUJlgPbk76CO', 'ceskamo');
-
-
-INSERT INTO `user_stories` (`id`, `story_id`, `state_id`) VALUES
-(34, 1, 2);
-
-
-
-
 
 COMMIT;
