@@ -6,10 +6,9 @@ SET time_zone = "+00:00";
 
 DROP TABLE if EXISTS `states`;
 CREATE TABLE `states` (
+  `story_id` SMALLINT(3) NOT NULL,
   `state_id` SMALLINT(3) NOT NULL,
-  `state_details` VARCHAR(50) NOT NULL,
-  `story` TINYINT(3) NOT NULL,
-  `chapter` TINYINT(3) NOT NULL
+  `state_details` VARCHAR(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 
@@ -27,7 +26,7 @@ CREATE TABLE `users` (
   `id` int(50) UNSIGNED NOT NULL,
   `email` varchar(100) NOT NULL,
   `password` varchar(100) NOT NULL,
-  `user_name` varchar(100) NOT NULL
+  `user_name` varchar(100) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
 
