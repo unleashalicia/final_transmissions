@@ -1,5 +1,7 @@
 const path = require('path');
-
+const mysql = require('mysql');
+const { credentials } = require('../database');
+const connection = mysql.createConnection(credentials);
 
 module.exports = function (app, passport) {
 
@@ -23,8 +25,12 @@ module.exports = function (app, passport) {
 	});
 
 	app.get('/profile', isLoggedIn, (req, res) => {
-	    res.render("profile",{
-			data: 'This is a test'
+		let sql = `SELECT * FROM users WHERE id = ${req.user.id}`;
+		connection.query(sql,(err,result,fields)=>{
+			res.render("profile",{
+				username: result[0].user_name,
+				email: result[0].email
+			});
 		});
 	});
 
@@ -36,12 +42,9 @@ module.exports = function (app, passport) {
 
 
 
-
-
 function isLoggedIn(req, res, next) {
 	if (req.isAuthenticated()) {
 		return next();
 	}
-
 	res.redirect('/');
 }

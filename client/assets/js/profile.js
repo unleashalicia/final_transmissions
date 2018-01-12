@@ -45,7 +45,7 @@ function goToExperience(){
 }
 
 function loggingOut(){
-  window.open("index.html","_self");
+  window.open("/logout","_self");
 }
 
 function showStory(){

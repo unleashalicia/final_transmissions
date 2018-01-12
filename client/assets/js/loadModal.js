@@ -8,7 +8,7 @@ var context = canvas.getContext("2d");
 var imageObj = new Image();
 canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
-imageObj.src = './images/raven-transparent.png';
+imageObj.src = '../images/raven-transparent.png';
 imageObj.onload = function(){
     draw(imageObj,context,imageObj.width,imageObj.height);
 }
