@@ -3,7 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="f67c97ce-d7fb-4179-95cf-24c8536aa37f" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/assets/css/library.css" afterPath="$PROJECT_DIR$/client/assets/css/library.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/assets/js/library.js" afterPath="$PROJECT_DIR$/client/assets/js/library.js" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -40,17 +39,17 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="library.css" pinned="false" current-in-tab="false">
+          <file leaf-file-name="library.css" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/client/assets/css/library.css">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="252">
-                  <caret line="14" column="16" lean-forward="true" selection-start-line="14" selection-start-column="16" selection-end-line="14" selection-end-column="16" />
+                <state relative-caret-position="620">
+                  <caret line="85" column="13" lean-forward="true" selection-start-line="85" selection-start-column="13" selection-end-line="85" selection-end-column="13" />
                   <folding />
                 </state>
               </provider>
             </entry>
           </file>
-          <file leaf-file-name=".gitignore" pinned="false" current-in-tab="true">
+          <file leaf-file-name=".gitignore" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/.gitignore">
               <provider selected="true" editor-type-id="text-editor">
                 <state relative-caret-position="54">
@@ -189,12 +188,12 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1515791975157</updated>
-      <workItem from="1515791976209" duration="5149000" />
+      <workItem from="1515791976209" duration="5240000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="5149000" />
+    <option name="totallyTimeSpent" value="5240000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="1440" y="-180" width="1920" height="1080" extended-state="0" />
@@ -310,18 +309,18 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/client/assets/css/library.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="252">
-          <caret line="14" column="16" lean-forward="true" selection-start-line="14" selection-start-column="16" selection-end-line="14" selection-end-column="16" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/.gitignore">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="54">
           <caret line="3" column="8" lean-forward="true" selection-start-line="3" selection-start-column="8" selection-end-line="3" selection-end-column="8" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/assets/css/library.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="620">
+          <caret line="85" column="13" lean-forward="true" selection-start-line="85" selection-start-column="13" selection-end-line="85" selection-end-column="13" />
           <folding />
         </state>
       </provider>
