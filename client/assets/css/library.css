@@ -15,9 +15,9 @@ body {
 }
 
 .button-container {
-    height: 7%;
+    height: 10vw;
     width: 95%;
-    margin: auto;
+    margin: 7% auto 0;
     display: flex;
     justify-content: space-between;
 }
@@ -32,10 +32,10 @@ button {
     border-radius: 5%;
     background-color: rgba(235, 235, 235, .3);
     color: whitesmoke;
-    font-size: .9em;
+    font-size: 3.5vmin;
     font-family: de-walpergens-pica, serif;
     font-weight: bold;
-    letter-spacing: 1.25px;
+    letter-spacing: 1.10px;
     text-shadow: 1px 1px #252222;
     z-index: 1000;
 }
@@ -49,7 +49,6 @@ button:hover {
 .nav-btn {
     height: 100%;
     width: 28vw;
-    margin-top: 20%;
 }
 
 .triangle-left {
@@ -81,8 +80,8 @@ button:hover {
 
 .title {
     height: 20%;
-    position: absolute;
-    bottom: 10%;
+    position: relative;
+    top: 55%;
     background-color: rgba(235, 235, 235, .5);
     width: 100%;
     color: whitesmoke;
@@ -98,11 +97,17 @@ button:hover {
     text-shadow: 1px 1px #252222;
 }
 
+.go-link {
+    position: relative;
+    display: block;
+    top: 58%;
+    left: 75%;
+    height: 6vh;
+}
+
 .go-btn {
     position: relative;
-    top: 85%;
-    height: 6vh;
-    left: 75%;
+    height: 100%;
     width: 20vw;
 }
 
