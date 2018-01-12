@@ -21,6 +21,9 @@ var touchStartCoords =  {'x':-1, 'y':-1}, // X and Y coordinates on mousedown or
     console.log('current spot:', currentSpot);
 
 function swipeStart(e) {
+    // if(elementArr[currentSpot] === undefined) {
+    //     return;
+    // }
     e = e ? e : window.event;
     e = ('changedTouches' in e)?e.changedTouches[0] : e;
     touchStartCoords = {'x':e.pageX, 'y':e.pageY};
@@ -28,6 +31,9 @@ function swipeStart(e) {
 }
 
 function swipeMove(e){
+    // if(elementArr[currentSpot] === undefined) {
+    //     return;
+    // }
     e = e ? e : window.event;
     e.preventDefault();
 }
@@ -44,7 +50,7 @@ function swipeEnd(e) {
                 case 'left':
                     currentSpot++;
                     if(elementArr[currentSpot] === undefined){
-                        break;
+                        return;
                     } else {
                         if(elementArr[currentSpot + 1] === undefined){
                             triangleRight.classList.remove('show-img');
@@ -64,7 +70,7 @@ function swipeEnd(e) {
                 case 'right':
                     currentSpot--;
                     if(elementArr[currentSpot] === undefined){
-                        break;
+                        return;
                     } else {
                         if(elementArr[currentSpot - 1] === undefined){
                             triangleLeft.classList.remove('show-img');
