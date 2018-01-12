@@ -11,10 +11,6 @@ body {
 #story-container {
     width: 100vw;
     height: 100vh;
-    /*background-image: url('../images/story/kitchen.jpg');*/
-    /*background-repeat: no-repeat;*/
-    /*background-position: center;*/
-    /*background-size: cover;*/
 }
 
 .button-container {
@@ -106,7 +102,7 @@ button:hover {
 
 /**************** swipe css ****************/
 
-.el, .el2, .el3 {
+img {
     margin: auto;
     position: absolute;
     top: 0;
@@ -119,15 +115,7 @@ button:hover {
     text-align: center;
 }
 
-/*#el {*/
-    /*z-index: 100;*/
-/*}*/
-
-.el2 {
-    display: none;
-}
-
-.el3 {
+.story {
     display: none;
 }
 
@@ -138,46 +126,3 @@ button:hover {
 .show-img {
     display: block;
 }
-
-/*#el:before, #el:after {*/
-    /*display: block;*/
-    /*width: 30px;*/
-    /*height: 30px;*/
-    /*position: absolute;*/
-    /*top: 0;*/
-    /*bottom: 0;*/
-    /*font-size: 500%;*/
-/*}*/
-
-/*#el:before, #el2:before {*/
-    /*content: "\2039";*/
-    /*left: 0px;*/
-    /*color: white;*/
-/*}*/
-/*#el:after, #el2:after {*/
-    /*content: "\203A";*/
-    /*right: 0px;*/
-    /*color: white;*/
-/*}*/
-
-/*#el2:before, #el:after {*/
-    /*display: block;*/
-    /*width: 30px;*/
-    /*height: 30px;*/
-    /*position: absolute;*/
-    /*top: 0;*/
-    /*bottom: 0;*/
-    /*font-size: 500%;*/
-/*}*/
-
-/*#el2:before {*/
-    /*content: "\2039";*/
-    /*left: 0px;*/
-    /*color: white;*/
-/*}*/
-/*#el2:after {*/
-    /*content: "\203A";*/
-    /*right: 0px;*/
-    /*color: white;*/
-/*}*/
-

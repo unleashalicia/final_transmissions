@@ -1,5 +1,7 @@
 document.addEventListener('DOMContentLoaded', function() {
     initEventListeners();
+    image.setAttribute('src', startingImg);
+    title.textContent = startingTitle;
 });
 
 var touchStartCoords =  {'x':-1, 'y':-1}, // X and Y coordinates on mousedown or touchstart events.
@@ -10,23 +12,44 @@ var touchStartCoords =  {'x':-1, 'y':-1}, // X and Y coordinates on mousedown or
     maxAllowedTime = 1000,// Max allowed time between swipeStart and swipeEnd
     startTime = 0,// Time on swipeStart
     elapsedTime = 0,// Elapsed time between swipeStart and swipeEnd
-    el1 = document.querySelector('.el'),// Element to delegate
-    el2 = document.querySelector('.el2'),
-    el3 = document.querySelector('.el3'),
-    elArr = [el2, el1, el3],
-    currentSpot = 1,
+    image = document.querySelector('.image'),
+    title = document.querySelector('.title-text'),
+    elArr = [
+        {
+            title: 'Story X',
+            img: 'assets/images/library/hallway.jpg'
+        },
+        {
+            title: 'Story Z',
+            img: 'assets/images/library/powerplant.jpg'
+        },
+        {
+            title: 'Prologue',
+            img: 'assets/images/library/stairs.jpg'
+        },
+        {
+            title: 'Story W',
+            img: 'assets/images/library/hallway2.jpg'
+        },
+        {
+            title: 'Story Y',
+            img: 'assets/images/library/woods.jpg'
+        }
+    ],
+    currentSpot = Math.floor(elArr.length/2),
     newSpot = null,
+    startingImg = elArr[currentSpot].img,
+    startingTitle = elArr[currentSpot].title,
     triangleLeft = document.querySelector('.triangle-left'),
-    triangleRight = document.querySelector('.triangle-right'),
-    targetElement = elArr[currentSpot];
-    console.log(targetElement);
+    triangleRight = document.querySelector('.triangle-right');
+
+    // newImg = elArr[currentSpot].img;
 
 function swipeStart(e) {
     e = e ? e : window.event;
     e = ('changedTouches' in e)?e.changedTouches[0] : e;
     touchStartCoords = {'x':e.pageX, 'y':e.pageY};
     startTime = new Date().getTime();
-    // targetElement.textContent = " ";
 }
 
 function swipeMove(e){
@@ -55,14 +78,8 @@ function swipeEnd(e) {
                             triangleLeft.classList.add('show-img');
                         }
                         newSpot = elArr[currentSpot];
-                        targetElement.classList.remove('show-img');
-                        targetElement.classList.add('hide-img');
-                        newSpot.classList.remove('hide-img');
-                        newSpot.classList.add('show-img');
-                        targetElement = newSpot;
-                        console.log('currentSpot:', currentSpot);
-                        initEventListeners();
-                        document.querySelector('.title-text').textContent = "New Title Here";
+                        image.setAttribute('src', newSpot.img);
+                        title.textContent = newSpot.title;
                         break;
                     }
                 case 'right':
@@ -77,14 +94,8 @@ function swipeEnd(e) {
                             triangleRight.classList.add('show-img');
                         }
                         newSpot = elArr[currentSpot];
-                        targetElement.classList.remove('show-img');
-                        targetElement.classList.add('hide-img');
-                        newSpot.classList.remove('hide-img');
-                        newSpot.classList.add('show-img');
-                        // targetElement.classList.add('show-img');
-                        targetElement = newSpot;
-                        console.log(targetElement);
-                        initEventListeners();
+                        image.setAttribute('src', newSpot.img);
+                        title.textContent = newSpot.title;
                         break;
                     }
             }
@@ -100,7 +111,7 @@ function addMultipleListeners(el, s, fn) {
 }
 
 function initEventListeners(){
-    addMultipleListeners(targetElement, 'mousedown touchstart', swipeStart);
-    addMultipleListeners(targetElement, 'mousemove touchmove', swipeMove);
-    addMultipleListeners(targetElement, 'mouseup touchend', swipeEnd);
+    addMultipleListeners(image, 'mousedown touchstart', swipeStart);
+    addMultipleListeners(image, 'mousemove touchmove', swipeMove);
+    addMultipleListeners(image, 'mouseup touchend', swipeEnd);
 }
