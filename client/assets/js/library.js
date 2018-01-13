@@ -1,6 +1,12 @@
 document.addEventListener('DOMContentLoaded', function() {
     initEventListeners();
     targetElement.classList.add('show-img');
+    triangleLeft.addEventListener('click', function(){
+        handleArrowClickLeft();
+    });
+    triangleRight.addEventListener('click', function() {
+        handleArrowClickRight();
+    });
 });
 
 var touchStartCoords =  {'x':-1, 'y':-1}, // X and Y coordinates on mousedown or touchstart events.
@@ -20,10 +26,57 @@ var touchStartCoords =  {'x':-1, 'y':-1}, // X and Y coordinates on mousedown or
     console.log('classList:', elementArr[currentSpot]);
     console.log('current spot:', currentSpot);
 
+function moveLeft(){
+    currentSpot--;
+    if(elementArr[currentSpot] === undefined){
+        return;
+    } else {
+        if(elementArr[currentSpot - 1] === undefined){
+            triangleLeft.classList.remove('show-img');
+            triangleLeft.classList.add('hide-img');
+        } else {
+            triangleRight.classList.add('show-img');
+        }
+        newSpot = elementArr[currentSpot];
+        targetElement.classList.remove('show-img');
+        targetElement.classList.add('hide-img');
+        newSpot.classList.remove('hide-img');
+        newSpot.classList.add('show-img');
+        targetElement = newSpot;
+        initEventListeners();
+    }
+}
+
+function moveRight(){
+    currentSpot++;
+    if(elementArr[currentSpot] === undefined){
+        return;
+    } else {
+        if(elementArr[currentSpot + 1] === undefined){
+            triangleRight.classList.remove('show-img');
+            triangleRight.classList.add('hide-img');
+        } else {
+            triangleLeft.classList.add('show-img');
+        }
+        newSpot = elementArr[currentSpot];
+        targetElement.classList.remove('show-img');
+        targetElement.classList.add('hide-img');
+        newSpot.classList.remove('hide-img');
+        newSpot.classList.add('show-img');
+        targetElement = newSpot;
+        initEventListeners();
+    }
+}
+
+function handleArrowClickLeft() {
+    moveLeft();
+}
+
+function handleArrowClickRight(){
+    moveRight();
+}
+
 function swipeStart(e) {
-    // if(elementArr[currentSpot] === undefined) {
-    //     return;
-    // }
     e = e ? e : window.event;
     e = ('changedTouches' in e)?e.changedTouches[0] : e;
     touchStartCoords = {'x':e.pageX, 'y':e.pageY};
@@ -31,9 +84,6 @@ function swipeStart(e) {
 }
 
 function swipeMove(e){
-    // if(elementArr[currentSpot] === undefined) {
-    //     return;
-    // }
     e = e ? e : window.event;
     e.preventDefault();
 }
@@ -48,45 +98,11 @@ function swipeEnd(e) {
             direction = (touchEndCoords.x < 0)? 'left' : 'right';
             switch(direction){
                 case 'left':
-                    currentSpot++;
-                    if(elementArr[currentSpot] === undefined){
-                        return;
-                    } else {
-                        if(elementArr[currentSpot + 1] === undefined){
-                            triangleRight.classList.remove('show-img');
-                            triangleRight.classList.add('hide-img');
-                        } else {
-                            triangleLeft.classList.add('show-img');
-                        }
-                        newSpot = elementArr[currentSpot];
-                        targetElement.classList.remove('show-img');
-                        targetElement.classList.add('hide-img');
-                        newSpot.classList.remove('hide-img');
-                        newSpot.classList.add('show-img');
-                        targetElement = newSpot;
-                        initEventListeners();
-                        break;
-                    }
+                    moveRight();
+                    break;
                 case 'right':
-                    currentSpot--;
-                    if(elementArr[currentSpot] === undefined){
-                        return;
-                    } else {
-                        if(elementArr[currentSpot - 1] === undefined){
-                            triangleLeft.classList.remove('show-img');
-                            triangleLeft.classList.add('hide-img');
-                        } else {
-                            triangleRight.classList.add('show-img');
-                        }
-                        newSpot = elementArr[currentSpot];
-                        targetElement.classList.remove('show-img');
-                        targetElement.classList.add('hide-img');
-                        newSpot.classList.remove('hide-img');
-                        newSpot.classList.add('show-img');
-                        targetElement = newSpot;
-                        initEventListeners();
-                        break;
-                    }
+                    moveLeft();
+                    break;
             }
         }
     }

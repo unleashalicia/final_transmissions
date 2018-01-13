@@ -3,7 +3,7 @@
 }
 
 body {
-    margin: 0;
+    margin: auto;
     padding: 0;
     font-family: de-walpergens-pica, serif;
     overflow: hidden;
@@ -14,12 +14,13 @@ body {
 #story-container {
     width: 100%;
     height: 100%;
+    position: relative;
 }
 
 .button-container {
     height: 10vw;
     width: 95%;
-    margin: 7% auto 0;
+    margin: auto;
     display: flex;
     justify-content: space-between;
 }
@@ -52,6 +53,7 @@ button:hover {
     height: 100%;
     width: 28vw;
     z-index: 300;
+    margin-top: 20%;
 }
 
 .triangle-left {
@@ -64,7 +66,7 @@ button:hover {
     top: 41%;
     left: 20px;
     transform: translate(-50%, -50%);
-    z-index: 200;
+    z-index: 300;
 }
 
 .triangle-right {
@@ -77,7 +79,7 @@ button:hover {
     top: 41%;
     right: 0%;
     transform: translate(-50%, -50%);
-    z-index: 200;
+    z-index: 300;
 
 }
 
@@ -141,7 +143,7 @@ img {
 
 .story {
     height: 100vh;
-    width: 100vw;
+    /*width: 100vw;*/
     display: none;
 }
 
@@ -176,4 +178,80 @@ img {
 
 .display-go {
     z-index: 300;
+}
+
+/************ Media Queries ****************/
+
+@media screen and (min-width: 560px){
+    .go-link {
+        top: 55%;
+        left: 65%;
+    }
+}
+
+@media screen and (min-width: 760px){
+    .go-link {
+        top: 55%;
+        left: 65%;
+    }
+
+    .lock {
+        width: 20vw;
+        bottom: 20%;
+    }
+}
+
+@media screen and (min-width: 980px) {
+
+    body {
+        background-color: black;
+        max-width: 980px;
+    }
+
+    #story-container {
+        max-width: 980px;
+        /*position: absolute;*/
+        /*left: 10%;*/
+    }
+
+    img {
+        max-width: 980px;
+    }
+
+    .button-container {
+        width: 100%;
+        height: 6vw;
+        margin: 0;
+    }
+
+    .nav-btn {
+        width: 25vw;
+        margin-top: 15%;
+    }
+
+    .go-btn {
+        width: 15vw;
+        background-color: rgba(235, 235, 235, .3);
+        text-shadow: 1px 1px #252222;
+    }
+
+    .go-btn:hover {
+        background-color: rgba(235, 235, 235, .7);
+        color: #252222;
+        text-shadow: none;
+    }
+}
+
+@media screen and (min-width: 1050px){
+
+    .nav-btn {
+        width: 20vw;
+    }
+}
+
+@media screen and (min-width: 1300px){
+
+    .nav-btn {
+        width: 15vw;
+    }
 }
