@@ -34,6 +34,20 @@ module.exports = function (app, passport) {
 		});
 	});
 
+	app.get('/library', isLoggedIn, (req, res) => {
+		res.render("library",{
+			//enter data to be passed to template
+		});
+	});
+
+	//example: ghost.brianmevans.com/story/id/5
+	app.get('/story/id/:id', isLoggedIn, (req, res) => {
+		let story_id = req.params.id
+		res.render("story",{
+			//enter data to be passed to template
+		});
+	});
+
 	app.get('/play', isLoggedIn, (req, res) => {
 	    res.sendFile(path.join(__dirname, '..', '..', 'client', 'meter-index.html'));
 	});
