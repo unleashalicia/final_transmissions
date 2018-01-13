@@ -39,7 +39,7 @@ button {
     font-weight: bold;
     letter-spacing: 1.10px;
     text-shadow: 1px 1px #252222;
-    z-index: 1000;
+    /*z-index: 1000;*/
 }
 
 button:hover {
@@ -51,6 +51,7 @@ button:hover {
 .nav-btn {
     height: 100%;
     width: 28vw;
+    z-index: 300;
 }
 
 .triangle-left {
@@ -88,7 +89,7 @@ button:hover {
     width: 100%;
     color: whitesmoke;
     text-align: center;
-    z-index: 1000;
+    z-index: 100;
 }
 
 .title > h1 {
@@ -153,12 +154,12 @@ img {
 }
 
 .lock-container {
-    height: 90%;
+    height: 100%;
     width: 100%;
     position: absolute;
-    top: 11%;
+    top: 0;
     left: 0;
-    z-index: 1000;
+    z-index: 200;
     background-color: rgba(37, 35, 35, 0.1);
 }
 
@@ -171,4 +172,8 @@ img {
     position: absolute;
     bottom: 25%;
     left: 0;
+}
+
+.display-go {
+    z-index: 300;
 }

@@ -17,6 +17,8 @@
     </div>
     <div class="triangle-left"></div>
     <div class="triangle-right"></div>
+    <!--if story is locked/inactive, use this block-->
+    <!--create this div 4 times using pug-->
     <div class="story">
         <img src="assets/images/library/stairs.jpg">
         <div class="title">
@@ -29,7 +31,6 @@
             <img class="lock" src="assets/images/library/lock.png">
         </div>
     </div>
-    <!--create this 10 times using pug-->
     <div class="story">
         <img src="assets/images/library/powerplant.jpg">
         <div class="title">
@@ -42,13 +43,14 @@
             <img class="lock" src="assets/images/library/lock.png">
         </div>
     </div>
+    <!--if story is unlocked/active, use this block-->
     <div class="story initial-story">
         <img src="assets/images/library/hallway2.jpg">
         <div class="title">
             <h1 class="title-text">Prologue</h1>
         </div>
         <a class="go-link">
-            <button class="go-btn">Go!</button>
+            <button class="go-btn display-go">Go!</button>
         </a>
     </div>
     <div class="story">
