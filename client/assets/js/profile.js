@@ -38,14 +38,14 @@ function handleEventHandlers(){
 
 function goToExperience(){
   if(window.outerWidth < 750){
-    window.open("meter-index.html","_self");
+    window.open("/play","_self");
   }else{
     document.querySelectorAll(".instruction")[0].classList.remove("hide");
   }
 }
 
 function loggingOut(){
-  window.open("index.html","_self");
+  window.open("/logout","_self");
 }
 
 function showStory(){
