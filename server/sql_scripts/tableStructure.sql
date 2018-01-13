@@ -23,7 +23,7 @@ CREATE TABLE `state_actions` (
 
 DROP TABLE IF EXISTS `users`;
 CREATE TABLE `users` (
-  `id` int(50) UNSIGNED NOT NULL,
+  `id` int(50) UNSIGNED NOT NULL AUTO_INCREMENT,
   `email` varchar(100) NOT NULL,
   `password` varchar(100) NOT NULL,
   `user_name` varchar(100) NOT NULL,
