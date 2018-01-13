@@ -1,12 +1,19 @@
 body{
   margin: 0;
+  background-color: black;
+  font-family: de-walpergens-pica;
+  background-image: url(../images/profile/profilebg.jpg);
+  background-size: 110%;
+  background-repeat: no-repeat;
+
+
+}
+
+#user-container{
+    position: relative;
 }
 
 
-@keyframes slideDown {
-  0%{ top: -200%}
-  100%{top: 0}
-}
 nav ul{
   text-align: center;
   padding-right: 3%;
@@ -19,7 +26,8 @@ nav ul li {
   display: inline-block;
   color: white;
   list-style-type: none;
-  pointer: cursor;
+  cursor: pointer;
+  text-transform: uppercase;
 }
 /******LOG OUT*************************/
 .logOut-container{
@@ -51,33 +59,67 @@ nav ul li {
 
 /******LOG OUT*************************/
 /****************PROFILE MENU START*******/
-.profile-container{
+.profile-container, .story-container{
   color: white;
-  position: absolute;
-  z-index: 2;
-  background-color: black;
-  width: 100%;
-  height: 95%;
+  /* background-color: black; */
+  margin: auto;
+  width: 90%;
+  text-align: center;
+  padding: 3% 0;
 }
-.profile-container div:nth-child(1){
-  background: white;
-  border-radius: 50%;
+
+.profile-container >h1{
+  margin: 2% 0 2% 0;
+}
+
+.photo-container{
+  position: relative;
   width: 27vmin;
   height: 27vmin;
   margin: auto;
   padding: 1.5% .5%;
 }
 
-.profile-photo{
+.photo-container img{
   border-radius: 50%;
+  border: 5px solid white;
   width: 92%;
+  display: block;
+}
+
+.photo-container::before{
+  background-image: url(../images/profile/edittext.png);
+  background-size: cover;
+  display: inline-block;
+  position: absolute;
+  content: "";
+  width: 20px;
+  height: 20px;
+  bottom: 0%;
+  right: 5%;
+  border-radius: 50%;
+  border: 1px solid white;
 }
 
 .profile-data{
-  margin-top: 10%;
+  margin-top: 8%;
   text-align: left;
   padding-left: 5%;
   line-height: 2em;
+}
+
+.profile-data p:nth-child(2)::before{
+  background-image: url(../images/profile/edittext.png);
+  background-size: cover;
+  display: inline-block;
+  position: absolute;
+  content: "";
+  width: 20px;
+  height: 20px;
+  bottom: 5%;
+  right: 5%;
+  border-radius: 50%;
+  border: 1px solid white;
 }
 
 a, .profile-details{
@@ -96,20 +138,7 @@ a, .profile-details{
   width: 60% ;
   margin: 2% 0;
 }
-.edit{
-  border: 1px solid white;
-  margin-right: 5%;
-  float: right;
-  clear: both;
-  font-size: 10px;
-  padding: 0 10px;
-}
 
-.edit:hover, .edit:active{
-  border-color: black;
-  color: black;
-  background-color: white;
-}
 .button-holder{
   width: 60%;
   display: flex;
@@ -122,131 +151,38 @@ a, .profile-details{
   color: white;
 }
 
-
-
-
-
-/****************PROFILE MENU END*******/
-.instruction{
-  position: absolute;
-  background-color: rgba(0,0,0,0.7);
-  height: 100%;
-  width: 100%;
-  z-index: 50;
-}
-.instruction>div{
-  position: absolute;
-  color: white;
-  font-size: 5vmin;
-  animation: float 5s infinite;
-}
-.instruction div div span{
-  cursor: pointer;
-}
-.instruction div div span:hover{
-  color: grey;
-}
-
-#user-container{
-  position: absolute;
-  background: black;
-  font-family: de-walpergens-pica, serif;
-  height: 100vh;
-  width: 100%;
-  text-align: center;
-
-}
-.list-container{
-  margin-top: 15%;
-  padding:0 10%;
-}
-.story-list{
-  color: white;
-  list-style-type: none;
-  border: 1px solid white;
-}
-.caption{
-  background-color: rgba(0,0,0,0.5);
-  padding: 10px;
-  position: relative;
-  height: 96%;
-  transition: 1s;
-}
-.caption h3{
-  font-size: 5vmin;
-}
-.caption p{
-  height: 90%;
-  font-size: 1.5em;
-  font-family: Arial;
-}
-
-
-.experience{
-  position: absolute;
-  left: 5%;
-  width: 90%;
-  height: 10%;
-  bottom: 2%;
-  border: 1px solid white;
-  padding: 3px;
-  color: white;
-  font-size: 3vmin;
-  cursor: pointer;
-  background-color: transparent;
-  border-radius: 5%;
-  text-align: center;
-}
-
-.experience:hover{
-  color: black;
-  background: white;
-}
-
-.experience:focus {
-  outline: 0;
-}
-
-.story{
-  margin: 0;
-  height: 70vh;
-  width: 100%;
-  display: none;
-  float: left;
-  border: 5px solid black;
-  box-sizing: border-box;
-  color: white;
-  transition: 1s;
-  transform-style: preserve-3d;
-}
-
 h3,p{
   margin: 0;
+  position: relative;
 }
-.board1{
-  background-image: url(../images/cover3.jpg);
-  background-position: center;
-  background-size: cover;
-  background-repeat: no-repeat;
+
+.story-container{
+    margin: 3% auto;
+    border: 1px dotted white;
+    background-color: rgba(0,0,0,0.5);
 }
-.board2{
-  background-image: url(../images/cover4.jpg);
-  background-position: center;
-  background-size: cover;
-  background-repeat: no-repeat;
+.story-list{
+    padding: 0;
+
 }
-.board3{
-  background-image: url(../images/cover1.jpg);
-  background-position: center;
-  background-size: cover;
-  background-repeat: no-repeat;
+.story-list li{
+    list-style-type: none;
+    line-height: 1.5em;
 }
-.board4{
-  background-image: url(../images/cover2.jpg);
-  background-position: center;
-  background-size: cover;
-  background-repeat: no-repeat;
+
+.ghost{
+    position: absolute;
+    display: inline-block;
+    height: 30%;
+    opacity: 0;
+    bottom: -10%;
+    transition: 1s;
+    animation: spook 8s linear infinite;
 }
+.ghost img{
+    height: 100%;
+}
+
 /**********PROFILE END************************/
 .hide{
   display: none;
@@ -256,42 +192,37 @@ h3,p{
   display: block;
   animation: slideDown;
 }
+/************KEY FRAMES*************************/
+
+@keyframes slideDown {
+  0%{ top: -200%}
+  100%{top: 0}
+}
+
+@keyframes spook {
+    0{opacity: 0}20%{opacity: 0.4}30%{opacity: 0} 72%{opacity: 0}80%{opacity: .7}98%{opacity: 0};
+
+}
+
+
+/***********KEY FRAMES END***********************/
+
 
 /*******MOBILE STYLING  START**********/
 @media only screen and (max-width: 770px) {
-    .story{
-      text-align: left;
-      height: 70vh;
-      width: 100%;
-      border: 0;
-      color: white;
-    }
-    .caption p{
-      font-size: 80%;
-    }
-    .board1{
-      background-image: url(../images/cover3.jpg);
-      background-size: cover;
-      background-repeat: no-repeat;
-    }
-    .board2{
-      background-image: url(../images/cover4.jpg);
-      background-size: cover;
-      background-repeat: no-repeat;
-      background-position: left;
-    }
-    .board3{
-      background-image: url(../images/cover1.jpg);
-      background-size: cover;
-      background-repeat: no-repeat;
-    }
-    .board4{
-      background-image: url(../images/cover2.jpg);
-      background-size: cover;
-      background-repeat: no-repeat;
-    }
+
+body{
+    background-image: url(../images/profile/profilebgmobile.jpg);
+    background-size: 110%;
+    background-repeat: no-repeat;
+}
 
 
 }
 
 /*********MEDIA QUERY***************************/
+
+@font-face {
+    font-family: de-walpergens-pica;
+    src: url(../fonts/im-fell-dw-pica.cs.ttf);
+}
