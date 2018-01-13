@@ -151,3 +151,24 @@ img {
 .show-img {
     display: block;
 }
+
+.lock-container {
+    height: 90%;
+    width: 100%;
+    position: absolute;
+    top: 11%;
+    left: 0;
+    z-index: 1000;
+    background-color: rgba(37, 35, 35, 0.1);
+}
+
+.lock {
+    margin: auto;
+    width: 50vw;
+    height: 30vh;
+    text-align: center;
+    filter: invert(95%);
+    position: absolute;
+    bottom: 25%;
+    left: 0;
+}
