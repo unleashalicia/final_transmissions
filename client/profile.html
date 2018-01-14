@@ -3,8 +3,6 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src='http://use.edgefonts.net/de-walpergens-pica.js'></script>
-    <script src="https://code.jquery.com/jquery-3.1.0.js"></script>
     <script src="assets/js/profile.js" type="text/javascript"></script>
     <link rel="stylesheet" href="assets/css/profile.css" type="text/css"/>
     <title>Profile Page</title>
@@ -17,44 +15,52 @@
         <div class="logOut-container hide">
             <div class="logOut">
                 <h2> Confirm Log Out </h2>
-                <button> Yes </button> <button> No </button>
+                <button><a href="/logout"> Yes </a></button> <button class="no"> No </button>
             </div>
         </div>
         <nav>
             <ul>
-                <li class="to-instructions">Instructions</li>
-                <li class="to-library">Library</li>
-                <li class="log-out">Log Out &#8594;</li>
+                <li class="to-instructions"><a href="/instructions"> Instructions</a></li>
+                <li class="to-library"><a href="/library">Library</a></li>
+                <li class="log-out">Log Out</li>
             </ul>
         </nav>
         <div class="profile-container">
-            <h1> User Profile </h1>
+            <h1> USER PROFILE </h1>
             <div class="photo-container">
-                <img src="assets/images/profile/cat.jpg" />
+                <img id="profile-photo" class="profile-photo"  src="assets/images/profile/cat.jpg" />
+                <img  class="polaroid" src="assets/images/profile/polaroid.png" />
             </div>
             <div class="profile-data">
+
                 <p><span class="profile-details">USERNAME:</span><span class="user-details-name">xXxjeffmonxL33TxXx</span></p>
-                <p><span class="profile-details">EMAIL:</span> <span class="user-details-email">jeffmon@tacocats.yum</span></p>
+                <p class="email"><span class="profile-details">EMAIL:</span> <span class="user-details-email">jeffmon@tacocats.yum</span></p>
                 <form class="account-settings hide">
-                    <label>username</label>
-                    <input class="username" name="username" type="text"/>
-                    <label>email</label>
                     <input class="email" name="email" type="email" />
                     <div class="button-holder">
                         <button class="submit"> SUBMIT CHANGES </button><button class="cancel"> CANCEL </button>
                     </div>
                 </form>
+                <div class="story-container-inside">
+                    <h3>CURRENT STORIES</h3>
+                    <ul class="story-list">
+                        <li><a href="#">Cookies Inside the Sewing Kit</a></li>
+                        <li><a href="#">Silent Farts</a></li>
+                        <li><a href="#">Banana Black Spots</a></li>
+                        <li><a href="#">Skittles Monster</a></li>
+                    </ul>
+                </div>
             </div>
         </div>
-        <div class="story-container">
-            <h3>Current Stories</h3>
+        <!-- <div class="story-container">
+            <h3>CURRENT STORIES</h3>
             <ul class="story-list">
                 <li>Cookies Inside the Sewing Kit</li>
                 <li>Silent Farts</li>
                 <li>Banana Black Spots</li>
                 <li>Skittles Monster</li>
             </ul>
-        </div>
+        </div> -->
     </div>
 </body>
 </html>

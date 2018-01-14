@@ -1,165 +1,226 @@
 body{
-  margin: 0;
-  background-color: black;
-  font-family: de-walpergens-pica;
-  background-image: url(../images/profile/profilebg.jpg);
-  background-size: 110%;
-  background-repeat: no-repeat;
-
-
+    height:  100vh;
+    margin: 0;
+    background-color: black;
+    font-family: walpergens;
+    background-image: url(../images/profile/lanternbg.jpeg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: right;
 }
 
 #user-container{
+    height: 100%;
     position: relative;
 }
 
 
 nav ul{
-  text-align: center;
-  padding-right: 3%;
-  display: flex;
-  justify-content: space-around;
+    padding: 0 2%;
+    text-align: center;
+    display: flex;
+    justify-content: space-around
 
 }
 
 nav ul li {
-  display: inline-block;
-  color: white;
-  list-style-type: none;
-  cursor: pointer;
-  text-transform: uppercase;
+    display: inline-block;
+    color: white;
+    list-style-type: none;
+    cursor: pointer;
+    text-transform: uppercase;
 }
+
+nav ul li:hover{
+    animation: noise-3 1s infinite;
+}
+
+nav ul li::after{
+    content: "|";
+    font-size: 1.5em;
+    margin-left: 0.5em;
+    color: white;
+}
+
+nav ul li::before{
+    content: "|";
+    font-size: 1.5em;
+    margin-right: 0.5em;
+    color: white;
+}
+
 /******LOG OUT*************************/
 .logOut-container{
-  position: absolute;
-  z-index: 5;
-  color: white;
-  width: 100%;
-  background-color: rgba(0,0,0,0.8);
-  height: 100%;
+    position: absolute;
+    z-index: 5;
+    color: white;
+    width: 100%;
+    background-color: rgba(0,0,0,0.8);
+    height: 100%;
 }
 
 .logOut{
-  position: relative;
-  margin: 50% auto;
-  text-align: center;
+    position: relative;
+    margin: 20% auto;
+    text-align: center;
 }
 
 .logOut button{
-  background-color: black;
-  color: white;
-  border: 1.5px solid white;
-  pointer: cursor;
+    font-family: walpergens;
+    font-size: 22px;
+    background-color: black;
+    color: white;
+    border: 1.5px solid white;
+    cursor: pointer;
 }
 .logOut button:hover{
-  background-color: white
-  color: black;
-  border: black;
+    background-color: white
+    color: black;
+    border: black;
 }
 
 /******LOG OUT*************************/
 /****************PROFILE MENU START*******/
 .profile-container, .story-container{
-  color: white;
-  /* background-color: black; */
-  margin: auto;
-  width: 90%;
-  text-align: center;
-  padding: 3% 0;
+    color: white;
+    margin: auto;
+    width: 90%;
+    text-align: center;
 }
 
 .profile-container >h1{
-  margin: 2% 0 2% 0;
+    font-size: 2.5em;
+    margin: 2% 0 2% 0;
+    text-shadow: 5px 5px 2px black;
 }
 
 .photo-container{
-  position: relative;
-  width: 27vmin;
-  height: 27vmin;
-  margin: auto;
-  padding: 1.5% .5%;
+    display: inline-block;
+    position: relative;
+    vertical-align: top;
+    margin: auto;
+    width: 33vmin;
+    height: 38vmin;
+    padding: 1.5% .5%;
 }
 
-.photo-container img{
-  border-radius: 50%;
-  border: 5px solid white;
-  width: 92%;
-  display: block;
+.polaroid, .profile-photo{
+    position: absolute;
+    width: 90%;
+    display: block;
 }
 
-.photo-container::before{
-  background-image: url(../images/profile/edittext.png);
-  background-size: cover;
-  display: inline-block;
-  position: absolute;
-  content: "";
-  width: 20px;
-  height: 20px;
-  bottom: 0%;
-  right: 5%;
-  border-radius: 50%;
-  border: 1px solid white;
+
+.profile-photo{
+    width: 70%;
+    top: 10.5%;
+    left: 10%;
+    transform: rotateZ(-5deg);
+    box-shadow: 21px 56px 19px 24px #00000094;
+}
+
+.photo-container::after{
+    background-image: url(../images/profile/editicon.png);
+    background-size: cover;
+    display: inline-block;
+    position: absolute;
+    content: "";
+    width: 35px;
+    height: 35px;
+    bottom: 29%;
+    right: 12%;
+    border-radius: 50%;
+    border: 1px solid white;
+    cursor: pointer;
+}
+
+.photo-container:hover::after{
+    filter: invert(100%);
 }
 
 .profile-data{
-  margin-top: 8%;
-  text-align: left;
-  padding-left: 5%;
-  line-height: 2em;
+    margin: auto;
+    text-align: left;
+    display: inline-block;
+    vertical-align: bottom;
+    font-size: 2em;
+    width: 60%;
+    padding: 2%;
+    line-height: 2em;
+    background: rgba(0,0,0,0.5);
+    border-radius: 10px;
 }
 
 .profile-data p:nth-child(2)::before{
-  background-image: url(../images/profile/edittext.png);
-  background-size: cover;
-  display: inline-block;
-  position: absolute;
-  content: "";
-  width: 20px;
-  height: 20px;
-  bottom: 5%;
-  right: 5%;
-  border-radius: 50%;
-  border: 1px solid white;
+    background-image: url(../images/profile/edittext.png);
+    background-size: cover;
+    display: inline-block;
+    position: absolute;
+    content: "";
+    width: 30px;
+    height: 30px;
+    bottom: 5%;
+    right: 5%;
+    border-radius: 50%;
+    border: 1px solid white;
+    cursor: pointer;
 }
 
-a, .profile-details{
-  margin-right: 2%;
-  text-decoration: none;
-  color: red;
+.profile-data p:nth-child(2):hover::before{
+    filter: invert(100%);
+}
+
+.profile-details{
+    font-weight: bolder;
+    margin-right: 2%;
+    text-decoration: none;
+    color: #62a3be;
 }
 
 .account-settings{
-  margin: 2% 2%;
-  display: flex;
-  flex-direction: column;
+    margin: 2% 2%;
+    display: flex;
+    flex-direction: column;
 }
 
 .account-settings input{
-  width: 60% ;
-  margin: 2% 0;
+    width: 60% ;
+    margin: 2% 0;
 }
 
 .button-holder{
-  width: 60%;
-  display: flex;
-  justify-content: space-between;
+    width: 60%;
+    display: flex;
+    justify-content: space-between;
 }
 
 .submit, .cancel{
-  width: 45%;
-  background-color: black;
-  color: white;
+    width: 45%;
+    background-color: black;
+    color: white;
 }
 
-h3,p{
-  margin: 0;
-  position: relative;
+p{
+    margin: 0;
+    position: relative;
 }
 
 .story-container{
-    margin: 3% auto;
-    border: 1px dotted white;
+    display: none;
+    width: 60%;
+    margin: auto;
     background-color: rgba(0,0,0,0.5);
+}
+
+.story-container-inside{
+    width: 90%;
+    text-align: center;
+}
+
+.story-container-inside h3{
+    margin: 0;
+    border-bottom: 1px dotted white;
+    border-top: 1px dotted white;
 }
 .story-list{
     padding: 0;
@@ -168,6 +229,15 @@ h3,p{
 .story-list li{
     list-style-type: none;
     line-height: 1.5em;
+    cursor: pointer;
+}
+a{
+    text-decoration: none;
+    color: white;
+}
+
+.story-list li:hover{
+    animation: noise-3 1s infinite;
 }
 
 .ghost{
@@ -185,23 +255,29 @@ h3,p{
 
 /**********PROFILE END************************/
 .hide{
-  display: none;
+    display: none;
 }
 
 .slideDown{
-  display: block;
-  animation: slideDown;
+    display: block;
+    animation: slideDown;
 }
 /************KEY FRAMES*************************/
 
 @keyframes slideDown {
-  0%{ top: -200%}
-  100%{top: 0}
+    0%{ top: -200%}
+    100%{top: 0}
 }
 
 @keyframes spook {
     0{opacity: 0}20%{opacity: 0.4}30%{opacity: 0} 72%{opacity: 0}80%{opacity: .7}98%{opacity: 0};
 
+}
+
+@keyframes noise-3 {
+    0%, 3%, 5%, 42%, 44%, 100% {opacity: 1; transform: scaleY(1);}
+    4.3% {opacity: 1; transform: scaleY(1.7);}
+    43% {opacity: 1; transform: scaleX(1.5);}
 }
 
 
@@ -211,18 +287,56 @@ h3,p{
 /*******MOBILE STYLING  START**********/
 @media only screen and (max-width: 770px) {
 
-body{
-    background-image: url(../images/profile/profilebgmobile.jpg);
-    background-size: 110%;
-    background-repeat: no-repeat;
-}
+    body{
+        width: 100vw;
+        height: 100vh;
+        background-image: url(../images/profile/lanternbgmobile.jpg);
+        background-position: center;
+        background-size: cover;
+        background-repeat: no-repeat;
+    }
 
+    .logOut{
+        margin-top: 50%;
+    }
+
+    .photo-container{
+        height: 36vmin;
+        width: 36vmin;
+    }
+
+    .profile-data{
+        width: 80%;
+        margin: 8%;
+        font-size: 1em;
+    }
+
+    .story-container{
+        display: block;
+    }
+
+    .profile-photo{
+        box-shadow: 10px 19px 14px 11px black;
+    }
+
+    .photo-container::after{
+        width: 25px;
+        height: 25px;
+        bottom: 20%;
+        right: 12%;
+    }
+    .profile-data p:nth-child(2)::before{
+        width: 25px;
+        height: 25px;
+        bottom: 10%;
+        right: 2%;
+    }
 
 }
 
 /*********MEDIA QUERY***************************/
 
 @font-face {
-    font-family: de-walpergens-pica;
-    src: url(../fonts/im-fell-dw-pica.cs.ttf);
+    font-family: walpergens;
+    src: url(../fonts/walpergens.ttf);
 }

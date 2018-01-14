@@ -4,6 +4,16 @@ document.addEventListener('DOMContentLoaded', handleEventHandlers);
 
 function handleEventHandlers(){
   //**will segregate these handlers in later configurations**//
+  const confirm = document.querySelector(".log-out");
+  const noBtn = document.querySelector(".cancel");
+  const logOutModal = document.querySelector(".logOut-container");
+  noBtn.addEventListener("click",function(){
+     logOutModal.classList.add("hide");
+ }); //gets the user back to the profile page
+
+  confirm.addEventListener("click", function(){
+      logOutModal.classList.remove("hide")
+  }) // shows log out confirm modal.
   moveGhost();
 }
 
@@ -14,12 +24,11 @@ function moveGhost(){
         const x = Math.ceil(Math.random()*290)+"%";
         const y = Math.ceil(Math.random()*-290)+"%";
         ghost.style=`transform: translate(${x},${y})`
-    },2000)
+    },3000)
 }
 
-function loggingOut(){
-  window.open("/logout","_self");
-}
+
+
 
 
 // function handleSubmit(){
