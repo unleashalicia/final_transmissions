@@ -38,6 +38,9 @@ app.get('/login', (req, res) => {
     res.sendFile(path.join(__dirname,'..', 'client', 'login.html'));
 });
 
+app.get('/library', (req,res) => {
+    res.sendFile(path.join(__dirname,'..', 'client', 'library.html'));
+})
 
 
 
