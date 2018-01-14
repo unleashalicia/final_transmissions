@@ -11,11 +11,15 @@
     <script src="../../../assets/lib/AR.js-master/aframe/examples/vendor/aframe/build/aframe.js"></script>
     <script src="../../../assets/lib/AR.js-master/aframe/build/aframe-ar.js"></script>
 </head>
+
 <body style='margin : 0px; overflow: hidden;'>
+
 <a-scene embedded artoolkit='sourceType: webcam;'>
+
     <a-assets>
         <video src="./dust.ogv" id="dust" autoplay loop="true"></video>
     </a-assets>
+
     <a-marker preset='hiro'>
         <a-entity>
             <a-box src='#dust' height="2" width="2" depth="2" material="opacity: 0.9" position="0 0.5 0">
