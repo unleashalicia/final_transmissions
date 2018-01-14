@@ -8,101 +8,49 @@ body {
     font-family: de-walpergens-pica, serif;
 }
 
-#story-container {
-    width: 100vw;
-    height: 100vh;
-    background-image: url('../images/library/kitchen.jpg');
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: cover;
-}
+/******** nav bar ******************/
 
-/*.slide-img {*/
-    /*height: 100vh;*/
-    /*width: 100vw;*/
-/*}*/
-
-.button-container {
-    height: 7%;
-    width: 95%;
-    margin: auto;
-    display: flex;
-    justify-content: space-between;
-}
-
-button {
-    border: 2px solid whitesmoke;
-    border-radius: 5%;
-    background-color: rgba(235, 235, 235, .3);
-    color: whitesmoke;
-    font-size: 1em;
-    font-family: de-walpergens-pica, serif;
-    font-weight: bold;
-    letter-spacing: 1.25px;
-    text-shadow: 1px 1px #252222;
-}
-
-button:hover {
-    background-color: rgba(235, 235, 235, .7);
-    color: #252222;
-    text-shadow: none;
-}
-
-.nav-btn {
-    height: 100%;
-    width: 28vw;
-    margin-top: 4%;
-}
-
-
-.triangle-left {
-    width: 0;
-    height: 0;
-    border-top: 10px solid transparent;
-    border-right: 20px solid rgba(235, 235, 235,.9);
-    border-bottom: 10px solid transparent;
-    position: absolute;
-    top: 50%;
-    left: 20px;
-    transform: translate(-50%, -50%);
-}
-
-.triangle-right {
-    width: 0;
-    height: 0;
-    border-top: 10px solid transparent;
-    border-left: 20px solid rgba(235, 235, 235,.9);
-    border-bottom: 10px solid transparent;
-    position: absolute;
-    top: 50%;
-    right: 0%;
-    transform: translate(-50%, -50%);
-}
-
-.title {
-    height: 20%;
-    position: absolute;
-    bottom: 10%;
-    background-color: rgba(235, 235, 235, .5);
-    width: 100%;
-    color: whitesmoke;
+nav {
     text-align: center;
 }
 
-.title > h1 {
-    position: relative;
-    top: 30%;
-    margin: 0;
-    font-size: 2.5em;
-    text-shadow: 1px 1px #252222;
+.title {
+    text-align: center;
+    font-size: 8vmin;
+    display: inline-block;
 }
 
-.go-btn {
+.menu {
+    list-style: none;
+    display: none;
+    padding: 5% 2%;
+    font-size: 1.25em;
     position: absolute;
-    bottom: 2%;
-    height: 6%;
-    right: 3%;
-    width: 20vw;
+    top: 5%;
+    right: 0;
+    text-align: center;
 }
 
-/**************** swipe css ****************/
+.menu li a {
+    text-decoration: none;
+}
+
+.hamburger {
+    width: 40px;
+    height: 40px;
+    position: absolute;
+    top: 4%;
+    right: 5%;
+}
+
+.img-container {
+    width: 50%;
+    margin: auto;
+}
+
+.story-img {
+    width:100%;
+    height: 100%;
+}
+
+
