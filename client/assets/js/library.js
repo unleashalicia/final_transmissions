@@ -56,6 +56,7 @@ function move(direction){
     initEventListeners();
 }
 
+
 function handleArrowClickLeft() {
     move(-1);
 }
