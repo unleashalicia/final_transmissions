@@ -70,6 +70,7 @@ module.exports = {
             function (req, userHandle, password, done) {
                 let sql = userSearchSQL(userHandle);
 
+
                 connection.query(sql, function (err, results, fields) {
 
                     if (err) {
