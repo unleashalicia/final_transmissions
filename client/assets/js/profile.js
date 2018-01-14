@@ -12,7 +12,7 @@ function handleEventHandlers(){
     var story = document.getElementsByClassName("story");
     var submitBtn = document.querySelectorAll(".submit")[0];
     var cancelBtn = document.querySelectorAll(".cancel")[0];
-    var storylist = document.querySelectorAll(".story-list");
+    var storylist = document.querySelectorAll(".library-list");
     var logOut = document.getElementsByClassName("log-out")[0];
     var experience = document.querySelectorAll(".experience");
     Array.from(storylist).forEach(elem => elem.addEventListener('click',showStory));
@@ -49,7 +49,7 @@ function loggingOut(){
 }
 
 function showStory(){
-  var story = document.querySelectorAll(".story");
+  var story = document.querySelectorAll(".library");
   if(!this.firstElementChild.classList.contains("slideDown")){
     Array.from(story).forEach(elem => elem.classList.remove("slideDown"));
   }
