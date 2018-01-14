@@ -27,8 +27,6 @@ var touchStartCoords =  {'x':-1, 'y':-1}, // X and Y coordinates on mousedown or
     targetElement = elementArr[currentSpot];
 
 function move(direction){
-    // elementArr[elementArr.length-1].classList.remove('triangle-right');
-    // elementArr[0].classList.remove('triangle-left');
     if(elementArr[currentSpot + direction] === undefined){
         return;
     } else if(direction === -1) {
