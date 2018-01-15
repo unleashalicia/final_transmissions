@@ -9,6 +9,11 @@
 </head>
 <body>
     <div id="user-container">
+        <div class="modal hide">
+            <div class="modal-content">
+                <h2>Confirming Request...</h2>
+            </div>
+        </div>
         <div class="ghost">
             <img src="assets/images/profile/ghostgirl.png">
         </div>
@@ -30,17 +35,11 @@
             <div class="photo-container">
                 <img id="profile-photo" class="profile-photo"  src="assets/images/profile/cat.jpg" />
                 <img  class="polaroid" src="assets/images/profile/polaroid.png" />
+                <img class="edit-photo" src="assets/images/profile/editicon.png"/>
             </div>
             <div class="profile-data">
-
                 <p><span class="profile-details">USERNAME:</span><span class="user-details-name">xXxjeffmonxL33TxXx</span></p>
-                <p class="email"><span class="profile-details">EMAIL:</span> <span class="user-details-email">jeffmon@tacocats.yum</span></p>
-                <form class="account-settings hide">
-                    <input class="email" name="email" type="email" />
-                    <div class="button-holder">
-                        <button class="submit"> SUBMIT CHANGES </button><button class="cancel"> CANCEL </button>
-                    </div>
-                </form>
+                <p class="email"><span class="profile-details">EMAIL:</span> <span class="user-details-email">jeffmon@tacocats.yum</span><img class="edit-text" src="assets/images/profile/edittext.png"/></p>
                 <div class="story-container-inside">
                     <h3>CURRENT STORIES</h3>
                     <ul class="story-list">
@@ -52,15 +51,6 @@
                 </div>
             </div>
         </div>
-        <!-- <div class="story-container">
-            <h3>CURRENT STORIES</h3>
-            <ul class="story-list">
-                <li>Cookies Inside the Sewing Kit</li>
-                <li>Silent Farts</li>
-                <li>Banana Black Spots</li>
-                <li>Skittles Monster</li>
-            </ul>
-        </div> -->
     </div>
 </body>
 </html>

@@ -18,8 +18,8 @@ body{
 nav ul{
     padding: 0 2%;
     text-align: center;
-    display: flex;
-    justify-content: space-around
+    /* display: flex;
+    justify-content: space-around */
 
 }
 
@@ -50,7 +50,7 @@ nav ul li::before{
 }
 
 /******LOG OUT*************************/
-.logOut-container{
+.logOut-container, .modal{
     position: absolute;
     z-index: 5;
     color: white;
@@ -59,7 +59,7 @@ nav ul li::before{
     height: 100%;
 }
 
-.logOut{
+.logOut, .modal-content{
     position: relative;
     margin: 20% auto;
     text-align: center;
@@ -119,7 +119,7 @@ nav ul li::before{
     box-shadow: 21px 56px 19px 24px #00000094;
 }
 
-.photo-container::after{
+.edit-photo{
     background-image: url(../images/profile/editicon.png);
     background-size: cover;
     display: inline-block;
@@ -134,7 +134,7 @@ nav ul li::before{
     cursor: pointer;
 }
 
-.photo-container:hover::after{
+.edit-photo:hover{
     filter: invert(100%);
 }
 
@@ -151,7 +151,7 @@ nav ul li::before{
     border-radius: 10px;
 }
 
-.profile-data p:nth-child(2)::before{
+.edit-text{
     background-image: url(../images/profile/edittext.png);
     background-size: cover;
     display: inline-block;
@@ -159,14 +159,14 @@ nav ul li::before{
     content: "";
     width: 30px;
     height: 30px;
-    bottom: 5%;
+    bottom:  17%;
     right: 5%;
     border-radius: 50%;
     border: 1px solid white;
     cursor: pointer;
 }
 
-.profile-data p:nth-child(2):hover::before{
+.edit-text:hover{
     filter: invert(100%);
 }
 
@@ -177,15 +177,32 @@ nav ul li::before{
     color: #62a3be;
 }
 
-.account-settings{
-    margin: 2% 2%;
-    display: flex;
-    flex-direction: column;
+.email-container input{
+    height: 25px;
+    width: 50%;
+    display: inline-block;
+    border-radius: 5px;
+    margin-right: 2%;
 }
 
-.account-settings input{
-    width: 60% ;
-    margin: 2% 0;
+.email-container button{
+    cursor: pointer;
+    font-family: walpergens;
+    background: transparent;
+    margin-right: 1%;
+    color: white;
+    height: 45px;
+    font-size: 1em;
+    border-radius: 10px;
+}
+
+.email-container button:hover{
+    background-color: black;
+    color: white;
+}
+
+.email-container input:invalid{
+    border:5px solid red;
 }
 
 .button-holder{
@@ -253,6 +270,27 @@ a{
     height: 100%;
 }
 
+/***************MODAL***************************/
+.modal-content h2{
+    animation: pulse 2s infinite;
+    font-size: 3em;
+}
+
+
+@keyframes pulse {
+	0% { transform: scale(1); }
+	30% { transform: scale(1); }
+	40% { transform: scale(1.08); }
+	50% { transform: scale(1); }
+	60% { transform: scale(1); }
+	70% { transform: scale(1.05); }
+	80% { transform: scale(1); }
+	100% { transform: scale(1); }
+}
+
+
+/**********************************************/
+
 /**********PROFILE END************************/
 .hide{
     display: none;
@@ -296,8 +334,11 @@ a{
         background-repeat: no-repeat;
     }
 
-    .logOut{
+    .logOut, .modal-content{
         margin-top: 50%;
+    }
+    .modal-content h2{
+        font-size: 2em;
     }
 
     .photo-container{
@@ -319,17 +360,27 @@ a{
         box-shadow: 10px 19px 14px 11px black;
     }
 
-    .photo-container::after{
+    .edit-photo{
         width: 25px;
         height: 25px;
         bottom: 20%;
         right: 12%;
     }
-    .profile-data p:nth-child(2)::before{
+    .edit-text{
         width: 25px;
         height: 25px;
         bottom: 10%;
         right: 2%;
+    }
+    .email-container input{
+        width: 90%;
+        margin-left: 4%;
+    }
+
+    .email-container button{
+        margin: 5px 5%;
+        display: inline-block;
+        width: 40%;
     }
 
 }
