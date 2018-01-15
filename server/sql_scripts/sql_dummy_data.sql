@@ -32,11 +32,11 @@ INSERT INTO `state_actions` (`story_id`, `state_id`, `action`, `next_state_id`) 
 (1, 3, 'proceed', '1');
 
 
-INSERT INTO `stories` (`name`, `story_id`, `story_img`, `status`) VALUES
-('Prologue', 1, 'images/story_img_1.jpg', 1),
-('Story X', 2, 'images/story_img_2.jpg', 0),
-('Story Y', 3, 'images/story_img_3.jpg', 0),
-('Epilogue', 4, 'images/story_img_4.jpg', 0);
+INSERT INTO `stories` (`name`, `story_img`, `status`) VALUES
+('Prologue', 'images/story_img_1.jpg', 1),
+('Story X', 'images/story_img_2.jpg', 0),
+('Story Y', 'images/story_img_3.jpg', 0),
+('Epilogue', 'images/story_img_4.jpg', 0);
 
 
 
