@@ -63,8 +63,8 @@ CREATE TABLE `augmented_reality` (
 
 DROP TABLE IF EXISTS `stories`;
 CREATE TABLE `stories` (
+  `id` smallint(5) UNSIGNED NOT NULL AUTO_INCREMENT,
   `name` varchar(50) NOT NULL,
-  `story_id` smallint(5) NOT NULL,
   `story_img` varchar(50) NOT NULL,
   `status` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;

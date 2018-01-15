@@ -71,7 +71,6 @@ app.post('/state', (req, res)=>{
 
         res.send(output);
     });
-
 });
 
 app.post('/action', (req, res) => {
