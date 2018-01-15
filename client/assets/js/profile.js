@@ -11,13 +11,10 @@ function handleEventHandlers(){
 
   editText.addEventListener("click", function(){
       makeInput(this)
-      console.log("hey");
   })
   noBtn.addEventListener("click",function(){
      logOutModal.classList.add("hide");
  }); //gets the user back to the profile page
-
-
 
   confirm.addEventListener("click", function(){
       logOutModal.classList.remove("hide")
@@ -36,7 +33,7 @@ function moveGhost(){
 }
 
 //the email is replaced with an input element .
-function makeInput(elem){
+function makeInput(){
     const fragment = document.createDocumentFragment();
     const form = document.createElement("form")
     const input = document.createElement("input")
@@ -44,26 +41,50 @@ function makeInput(elem){
     const cancel = document.createElement("button")
     form.classList.add("email-container");
     input.type="email";
-    input.placeholder="Current Email: "+elem.previousSibling.innerHTML;
+    input.placeholder=event.target.previousSibling.innerHTML;
     input.pattern="^[a-zA-Z0-9.!#$%&’*+\/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$"
+    input.required=true;
     input.classList.add("email-input");
     submit.textContent="Submit";
-    // submit.type="button";
     cancel.type="button";
+    cancel.classList.add("cancel");
     submit.onclick=function(){
         if(this.previousSibling.value.match(/^[a-zA-Z0-9.!#$%&’*+\/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/)){
             document.querySelector('.modal').classList.remove('hide');
             console.log(this.previousSibling.value)
         }
     }
+    cancel.onclick=function(){
+        revertInput();
+    }
     cancel.textContent="Cancel"
     form.appendChild(input);
     form.appendChild(submit);
     form.appendChild(cancel)
     fragment.appendChild(form);
-    elem.parentNode.replaceWith(fragment);
+    event.target.parentNode.replaceWith(fragment);
 }
-
+//
+function revertInput(){
+    const fragment = document.createDocumentFragment();
+    const paragraph = document.createElement('p');
+    const emailSpan = document.createElement('span');
+    const userSpan = document.createElement('span');
+    const editImg = document.createElement('img');
+    emailSpan.classList.add("profile-details");
+    paragraph.classList.add("email");
+    userSpan.classList.add("user-details-email");
+    editImg.classList.add("edit-text");
+    emailSpan.textContent="EMAIL: ";
+    userSpan.textContent=document.querySelector('.email-container input').placeholder
+    editImg.src="assets/images/profile/edittext.png";
+    editImg.onclick=makeInput()
+    paragraph.appendChild(emailSpan);
+    paragraph.appendChild(userSpan);
+    paragraph.appendChild(editImg);
+    fragment.appendChild(paragraph);
+    event.target.parentNode.replaceWith(fragment);
+}
 
 /******************************************/
 /******** AXIOS CALL ***********************/

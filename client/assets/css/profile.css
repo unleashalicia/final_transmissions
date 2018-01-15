@@ -211,11 +211,6 @@ nav ul li::before{
     justify-content: space-between;
 }
 
-.submit, .cancel{
-    width: 45%;
-    background-color: black;
-    color: white;
-}
 
 p{
     margin: 0;
