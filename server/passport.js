@@ -4,6 +4,7 @@ const mysql = require('mysql');
 const { credentials, crypt } = require('./database');
 const connection = mysql.createConnection(credentials);
 
+
 function userSearchSQL(userHandle) {
 	let sql = "SELECT * FROM ?? WHERE ?? = ?";
 	let inserts = ['users', 'user_name', userHandle];

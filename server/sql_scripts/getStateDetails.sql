@@ -8,8 +8,13 @@ CREATE PROCEDURE `getUserStateDetails` (
   )  READS SQL DATA
 
     BEGIN
+<<<<<<< HEAD
       SELECT ar.marker,
        	 l.latitude AS lat, l.longitude AS lon, l.outer_threshold, l.inner_threshold,
+=======
+  SELECT s.state_details, a.outer_audio_url, a.inner_audio_url, ar.marker,
+       	 l.latitude, l.longitude, l.outer_threshold, l.inner_threshold,
+>>>>>>> c3043cf88055421074c8c4a207cc23d16ef6a027
          sa.action
 
       FROM user_stories AS us
