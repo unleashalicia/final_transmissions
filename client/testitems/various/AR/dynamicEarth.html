@@ -27,13 +27,40 @@
     <title>Earth Test</title>
     <link rel="stylesheet" type="text/css" href="ARstyle.css" />
 
-    <script src="../../../assets/lib/AR.js-master/aframe/examples/vendor/aframe/build/aframe.js"></script>
-    <script src="../../../assets/lib/AR.js-master/aframe/build/aframe-ar.js"></script>
+    <script src="../../../assets/lib/aframe.js"></script>
+    <script src="../../../assets/lib/aframe-ar.js"></script>
 </head>
+
+<script>
+    AFRAME.registerComponent('log', {
+        schema: {type: 'string'},
+        init: function () {
+            var stringToLog = this.data;
+            console.log(stringToLog);
+        }
+    });
+</script>
 
 <body style='margin : 0px; overflow: hidden;'>
 
+    <!--<a-scene embedded artoolkit='sourceType: webcam;'>-->
 
+        <!--<a-assets>-->
+            <!--<video src="./dust.ogv" id="dust" autoplay loop="true"></video>-->
+        <!--</a-assets>-->
+
+        <!--<a-marker preset='hiro'>-->
+            <!--<a-entity>-->
+                 <!--<a-box src='#dust' height="2" width="2" depth="2" material="opacity: 0.9" position="0 0.5 0">-->
+                    <!--<a-animation attribute="rotation"-->
+                        <!--dur="5000"-->
+                        <!--to="0 0 360"-->
+                        <!--repeat="indefinite">-->
+                    <!--</a-animation>-->
+                 <!--</a-box>-->
+            <!--</a-entity>-->
+            <!--</a-marker>-->
+    <!--</a-scene>-->
 
 
 </body>
@@ -67,16 +94,17 @@
             {
                 shape: "box",
                 dimensions: {
-                    height: "2",
-                    width: "2",
-                    depth: "2"
+                    height: "1",
+                    width: "1",
+                    depth: "1"
                 },
                 material: {
                     opacity: "0.9"
                 },
+                position: "0 0.5 0",
                 otherAttr: {
+//                    position: "0 0.5 0",
                     src: "#dust",
-                    position: "0 0.5 0",
                     rotation: "0 0 0"
                 },
                 animations: [
@@ -97,7 +125,7 @@
         var body = document.getElementsByTagName('BODY')[0];
 
         var sceneEl = document.createElement('a-scene');
-        sceneEl.setAttribute('embedded');
+        sceneEl.setAttribute('embedded', 'true');
         sceneEl.setAttribute('artoolkit', 'sourceType: webcam;');
 
         var assetsEl = document.createElement('a-assets');
@@ -122,9 +150,21 @@
             var entityEl = document.createElement('a-entity');
             var shapeEl = document.createElement(`a-${object.entities[entity_i].shape}`);
 
-            setAttributes(shapeEl, object.entities.dimensions);
+
+            ////////
+
+
+            setAttributes(shapeEl, object.entities[entity_i].dimensions);
             shapeEl.setAttribute("opacity", object.entities[entity_i].material.opacity);
-            setAttributes(shapeEl, object.entities.otherAttr);
+//            entityEl.setAttribute("position", object.entities[entity_i].otherAttr.position);
+            setAttributes(shapeEl, object.entities[entity_i].otherAttr);
+            shapeEl.setAttribute("position", object.entities[entity_i].position);
+
+
+            console.log(shapeEl);
+
+
+            ////////
 
             for (var animation_i = 0; animation_i < object.entities[entity_i].animations.length; animation_i++) {
                 var animationEl = document.createElement('a-animation');
@@ -141,6 +181,10 @@
     window.addEventListener("load", function(){
         createScene(earthSceneObj);
     });
+
+    window.addEventListener("markerFound", function(){
+        console.log("markerFound!");
+    })
 
 
 
