@@ -35,8 +35,11 @@ module.exports = function (app, passport) {
 	});
 
 	app.get('/library', isLoggedIn, (req, res) => {
-		res.render("library",{
-			//enter data to be passed to template
+		let sql = `SELECT * FROM stories`
+		connection.query(sql(err,result,fields)=>{
+			res.render("library",{
+				storydata: result
+			});
 		});
 	});
 
