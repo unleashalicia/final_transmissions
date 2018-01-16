@@ -58,36 +58,11 @@ module.exports = function (app, passport) {
 				startLon: results[0].start_lat,
 				timeEstimate: results[0].est_time,
 				storyImg: results[0].story_img,
-
+				storyTitle: results[0].name
 			});
 		});
 	});
 
-	[
-	    [
-	        {
-	            "story_id": 1,
-	            "start_lat": "33.6347489",
-	            "start_lon": "-117.7406006",
-	            "description": "This is our prologue story yeah woohoo sup the sky",
-	            "state_id": 2
-	        }
-	    ],
-	    [
-	        {
-	            "chapter_name": "Epilogue to our first story",
-	            "state_id": 1
-	        },
-	        {
-	            "chapter_name": "Our first chapter",
-	            "state_id": 2
-	        },
-	        {
-	            "chapter_name": "Our second chapter",
-	            "state_id": 3
-	        }
-	    ]
-	]
 
 	app.get('/st/', (req,res) => {
 		res.sendFile(path.join(__dirname, '..', '..', 'client', 'story.html'));
