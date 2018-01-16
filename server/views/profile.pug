@@ -3,42 +3,56 @@ html
         meta(charset="utf-8")
         meta(name="viewport" content="width=device-width, initial-scale=1.0")
         script(src="assets/js/profile.js" type="text/javascript")
+        link(rel="stylesheet" href="assets/css/fog.css" type="text/css")
         link(rel="stylesheet" href="assets/css/profile.css" type="text/css")
         title Profile Page
 
     body
         #user-container
+            .fogwrapper
+                #foglayer_01.fog
+                    .image01
+                    .image02
+                #foglayer_02.fog
+                    .image01m
+                    .image02
+                #foglayer_03.fog
+                    .image01
+                    .image02
+            .modal.hide
+                .modal-content
+                    h2 Confirming Request...
             .logOut-container.hide
                 .logOut
                     h2 Confirm Log Out
-                    button Yes
-                    button No
+                    button
+                        a(href="/logout") Yes
+                    button.no No
             nav
                 ul
-                    li.profile Profile
-                    li.stories Stories
-                    li.log-out Log Out &#8594;
-            .instruction.hide
-                div
-                    div You can only experience the story on a mobile device
-                        span [close]
+                    li.to-instructions 
+                        a(href="/instructions") Profile
+                    li.to-library 
+                        a(href="/library") Stories
+                    li.log-out Log Out 
             .profile-container
-                div
-                    img.profile-photo(src="assets/images/profile/cat.jpg")
+                h1 USER PROFILE
+                .photo-container
+                    img#profile-photo.profile-photo(src="assets/images/profile/cat.jpg")
+                    img.polaroid(src="assets/images/profile/polaroid.png")
+                    img.edit-photo(src="assets/images/profile/editicon.png")
                 .profile-data
                     p
                         span.profile-details USERNAME:
                         span.user-details-name= username
-                        span.edit EDIT
-                    p
+                    p.email
                         span.profile-details EMAIL:
                         span.user-details-email= email
-                        span.edit EDIT
-                    form.account-settings.hide
-                        label username
-                        input.username(name="username" type="text")
-                        label email
-                        input.email(name="email" type="email")
-                        .button-holder
-                            button.submit SUBMIT CHANGES
-                            button.cancel CANCEL
+                        img.edit-text(src="assets/images/profile/edittext.png")
+                    .story-container-Inside
+                        h3 CURRENT STORIES 
+                        .story-list 
+                            // generate dynamically based on user data
+                            li 
+                                a(href="#") Skittles Monster
+git 
