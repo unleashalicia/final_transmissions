@@ -3,7 +3,7 @@ body{
     margin: 0;
     background-color: black;
     font-family: walpergens;
-    background-image: url(../images/profile/lanternbg.jpeg);
+    background-image: url(../images/profile/profilebg.jpg);
     background-size: cover;
     background-repeat: no-repeat;
     background-position: right;
@@ -149,7 +149,7 @@ nav ul li::before{
     width: 60%;
     padding: 2%;
     line-height: 2em;
-    background: rgba(0,0,0,0.5);
+    /* background: rgba(0,0,0,0.5); */
     border-radius: 10px;
 }
 
@@ -325,7 +325,7 @@ a{
     body{
         width: 100vw;
         height: 100vh;
-        background-image: url(../images/profile/lanternbgmobile.jpg);
+        background-image: url(../images/profile/profilebgmobile.jpg);
         background-position: center;
         background-size: cover;
         background-repeat: no-repeat;
