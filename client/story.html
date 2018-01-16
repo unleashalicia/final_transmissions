@@ -10,37 +10,40 @@
 </head>
 <body>
     <Section id="container">
-        <nav>
-            <h1 class="title">Prologue</h1>
-            <img class="hamburger" src="assets/images/story/hamburger.png">
-            <ul class="menu">
-                <li><a href="/profile">Profile</a></li>
-                <li><a href="/library">Library</a></li>
-                <li><a href="/logout">Log Out</a></li>
-            </ul>
-        </nav>
+        <div class="button-container">
+            <a href="/profile"><button class="nav-btn">Profile</button></a>
+            <a href="/library"><button class="nav-btn">Library</button></a>
+            <a href="/logout"><button class="nav-btn">Log Out</button></a>
+        </div>
+        <h1 class="title">Prologue</h1>
         <div class="img-container">
             <img class="story-img" src="assets/images/library/stairs.jpg">
         </div>
+        <a class="go-link">
+            <button class="go-btn">Go!</button>
+        </a>
         <div class="about">
             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Architecto debitis dolorum eos inventore nulla officia omnis quod reiciendis similique veniam?</p>
         </div>
+        <p class="time">Estimated time: 0:30:00</p>
         <div>
             <h2>Chapters</h2>
+            <!-- create with loop based on # chapters in story -->
             <ol class="chapters-list">
-                <li>Lorem ipsum dolor sit amet.</li>
-                <li>Lorem ipsum dolor amet, consectetur elit.</li>
-                <li>Lorem ipsum dolor sit amet, tetur.</li>
-                <li>Lorem ipsum dolor sit amet.</li>
+                <li class='chapter'>Lorem ipsum dolor sit amet.</li>
+                <li class='chapter'>Lorem ipsum dolor</li>
+                <li class='chapter'>Lorem dolor sit amet, tetur.</li>
+                <li class='chapter'>Lorem ipsum dolor sit amet.</li>
             </ol>
         </div>
-        <div class="progressBar">
+        <!-- <div class="progressBar">
             <div id="barStatus"></div>
         </div>
         <br>
-        <button class="progress-btn" onclick="move()">Click Me</button>
-        <div class="map"></div>
+        <button class="progress-btn" onclick="move()">Click Me</button> -->
+        <div id="map"></div>
     </Section>
     <script src="assets/js/story.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCXqyuEI8wFxFvczjGjlbim35FAuco0oCU&callback=initMap" async defer></script>
 </body>
 </html>

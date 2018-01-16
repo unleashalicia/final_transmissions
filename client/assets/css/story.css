@@ -21,43 +21,49 @@ body {
 
 /******** nav bar ******************/
 
-nav {
-    text-align: center;
-}
-
 .title {
     text-align: center;
     font-size: 8vmin;
     display: inline-block;
+    margin: 0 0 5% 0;
 }
 
-.menu {
-    list-style: none;
-    display: none;
-    padding: 5% 2%;
-    font-size: 1.25em;
-    position: absolute;
-    top: 5%;
-    right: 0;
-    text-align: center;
+.button-container {
+    height: 10vw;
+    width: 95%;
+    margin: 7% auto;
+    display: flex;
+    justify-content: space-between;
 }
 
-.menu li a {
-    text-decoration: none;
-    color: white;
+a {
+    position: relative;
 }
 
-.menu-display {
-    display: block;
+button {
+    position: relative;
+    border: 2px solid whitesmoke;
+    border-radius: 5%;
+    background-color: rgba(235, 235, 235, .3);
+    color: whitesmoke;
+    font-size: 3.5vmin;
+    font-family: de-walpergens-pica, serif;
+    font-weight: bold;
+    letter-spacing: 1.10px;
+    text-shadow: 1px 1px #252222;
+    /*z-index: 1000;*/
 }
 
-.hamburger {
-    width: 40px;
-    height: 40px;
-    position: absolute;
-    top: 4%;
-    right: 5%;
-    filter: invert(100%);
+button:hover {
+    background-color: rgba(235, 235, 235, .7);
+    color: #252222;
+    text-shadow: none;
+}
+
+.nav-btn {
+    height: 100%;
+    width: 28vw;
+    z-index: 300;
 }
 
 /*********** Nav End  ************/
@@ -74,52 +80,54 @@ nav {
     border-radius: 2%;
 }
 
+.go-link {
+    margin-top: 5%;
+    display: block;
+    height: 6vh;
+}
+
+.go-btn {
+    position: relative;
+    height: 100%;
+    width: 20vw;
+    background-color: rgba(83, 80, 76, 0.8);
+    text-shadow: none;
+    font-size: 4.5vmin;
+    color: white;
+}
+
+.go-btn:hover {
+    border-color: whitesmoke;
+    background-color: rgba(34, 32, 29, 0.8);
+    color: white;
+}
+
 .about {
     margin: 5% 7%;
+}
+
+.time {
+    border-bottom: 1px solid whitesmoke;
+    border-top: 1px solid whitesmoke;
+    margin: auto;
+    width: 80%;
+    padding: 5% 0;
 }
 
 .chapters-list {
     padding: 0 20%;
     list-style-type: upper-roman;
+    margin-bottom: 10%;
 }
 
-/*.menu > li {*/
-    /*background-color: whitesmoke;*/
-/*}*/
-
-/************ Progress bar ****************/
-.progressBar {
-    position: relative;
-    width: 70%;
-    height: 25px;
-    background-color: #434240;
-    margin: auto;
-    border-radius: 5%;
-}
-
-#barStatus {
-    position: absolute;
-    height: 100%;
-    background-color: #5a1c1c;
-}
-
-.progress-btn {
-    background-color: #5a1c1c;
-    color: white;
-    border-radius: 5%;
+.chapter-complete {
+    text-decoration: line-through;
 }
 
 
-/*********** Progress Bar End ***********/
-
-
-.map {
-    background-image: url('../images/story/map.png');
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: center;
+#map {
     height: 250px;
-    width: 80%;
+    width: 250px;
     margin: 5% auto;
     border: 1px solid whitesmoke;
     border-radius: 1%;
