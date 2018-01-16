@@ -14,19 +14,19 @@ html(lang="en")
                     button.nav-btn Library
                 a(href="/logout")
                     button.nav-btn Log Out
-            h1.title= storyTitle
+            h1.title= storyDetails.name
             .img-container
-                img.story-img(src="assets/" + storyImg)
+                img.story-img(src="assets/" + storyDetails.story_img)
             a.go-link(href="/play")
                 button.go-btn Go!
             .about
-                p= storyBlurb
-            p.time Estimated time: #{timeEstimate}
+                p= storyDetails.description
+            p.time Estimated time: #{storyDetails.est_time}
                 h2 Chapters
                 
                 ol.chapters-list
-                    each item in chapters
-                        li.chapter= item
+                    each val in chapterDetails
+                        li.chapter= val.chapter_name
                     
             #map
             p.starting-point Starting Point:
