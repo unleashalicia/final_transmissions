@@ -19,18 +19,18 @@ function handleEventHandlers(){
   confirm.addEventListener("click", function(){
       logOutModal.classList.remove("hide")
   }) // shows log out confirm modal.
-  moveGhost();//ghost animation
+  // moveGhost();//ghost animation
 }
 
-
-function moveGhost(){
-    const ghost = document.querySelector(".ghost")
-    setInterval(()=>{
-        const x = Math.ceil(Math.random()*290)+"%";
-        const y = Math.ceil(Math.random()*-290)+"%";
-        ghost.style=`transform: translate(${x},${y})`
-    },3000)
-}
+//
+// function moveGhost(){
+//     const ghost = document.querySelector(".ghost")
+//     setInterval(()=>{
+//         const x = Math.ceil(Math.random()*290)+"%";
+//         const y = Math.ceil(Math.random()*-290)+"%";
+//         ghost.style=`transform: translate(${x},${y})`
+//     },3000)
+// }
 
 //the email is replaced with an input element .
 function makeInput(){

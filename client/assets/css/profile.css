@@ -149,7 +149,7 @@ nav ul li::before{
     width: 60%;
     padding: 2%;
     line-height: 2em;
-    background: rgba(0,0,0,0.5);
+    /* background: rgba(0,0,0,0.5); */
     border-radius: 10px;
 }
 
