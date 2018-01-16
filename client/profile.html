@@ -1,99 +1,70 @@
 <!DOCTYPE html>
 <html>
-  <head>
+<head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src='http://use.edgefonts.net/de-walpergens-pica.js'></script>
-    <script src="https://code.jquery.com/jquery-3.1.0.js"></script>
     <script src="assets/js/profile.js" type="text/javascript"></script>
+    <link rel="stylesheet" href="assets/css/fog.css" type="text/css"/>
     <link rel="stylesheet" href="assets/css/profile.css" type="text/css"/>
     <title>Profile Page</title>
-  </head>
-  <body>
+</head>
+<body>
     <div id="user-container">
-      <div class="logOut-container hide">
-        <div class="logOut">
-          <h2> Confirm Log Out </h2>
-          <button> Yes </button> <button> No </button>
+<!--************FOG ELEMENTS************************-->
+    <div class="fogwrapper">
+        <div id="foglayer_01" class="fog">
+           <div class="image01"></div>
+           <div class="image02"></div>
         </div>
-      </div>
-      <nav>
-        <ul>
-          <li class="profile">Profile</li>
-          <li class="stories">Stories</li>
-          <li class="log-out">Log Out &#8594;</li>
-        </ul>
-      </nav>
-      <div class="instruction hide">
-          <div>
-              <div>You can only experience the story on a mobile device <span>[close]</span></div>
-          </div>
-      </div>
-      <div class="profile-container hide">
-        <div>
-          <img class="profile-photo" src="assets/images/profile/cat.jpg" />
+        <div id="foglayer_02" class="fog">
+           <div class="image01"></div>
+           <div class="image02"></div>
         </div>
-        <div class="profile-data">
-          <p><span class="profile-details">USERNAME:</span><span class="user-details-name">xXxjeffmonxL33TxXx</span><span class="edit">EDIT</span></p>
-          <p><span class="profile-details">EMAIL:</span> <span class="user-details-email">jeffmon@tacocats.yum</span><span class="edit">EDIT</span></p>
-          <form class="account-settings hide">
-              <label>username</label>
-              <input class="username" name="username" type="text"/>
-              <label>email</label>
-              <input class="email" name="email" type="email" />
-              <div class="button-holder">
-                <button class="submit"> SUBMIT CHANGES </button><button class="cancel"> CANCEL </button>
-              </div>
-          </form>
+        <div id="foglayer_03" class="fog">
+           <div class="image01"></div>
+           <div class="image02"></div>
         </div>
-      </div>
-        <ul class="list-container">
-          <li class="story-list">The Limegreen Kid
-            <figure title="Click to know story" class='hide story board1'>
-               <div class="caption">
-                   <h3>Lorem </h3>
-                   <p>Sheep at, terrifying and crazy gory. Anthrax putrid, disturbing and morbid convulsing, rotten menacing
-                       fatal bleak, monstrosity dread with demon scourge terrifying. Witch ashes eyeball undead, in bury burn
-                       hell flames. Demons in fallen angel non terror decompose.</p>
-                   <!-- <div class="progress-container">Progress: <span>0</span></div> -->
-                   <button class="experience" href="/play">Go on Experience</button>
-               </div>
-           </figure>
-          </li>
-          <li class="story-list">Sourpatch Horror
-            <figure title="Click to know story" class='story board2'>
-                <div class="caption">
-                    <h3>Lorem</h3>
-                    <p>Rotten teeth. Screams creaking tension kettle our exorcist. Undead obsession tear horrifying, a devil
-                        fiendish tense in. Eyeball cat silent, morbid in damp torture, 666 at brains. Dungeon in a gruesome, a
-                        disembowel unknown. In willow trees, killer dolls are rotten teeth bite, sheep children viru.</p>
-                    <button class="experience" href="#">Go on Experience</button>
+    </div>
+<!--************FOG ELEMENTS*************************-->
+        <div class="modal hide">
+            <div class="modal-content">
+                <h2>Confirming Request...</h2>
+            </div>
+        </div>
+        <div class="logOut-container hide">
+            <div class="logOut">
+                <h2> Confirm Log Out </h2>
+                <button><a href="/logout"> Yes </a></button> <button class="no"> No </button>
+            </div>
+        </div>
+        <nav>
+            <ul>
+                <li class="to-instructions"><a href="/instructions"> Instructions</a></li>
+                <li class="to-library"><a href="/library">Library</a></li>
+                <li class="log-out">Log Out</li>
+            </ul>
+        </nav>
+        <div class="profile-container">
+            <h1> USER PROFILE </h1>
+            <div class="photo-container">
+                <img id="profile-photo" class="profile-photo"  src="assets/images/profile/cat.jpg" />
+                <img  class="polaroid" src="assets/images/profile/polaroid.png" />
+                <img class="edit-photo" src="assets/images/profile/editicon.png"/>
+            </div>
+            <div class="profile-data">
+                <p><span class="profile-details">USERNAME:</span><span class="user-details-name">xXxjeffmonxL33TxXx</span></p>
+                <p class="email"><span class="profile-details">EMAIL:</span> <span class="user-details-email">jeffmon@tacocats.yum</span><img class="edit-text" src="assets/images/profile/edittext.png"/></p>
+                <div class="story-container-inside">
+                    <h3>CURRENT STORIES</h3>
+                    <ul class="story-list">
+                        <li><a href="#">Cookies Inside the Sewing Kit</a></li>
+                        <li><a href="#">Silent Farts</a></li>
+                        <li><a href="#">Banana Black Spots</a></li>
+                        <li><a href="#">Skittles Monster</a></li>
+                    </ul>
                 </div>
-            </figure>
-          </li>
-          <li class="story-list">The Lost Socks
-            <figure title="Click to know story" class='story board3'>
-                <div class="caption">
-                    <h3>Lorem</h3>
-                    <p>Slicing with murderer gore. Suicide Slash demon at convulsing darkness a evil pain burn. Psycho crazy
-                        mental hospital moon. Graves slice ominous is guns exorcism guts. Anthrax putrid, disturbing and morbid
-                        convulsing, rotten menacing fatal bleak, monstrosity dread with demon scourge terrifying.</p>
-                    <button class="experience" href="#">Go on Experience</button>
-                </div>
-            </figure>
-          </li>
-          <li class="story-list">The Tortilla Bits Under The Bed
-            <figure title="Click to know story" class='story board4'>
-                <div class="caption">
-                    <h3>Lorem</h3>
-                    <p>Choking helpless. Graves slice ominous is guns exorcism guts. Haunt sliced at choking cut drool. Mental
-                        hospital sliced drowning. Blood guns bury scream, stab graveyard crazed dark crying. Flames at the
-                        crazy.</p>
-                    <button class="experience" href="#">Go on Experience</button>
-                </div>
-            </figure>
-          </li>
-        </ul>
-  </div>
-  </body>
+            </div>
+        </div>
+    </div>
+</body>
 </html>
