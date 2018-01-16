@@ -1,3 +1,8 @@
+@font-face {
+    font-family: walpergens;
+    src: url(../fonts/walpergens.ttf);
+}
+
 body{
     height:  100vh;
     margin: 0;
@@ -18,9 +23,7 @@ body{
 nav ul{
     padding: 0 2%;
     text-align: center;
-    /* display: flex;
-    justify-content: space-around */
-
+    margin-top: 0;
 }
 
 nav ul li {
@@ -51,6 +54,44 @@ nav ul li::before{
     color: white;
 }
 
+.button-container {
+    display: none;
+    height: 10vw;
+    width: 95%;
+    margin: auto;
+    margin-top: 2%;
+    justify-content: space-between;
+}
+
+a {
+    position: relative;
+}
+
+button {
+    position: relative;
+    border: 2px solid whitesmoke;
+    border-radius: 5%;
+    background-color: rgba(235, 235, 235, .3);
+    color: whitesmoke;
+    font-size: 3.5vmin;
+    font-family: walpergens;
+    font-weight: bold;
+    letter-spacing: 1.10px;
+    text-shadow: 1px 1px #252222;
+    /*z-index: 1000;*/
+}
+
+button:hover {
+    background-color: rgba(235, 235, 235, .7);
+    color: #252222;
+    text-shadow: none;
+}
+
+.nav-btn {
+    height: 100%;
+    width: 28vw;
+}
+
 /******LOG OUT*************************/
 .logOut-container, .modal{
     position: absolute;
@@ -66,24 +107,27 @@ nav ul li::before{
     margin: 20% auto;
     text-align: center;
 }
-
+.logOut h2{
+    font-size: 3em;
+}
 .logOut button{
     font-family: walpergens;
-    font-size: 22px;
+    font-size: 50px;
     background-color: black;
     color: white;
     border: 1.5px solid white;
     cursor: pointer;
 }
-.logOut button:hover{
-    background-color: white
+.logOut button:hover,.logOut button a:hover{
+    background-color: white;
+    border: 1.5px solid black;
     color: black;
     border: black;
 }
 
 /******LOG OUT*************************/
 /****************PROFILE MENU START*******/
-.profile-container, .story-container{
+.profile-container{
     color: white;
     margin: auto;
     width: 90%;
@@ -219,16 +263,10 @@ p{
     position: relative;
 }
 
-.story-container{
-    display: none;
-    width: 60%;
-    margin: auto;
-    background-color: rgba(0,0,0,0.5);
-}
-
 .story-container-inside{
     width: 90%;
     text-align: center;
+    margin-top: 5%;
 }
 
 .story-container-inside h3{
@@ -331,14 +369,35 @@ a{
         background-repeat: no-repeat;
     }
 
-    nav ul li{
+    /* nav ul li{
         margin: auto;
         font-size: 1em;
+    }
+
+    nav ul li::after{
+        display: none;
+    }
+
+    nav ul li::before{
+        display: none;
+    } */
+
+    nav{
+        display: none;
+    }
+
+    .button-container{
+        display: flex;
     }
 
     .logOut, .modal-content{
         margin-top: 50%;
     }
+
+    .logOut button{
+        font-size: 30px;
+    }
+
     .modal-content h2{
         font-size: 2em;
     }
@@ -354,8 +413,8 @@ a{
         font-size: 1em;
     }
 
-    .story-container{
-        display: block;
+    .story-container-inside{
+        margin-top: 20%;
     }
 
     .profile-photo{
@@ -388,8 +447,3 @@ a{
 }
 
 /*********MEDIA QUERY***************************/
-
-@font-face {
-    font-family: walpergens;
-    src: url(../fonts/walpergens.ttf);
-}
