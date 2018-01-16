@@ -34,11 +34,29 @@ module.exports = function (app, passport) {
 		});
 	});
 
+	app.get('/library', isLoggedIn, (req, res) => {
+		let sql = `SELECT * FROM stories`
+		connection.query(sql,(err,result,fields)=>{
+			res.render("library",{
+				storydata: result
+			});
+		});
+	});
+
+	//example: ghost.brianmevans.com/story/id/5
+	app.get('/story/id/:id', isLoggedIn, (req, res) => {
+		let story_id = req.params.id
+		res.render("story",{
+			//enter data to be passed to template
+		});
+	});
+
 	app.get('/play', isLoggedIn, (req, res) => {
 	    res.sendFile(path.join(__dirname, '..', '..', 'client', 'meter-index.html'));
 	});
 
 }
+
 
 
 function isLoggedIn(req, res, next) {

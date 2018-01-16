@@ -4,6 +4,7 @@ document.addEventListener('DOMContentLoaded', handleEventHandlers);
 
 function handleEventHandlers(){
   //**will segregate these handlers in later configurations**//
+
   const confirm = document.querySelector(".log-out");
   const noBtn = document.querySelector(".no");
   const logOutModal = document.querySelector(".logOut-container");
