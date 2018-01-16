@@ -51,9 +51,11 @@ module.exports = function (app, passport) {
 		});
 	});
 
-	app.get('/st/', (req,res) => {
+
+	app.get('/st', (req,res) => {
 		res.sendFile(path.join(__dirname, '..', '..', 'client', 'story.html'));
 	});
+
 
 	app.get('/play', isLoggedIn, (req, res) => {
 	    res.sendFile(path.join(__dirname, '..', '..', 'client', 'meter-index.html'));
