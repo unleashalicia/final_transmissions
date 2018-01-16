@@ -46,6 +46,20 @@ app.get('/library', (req,res) => {
 
 
 
+app.get('/story', (req, res)=>{
+    const query = `CALL getStoryPageDetails(1, 1)`;
+
+    connection.query(query, function(error, data){
+        if (!error){
+            const formattedData = formatStateData(data);
+            res.send(formattedData);
+        } else {
+            res.send(error);
+        }
+    });
+})
+
+
 app.post('/state', (req, res)=>{
     let output = {
         success: false,
@@ -108,11 +122,8 @@ function formatStateData(data) {
     for (let i = 0; i < data.length - 1; i++) {
         semiFormattedData.push(data[i]);
     }
-    for (let i = 0; i < semiFormattedData.length; i++) {
-        fullyFormattedData.push(semiFormattedData[i][0]);
-    }
 
-    return fullyFormattedData;
+    return semiFormattedData;
 }
 
 

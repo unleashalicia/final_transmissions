@@ -72,13 +72,13 @@ CREATE TABLE `stories` (
 
 
 
-
 DROP TABLE IF EXISTS `story_details`;
 CREATE TABLE `story_details` (
   `story_id` smallint(5) NOT NULL,
   `start_lat` varchar(30) NOT NULL,
   `start_lon` varchar(30) NOT NULL,
-  `description` varchar(400) NOT NULL
+  `description` varchar(400) NOT NULL,
+  `est_time` varchar(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 

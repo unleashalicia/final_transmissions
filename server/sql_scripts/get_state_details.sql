@@ -1,5 +1,6 @@
 DELIMITER $$
 
+
 DROP PROCEDURE IF EXISTS `getUserStateDetails`
     $$
 CREATE PROCEDURE `getUserStateDetails` (

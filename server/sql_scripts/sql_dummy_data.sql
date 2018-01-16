@@ -39,5 +39,9 @@ INSERT INTO `stories` (`name`, `story_img`, `status`) VALUES
 ('Epilogue', 'images/library/story_img_4.jpg', 0);
 
 
+INSERT INTO `story_details` (`story_id`, `start_lat`, `start_lon`, `description`, `est_time`) VALUES
+(1, '33.6347489', '-117.7406006', 'This is our prologue story yeah woohoo sup the sky', '00:30:00');
+
+
 
 COMMIT;
