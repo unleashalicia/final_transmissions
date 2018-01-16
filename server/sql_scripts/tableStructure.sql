@@ -78,7 +78,8 @@ CREATE TABLE `story_details` (
   `start_lat` varchar(30) NOT NULL,
   `start_lon` varchar(30) NOT NULL,
   `description` varchar(400) NOT NULL,
-  `est_time` varchar(10) NOT NULL
+  `est_time` varchar(10) NOT NULL,
+  `start_address` VARCHAR(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 
