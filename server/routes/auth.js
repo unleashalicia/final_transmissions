@@ -50,7 +50,7 @@ module.exports = function (app, passport) {
 		let sql = `CALL getStoryPageDetails(${req.user.id},${story_id})`;
 
 		connection.query(sql,(err,result,fields)=>{
-			//chapters will be 'results[1][0].chapter_name' for example
+			console.log(result);
 			res.render("story",{
 				storyDetails: result[0],
 				chapterDetails: result[1]
