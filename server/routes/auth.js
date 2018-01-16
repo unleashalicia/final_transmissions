@@ -55,13 +55,6 @@ module.exports = function (app, passport) {
 			res.render("story",{
 				storyDetails: result[0][0],
 				chapterDetails: result[1]
-				// chapters: result[1],
-				// storyBlurb: result[0].description,
-				// startLat: result[0].start_lat,
-				// startLon: result[0].start_lat,
-				// timeEstimate: result[0].est_time,
-				// storyImg: result[0].story_img,
-				// storyTitle: result[0].name
 			});
 		});
 	});
