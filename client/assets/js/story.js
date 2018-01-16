@@ -17,8 +17,8 @@ function initMap() {
     map = new google.maps.Map(document.getElementById('map'), {
         center: {lat: 33.6348729, lng: -117.7405317},
         zoom: 14,
-        disableDefaultUI: true,
-        draggable: false,
+        disableDefaultUI: false,
+        draggable: true,
         styles: [
           {
             "elementType": "geometry",
@@ -32,7 +32,7 @@ function initMap() {
             "elementType": "labels",
             "stylers": [
               {
-                "visibility": "off"
+                "visibility": "on"
               }
             ]
           },
@@ -132,7 +132,7 @@ function initMap() {
         ]
     });
 
-    var iconBase = './assets/images/story/raven.png';
+    var iconBase = './assets/images/story/raven2.png';
     marker = new google.maps.Marker({
         position: {
             lat: 33.6348729,

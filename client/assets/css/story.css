@@ -2,10 +2,15 @@
     box-sizing: border-box;
 }
 
+@font-face {
+   font-family: walpergens;
+   src: url(../fonts/walpergens.ttf);
+}
+
 body {
     margin: 0;
     padding: 0;
-    font-family: de-walpergens-pica, serif;
+    font-family: walpergens, serif;
     color: white;
     background-color: black;
     background-image: url('../images/story/background_dark.jpg');
@@ -69,6 +74,7 @@ button:hover {
 /*********** Nav End  ************/
 
 .img-container {
+
     width: 45%;
     margin: auto;
 }
@@ -131,4 +137,13 @@ button:hover {
     margin: 5% auto;
     border: 1px solid whitesmoke;
     border-radius: 1%;
+}
+
+.starting-point {
+    margin-bottom: 0;
+}
+
+.address {
+    padding: 0 10%;
+    margin-top: 0;
 }
