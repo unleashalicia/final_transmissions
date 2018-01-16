@@ -52,13 +52,13 @@ module.exports = function (app, passport) {
 		connection.query(sql,(err,result,fields)=>{
 			//chapters will be 'results[1][0].chapter_name' for example
 			res.render("story",{
-				chapters: results[1],
-				storyBlurb: results[0].description,
-				startLat: results[0].start_lat,
-				startLon: results[0].start_lat,
-				timeEstimate: results[0].est_time,
-				storyImg: results[0].story_img,
-				storyTitle: results[0].name
+				chapters: result[1],
+				storyBlurb: result[0].description,
+				startLat: result[0].start_lat,
+				startLon: result[0].start_lat,
+				timeEstimate: result[0].est_time,
+				storyImg: result[0].story_img,
+				storyTitle: result[0].name
 			});
 		});
 	});
