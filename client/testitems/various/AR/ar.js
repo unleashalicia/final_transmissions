@@ -1,151 +1,17 @@
 
-
-
-
-
-
-var earthSceneObj = {
-    assets: [
-        {
-            src: "./AR_Assets/dust.ogv",
-            id: "dust",
-            autoplay: "true",
-            loop: "true"
-        }
-    ],
-    marker: {
-        preset: "hiro"
-    },
-    entities: [
-        {
-            type: "shape",
-            shape: "box",
-            dimensions: {
-                height: "1",
-                width: "1",
-                depth: "1"
-            },
-            material: {
-                opacity: "0.9"
-            },
-            otherAttr: {
-                src: "#dust",
-                position: "0 0.5 0",
-                rotation: "0 0 0"
-            },
-            animations: [
-                {
-                    attribute: "rotation",
-                    dur: "5000",
-                    to: "0 0 360",
-                    repeat: "indefinite"
-                }
-            ]
-        }
-    ]
-};
-
-var waterSceneObj = {
-    assets: [
-        {
-            src: "./Rain%20-%2078.mp4",
-            id: "water1",
-            autoplay: "false",
-            loop: "true"
-        },
-        {
-            src: "./Rain%20-%2078.mp4",
-            id: "water2",
-            autoplay: "false",
-            loop: "true"
-        }
-    ],
-    marker: {
-        preset: "hiro"
-    },
-    entities: [
-
-        {
-            type: "shape",
-            shape: "octahedron",
-            dimensions: {
-                radius: "1"
-            },
-            material: {
-                opacity: "0.9"
-            },
-            otherAttr: {
-                src: "#water1",
-                position: "-2 0.5 0",
-                rotation: "0 0 0"
-            },
-            animations: [
-                {
-                    attribute: "rotation",
-                    dur: "5000",
-                    to: "360 360 360",
-                    easing: "linear",
-                    repeat: "indefinite"
-                },
-                {
-                    attribute: "position",
-                    dur: "3000",
-                    from: "-2 0.5 0",
-                    to: "-2 0.5 -3",
-                    direction: "alternate-reverse",
-                    easing: "linear",
-                    repeat: "indefinite"
-                }
-            ]
-        },
-        {
-            type: "shape",
-            shape: "octahedron",
-            dimensions: {
-                radius: "1.5"
-            },
-            material: {
-                opacity: "0.9"
-            },
-            otherAttr: {
-                src: "#water2",
-                position: "2 0.5 -3",
-                rotation: "0 0 0"
-            },
-            animations: [
-                {
-                    attribute: "rotation",
-                    dur: "5000",
-                    to: "-360 -360 -360",
-                    easing: "linear",
-                    repeat: "indefinite"
-                },
-                {
-                    attribute: "position",
-                    dur: "3000",
-                    from: "2 0.5 -3",
-                    to: "2 0.5 0",
-                    direction: "alternate-reverse",
-                    easing: "linear",
-                    repeat: "indefinite"
-                }
-            ]
-        }
-    ]
-};
-
-
 /*
 
-Quickly set multiple attributes.  Takes in element and an object full or attributes made of key/value pairs.
+setAttributes function:
+Input: element and an object with key/value pairs for attributes.
+Output:
 
  */
 
 
-function setAttributes(el, attributeObj) {
+function setAttributes(element, attributeObj) {
 
     for (let item in attributeObj){
-        el.setAttribute(item, attributeObj[item]);
+        element.setAttribute(item, attributeObj[item]);
     }
 
 }
@@ -155,11 +21,12 @@ function setAttributes(el, attributeObj) {
 
 function createScene(object){
 
-    var body = document.getElementById('BODY')[0];
-    console.log("I'm here");
+    //Create body variable, scene, and assets and append
+
+    var body = document.getElementsByTagName('BODY')[0];
 
     var scene = document.createElement('a-scene');
-    scene.setAttribute('embedded');
+    scene.setAttribute('embedded', 'true');
     scene.setAttribute('artoolkit', 'sourceType: webcam;');
 
     var assets = document.createElement('a-assets');
@@ -168,43 +35,76 @@ function createScene(object){
     body.appendChild(scene);
     scene.appendChild(assets);
 
+    //Create asset items and append to assets
+
 
     for (var assets_i=0; assets_i<object.assets.length; assets_i++){
         var assetItem = document.createElement('video');
         setAttributes(assetItem, object.assets[assets_i]);
         assets.appendChild(assetItem);
-    }
+    } //end asset loop
+
+    //Create marker and append
 
     var marker = document.createElement('a-marker');
     marker.setAttribute("preset", object.marker.preset);
     scene.appendChild(marker);
 
-    for (var entity_i=0; entity_i<object.entities.length; entity_i++) {
+    //Create entities and set attributes
 
-        var entity = document.createElement('a-entity');
-        var shape = document.createElement(`a-${object.entities[entity_i].shape}`);
+    for (var shape_i=0; shape_i < object.entities[0].shapes.length; shape_i++) {
+        var entityShape = document.createElement('a-entity');
+        var shapeObj = object.entities[0].shapes[shape_i];
+        var shape = document.createElement(`a-${shapeObj.shape}`);
 
-        setAttributes(shape, object.entities[entity_i].dimensions);
-        shape.setAttribute("opacity", object.entities[entity_i].material.opacity);
-        setAttributes(shape, object.entities[entity_i].otherAttr);
+        setAttributes(shape, shapeObj.dimensions);
+        shape.setAttribute("opacity", shapeObj.material.opacity);
+        setAttributes(shape, shapeObj.otherAttr);
 
+        //Create Animations and add to shapes
 
-        for (var animation_i = 0; animation_i < object.entities[entity_i].animations.length; animation_i++) {
+        for (var animation_i = 0; animation_i < shapeObj.animations.length; animation_i++) {
             var animation = document.createElement('a-animation');
-            setAttributes(animation, object.entities[entity_i].animations[animation_i]);
+            setAttributes(animation, shapeObj.animations[animation_i]);
             shape.appendChild(animation);
-        }
+        } //end animation loop
 
-        entity.appendChild(shape);
-        marker.appendChild(entity);
-    }
-}
+        //Append shape to entity and entity to marker
+
+        entityShape.appendChild(shape);
+        marker.appendChild(entityShape);
+    } //end shape loop
+
+    /*
+    Create light entities.
+    This currently isn't working.  Come back to this.
+     */
+
+    if (object.entities.length>1){
+
+        for(var light_i=0; light_i < object.entities[1].lights.length; light_i++){
+            var entityLight = document.createElement('a-entity');
+            var lightAttr = object.entities[1].lights[light_i].attributes;
+
+
+            //Set light attributes
+
+            entityLight.setAttribute("light", `type: ${lightAttr.type}; angle: ${lightAttr.angle}; color: ${lightAttr.color}; intensity: ${lightAttr.intensity}`);
+
+
+            //Append lights to marker
+
+            marker.appendChild(entityLight);
+        } //end light for loop
+
+    } //end lights conditional
+} //end createScene
 
 
 //Both of these are for testing.  Will be different in final version
 
 window.addEventListener("load", function(){
-    createScene(earthSceneObj);
+    createScene(waterSceneObj);
 });
 
 window.addEventListener("markerFound", function(){
