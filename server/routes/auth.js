@@ -47,6 +47,7 @@ module.exports = function (app, passport) {
 	//example: ghost.brianmevans.com/story/id/5
 	app.get('/story/id/:id', isLoggedIn, (req, res) => {
 		let story_id = req.params.id;
+		console.log('StoryID: ' + story_id,'UserId: ' + req.user.id);
 		let sql = `CALL getStoryPageDetails(${req.user.id},${story_id})`;
 
 		connection.query(sql,(err,result,fields)=>{
