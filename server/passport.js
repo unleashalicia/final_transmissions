@@ -4,6 +4,7 @@ const mysql = require('mysql');
 const { credentials, crypt } = require('./database');
 const connection = mysql.createConnection(credentials);
 
+
 function userSearchSQL(userHandle) {
 	let sql = "SELECT * FROM ?? WHERE ?? = ?";
 	let inserts = ['users', 'user_name', userHandle];
@@ -68,6 +69,7 @@ module.exports = {
         passport.use('local-signin', new LocalStrategy(localConfig,
             function (req, userHandle, password, done) {
                 let sql = userSearchSQL(userHandle);
+
 
                 connection.query(sql, function (err, results, fields) {
 

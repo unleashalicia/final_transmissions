@@ -1,0 +1,257 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: auto;
+    padding: 0;
+    font-family: de-walpergens-pica, serif;
+    overflow: hidden;
+    height: 100vh;
+    width: 100vw;
+}
+
+#story-container {
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+.button-container {
+    height: 10vw;
+    width: 95%;
+    margin: auto;
+    display: flex;
+    justify-content: space-between;
+}
+
+a {
+    position: relative;
+}
+
+button {
+    position: relative;
+    border: 2px solid whitesmoke;
+    border-radius: 5%;
+    background-color: rgba(235, 235, 235, .3);
+    color: whitesmoke;
+    font-size: 3.5vmin;
+    font-family: de-walpergens-pica, serif;
+    font-weight: bold;
+    letter-spacing: 1.10px;
+    text-shadow: 1px 1px #252222;
+    /*z-index: 1000;*/
+}
+
+button:hover {
+    background-color: rgba(235, 235, 235, .7);
+    color: #252222;
+    text-shadow: none;
+}
+
+.nav-btn {
+    height: 100%;
+    width: 28vw;
+    z-index: 300;
+    margin-top: 20%;
+}
+
+.triangle-left {
+    width: 0;
+    height: 0;
+    border-top: 10px solid transparent;
+    border-right: 20px solid rgba(235, 235, 235,.9);
+    border-bottom: 10px solid transparent;
+    position: absolute;
+    top: 41%;
+    left: 20px;
+    transform: translate(-50%, -50%);
+    z-index: 300;
+}
+
+.triangle-right {
+    width: 0;
+    height: 0;
+    border-top: 10px solid transparent;
+    border-left: 20px solid rgba(235, 235, 235,.9);
+    border-bottom: 10px solid transparent;
+    position: absolute;
+    top: 41%;
+    right: 0%;
+    transform: translate(-50%, -50%);
+    z-index: 300;
+
+}
+
+.title {
+    height: 20%;
+    position: relative;
+    top: 52%;
+    background-color: rgba(235, 235, 235, .5);
+    width: 100%;
+    color: whitesmoke;
+    text-align: center;
+    z-index: 100;
+}
+
+.title > h1 {
+    position: relative;
+    top: 15%;
+    margin: 0;
+    font-size: 10.5vmin;
+    text-shadow: 1px 1px #252222;
+}
+
+.go-link {
+    position: relative;
+    display: block;
+    top: 44%;
+    left: 40%;
+    height: 6vh;
+}
+
+.go-btn {
+    position: relative;
+    height: 100%;
+    width: 20vw;
+    background-color: rgba(83, 80, 76, 0.8);
+    text-shadow: none;
+    font-size: 4.5vmin;
+    color: white;
+}
+
+.go-btn:hover {
+    border-color: whitesmoke;
+    background-color: rgba(34, 32, 29, 0.8);
+    color: white;
+}
+
+/**************** swipe css ****************/
+
+img {
+    margin: auto;
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    width: 100vw;
+    height: 100vh;
+    line-height: 250px;
+    text-align: center;
+}
+
+.story {
+    height: 100vh;
+    /*width: 100vw;*/
+    display: none;
+}
+
+.hide-img {
+    display: none;
+}
+
+.show-img {
+    display: block;
+}
+
+.lock-container {
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 200;
+    background-color: rgba(37, 35, 35, 0.1);
+}
+
+.lock {
+    margin: auto;
+    width: 50vw;
+    height: 30vh;
+    text-align: center;
+    filter: invert(95%);
+    position: absolute;
+    bottom: 25%;
+    left: 0;
+}
+
+.display-go {
+    z-index: 300;
+}
+
+/************ Media Queries ****************/
+
+@media screen and (min-width: 560px){
+    .go-link {
+        top: 55%;
+        left: 65%;
+    }
+}
+
+@media screen and (min-width: 760px){
+    .go-link {
+        top: 55%;
+        left: 65%;
+    }
+
+    .lock {
+        width: 20vw;
+        bottom: 20%;
+    }
+}
+
+@media screen and (min-width: 980px) {
+
+    body {
+        background-color: black;
+        max-width: 980px;
+    }
+
+    #story-container {
+        max-width: 980px;
+        /*position: absolute;*/
+        /*left: 10%;*/
+    }
+
+    img {
+        max-width: 980px;
+    }
+
+    .button-container {
+        width: 100%;
+        height: 6vw;
+        margin: 0;
+    }
+
+    .nav-btn {
+        width: 25vw;
+        margin-top: 15%;
+    }
+
+    .go-btn {
+        width: 15vw;
+        background-color: rgba(235, 235, 235, .3);
+        text-shadow: 1px 1px #252222;
+    }
+
+    .go-btn:hover {
+        background-color: rgba(235, 235, 235, .7);
+        color: #252222;
+        text-shadow: none;
+    }
+}
+
+@media screen and (min-width: 1050px){
+
+    .nav-btn {
+        width: 20vw;
+    }
+}
+
+@media screen and (min-width: 1300px){
+
+    .nav-btn {
+        width: 15vw;
+    }
+}

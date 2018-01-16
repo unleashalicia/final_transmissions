@@ -47,4 +47,28 @@
     </div>
 </div>
 </body>
+<script>
+    function submitSignup() {
+        console.log('where am i????');
+        axios({
+            url: "/signup",
+            method: "POST",
+            responseType: "document",
+            data: {
+                email: document.querySelector(".sign input[name='email']").value,
+                password: document.querySelector(".sign input[name='password']").value,
+                user_name: document.querySelector(".sign input[name='user_name']").value
+            }
+        }).then(function(response) {
+            console.log(response);
+            console.log("This is the page that will be redirected to: ", response.data.URL);
+            window.location = response.data.URL; // Will need to be modified
+                                                 // Essentially is used to redirect when you have a successful response
+        }).catch(function(error) {
+            console.log(error,'Axios issue');
+            // Looks like you may want to implement the
+        });
+
+    }
+</script>
 </html>
