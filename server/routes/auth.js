@@ -35,7 +35,8 @@ module.exports = function (app, passport) {
 	});
 
 	app.get('/library', isLoggedIn, (req, res) => {
-		let sql = `SELECT * FROM stories`
+		let sql = `SELECT * FROM stories`;
+
 		connection.query(sql,(err,result,fields)=>{
 			res.render("library",{
 				storydata: result
@@ -45,9 +46,14 @@ module.exports = function (app, passport) {
 
 	//example: ghost.brianmevans.com/story/id/5
 	app.get('/story/id/:id', isLoggedIn, (req, res) => {
-		let story_id = req.params.id
-		res.render("story",{
-			//enter data to be passed to template
+		let story_id = req.params.id;
+		let sql = `CALL getStoryPageDetails(${req.user.id},${story_id})`;
+
+		connection.query(sql,(err,result,fields)=>{
+			res.render("story",{
+				storyDetails: result[0][0],
+				chapterDetails: result[1]
+			});
 		});
 	});
 
