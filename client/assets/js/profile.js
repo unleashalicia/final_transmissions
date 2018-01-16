@@ -3,39 +3,30 @@ document.addEventListener('DOMContentLoaded', handleEventHandlers);
 
 
 function handleEventHandlers(){
-  //**will segregate these handlers in later configurations**//
 
-  const confirm = document.querySelector(".log-out");
+  const confirm = document.querySelectorAll(".log-out");
   const noBtn = document.querySelector(".no");
   const logOutModal = document.querySelector(".logOut-container");
   const editText = document.querySelector(".edit-text");
 
 
   editText.addEventListener("click", function(){
-      makeInput(this)
+      makeInput(this)//for email to input change
   })
   noBtn.addEventListener("click",function(){
      logOutModal.classList.add("hide");
  }); //gets the user back to the profile page
 
-
-  confirm.addEventListener("click", function(){
-      logOutModal.classList.remove("hide")
-  }); // shows log out confirm modal.
+ for(let i=0;i<confirm.length;i++){
+     confirm[i].addEventListener("click", function(){
+         logOutModal.classList.remove("hide")
+     }); // adds it to the two separate button // shows log out confirm modal.
+ }
 }
 
-//
-// function moveGhost(){
-//     const ghost = document.querySelector(".ghost")
-//     setInterval(()=>{
-//         const x = Math.ceil(Math.random()*290)+"%";
-//         const y = Math.ceil(Math.random()*-290)+"%";
-//         ghost.style=`transform: translate(${x},${y})`
-//     },3000)
-// }
 
-//the email is replaced with an input element .
-function makeInput(){
+
+function makeInput(){//the email is replaced with an input element
     const fragment = document.createDocumentFragment();
     const form = document.createElement("form")
     const input = document.createElement("input")
@@ -66,8 +57,9 @@ function makeInput(){
     fragment.appendChild(form);
     event.target.parentNode.replaceWith(fragment);
 }
-//function reverting the input back to email
-function revertInput(){
+
+
+function revertInput(){//function reverting the input back to email
     const fragment = document.createDocumentFragment();
     const paragraph = document.createElement('p');
     const emailSpan = document.createElement('span');
@@ -88,10 +80,9 @@ function revertInput(){
     event.target.parentNode.replaceWith(fragment);
 }
 
-/******************************************/
-/******** AXIOS CALL ***********************/
-/*****************************************/
-function updateEmail(elem){
+
+
+function updateEmail(elem){// dummy axios call to be filled up when the change to email is going to be implemented
 const inputData = elem.previousSibling.value
     axios.put({
         url: "/email",
@@ -107,26 +98,3 @@ const inputData = elem.previousSibling.value
         console.error(errorMsg, error);
     });
 }
-
-/******************************************/
-/******** AXIOS CALL ***********************/
-/*****************************************/
-
-// function handleSubmit(){
-//     event.preventDefault();
-//     var usernameInput = document.querySelector(".username").value;
-//     var emailInput= document.querySelector(".email").value;
-//     var account = document.querySelectorAll(".account-settings")[0];
-//     account.classList.add("hide")
-//     console.log(".username", usernameInput, "& .email" , emailInput);
-//     document.querySelector(".username").value="";
-//     document.querySelector(".email").value="";
-// }
-//
-// function handleCancel(){
-//   event.preventDefault();
-//    document.querySelector(".username").value="";
-//    document.querySelector(".email").value="";
-//    var account = document.querySelectorAll(".account-settings")[0];
-//    account.classList.add("hide")
-// }
