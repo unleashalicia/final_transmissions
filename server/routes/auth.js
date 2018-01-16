@@ -35,7 +35,8 @@ module.exports = function (app, passport) {
 	});
 
 	app.get('/library', isLoggedIn, (req, res) => {
-		let sql = `SELECT * FROM stories`
+		let sql = `SELECT * FROM stories`;
+
 		connection.query(sql,(err,result,fields)=>{
 			res.render("library",{
 				storydata: result
@@ -45,11 +46,48 @@ module.exports = function (app, passport) {
 
 	//example: ghost.brianmevans.com/story/id/5
 	app.get('/story/id/:id', isLoggedIn, (req, res) => {
-		let story_id = req.params.id
-		res.render("story",{
-			//enter data to be passed to template
+		let story_id = req.params.id;
+		let sql = `CALL getStoryPageDetails(${req.user.id},${story_id})`;
+
+		connection.query(sql,(err,result,fields)=>{
+			//chapters will be 'results[1][0].chapter_name' for example
+			res.render("story",{
+				chapters: results[1],
+				storyBlurb: results[0].description,
+				startLat: results[0].start_lat,
+				startLon: results[0].start_lat,
+				timeEstimate: results[0].est_time,
+				storyImg: results[0].story_img,
+
+			});
 		});
 	});
+
+	[
+	    [
+	        {
+	            "story_id": 1,
+	            "start_lat": "33.6347489",
+	            "start_lon": "-117.7406006",
+	            "description": "This is our prologue story yeah woohoo sup the sky",
+	            "state_id": 2
+	        }
+	    ],
+	    [
+	        {
+	            "chapter_name": "Epilogue to our first story",
+	            "state_id": 1
+	        },
+	        {
+	            "chapter_name": "Our first chapter",
+	            "state_id": 2
+	        },
+	        {
+	            "chapter_name": "Our second chapter",
+	            "state_id": 3
+	        }
+	    ]
+	]
 
 	app.get('/st/', (req,res) => {
 		res.sendFile(path.join(__dirname, '..', '..', 'client', 'story.html'));
