@@ -1,3 +1,4 @@
+
 body{
   margin: 0;
   overflow: hidden;
@@ -238,3 +239,8 @@ button{
 
 
 /*******MOBILE STYLING END**********/
+
+@font-face {
+    font-family: de-walpergens-pica;
+    src: url(../fonts/im-fell-dw-pica.cs.ttf);
+}

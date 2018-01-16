@@ -34,6 +34,35 @@ module.exports = function (app, passport) {
 		});
 	});
 
+	app.get('/library', isLoggedIn, (req, res) => {
+		let sql = `SELECT * FROM stories`;
+
+		connection.query(sql,(err,result,fields)=>{
+			res.render("library",{
+				storydata: result
+			});
+		});
+	});
+
+	//example: ghost.brianmevans.com/story/id/5
+	app.get('/story/id/:id', isLoggedIn, (req, res) => {
+		let story_id = req.params.id;
+		let sql = `CALL getStoryPageDetails(${req.user.id},${story_id})`;
+
+		connection.query(sql,(err,result,fields)=>{
+			res.render("story",{
+				storyDetails: result[0][0],
+				chapterDetails: result[1]
+			});
+		});
+	});
+
+
+	app.get('/st', (req,res) => {
+		res.sendFile(path.join(__dirname, '..', '..', 'client', 'story.html'));
+	});
+
+
 	app.get('/play', isLoggedIn, (req, res) => {
 	    res.sendFile(path.join(__dirname, '..', '..', 'client', 'meter-index.html'));
 	});

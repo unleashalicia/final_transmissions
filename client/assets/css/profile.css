@@ -1,296 +1,448 @@
+@font-face {
+    font-family: walpergens;
+    src: url(../fonts/walpergens.ttf);
+}
+
 body{
-  margin: 0;
+    height:  100vh;
+    margin: 0;
+    background-color: black;
+    font-family: walpergens;
+    background-image: url(../images/profile/profilebg.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: right;
+}
+
+#user-container{
+    height: 100%;
+    position: relative;
 }
 
 
-@keyframes slideDown {
-  0%{ top: -200%}
-  100%{top: 0}
-}
 nav ul{
-  text-align: center;
-  padding-right: 3%;
-  display: flex;
-  justify-content: space-around;
-
+    padding: 0 2%;
+    text-align: center;
+    margin-top: 0;
 }
 
 nav ul li {
-  display: inline-block;
-  color: white;
-  list-style-type: none;
-  pointer: cursor;
+    margin: 0 5%;
+    font-size: 2em;
+    display: inline-block;
+    color: white;
+    list-style-type: none;
+    cursor: pointer;
+    text-transform: uppercase;
 }
+
+nav ul li:hover{
+    animation: noise-3 1s infinite;
+}
+
+nav ul li::after{
+    content: "|";
+    font-size: 1.5em;
+    margin-left: 0.5em;
+    color: white;
+}
+
+nav ul li::before{
+    content: "|";
+    font-size: 1.5em;
+    margin-right: 0.5em;
+    color: white;
+}
+
+.button-container {
+    display: none;
+    height: 10vw;
+    width: 95%;
+    margin: auto;
+    margin-top: 2%;
+    justify-content: space-between;
+}
+
+a {
+    position: relative;
+}
+
+button {
+    position: relative;
+    border: 2px solid whitesmoke;
+    border-radius: 5%;
+    background-color: rgba(235, 235, 235, .3);
+    color: whitesmoke;
+    font-size: 3.5vmin;
+    font-family: walpergens;
+    font-weight: bold;
+    letter-spacing: 1.10px;
+    text-shadow: 1px 1px #252222;
+    /*z-index: 1000;*/
+}
+
+button:hover {
+    background-color: rgba(235, 235, 235, .7);
+    color: #252222;
+    text-shadow: none;
+}
+
+.nav-btn {
+    height: 100%;
+    width: 28vw;
+}
+
 /******LOG OUT*************************/
-.logOut-container{
-  position: absolute;
-  z-index: 5;
-  color: white;
-  width: 100%;
-  background-color: rgba(0,0,0,0.8);
-  height: 100%;
+.logOut-container, .modal{
+    position: absolute;
+    z-index: 5;
+    color: white;
+    width: 100%;
+    background-color: rgba(0,0,0,0.8);
+    height: 100%;
 }
 
-.logOut{
-  position: relative;
-  margin: 50% auto;
-  text-align: center;
+.logOut, .modal-content{
+    position: relative;
+    margin: 20% auto;
+    text-align: center;
 }
-
+.logOut h2{
+    font-size: 3em;
+}
 .logOut button{
-  background-color: black;
-  color: white;
-  border: 1.5px solid white;
-  pointer: cursor;
+    font-family: walpergens;
+    font-size: 50px;
+    background-color: black;
+    color: white;
+    border: 1.5px solid white;
+    cursor: pointer;
 }
-.logOut button:hover{
-  background-color: white
-  color: black;
-  border: black;
+.logOut button:hover,.logOut button a:hover{
+    background-color: white;
+    border: 1.5px solid black;
+    color: black;
+    border: black;
 }
 
 /******LOG OUT*************************/
 /****************PROFILE MENU START*******/
 .profile-container{
-  color: white;
-  position: absolute;
-  z-index: 2;
-  background-color: black;
-  width: 100%;
-  height: 95%;
-}
-.profile-container div:nth-child(1){
-  background: white;
-  border-radius: 50%;
-  width: 27vmin;
-  height: 27vmin;
-  margin: auto;
-  padding: 1.5% .5%;
+    color: white;
+    margin: auto;
+    width: 90%;
+    text-align: center;
 }
 
+.profile-container >h1{
+    font-size: 2.5em;
+    margin: 2% 0 2% 0;
+    text-shadow: 5px 5px 2px black;
+}
+
+.photo-container{
+    display: inline-block;
+    position: relative;
+    vertical-align: top;
+    margin: auto;
+    width: 33vmin;
+    height: 38vmin;
+    padding: 1.5% .5%;
+}
+
+.polaroid, .profile-photo{
+    position: absolute;
+    width: 90%;
+    display: block;
+}
+
+
 .profile-photo{
-  border-radius: 50%;
-  width: 92%;
+    width: 70%;
+    top: 10.5%;
+    left: 10%;
+    transform: rotateZ(-5deg);
+    box-shadow: 21px 56px 19px 24px #00000094;
+}
+
+.edit-photo{
+    background-image: url(../images/profile/editicon.png);
+    background-size: cover;
+    display: inline-block;
+    position: absolute;
+    content: "";
+    width: 35px;
+    height: 35px;
+    bottom: 29%;
+    right: 12%;
+    border-radius: 50%;
+    border: 1px solid white;
+    cursor: pointer;
+}
+
+.edit-photo:hover{
+    filter: invert(100%);
 }
 
 .profile-data{
-  margin-top: 10%;
-  text-align: left;
-  padding-left: 5%;
-  line-height: 2em;
+    margin: auto;
+    text-align: left;
+    display: inline-block;
+    vertical-align: bottom;
+    font-size: 2em;
+    width: 60%;
+    padding: 2%;
+    line-height: 2em;
+    /* background: rgba(0,0,0,0.5); */
+    border-radius: 10px;
 }
 
-a, .profile-details{
-  margin-right: 2%;
-  text-decoration: none;
-  color: red;
+.edit-text{
+    background-image: url(../images/profile/edittext.png);
+    background-size: cover;
+    display: inline-block;
+    position: absolute;
+    content: "";
+    width: 30px;
+    height: 30px;
+    bottom:  17%;
+    right: 5%;
+    border-radius: 50%;
+    border: 1px solid white;
+    cursor: pointer;
 }
 
-.account-settings{
-  margin: 2% 2%;
-  display: flex;
-  flex-direction: column;
+.edit-text:hover{
+    filter: invert(100%);
 }
 
-.account-settings input{
-  width: 60% ;
-  margin: 2% 0;
-}
-.edit{
-  border: 1px solid white;
-  margin-right: 5%;
-  float: right;
-  clear: both;
-  font-size: 10px;
-  padding: 0 10px;
+.profile-details{
+    font-weight: bolder;
+    margin-right: 2%;
+    text-decoration: none;
+    color: #62a3be;
 }
 
-.edit:hover, .edit:active{
-  border-color: black;
-  color: black;
-  background-color: white;
+.email-container input{
+    height: 25px;
+    width: 50%;
+    display: inline-block;
+    border-radius: 5px;
+    margin-right: 2%;
 }
+
+.email-container button{
+    cursor: pointer;
+    font-family: walpergens;
+    background: transparent;
+    margin-right: 1%;
+    color: white;
+    height: 45px;
+    font-size: 1em;
+    border-radius: 10px;
+}
+
+.email-container button:hover{
+    background-color: black;
+    color: white;
+}
+
+.email-container input:invalid{
+    border:5px solid red;
+}
+
 .button-holder{
-  width: 60%;
-  display: flex;
-  justify-content: space-between;
-}
-
-.submit, .cancel{
-  width: 45%;
-  background-color: black;
-  color: white;
+    width: 60%;
+    display: flex;
+    justify-content: space-between;
 }
 
 
-
-
-
-/****************PROFILE MENU END*******/
-.instruction{
-  position: absolute;
-  background-color: rgba(0,0,0,0.7);
-  height: 100%;
-  width: 100%;
-  z-index: 50;
-}
-.instruction>div{
-  position: absolute;
-  color: white;
-  font-size: 5vmin;
-  animation: float 5s infinite;
-}
-.instruction div div span{
-  cursor: pointer;
-}
-.instruction div div span:hover{
-  color: grey;
+p{
+    margin: 0;
+    position: relative;
 }
 
-#user-container{
-  position: absolute;
-  background: black;
-  font-family: de-walpergens-pica, serif;
-  height: 100vh;
-  width: 100%;
-  text-align: center;
-
+.story-container-inside{
+    width: 90%;
+    text-align: center;
+    margin-top: 5%;
 }
-.list-container{
-  margin-top: 15%;
-  padding:0 10%;
+
+.story-container-inside h3{
+    margin: 0;
+    border-bottom: 1px dotted white;
+    border-top: 1px dotted white;
 }
 .story-list{
-  color: white;
-  list-style-type: none;
-  border: 1px solid white;
+    padding: 0;
+
 }
-.caption{
-  background-color: rgba(0,0,0,0.5);
-  padding: 10px;
-  position: relative;
-  height: 96%;
-  transition: 1s;
+.story-list li{
+    list-style-type: none;
+    line-height: 1.5em;
+    cursor: pointer;
 }
-.caption h3{
-  font-size: 5vmin;
+a{
+    text-decoration: none;
+    color: white;
 }
-.caption p{
-  height: 90%;
-  font-size: 1.5em;
-  font-family: Arial;
+
+.story-list li:hover{
+    animation: noise-3 1s infinite;
+}
+
+.ghost{
+    position: absolute;
+    display: inline-block;
+    height: 30%;
+    opacity: 0;
+    bottom: -10%;
+    transition: 1s;
+    animation: spook 8s linear infinite;
+}
+.ghost img{
+    height: 100%;
+}
+
+/***************MODAL***************************/
+.modal-content h2{
+    animation: pulse 2s infinite;
+    font-size: 3em;
 }
 
 
-.experience{
-  position: absolute;
-  left: 5%;
-  width: 90%;
-  height: 10%;
-  bottom: 2%;
-  border: 1px solid white;
-  padding: 3px;
-  color: white;
-  font-size: 3vmin;
-  cursor: pointer;
-  background-color: transparent;
-  border-radius: 5%;
-  text-align: center;
+@keyframes pulse {
+	0% { transform: scale(1); }
+	30% { transform: scale(1); }
+	40% { transform: scale(1.08); }
+	50% { transform: scale(1); }
+	60% { transform: scale(1); }
+	70% { transform: scale(1.05); }
+	80% { transform: scale(1); }
+	100% { transform: scale(1); }
 }
 
-.experience:hover{
-  color: black;
-  background: white;
-}
 
-.experience:focus {
-  outline: 0;
-}
+/**********************************************/
 
-.story{
-  margin: 0;
-  height: 70vh;
-  width: 100%;
-  display: none;
-  float: left;
-  border: 5px solid black;
-  box-sizing: border-box;
-  color: white;
-  transition: 1s;
-  transform-style: preserve-3d;
-}
-
-h3,p{
-  margin: 0;
-}
-.board1{
-  background-image: url(../images/cover3.jpg);
-  background-position: center;
-  background-size: cover;
-  background-repeat: no-repeat;
-}
-.board2{
-  background-image: url(../images/cover4.jpg);
-  background-position: center;
-  background-size: cover;
-  background-repeat: no-repeat;
-}
-.board3{
-  background-image: url(../images/cover1.jpg);
-  background-position: center;
-  background-size: cover;
-  background-repeat: no-repeat;
-}
-.board4{
-  background-image: url(../images/cover2.jpg);
-  background-position: center;
-  background-size: cover;
-  background-repeat: no-repeat;
-}
 /**********PROFILE END************************/
 .hide{
-  display: none;
+    display: none;
 }
 
 .slideDown{
-  display: block;
-  animation: slideDown;
+    display: block;
+    animation: slideDown;
 }
+/************KEY FRAMES*************************/
+
+@keyframes slideDown {
+    0%{ top: -200%}
+    100%{top: 0}
+}
+
+@keyframes spook {
+    0{opacity: 0}20%{opacity: 0.4}30%{opacity: 0} 72%{opacity: 0}80%{opacity: .7}98%{opacity: 0};
+
+}
+
+@keyframes noise-3 {
+    0%, 3%, 5%, 42%, 44%, 100% {opacity: 1; transform: scaleY(1);}
+    4.3% {opacity: 1; transform: scaleY(1.7);}
+    43% {opacity: 1; transform: scaleX(1.5);}
+}
+
+
+/***********KEY FRAMES END***********************/
+
 
 /*******MOBILE STYLING  START**********/
 @media only screen and (max-width: 770px) {
-    .story{
-      text-align: left;
-      height: 70vh;
-      width: 100%;
-      border: 0;
-      color: white;
-    }
-    .caption p{
-      font-size: 80%;
-    }
-    .board1{
-      background-image: url(../images/cover3.jpg);
-      background-size: cover;
-      background-repeat: no-repeat;
-    }
-    .board2{
-      background-image: url(../images/cover4.jpg);
-      background-size: cover;
-      background-repeat: no-repeat;
-      background-position: left;
-    }
-    .board3{
-      background-image: url(../images/cover1.jpg);
-      background-size: cover;
-      background-repeat: no-repeat;
-    }
-    .board4{
-      background-image: url(../images/cover2.jpg);
-      background-size: cover;
-      background-repeat: no-repeat;
+
+    body{
+        width: 100vw;
+        height: 100vh;
+        background-image: url(../images/profile/profilebgmobile.jpg);
+        background-position: center;
+        background-size: cover;
+        background-repeat: no-repeat;
     }
 
+    /* nav ul li{
+        margin: auto;
+        font-size: 1em;
+    }
+
+    nav ul li::after{
+        display: none;
+    }
+
+    nav ul li::before{
+        display: none;
+    } */
+
+    nav{
+        display: none;
+    }
+
+    .button-container{
+        display: flex;
+    }
+
+    .logOut, .modal-content{
+        margin-top: 50%;
+    }
+
+    .logOut button{
+        font-size: 30px;
+    }
+
+    .modal-content h2{
+        font-size: 2em;
+    }
+
+    .photo-container{
+        height: 36vmin;
+        width: 36vmin;
+    }
+
+    .profile-data{
+        width: 80%;
+        margin: 8%;
+        font-size: 1em;
+    }
+
+    .story-container-inside{
+        margin-top: 20%;
+    }
+
+    .profile-photo{
+        box-shadow: 10px 19px 14px 11px black;
+    }
+
+    .edit-photo{
+        width: 25px;
+        height: 25px;
+        bottom: 20%;
+        right: 12%;
+    }
+    .edit-text{
+        width: 25px;
+        height: 25px;
+        bottom: 10%;
+        right: 2%;
+    }
+    .email-container input{
+        width: 90%;
+        margin-left: 4%;
+    }
+
+    .email-container button{
+        margin: 5px 5%;
+        display: inline-block;
+        width: 40%;
+    }
 
 }
 
