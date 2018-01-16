@@ -10,6 +10,7 @@ function handleEventHandlers(){
   const logOutModal = document.querySelector(".logOut-container");
   const editText = document.querySelector(".edit-text");
 
+
   editText.addEventListener("click", function(){
       makeInput(this)
   })
@@ -17,10 +18,10 @@ function handleEventHandlers(){
      logOutModal.classList.add("hide");
  }); //gets the user back to the profile page
 
+
   confirm.addEventListener("click", function(){
       logOutModal.classList.remove("hide")
-  }) // shows log out confirm modal.
-  // moveGhost();//ghost animation
+  }); // shows log out confirm modal.
 }
 
 //
@@ -65,7 +66,7 @@ function makeInput(){
     fragment.appendChild(form);
     event.target.parentNode.replaceWith(fragment);
 }
-//
+//function reverting the input back to email
 function revertInput(){
     const fragment = document.createDocumentFragment();
     const paragraph = document.createElement('p');
