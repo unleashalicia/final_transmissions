@@ -78,7 +78,7 @@ function revertInput(){
     emailSpan.textContent="EMAIL: ";
     userSpan.textContent=document.querySelector('.email-container input').placeholder
     editImg.src="assets/images/profile/edittext.png";
-    editImg.onclick=makeInput()
+    editImg.onclick=makeInput;
     paragraph.appendChild(emailSpan);
     paragraph.appendChild(userSpan);
     paragraph.appendChild(editImg);

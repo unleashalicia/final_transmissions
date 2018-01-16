@@ -24,6 +24,8 @@ nav ul{
 }
 
 nav ul li {
+    margin: 0 5%;
+    font-size: 2em;
     display: inline-block;
     color: white;
     list-style-type: none;
@@ -327,6 +329,11 @@ a{
         background-position: center;
         background-size: cover;
         background-repeat: no-repeat;
+    }
+
+    nav ul li{
+        margin: auto;
+        font-size: 1em;
     }
 
     .logOut, .modal-content{
