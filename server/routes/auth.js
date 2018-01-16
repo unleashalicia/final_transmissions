@@ -53,7 +53,7 @@ module.exports = function (app, passport) {
 		connection.query(sql,(err,result,fields)=>{
 			console.log(result);
 			res.render("story",{
-				storyDetails: result[0],
+				storyDetails: result[0][0],
 				chapterDetails: result[1]
 				// chapters: result[1],
 				// storyBlurb: result[0].description,
