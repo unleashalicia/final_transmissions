@@ -41,10 +41,10 @@ module.exports = function (app, passport) {
 				    JOIN stories AS s
 				    ON us.story_id = s.id
 				    WHERE us.id = ${req.user.id}`;
+		// let usersql = `SELECT user_name, email FROM users`
 		connection.query(sql,(err,result,fields)=>{
 			console.log(result);
-			let un = result[0].user_name;
-			let mail = result[0].email;
+			if (results.length < 1)
 
 			res.render("profile",{
 				data: result
