@@ -104,7 +104,7 @@ function createScene(object){
 //Both of these are for testing.  Will be different in final version
 
 window.addEventListener("load", function(){
-    createScene(waterSceneObj);
+    createScene(fireSceneObj);
 });
 
 window.addEventListener("markerFound", function(){

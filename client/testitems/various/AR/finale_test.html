@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Finale Test</title>
+    <link rel="stylesheet" type="text/css" href="ARstyle.css" />
+
+    <script src="../../../assets/lib/aframe.min.js"></script>
+</head>
+<body style='margin : 0px; overflow: hidden;'>
+
+<a-scene>
+    <a-sky color="grey"></a-sky>
+    <!--<a-assets>-->
+        <video src="./AR_Assets/Ghost%20-%202318%20(1).mp4" id="ghost1" autoplay loop="true"></video>
+    <video src="./AR_Assets/Ghost%20-%202318%20(1).mp4" id="ghost2" autoplay loop="true" style="transform: rotate(90deg);"></video>
+    </a-assets>
+
+</a-scene>
+
+<script>
+
+
+
+
+    window.addEventListener("load", function () {
+        createGhosts(5);
+    });
+
+    const findRange = (start, end) => {
+        return (Math.random() * (end-start) ) + start;
+    };
+
+
+
+    const createGhosts = (amount) => {
+        const scene = document.querySelector('a-scene');
+
+
+        for (let creator=0; creator<amount; creator++){
+            let entity = document.createElement('a-entity');
+            let plane = document.createElement('a-plane');
+            let animation1 = document.createElement('a-animation');
+            let animation2 = document.createElement('a-animation');
+
+            let posX = findRange(-7, 7);
+            let posXdest = findRange(-7,7);
+
+            let posY = findRange(-7, 7);
+            let posYdest = findRange(-7, 7);
+
+            let posZ = -5;
+
+            let dur = findRange(1000, 10000);
+
+
+
+
+
+
+//            entity.setAttribute('position', {x: posX, y: posY, z: posZ});
+
+
+            if(creator%2===0) {
+                plane.setAttribute('src', '#ghost1');
+            } else {
+                plane.setAttribute('src', '#ghost2');
+            }
+
+//            plane.setAttribute('src', '#ghost1');
+
+            plane.setAttribute('style', 'transform', 'rotate(90deg)');
+            plane.setAttribute('opacity', '0.5');
+
+            plane.setAttribute('height', '2');
+            plane.setAttribute('width', '5');
+
+//            animation.setAttribute('attribute', 'scale');
+//            animation.setAttribute('from', '0.5');
+//            animation.setAttribute('to', '4');
+
+            animation1.setAttribute('attribute', 'position');
+            animation1.setAttribute('dur', dur);
+            animation1.setAttribute('from', '0' + ' ' + '1.5' + ' -5');
+            animation1.setAttribute('to', posXdest + ' ' + posYdest + ' -5');
+            animation1.setAttribute('easing', 'linear');
+            animation1.setAttribute('repeat', 'indefinite');
+
+
+            animation2.setAttribute('attribute', 'opacity');
+            animation2.setAttribute('dur', dur);
+            animation2.setAttribute('from', '0.5');
+            animation2.setAttribute('to', '0');
+            animation2.setAttribute('easing', 'linear');
+            animation2.setAttribute('repeat', 'indefinite');
+
+//            posZ = posZ-2;
+
+            entity.appendChild(animation1);
+            entity.appendChild(animation2);
+            entity.appendChild(plane);
+            scene.appendChild(entity);
+
+
+
+        }
+    }
+
+
+
+
+</script>
+
+</body>
