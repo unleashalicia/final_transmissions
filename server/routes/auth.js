@@ -5,6 +5,7 @@ const connection = mysql.createConnection(credentials);
 
 module.exports = function (app, passport) {
 
+
 	app.post('/login',
 		passport.authenticate('local-signin', {
 			successRedirect: '/profile',
@@ -12,17 +13,25 @@ module.exports = function (app, passport) {
 		})
 	);
 
+
 	app.post('/signup',
 		passport.authenticate('local-signup', {
-			successRedirect: '/profile',
+			successRedirect: '/instructions',
 			failureRedirect: '/'
 		})
 	);
+
 
 	app.get('/logout', function (req, res) {
 		req.logout();
 		res.redirect('/');
 	});
+
+
+	app.get('/instructions', isLoggedIn, (req,res) => {
+		res.sendFile(path.join(__dirname, '..', '..', 'client', 'instructions_min.html'));
+	});
+
 
 	app.get('/profile', isLoggedIn, (req, res) => {
 		// let sql = `SELECT * FROM users WHERE id = ${req.user.id}`;
@@ -42,6 +51,7 @@ module.exports = function (app, passport) {
 		});
 	});
 
+
 	app.get('/library', isLoggedIn, (req, res) => {
 		let sql = `SELECT * FROM stories`;
 
@@ -52,7 +62,7 @@ module.exports = function (app, passport) {
 		});
 	});
 
-	//example: ghost.brianmevans.com/story/id/5
+
 	app.get('/story/id/:id', isLoggedIn, (req, res) => {
 		let story_id = req.params.id;
 		let sql = `CALL getStoryPageDetails(${req.user.id},${story_id})`;
@@ -66,14 +76,10 @@ module.exports = function (app, passport) {
 	});
 
 
-	app.get('/st', (req,res) => {
-		res.sendFile(path.join(__dirname, '..', '..', 'client', 'story.html'));
-	});
-
-
 	app.get('/play', isLoggedIn, (req, res) => {
 	    res.sendFile(path.join(__dirname, '..', '..', 'client', 'meter-index.html'));
 	});
+
 
 	app.post('/action', isLoggedIn, (req, res) => {
 		const query = `CALL handleUserAction(${req.user.id}, ${req.body.story}, '${req.body.action}')`;

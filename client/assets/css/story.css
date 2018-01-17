@@ -75,7 +75,6 @@ button:hover {
 /*********** Nav End  ************/
 
 .img-container {
-
     width: 45%;
     margin: auto;
 }
@@ -141,6 +140,10 @@ button:hover {
 
 .starting-point {
     margin-bottom: 0;
+}
+
+.address-1 {
+    margin: 0;
 }
 
 .address {
