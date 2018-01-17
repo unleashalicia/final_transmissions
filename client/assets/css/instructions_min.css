@@ -15,27 +15,31 @@ body {
     background-color: black;
     color: whitesmoke;
     text-align: center;
-    font-size: 2.5em;
+    font-size: 2em;
     height: 100vh;
 }
 
 .title {
-    font-size: 3em;
+    font-size: 2em;
     margin-bottom: .5em;
     margin-top: .3em;
 }
 
 .image {
-    width: 60%;
+    width: 50%;
     height: 35%;
     border: 5px solid whitesmoke;
     border-radius: 2%;
 }
+/*
+.image-library {
+    width: 50%;
+} */
 
 .arrow-right {
     filter: invert(100%);
     position: absolute;
-    bottom: 5%;
+    bottom: 2%;
     right: 5%;
     transform: rotateZ(-20deg);
 }
@@ -43,7 +47,7 @@ body {
 .arrow-left {
     filter: invert(100%);
     position: absolute;
-    bottom: 5%;
+    bottom: 2%;
     left: 5%;
     -moz-transform: scaleX(-1);
         -o-transform: scaleX(-1);
@@ -84,8 +88,10 @@ button {
     text-shadow: 1px 1px #252222;
     height: 5vh;
     width: 25vw;
-    float: right;
-    margin-right: 3%;
+    position: absolute;
+    bottom: 2%;
+    right: 5%;
+
 }
 
 button:hover {
