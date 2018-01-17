@@ -9,6 +9,8 @@
     <link rel="stylesheet" type="text/css" href="ARstyle.css" />
 
     <script src="../../../assets/lib/aframe.min.js"></script>
+    <script src="https://rawgit.com/mayognaise/aframe-gif-shader/master/dist/aframe-gif-shader.min.js"></script>
+    <script src="https://rawgit.com/mayognaise/aframe-gif-component/master/dist/aframe-gif-component.min.js"></script>
 </head>
 <body style='margin : 0px; overflow: hidden;'>
 
@@ -17,6 +19,7 @@
     <!--<a-assets>-->
         <video src="./AR_Assets/Ghost%20-%202318%20(1).mp4" id="ghost1" autoplay loop="true"></video>
     <video src="./AR_Assets/Ghost%20-%202318%20(1).mp4" id="ghost2" autoplay loop="true" style="transform: rotate(90deg);"></video>
+    <img src="./AR_Assets/movingghost.gif" id="ghostgif" ></img>
     </a-assets>
 
 </a-scene>
@@ -44,7 +47,7 @@
             let entity = document.createElement('a-entity');
             let plane = document.createElement('a-plane');
             let animation1 = document.createElement('a-animation');
-            let animation2 = document.createElement('a-animation');
+//            let animation2 = document.createElement('a-animation');
 
             let posX = findRange(-7, 7);
             let posXdest = findRange(-7,7);
@@ -58,25 +61,25 @@
 
 
 
+//            material="shader:gif;src:url(nyancat.gif);" gif=""
 
-
-
-//            entity.setAttribute('position', {x: posX, y: posY, z: posZ});
-
-
-            if(creator%2===0) {
-                plane.setAttribute('src', '#ghost1');
-            } else {
-                plane.setAttribute('src', '#ghost2');
-            }
+//            if(creator%2===0) {
+            debugger;
+                plane.setAttribute('material', 'shader:gif;src:url(./AR_Assets/giphy.gif)');
+//                plane.setAttribute('gif', '');
+                plane.play();
+//            } else {
+//                plane.setAttribute('src', '#snow');
+//            }
 
 //            plane.setAttribute('src', '#ghost1');
 
-            plane.setAttribute('style', 'transform', 'rotate(90deg)');
+//            plane.setAttribute('style', 'transform', 'rotate(90deg)');
             plane.setAttribute('opacity', '0.5');
 
-            plane.setAttribute('height', '2');
-            plane.setAttribute('width', '5');
+            plane.setAttribute('height', '5');
+            plane.setAttribute('width', '3');
+            plane.setAttribute('material', '','rgba(255, 255, 255, 0)');
 
 //            animation.setAttribute('attribute', 'scale');
 //            animation.setAttribute('from', '0.5');
@@ -89,18 +92,18 @@
             animation1.setAttribute('easing', 'linear');
             animation1.setAttribute('repeat', 'indefinite');
 
-
-            animation2.setAttribute('attribute', 'opacity');
-            animation2.setAttribute('dur', dur);
-            animation2.setAttribute('from', '0.5');
-            animation2.setAttribute('to', '0');
-            animation2.setAttribute('easing', 'linear');
-            animation2.setAttribute('repeat', 'indefinite');
+//
+//            animation2.setAttribute('attribute', 'opacity');
+//            animation2.setAttribute('dur', dur);
+//            animation2.setAttribute('from', '0.5');
+//            animation2.setAttribute('to', '0');
+//            animation2.setAttribute('easing', 'linear');
+//            animation2.setAttribute('repeat', 'indefinite');
 
 //            posZ = posZ-2;
 
             entity.appendChild(animation1);
-            entity.appendChild(animation2);
+//            entity.appendChild(animation2);
             entity.appendChild(plane);
             scene.appendChild(entity);
 
