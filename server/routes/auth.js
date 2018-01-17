@@ -26,7 +26,7 @@ module.exports = function (app, passport) {
 
 	app.get('/profile', isLoggedIn, (req, res) => {
 		// let sql = `SELECT * FROM users WHERE id = ${req.user.id}`;
-		let sql = `SELECT u.user_name, u.email, s.name, s.id AS story_id FROM `users` AS u
+		let sql = `SELECT u.user_name, u.email, s.name, s.id AS story_id FROM users AS u
 					JOIN user_stories AS us
 				    ON us.id = u.id
 				    JOIN stories AS s
