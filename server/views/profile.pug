@@ -59,5 +59,6 @@ html
                         h3 CURRENT STORIES 
                         .story-list 
                             each item in data
-                                li 
-                                    a(href="/story/id/" + item.story_id)= item.name
+                                if item.story_id
+                                    li 
+                                        a(href="/story/id/" + item.story_id)= item.name
