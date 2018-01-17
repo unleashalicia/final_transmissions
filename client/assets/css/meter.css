@@ -17,7 +17,6 @@ body * {
   position: absolute;
   top: 0;
   left: 0;
-  display: none;
 }
 
 .loading-btn, #loading h2{
