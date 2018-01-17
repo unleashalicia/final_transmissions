@@ -44,8 +44,6 @@ module.exports = function (app, passport) {
 		// let usersql = `SELECT user_name, email FROM users`
 		connection.query(sql,(err,result,fields)=>{
 			console.log(result);
-			if (results.length < 1)
-
 			res.render("profile",{
 				data: result
 			});
