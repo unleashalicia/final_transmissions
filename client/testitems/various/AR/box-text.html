@@ -150,7 +150,7 @@
         createSpheres(50);
     });
 
-    const findRange = (start,end) => {
+    const findRange = (start, end) => {
         return (Math.random() * (end-start) ) + start;
     };
 
@@ -159,7 +159,7 @@
     const createSpheres = (amount) => {
         const scene = document.querySelector('a-scene');
 //        const colorArray = ["blue", "red", "purple", "yellow", "green", "black", "orange"];
-        const colorArray = ["green"];
+
 
 
 
@@ -168,8 +168,8 @@
             let entity = document.createElement('a-entity');
             let sphere = document.createElement('a-sphere');
             let animation = document.createElement('a-animation');
-
-            let color = colorArray[Math.floor(Math.random()*colorArray.length)];
+//
+//            let color = "white";
             let size = findRange(0.5, 6);
 
             let posX = findRange(-7, 7);
@@ -187,7 +187,8 @@
 
 //            entity.setAttribute('position', {x: posX, y: posY, z: posZ});
 
-            sphere.setAttribute('material', 'color', color);
+            sphere.setAttribute('material', 'color', 'white');
+            sphere.setAttribute('opacity', '0.7');
 
             sphere.setAttribute('scale', 'radius', size);
 

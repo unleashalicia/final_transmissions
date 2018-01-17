@@ -5,7 +5,7 @@ html
         script(src="assets/js/profile.js" type="text/javascript")
         link(rel="stylesheet" href="assets/css/fog.css" type="text/css")
         link(rel="stylesheet" href="assets/css/profile.css" type="text/css")
-        title Profile Page
+        title #{username}'s Profile
 
     body
         #user-container
@@ -34,19 +34,25 @@ html
                         a(href="/instructions") Profile
                     li.to-library 
                         a(href="/library") Stories
-                    li.log-out Log Out 
+                    li.log-out Log Out
+            .button-container
+                a(href="/instructions")
+                    button.nav-btn Instructions
+                a(href="/library")
+                    button.nav-btn Library
+                button.nav-btn.log-out Log Out
             .profile-container
                 h1 USER PROFILE
                 .photo-container
-                    img#profile-photo.profile-photo(src="assets/images/profile/cat.jpg")
+                    img#profile-photo.profile-photo(src="assets/images/profile/xray" + (Math.floor(Math.random() * 3) + 1) + ".jpg")
                     img.polaroid(src="assets/images/profile/polaroid.png")
                     img.edit-photo(src="assets/images/profile/editicon.png")
                 .profile-data
                     p
-                        span.profile-details USERNAME:
+                        span.profile-details Username:
                         span.user-details-name= username
                     p.email
-                        span.profile-details EMAIL:
+                        span.profile-details E-Mail:
                         span.user-details-email= email
                         img.edit-text(src="assets/images/profile/edittext.png")
                     .story-container-Inside
@@ -55,4 +61,3 @@ html
                             // generate dynamically based on user data
                             li 
                                 a(href="#") Skittles Monster
-git 

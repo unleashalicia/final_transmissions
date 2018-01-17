@@ -49,6 +49,8 @@ app.get('/library', (req,res) => {
 
 
 
+
+
 app.post('/state', (req, res)=>{
     let output = {
         success: false,
@@ -69,12 +71,11 @@ app.post('/state', (req, res)=>{
             output.success = true;
             output.data = formattedData;
         } else {
-            output.errors = error; // will change this when no longer testing
+            output.errors = "there was an error";
         }
 
         res.send(output);
     });
-
 });
 
 app.post('/action', (req, res) => {
@@ -106,17 +107,13 @@ app.post('/action', (req, res) => {
 
 
 function formatStateData(data) {
-    let semiFormattedData = [];
-    let fullyFormattedData = [];
+    let formattedData = [];
 
     for (let i = 0; i < data.length - 1; i++) {
-        semiFormattedData.push(data[i]);
-    }
-    for (let i = 0; i < semiFormattedData.length; i++) {
-        fullyFormattedData.push(semiFormattedData[i][0]);
+        formattedData.push(data[i]);
     }
 
-    return fullyFormattedData;
+    return formattedData;
 }
 
 
