@@ -1,0 +1,109 @@
+* {
+    box-sizing: border-box;
+}
+
+@font-face {
+   font-family: walpergens;
+   src: url(../fonts/walpergens.ttf);
+}
+
+body {
+    margin: auto;
+    padding: 3%;
+    font-family: walpergens, serif;
+    overflow: hidden;
+    background-color: black;
+    color: whitesmoke;
+    text-align: center;
+    font-size: 2.5em;
+    height: 100vh;
+}
+
+.title {
+    font-size: 3em;
+    margin-bottom: .5em;
+    margin-top: .3em;
+}
+
+.image {
+    width: 60%;
+    height: 35%;
+    border: 5px solid whitesmoke;
+    border-radius: 2%;
+}
+
+.arrow-right {
+    filter: invert(100%);
+    position: absolute;
+    bottom: 5%;
+    right: 5%;
+    transform: rotateZ(-20deg);
+}
+
+.arrow-left {
+    filter: invert(100%);
+    position: absolute;
+    bottom: 5%;
+    left: 5%;
+    -moz-transform: scaleX(-1);
+        -o-transform: scaleX(-1);
+        -webkit-transform: scaleX(-1);
+        transform: scaleX(-1) rotateZ(-20deg);
+        filter: FlipH;
+        -ms-filter: "FlipH";
+}
+
+.arrow-up {
+    filter: invert(100%);
+    display: block;
+    margin: auto;
+}
+
+.button-container {
+    height: 10vw;
+    width: 95%;
+    margin: 7% auto;
+    display: flex;
+    justify-content: space-between;
+}
+
+/* a {
+    position: relative;
+} */
+
+button {
+    position: relative;
+    border: 5px solid whitesmoke;
+    border-radius: 5%;
+    background-color: rgba(235, 235, 235, .3);
+    color: whitesmoke;
+    font-size: 3.5vmin;
+    font-family: walpergens, serif;
+    font-weight: bold;
+    letter-spacing: 1.15px;
+    text-shadow: 1px 1px #252222;
+    height: 5vh;
+    width: 25vw;
+    float: right;
+    margin-right: 3%;
+}
+
+button:hover {
+    background-color: rgba(235, 235, 235, .7);
+    color: #252222;
+    text-shadow: none;
+}
+
+/*************** swipe css ****************/
+
+.page2, .page3, .page4, .page5 {
+    display: none;
+}
+
+.show-img {
+    display: block;
+}
+
+.hide-img {
+    display: none;
+}
