@@ -36,25 +36,24 @@ module.exports = function (app, passport) {
 	app.get('/profile', isLoggedIn, (req, res) => {
 		// let sql = `SELECT * FROM users WHERE id = ${req.user.id}`;
 
-		let sql = `SELECT user_name, email FROM users
-    				WHERE id = ${req.user.id}
-    				;
-					SELECT s.name, s.id FROM user_stories AS us
+		const sql1 = `SELECT user_name, email FROM users
+    				WHERE id = ${req.user.id}`
+
+		const sql2 = `SELECT s.name, s.id FROM user_stories AS us
 					JOIN stories AS s
     				ON s.id = us.story_id
-    				WHERE us.id = ${req.user.id}
-    				;`
-		console.log(sql);
-		// let sql = `SELECT u.user_name, u.email, s.name, s.id AS story_id FROM users AS u
-		// 			JOIN user_stories AS us
-		// 		    ON us.id = u.id
-		// 		    JOIN stories AS s
-		// 		    ON us.story_id = s.id
-		// 		    WHERE us.id = ${req.user.id}`;
-		connection.query(sql,(err,result,fields)=>{
+    				WHERE us.id = ${req.user.id}`
+
+		var sql1result;
+
+		connection.query(sql1,(err,result,fields) => {
+			sql1result = result;
+		});
+		connection.query(sql2,(err,result,fields)=>{
 			console.log(result);
 			res.render("profile",{
-				data: result
+				userdata: sql1result,
+				storydata: result
 			});
 		});
 	});
