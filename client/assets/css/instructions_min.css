@@ -30,30 +30,44 @@ body {
     border: 5px solid whitesmoke;
     border-radius: 2%;
 }
-/*
-.image-library {
-    width: 50%;
-} */
+
+section {
+    height: 85%;
+}
 
 .arrow-right {
     filter: invert(100%);
-    position: absolute;
+    /* position: absolute;
     bottom: 2%;
-    right: 5%;
+    right: 5%; */
     transform: rotateZ(-20deg);
+    float: right;
+    margin-right: 5%;
 }
 
 .arrow-left {
     filter: invert(100%);
-    position: absolute;
+    float: left;
+    margin-right: 5%;
+    /* position: absolute;
     bottom: 2%;
-    left: 5%;
+    left: 5%; */
     -moz-transform: scaleX(-1);
         -o-transform: scaleX(-1);
         -webkit-transform: scaleX(-1);
         transform: scaleX(-1) rotateZ(-20deg);
         filter: FlipH;
         -ms-filter: "FlipH";
+}
+
+.arrow-container {
+    position: fixed;
+    /* height: 150px; */
+    /* transform: translateY(175%); */
+    bottom: 0;
+    height: 15%;
+    width: 100%;
+    /* padding: 10% */
 }
 
 .arrow-up {
@@ -106,7 +120,7 @@ button:hover {
 }
 
 .show-img {
-    display: block;
+    display: inline-block;
 }
 
 .hide-img {
