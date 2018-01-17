@@ -5,7 +5,7 @@ html
         script(src="assets/js/profile.js" type="text/javascript")
         link(rel="stylesheet" href="assets/css/fog.css" type="text/css")
         link(rel="stylesheet" href="assets/css/profile.css" type="text/css")
-        title #{data[0].user_name}'s Profile
+        title #{userdata[0].user_name}'s Profile
 
     body
         #user-container
@@ -50,15 +50,15 @@ html
                 .profile-data
                     p
                         span.profile-details Username:
-                        span.user-details-name= data[0].user_name
+                        span.user-details-name= userdata[0].user_name
                     p.email
                         span.profile-details E-Mail:
-                        span.user-details-email= data[0].email
+                        span.user-details-email= userdata[0].email
                         img.edit-text(src="assets/images/profile/edittext.png")
                     .story-container-Inside
                         h3 CURRENT STORIES 
                         .story-list 
-                            each item in data
-                                if item.story_id
+                            if storydata[0]
+                                each item in storydata
                                     li 
                                         a(href="/story/id/" + item.story_id)= item.name
