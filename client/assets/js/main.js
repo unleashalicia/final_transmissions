@@ -11,7 +11,7 @@ function handleEvents(){
   const repeatPass = document.querySelector('.repeat-pass');
   assignClickHandlers(landingBtns, handleLandingBtn); //SignUp & LogIn
   assignClickHandlers(cancelBtns, handleCancel); // Cancel Buttons for both Forms
-  assignClickHandlers(formBtns, validation) // Submit forms for both formSign
+  assignClickHandlers(formBtns, userCall) // Submit forms for both formSign
 
 }
 
@@ -83,49 +83,68 @@ function generateErrorMsg(invalidArr){ //generates the proper error msg dependin
     error.style="display:block";
 }
 
-function validation(event){ //checks for any invalid inputs and displays what needs to be corrected
+// function validation(event){ //checks for any invalid inputs and displays what needs to be corrected
+//     event.preventDefault();
+//     const inputs = document.querySelectorAll('.sign input')
+//     const invalidInputs = checkValidity(inputs);
+//     let inputData={};
+//     let urlStr=""
+//     let errorMsg=""
+//     if(invalidInputs.length){
+//         generateErrorMsg(invalidInputs)
+//         return;
+//     }else{
+//         if(this.classList.contains('btnSign')){
+//             inputData={
+//               email: document.querySelector(".sign input[name='email']").value,
+//               password: document.querySelector(".sign input[name='password']").value,
+//               user_name: document.querySelector(".sign input[name='username']").value
+//             };
+//             urlStr="/signup";
+//             errorMsg="Something has happened signing in to the server";
+//         }else if(this.classList.contains('btnLog')){
+//             inputData={
+//               password: document.querySelector(".formLog input[name='password']").value,
+//               user_name: document.querySelector(".formLog input[name='username']").value
+//             };
+//             urlStr="/login";
+//             errorMsg="Something has happened logging in to the server";
+//         }
+//         userCall(inputData,urlStr,errorMsg)
+//     }
+// }
+
+function userCall(event){ //axios call for both sign and login
     event.preventDefault();
-    const inputs = document.querySelectorAll('.sign input')
-    const invalidInputs = checkValidity(inputs);
     let inputData={};
     let urlStr=""
     let errorMsg=""
-    if(invalidInputs.length){
-        generateErrorMsg(invalidInputs)
-        return;
-    }else{
-        if(this.classList.contains('btnSign')){
-            inputData={
-              email: document.querySelector(".sign input[name='email']").value,
-              password: document.querySelector(".sign input[name='password']").value,
-              user_name: document.querySelector(".sign input[name='username']").value
-            };
-            urlStr="/signup";
-            errorMsg="Something has happened signing in to the server";
-        }else if(this.classList.contains('btnLog')){
-            inputData={
-              password: document.querySelector(".formLog input[name='password']").value,
-              user_name: document.querySelector(".formLog input[name='username']").value
-            };
-            urlStr="/login";
-            errorMsg="Something has happened logging in to the server";
-        }
-        userCall(inputData,urlStr,errorMsg)
+    if(this.classList.contains('btnSign')){
+        inputData={
+          email: document.querySelector(".sign input[name='email']").value,
+          password: document.querySelector(".sign input[name='password']").value,
+          user_name: document.querySelector(".sign input[name='username']").value
+        };
+        urlStr="/signup";
+        errorMsg="Something has happened signing in to the server";
+    }else if(this.classList.contains('btnLog')){
+        inputData={
+          password: document.querySelector(".formLog input[name='password']").value,
+          user_name: document.querySelector(".formLog input[name='username']").value
+        };
+        urlStr="/login";
+        errorMsg="Something has happened logging in to the server";
     }
-}
-
-function userCall(input, url, msg){ //axios call for both sign and login
-    console.log('input',input, 'url', url,'msg',msg);
     axios({
-        url: url,
+        url: urlStr,
         method: "POST",
         responseType: "document",
-        data: input
+        data: inputData
     }).then(function(response) {
         console.log(response);
         console.log("This is the page that will be redirected to: ", response.data.URL);
         window.location = response.data.URL;
     }).catch(function(error) {
-        console.error(msg, error);
+        console.error(errorMsg, error);
     });
 }
