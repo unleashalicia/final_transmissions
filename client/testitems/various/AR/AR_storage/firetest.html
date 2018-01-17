@@ -8,8 +8,8 @@
         <title>Test Page</title>
         <link rel="stylesheet" type="text/css" href="ARstyle.css" />
 
-        <script src="../../../assets/lib/AR.js-master/aframe/examples/vendor/aframe/build/aframe.js"></script>
-        <script src="../../../assets/lib/AR.js-master/aframe/build/aframe-ar.js"></script>
+        <script src="../../../assets/lib/aframe.js"></script>
+        <script src="../../../assets/lib/aframe-ar.js"></script>
     </head>
     <body style='margin : 0px; overflow: hidden;'>
         <a-scene embedded artoolkit='sourceType: webcam;'>
@@ -32,6 +32,11 @@
                     </a-tetrahedron>
                 </a-entity>
 
+
+
+
+
+
                 <a-entity>
                     <a-tetrahedron src='#fire2video' radius="0.5" material="opacity: 0.9" position="0 2 1">
                         <a-animation attribute="rotation"
@@ -43,6 +48,11 @@
                     </a-tetrahedron>
                 </a-entity>
 
+
+
+
+
+
                 <a-entity>
                     <a-tetrahedron src='#fire3video' radius="0.5" material="opacity: 0.9" position="0 1 2">
                         <a-animation attribute="rotation"
@@ -53,6 +63,15 @@
                         </a-animation>
                     </a-tetrahedron>
                 </a-entity>
+
+
+
+
+
+
+
+
+
 
                 <a-entity>
                     <a-tetrahedron id="fire4" src='#fire4video' radius="0.5" material="opacity: 0.9" position="2 0.5 0">
