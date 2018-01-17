@@ -119,40 +119,6 @@ button:hover {
 }
 
 /*********** Nav Buttons End  ************/
-/******LOG OUT*************************/
-.logOut-container, .modal{
-    position: absolute;
-    z-index: 5;
-    color: white;
-    width: 100%;
-    background-color: rgba(0,0,0,0.8);
-    height: 100%;
-}
-
-.logOut, .modal-content{
-    position: relative;
-    margin: 20% auto;
-    text-align: center;
-}
-.logOut h2{
-    font-size: 3em;
-}
-.logOut button{
-    font-family: walpergens;
-    font-size: 50px;
-    background-color: black;
-    color: white;
-    border: 1.5px solid white;
-    cursor: pointer;
-}
-.logOut button:hover,.logOut button a:hover{
-    background-color: white;
-    border: 1.5px solid black;
-    color: black;
-    border: black;
-}
-
-/******LOG OUT*************************/
 
 .img-container {
     width: 45%;
