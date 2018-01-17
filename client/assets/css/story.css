@@ -25,7 +25,53 @@ body {
     text-align: center;
 }
 
-/******** nav bar ******************/
+/******** nav bar - desktop ******************/
+
+
+nav {
+    display: block;
+    margin-top: 3%;
+}
+
+nav ul{
+    padding: 0 2%;
+    text-align: center;
+    margin-top: 0;
+}
+
+nav ul li {
+    margin: 0 5%;
+    font-size: 4vmin;
+    display: inline-block;
+    cursor: pointer;
+    text-transform: uppercase;
+}
+
+nav ul li a {
+    color: white;
+    text-decoration: none;
+}
+
+nav ul li:hover{
+    animation: noise-3 1s infinite;
+}
+
+nav ul li::after{
+    content: "|";
+    font-size: 1.5em;
+    margin-left: 0.5em;
+    color: white;
+}
+
+nav ul li::before{
+    content: "|";
+    font-size: 1.5em;
+    margin-right: 0.5em;
+    color: white;
+}
+
+/*********** Nav Bar End  ************/
+/*********** Nav Buttons - Mobile  ************/
 
 .title {
     text-align: center;
@@ -38,7 +84,7 @@ body {
     height: 10vw;
     width: 95%;
     margin: 7% auto;
-    display: flex;
+    display: none;
     justify-content: space-between;
 }
 
@@ -72,7 +118,41 @@ button:hover {
     z-index: 300;
 }
 
-/*********** Nav End  ************/
+/*********** Nav Buttons End  ************/
+/******LOG OUT*************************/
+.logOut-container, .modal{
+    position: absolute;
+    z-index: 5;
+    color: white;
+    width: 100%;
+    background-color: rgba(0,0,0,0.8);
+    height: 100%;
+}
+
+.logOut, .modal-content{
+    position: relative;
+    margin: 20% auto;
+    text-align: center;
+}
+.logOut h2{
+    font-size: 3em;
+}
+.logOut button{
+    font-family: walpergens;
+    font-size: 50px;
+    background-color: black;
+    color: white;
+    border: 1.5px solid white;
+    cursor: pointer;
+}
+.logOut button:hover,.logOut button a:hover{
+    background-color: white;
+    border: 1.5px solid black;
+    color: black;
+    border: black;
+}
+
+/******LOG OUT*************************/
 
 .img-container {
     width: 45%;
@@ -86,12 +166,13 @@ button:hover {
 }
 
 .go-link {
-    margin-top: 5%;
+    margin-top: 0;
     display: block;
     height: 6vh;
 }
 
 .go-btn {
+    visibility: hidden;
     position: relative;
     height: 100%;
     width: 20vw;
@@ -131,8 +212,8 @@ button:hover {
 
 
 #map {
-    height: 250px;
-    width: 250px;
+    height: 60vw;
+    width: 60vw;
     margin: 5% auto;
     border: 1px solid whitesmoke;
     border-radius: 1%;
@@ -149,4 +230,31 @@ button:hover {
 .address {
     padding: 0 10%;
     margin-top: 0;
+}
+
+@keyframes noise-3 {
+    0%, 3%, 5%, 42%, 44%, 100% {opacity: 1; transform: scaleY(1);}
+    4.3% {opacity: 1; transform: scaleY(1.7);}
+    43% {opacity: 1; transform: scaleX(1.5);}
+}
+
+
+
+/************ Media Queries ***************/
+@media screen and (max-width: 768px) {
+    .button-container {
+        display: flex;
+    }
+
+    nav {
+        display: none;
+    }
+
+    .go-btn {
+        visibility: visible;
+    }
+
+    .go-link {
+        margin-top: 5%;
+    }
 }
