@@ -120,17 +120,19 @@ function handleEventHandlers(){
     const knobImg = document.getElementById('knobImg');
     const loadingBtn = document.querySelector('.loading-btn');
     const uiSwitch = document.getElementById('switch');
+    const nextEvent =  document.querySelector('.next-event');
 
     loadingBtn.addEventListener('click', fullscreen);
 
     knobImg.addEventListener('click', function(){
         knobRange(this);
-    });
+    });//turning the knob for range meter switch;
+    uiSwitch.addEventListener('click',flipSwitch);//turns on the gadget
 
-
-    uiSwitch.addEventListener('click',flipSwitch);
-
-    window.addEventListener('orientationchange',handleOrientation);
+    window.addEventListener('orientationchange',handleOrientation);//switch from meter to camera;
+    nextEvent.addEventListener('click', function(){
+        console.log('moving on to next event');
+    }); //ADD FUNCTION FOR CHANGING TO NEXT CHAPTER HERE
 }
 //****************************************
 //****************************************
@@ -413,14 +415,14 @@ function grabChapterAssets(){
 function handleStateAssetLoading(data){
     const soundAssets = data.data[1][0];
     const miscAssets = data.data[0][0];
-    
+
     target.latitude = parseFloat(miscAssets.lat);
     target.longitude = parseFloat(miscAssets.lon);
     target.loopThreshold = miscAssets.outer_threshold;
     target.talkThreshold = miscAssets.inner_threshold;
 
     action = miscAssets.action
-    
+
     for (let i in soundAssets){
         sounds.sources[i] = './assets/' + soundAssets[i]
     }
