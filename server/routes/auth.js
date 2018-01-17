@@ -33,16 +33,9 @@ module.exports = function (app, passport) {
 				    ON us.story_id = s.id
 				    WHERE us.id = ${req.user.id}`;
 		connection.query(sql,(err,result,fields)=>{
-			console.log(result);
-			// let un = result[0][0].user_name;
-			// let mail = result[0][0].email;
-			// const storyArray = [];
-			// results.forEach(function(){
-			// 	let obj = {};
-			// 	obj.storyname = this[0].name;
-			// 	obj.storyid = this[0].story_id;
-			// 	storyArray.push(obj);
-			// });
+			let un = result[0].user_name;
+			let mail = result[0].email;
+
 			res.render("profile",{
 				data: result
 			});
