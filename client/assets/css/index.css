@@ -92,7 +92,7 @@ h1{
 }
 
 .sign div input:invalid{
-    border: 3px solid rgba(255, 0, 0, 0.7);
+    border: 2px solid rgba(255, 0, 0, 0.7);
 }
 #error{
     background-color: whitesmoke;

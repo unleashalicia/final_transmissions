@@ -248,7 +248,7 @@ button:hover {
 }
 
 .email-container input:invalid{
-    border: 3px solid rgba(255, 0, 0, 0.7);
+    border: 2px solid rgba(255, 0, 0, 0.7);
 }
 
 .button-holder{
