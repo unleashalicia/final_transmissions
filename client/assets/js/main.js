@@ -48,7 +48,7 @@ function handleLandingBtn(){
   }
 }
 
-function checkValidity(elemArr){
+function checkValidity(elemArr){ //core function checking any element arr for any invalid element inputs
     let invalidElems=[];
     elemArr.forEach(function(elem){
         if(!elem.validity.valid){
@@ -58,7 +58,7 @@ function checkValidity(elemArr){
     return invalidElems;
 }
 
-function generateErrorMsg(invalidArr){
+function generateErrorMsg(invalidArr){ //generates the proper error msg depending on what input is invalid
     const error = document.getElementById("error")
     const fragment = document.createDocumentFragment();
     const ul = document.createElement('ul');
@@ -83,7 +83,7 @@ function generateErrorMsg(invalidArr){
     error.style="display:block";
 }
 
-function validation(event){
+function validation(event){ //checks for any invalid inputs and displays what needs to be corrected
     event.preventDefault();
     const inputs = document.querySelectorAll('.sign input')
     const invalidInputs = checkValidity(inputs);
@@ -114,7 +114,7 @@ function validation(event){
     }
 }
 
-function userCall(input, url, msg){
+function userCall(input, url, msg){ //axios call for both sign and login
     console.log('input',input, 'url', url,'msg',msg);
     axios({
         url: url,
