@@ -25,11 +25,26 @@ module.exports = function (app, passport) {
 	});
 
 	app.get('/profile', isLoggedIn, (req, res) => {
-		let sql = `SELECT * FROM users WHERE id = ${req.user.id}`;
+		// let sql = `SELECT * FROM users WHERE id = ${req.user.id}`;
+		let sql = `SELECT u.user_name, u.email, s.name, s.id AS story_id FROM `users` AS u
+					JOIN user_stories AS us
+				    ON us.id = u.id
+				    JOIN stories AS s
+				    ON us.story_id = s.id
+				    WHERE us.id = ${req.user.id}`;
 		connection.query(sql,(err,result,fields)=>{
+			console.log(result);
+			// let un = result[0][0].user_name;
+			// let mail = result[0][0].email;
+			// const storyArray = [];
+			// results.forEach(function(){
+			// 	let obj = {};
+			// 	obj.storyname = this[0].name;
+			// 	obj.storyid = this[0].story_id;
+			// 	storyArray.push(obj);
+			// });
 			res.render("profile",{
-				username: result[0].user_name,
-				email: result[0].email
+				data: result
 			});
 		});
 	});
