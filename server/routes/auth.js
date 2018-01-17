@@ -44,6 +44,7 @@ module.exports = function (app, passport) {
     				ON s.id = us.story_id
     				WHERE us.id = ${req.user.id}
     				;`
+		console.log('SQL: ',sql);
 		// let sql = `SELECT u.user_name, u.email, s.name, s.id AS story_id FROM users AS u
 		// 			JOIN user_stories AS us
 		// 		    ON us.id = u.id
