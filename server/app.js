@@ -45,7 +45,7 @@ app.get('/library', (req,res) => {
 
 
 app.get('/state', (req, res)=>{
-    const query = `CALL getUserStateDetails(24, ${req.query.story})`;
+    const query = `CALL getUserStateDetails(${req.user.id}, ${req.query.story})`;
 
     connection.query(query, function(error, data){
 
