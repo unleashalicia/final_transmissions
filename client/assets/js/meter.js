@@ -9,42 +9,28 @@ var watchHandler;
 var errorCount = 0;
 var noSleep = new NoSleep();
 var sounds = {
-    0: null,
-    1: null,
-    2: null,
     numLoaded: 0,
+    numToLoad: 3,
     ready: false,
     speakingPlayed: false,
-    sources: ['./assets/sounds/CH1-MUSIC.ogg','./assets/sounds/CH1-READING.ogg']
+    sources: {
+        outerAudio: '',
+        innerAudio: '',
+        completeAudio: ''
+    }
 };
 var speaking;
 var looping;
 var effect;
-//Out front of lfz:
-// var target = {
-//     latitude: 33.6350687,
-//     longitude: -117.7402043,
-//     loopThreshold: 40,
-//     talkThreshold: 9
-// };
-
-//lfz back room
 var target = {
-    latitude: 33.634697,
-    longitude: -117.740578,
-    loopThreshold: 20,
-    talkThreshold: 9
+    latitude: 0,
+    longitude: 0,
+    loopThreshold: 0,
+    talkThreshold: 0
 };
-
-
-//Out front of apartment
-// var target = {
-//     latitude: 33.7523889,
-//     longitude: -117.8637263,
-//     threshold: 10
-// };
 var distance;
 var knobMode='med';
+var action = '';
 //****************************************
 //****************************************
 //--|
@@ -54,8 +40,7 @@ var knobMode='med';
 //########################################
 //++
 //++
-function loadSound(location,position){
-    var setLoop = position === 0 ? true : false;
+function loadSound(location, setLoop){
     let howl = new Howl({
         src: [location],
         preload: true,
@@ -64,7 +49,7 @@ function loadSound(location,position){
         volume: 0,
         onload: ()=>{
             sounds.numLoaded++;
-            if (sounds.numLoaded >= sounds.sources.length){
+            if (sounds.numLoaded >= sounds.numToLoad){
                 const loadingBtn = document.querySelector('.loading-btn');
                 const headerFade = document.querySelector('#loading h2');
 
@@ -79,8 +64,17 @@ function loadSound(location,position){
 //++
 //++
 function loadAll(){
-    for (let i = 0; i < sounds.sources.length; i++){
-        sounds[i] = loadSound(sounds.sources[i],i);
+    let count = 0;
+    for (let i in sounds.sources){
+        let loop = false;
+        if (i === 'outerAudio'){
+            loop = true;
+        }
+        if (count === 1){
+            sounds.numLoaded++;
+        } // get rid of this once valid sounds start getting passed from the db
+        sounds[count] = loadSound(sounds.sources[i], i);
+        count++;
     }
 }
 //++
@@ -393,9 +387,49 @@ document.addEventListener("DOMContentLoaded", onLoad);
 
 function onLoad(){
     handleEventHandlers();
-    loadAll();
+    grabChapterAssets()
     getLocation();
 };
+//****************************************
+//****************************************
+//-|
+//-|
+//#################################################################################
+//##  Axios call for state/chapter assets and data handler functions  #############
+//#################################################################################
+function grabChapterAssets(){
+    const axiosOptions = {
+        url: '/state',
+        method: 'GET',
+        params: {
+            story: 1, // hard coded at the moment. Will need to either grab from local storage or something
+        }
+    }
+
+    axios(axiosOptions).then( handleStateAssetLoading );
+}
+//++
+//++
+function handleStateAssetLoading(data){
+    const soundAssets = data.data[1][0];
+    const miscAssets = data.data[0][0];
+    
+    target.latitude = parseFloat(miscAssets.lat);
+    target.longitude = parseFloat(miscAssets.lon);
+    target.loopThreshold = miscAssets.outer_threshold;
+    target.talkThreshold = miscAssets.inner_threshold;
+
+    action = miscAssets.action
+    
+    for (let i in soundAssets){
+        sounds.sources[i] = './assets/' + soundAssets[i]
+    }
+
+    console.log('Our sound assets: ', sounds);
+    console.log('Our other assets: ', target, action);
+
+    loadAll();
+}
 //****************************************
 //****************************************
 //-|

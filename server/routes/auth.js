@@ -75,6 +75,19 @@ module.exports = function (app, passport) {
 	    res.sendFile(path.join(__dirname, '..', '..', 'client', 'meter-index.html'));
 	});
 
+	app.post('/action', isLoggedIn, (req, res) => {
+		const query = `CALL handleUserAction(${req.user.id}, ${req.body.story}, '${req.body.action}')`;
+
+		connection.query(query, function(error, data){
+
+			if (!error){
+				res.redirect('/play');
+			} else {
+				res.send("there was an error");
+			}
+		});
+	});
+
 }
 
 
