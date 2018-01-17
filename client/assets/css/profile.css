@@ -430,8 +430,8 @@ a{
     .edit-text{
         width: 25px;
         height: 25px;
-        bottom: 10%;
-        right: 2%;
+        bottom: -65%;
+        right: 5%;
     }
     .email-container input{
         width: 90%;
