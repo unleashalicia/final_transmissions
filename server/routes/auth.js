@@ -42,8 +42,15 @@ module.exports = function (app, passport) {
 				    ON us.story_id = s.id
 				    WHERE us.id = ${req.user.id}`;
 		connection.query(sql,(err,result,fields)=>{
-			let un = result[0].user_name;
-			let mail = result[0].email;
+			if (result[0]){
+				let un = result[0].user_name;
+				let mail = result[0].email;
+			} else {
+				console.log('Issue with: ');
+				console.log(result);
+				result = {};
+			}
+
 
 			res.render("profile",{
 				data: result
