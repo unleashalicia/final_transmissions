@@ -44,60 +44,21 @@ app.get('/library', (req,res) => {
 
 
 
-
-
-
-
-app.post('/state', (req, res)=>{
-    let output = {
-        success: false,
-        data: null,
-        errors: null
-    };
-
-    console.log(req);
-
-
-    const query = `CALL getUserStateDetails(${req.user.id}, ${req.body.story})`;
+app.get('/state', (req, res)=>{
+    const query = `CALL getUserStateDetails(24, ${req.query.story})`;
 
     connection.query(query, function(error, data){
 
         if (!error){
             let formattedData = formatStateData(data);
-
-            output.success = true;
-            output.data = formattedData;
+            
+            res.send(formattedData);
         } else {
-            output.errors = "there was an error";
+           res.send("there was an error");
         }
-
-        res.send(output);
     });
 });
 
-app.post('/action', (req, res) => {
-    let output = {
-        success: false,
-        data: null,
-        errors: null
-    };
-
-    const query = `CALL handleUserAction(${req.user.id}, ${req.body.story}, '${req.body.action}')`;
-
-    connection.query(query, function(error, data){
-
-        if (!error){
-            let formattedData = formatStateData(data);
-
-            output.success = true;
-            output.data = formattedData;
-        } else {
-            output.errors = "there was an error";
-        }
-
-        res.send(output);
-    });
-});
 
 
 
