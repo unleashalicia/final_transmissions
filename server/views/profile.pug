@@ -50,14 +50,14 @@ html
                 .profile-data
                     p
                         span.profile-details Username:
-                        span.user-details-name= username
+                        span.user-details-name= data[0].user_name
                     p.email
                         span.profile-details E-Mail:
-                        span.user-details-email= email
+                        span.user-details-email= data[0].email
                         img.edit-text(src="assets/images/profile/edittext.png")
                     .story-container-Inside
                         h3 CURRENT STORIES 
                         .story-list 
-                            // generate dynamically based on user data
-                            li 
-                                a(href="#") Skittles Monster
+                            each item in data
+                                li 
+                                    a(href="/story/id/" + item.story_id)= item.name
