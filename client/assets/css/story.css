@@ -74,14 +74,12 @@ button:hover {
 /*********** Nav End  ************/
 
 .img-container {
-
     width: 45%;
     margin: auto;
 }
 
 .story-img {
     width:100%;
-    height: 100%;
     border: 1px solid whitesmoke;
     border-radius: 2%;
 }
@@ -141,6 +139,10 @@ button:hover {
 
 .starting-point {
     margin-bottom: 0;
+}
+
+.address-1 {
+    margin: 0;
 }
 
 .address {
