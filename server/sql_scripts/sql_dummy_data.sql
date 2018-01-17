@@ -32,8 +32,15 @@ INSERT INTO `state_actions` (`story_id`, `state_id`, `action`, `next_state_id`) 
 (1, 3, 'proceed', '1');
 
 
-INSERT INTO `stories` (`name`, `story_id`, `story_img`, `status`) VALUES
-('The Spaghetti Monster', 1, 'images/spaghetti.jpeg', 1);
+INSERT INTO `stories` (`name`, `story_img`, `status`) VALUES
+('Prologue', 'images/library/story_img_1.jpg', 1),
+('Story X', 'images/library/story_img_2.jpg', 0),
+('Story Y', 'images/library/story_img_3.jpg', 0),
+('Epilogue', 'images/library/story_img_4.jpg', 0);
+
+
+INSERT INTO `story_details` (`story_id`, `start_lat`, `start_lon`, `description`, `est_time`, `start_address`) VALUES
+(1, '33.6347489', '-117.7406006', 'This is our prologue story yeah woohoo sup the sky', '00:30:00', '9200 Irvine Center Dr, Irvine, CA 92618');
 
 
 
