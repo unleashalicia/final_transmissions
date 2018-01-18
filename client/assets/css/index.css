@@ -14,7 +14,7 @@ body{
   background-size: cover;
   background-repeat: no-repeat;
   font-family: walpergens;
-  height: 100vh;
+  height: 100%;
   width: 100%;
   text-align: center;
   color: #fff;
@@ -86,8 +86,10 @@ h1{
 .form-group div input{
     display: flex;
     flex-flow: column nowrap;
-    height: 4vh;
+    height: 35px;
     margin-bottom: 1%;
+    border-radius: 2%;
+    border-style: none;
 }
 
 .form-group div input::placeholder{
@@ -130,26 +132,25 @@ h1{
 }
 
 .sign, .log{
-  margin: auto;
-  width: 30%;
-  height: 30%;
-  margin-top: 15%;
-  font-family: walpergens;
+    margin: auto;
+    width: 30%;
+    height: 30%;
+    margin-top: 15%;
+    font-family: walpergens;
 }
 
 button{
-  cursor: pointer;
-  height: 40px;
-  width: 25%;
-  font-size: 100%;
-  border: 1px white solid;
-  font-family: walpergens;
-  color: white;
-  font-size: 135%;
-  background: black;
-  vertical-align: top;
-  border-radius: 5%;
-  margin: 1%;
+    cursor: pointer;
+    height: 40px;
+    border: 1px white solid;
+    border-radius: 5%;
+    margin: 1%;
+    font-family: walpergens;
+    color: white;
+    background-color: black;
+    vertical-align: top;
+    width: 25%;
+    font-size: 100%;
 }
 
 .hide{
