@@ -1,3 +1,7 @@
+@font-face {
+    font-family: walpergens;
+    src: url(../fonts/walpergens.ttf);
+}
 
 body{
   margin: 0;
@@ -9,7 +13,7 @@ body{
   background-image: url(../images/ghost3.jpg);
   background-size: cover;
   background-repeat: no-repeat;
-  font-family: de-walpergens-pica, serif;
+  font-family: walpergens;
   height: 100vh;
   width: 100%;
   text-align: center;
@@ -30,12 +34,14 @@ h1{
 }
 .landingbtn{
   display: inline-block;
+  cursor: pointer;
+  font-size: 2em;
   margin: 20px 1%;
   opacity: 0.7;
   padding: 10px;
   border: 1px solid white;
   border-radius: 5%;
-  cursor: pointer;
+
 }
 .open{
   display: none;
@@ -68,22 +74,54 @@ h1{
   height: 100%;
   transition: 4s;
 }
+
 .form-group div {
   display: flex;
   flex-flow: column nowrap;
   margin: 10% auto;
+  margin-top:5%;
   width: 50%;
 }
+
 .form-group div input{
     display: flex;
     flex-flow: column nowrap;
     height: 4vh;
     margin-bottom: 1%;
 }
+
 .form-group div input::placeholder{
-  font-family: de-walpergens-pica, serif;
   border-radius: 3%;
   border-style: none;
+  font-family: walpergens;
+}
+
+.sign div input:invalid{
+    border: 2px solid rgba(255, 0, 0, 0.7);
+}
+
+#error{
+    background-color: whitesmoke;
+    margin: 2% auto;
+    color:black;
+    width: 50%;
+    border-radius: 8px;
+    display: none;
+}
+
+#error h4{
+    margin: 10px auto;
+}
+
+#error ul{
+    text-align: left;
+    margin-top: 0;
+    padding: 5px;
+}
+
+#error ul li{
+    color: darkred;
+    list-style-type: none;
 }
 
 .sign, .log{
@@ -91,7 +129,7 @@ h1{
   width: 30%;
   height: 30%;
   margin-top: 15%;
-  font-family: de-walpergens-pica, serif;
+  font-family: walpergens;
 }
 
 button{
@@ -100,7 +138,7 @@ button{
   width: 25%;
   font-size: 100%;
   border: 2px white solid;
-  font-family: de-walpergens-pica, serif;
+  font-family: walpergens;
   color: white;
   font-size: 135%;
   background: black;
@@ -108,7 +146,9 @@ button{
   border-radius: 5%;
 }
 
-
+.hide{
+    display: none;
+}
 /**********MODAL FORM END********************/
 
 
@@ -122,8 +162,6 @@ button{
   transition: opacity 2s ease-in;
   display: block;
 }
-
-
 
 .fade-out {
   opacity: 1;
@@ -144,7 +182,6 @@ button{
   -ms-transition: opacity 2.5s ease-out;
   transition: opacity 2.5s ease-out;
 }
-
 
 /**********KEY FRAMES START********************/
 
@@ -225,25 +262,27 @@ button{
 /*******MOBILE STYLING  START**********/
 @media only screen and (max-width: 770px) {
     #landing-container{
-      background-position: center;
+        background-position: center;
     }
     h1{
-      font-size: 10vmin;
+        font-size: 10vmin;
+    }
+    .landingbtn{
+        font-size: 1.5em;
+    }
+
+    #error{
+        width: 70%;
     }
     .sign, .log{
-      width: 100%;
-      margin-top: 50%;
+        width: 100%;
+        margin-top: 25%;
     }
     .open{
-      font-size: 5vmin;
+        font-size: 5vmin;
     }
 
 }
 
 
 /*******MOBILE STYLING END**********/
-
-@font-face {
-    font-family: de-walpergens-pica;
-    src: url(../fonts/im-fell-dw-pica.cs.ttf);
-}

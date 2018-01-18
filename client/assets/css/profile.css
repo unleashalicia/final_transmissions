@@ -197,31 +197,44 @@ button:hover {
     border-radius: 10px;
 }
 
+.profile-label, .user-details{
+    margin: 0;
+}
+
+.profile-label{
+    color: #62a3be;
+}
+
+.user-details{
+    margin-left: 4%;
+}
+
 .edit-text{
+    cursor: pointer;
     background-image: url(../images/profile/edittext.png);
     background-size: cover;
     display: inline-block;
-    position: absolute;
+    position: relative;
+    position: relative;
     content: "";
     width: 30px;
     height: 30px;
-    bottom:  17%;
-    right: 5%;
     border-radius: 50%;
     border: 1px solid white;
-    cursor: pointer;
+    margin-left: 2%;
+    bottom: -6px;
 }
 
 .edit-text:hover{
     filter: invert(100%);
 }
 
-.profile-details{
+/* .profile-details{
     font-weight: bolder;
     margin-right: 2%;
     text-decoration: none;
     color: #62a3be;
-}
+} */
 
 .email-container input{
     height: 25px;
@@ -248,7 +261,7 @@ button:hover {
 }
 
 .email-container input:invalid{
-    border:5px solid red;
+    border: 2px solid rgba(255, 0, 0, 0.7);
 }
 
 .button-holder{
@@ -264,7 +277,7 @@ p{
 }
 
 .story-container-inside{
-    width: 90%;
+    width: 100%;
     text-align: center;
     margin-top: 5%;
 }
@@ -280,8 +293,8 @@ p{
 }
 .story-list li{
     list-style-type: none;
-    line-height: 1.5em;
     cursor: pointer;
+    font-size: 1.3em;
 }
 a{
     text-decoration: none;
@@ -369,19 +382,6 @@ a{
         background-repeat: no-repeat;
     }
 
-    /* nav ul li{
-        margin: auto;
-        font-size: 1em;
-    }
-
-    nav ul li::after{
-        display: none;
-    }
-
-    nav ul li::before{
-        display: none;
-    } */
-
     nav{
         display: none;
     }
@@ -410,15 +410,30 @@ a{
     .profile-data{
         width: 80%;
         margin: 8%;
-        font-size: 1em;
+        font-size: 1.2em;
+    }
+
+    .profile-label{
+        text-align: center;
+    }
+
+    .user-details{
+        text-align: center;
     }
 
     .story-container-inside{
-        margin-top: 20%;
+        margin-top: 10%;
     }
 
     .profile-photo{
         box-shadow: 10px 19px 14px 11px black;
+    }
+
+    .user-details{
+        margin: auto;
+        width: 90%;
+        text-overflow: ellipsis;
+        overflow: hidden;
     }
 
     .edit-photo{
@@ -428,10 +443,10 @@ a{
         right: 12%;
     }
     .edit-text{
+        margin-left: 7%;
         width: 25px;
         height: 25px;
-        bottom: 10%;
-        right: 2%;
+        right: 5%;
     }
     .email-container input{
         width: 90%;
