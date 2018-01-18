@@ -82,6 +82,8 @@ h1{
 }
 .form-group div input::placeholder{
   font-family: de-walpergens-pica, serif;
+  border-radius: 3%;
+  border-style: none;
 }
 
 .sign, .log{
@@ -103,6 +105,7 @@ button{
   font-size: 135%;
   background: black;
   vertical-align: top;
+  border-radius: 5%;
 }
 
 
