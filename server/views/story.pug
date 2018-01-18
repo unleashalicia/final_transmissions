@@ -1,0 +1,45 @@
+html(lang="en")
+    head
+        meta(charset="UTF-8")
+        meta(name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0")
+        meta(http-equiv="X-UA-Compatible" content="ie=edge")
+        link(rel="stylesheet" href="../../assets/css/story.css")
+        title= storyDetails.name
+    body
+        section#container
+            nav
+                ul
+                    li.nav-bar
+                        a(href="/instructions") Instructions
+                    li.nav-bar
+                        a(href="/library") Library
+                    li.nav-bar
+                        a(href="/logout") Log Out
+            .button-container
+                a(href="/profile")
+                    button.nav-btn Profile
+                a(href="/library")
+                    button.nav-btn Library
+                a(href="/logout")
+                    button.nav-btn Log Out
+            h1.title= storyDetails.name
+            .img-container
+                img.story-img(src="../../assets/" + storyDetails.story_img)
+            a.go-link(href="/play")
+                button.go-btn Go!
+            .about
+                p= storyDetails.description
+            p.time Estimated time: #{storyDetails.est_time}
+                h2 Chapters
+                
+                ol.chapters-list
+                    each val in chapterDetails
+                        li.chapter= val.chapter_name
+                    
+            #map
+            p.starting-point Starting Point:
+            p.address 9200 Irvine Center Dr, Irvine, CA 92618
+
+        
+        script(src="../../assets/js/story.js")
+        script(src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCXqyuEI8wFxFvczjGjlbim35FAuco0oCU&callback=initMap")

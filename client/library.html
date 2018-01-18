@@ -5,11 +5,18 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="assets/css/library.css">
+    <link rel="stylesheet" href="./assets/css/library.css">
     <title>Document</title>
 </head>
 <body>
 <section id="story-container">
+    <nav>
+        <ul>
+            <li class="nav-bar"><a href="/instructions">Instructions</a></li>
+            <li class="nav-bar"><a href="/library">Library</a></li>
+            <li class="nav-bar"><a href='/logout'>Log Out</a></li>
+        </ul>
+    </nav>
     <div class="button-container">
         <a href="/profile"><button class="nav-btn">Profile</button></a>
         <a href="/instructions"><button class="nav-btn">Instructions</button></a>
@@ -20,7 +27,7 @@
     <!--if story is locked/inactive, use this block-->
     <!--create this div 4 times using pug-->
     <div class="story">
-        <img src="assets/images/library/stairs.jpg">
+        <img src="assets/images/library/story_img_1.jpg">
         <div class="title">
             <h1 class="title-text">Story W</h1>
         </div>
@@ -32,7 +39,7 @@
         </div>
     </div>
     <div class="story">
-        <img src="assets/images/library/powerplant.jpg">
+        <img src="assets/images/library/story_img_6.jpg">
         <div class="title">
             <h1 class="title-text">Story X</h1>
         </div>
@@ -45,7 +52,7 @@
     </div>
     <!--if story is unlocked/active, use this block-->
     <div class="story initial-story">
-        <img src="assets/images/library/hallway2.jpg">
+        <img src="assets/images/library/story_img_2.jpg">
         <div class="title">
             <h1 class="title-text">Prologue</h1>
         </div>
@@ -54,7 +61,7 @@
         </a>
     </div>
     <div class="story">
-        <img src="assets/images/library/woods.jpg">
+        <img src="assets/images/library/story_img_5.jpg">
         <div class="title">
             <h1 class="title-text">Story Y</h1>
         </div>
@@ -66,7 +73,7 @@
         </div>
     </div>
     <div class="story">
-        <img src="assets/images/library/hallway.jpg">
+        <img src="assets/images/library/story_img_3.jpg">
         <div class="title">
             <h1 class="title-text">Story Z</h1>
         </div>
@@ -82,4 +89,3 @@
 <script src="assets/js/library.js"></script>
 </body>
 </html>
-

@@ -7,6 +7,14 @@ html(lang="en")
         title Library
     body
         section#story-container
+            nav
+                ul
+                    li.nav-bar
+                        a(href="/instructions") Instructions
+                    li.nav-bar
+                        a(href="/library") Library
+                    li.nav-bar
+                        a(href="/logout") Log Out
             .button-container
                 a(href="/profile")
                     button.nav-btn Profile
@@ -23,7 +31,7 @@ html(lang="en")
                         .title
                             h1.title-text= val.name
                         if val.status
-                            a.go-link(src='/story/id/' + val.id)
+                            a.go-link(href='/story/id/' + val.id)
                                 button.go-btn.display-go Go!
                         else 
                             a.go-link

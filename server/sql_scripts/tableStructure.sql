@@ -63,12 +63,12 @@ CREATE TABLE `augmented_reality` (
 
 DROP TABLE IF EXISTS `stories`;
 CREATE TABLE `stories` (
+  `id` smallint(5) UNSIGNED NOT NULL AUTO_INCREMENT,
   `name` varchar(50) NOT NULL,
-  `story_id` smallint(5) NOT NULL,
   `story_img` varchar(50) NOT NULL,
-  `status` tinyint(1) NOT NULL
+  `status` tinyint(1) NOT NULL,
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
 
 
 
@@ -77,7 +77,9 @@ CREATE TABLE `story_details` (
   `story_id` smallint(5) NOT NULL,
   `start_lat` varchar(30) NOT NULL,
   `start_lon` varchar(30) NOT NULL,
-  `description` varchar(400) NOT NULL
+  `description` varchar(400) NOT NULL,
+  `est_time` varchar(10) NOT NULL,
+  `start_address` VARCHAR(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 

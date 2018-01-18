@@ -2,3 +2,5 @@
 **/.DS_Store
 **/database.js
 **/.idea
+**/debug.log
+**/.vscode

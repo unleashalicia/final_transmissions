@@ -8,10 +8,11 @@
         <title>Water</title>
         <link rel="stylesheet" type="text/css" href="ARstyle.css" />
 
-        <script src="../../../assets/lib/AR.js-master/aframe/examples/vendor/aframe/build/aframe.js"></script>
-        <script src="../../../assets/lib/AR.js-master/aframe/build/aframe-ar.js"></script>
+        <script src="../../../assets/lib/aframe.js"></script>
+        <script src="../../../assets/lib/aframe-ar.js"></script>
+
     </head>
-    <body style='margin : 0px; overflow: hidden;'>
+    <body style='margin : 0; overflow: hidden;'>
         <!--<a-scene embedded artoolkit='sourceType: webcam;'>-->
             <!--<a-assets>-->
                 <!--<video src="./Rain%20-%2078.mp4" id="water1" loop="true"></video>-->
@@ -74,13 +75,13 @@
     var waterSceneObj = {
         assets: [
             {
-                src: "./Rain%20-%2078.mp4",
+                src: "./AR_Assets/Rain%20-%2078.mp4",
                 id: "water1",
                 autoplay: "false",
                 loop: "true"
             },
             {
-                src: "./Rain%20-%2078.mp4",
+                src: "./AR_Assets/Rain%20-%2078.mp4",
                 id: "water2",
                 autoplay: "false",
                 loop: "true"
@@ -161,48 +162,59 @@
     };
 
 
+    window.addEventListener("load", function(){
+        createScene(waterSceneObj);
+    });
+
+
+
+
+
+
+
+
     function createScene(object){
 
         var body = document.getElementsByTagName('BODY')[0];
 
-        var sceneEl = document.createElement('a-scene');
-        sceneEl.setAttribute('embedded');
-        sceneEl.setAttribute('artoolkit', 'sourceType: webcam;');
+        var scene = document.createElement('a-scene');
+        scene.setAttribute('embedded');
+        scene.setAttribute('artoolkit', 'sourceType: webcam;');
 
-        var assetsEl = document.createElement('a-assets');
+        var assets = document.createElement('a-assets');
 
 
-        body.appendChild(sceneEl);
-        sceneEl.appendChild(assetsEl);
+        body.appendChild(scene);
+        scene.appendChild(assets);
 
 
         for (var assets_i=0; assets_i<object.assets.length; assets_i++){
-            var assetItemEl = document.createElement('video');
-            setAttributes(assetItemEl, object.assets[assets_i]);
-            assetsEl.appendChild(assetItemEl);
+            var assetItem = document.createElement('video');
+            setAttributes(assetItem, object.assets[assets_i]);
+            assets.appendChild(assetItem);
         }
 
-        var markerEl = document.createElement('a-marker');
-        markerEl.setAttribute("preset", object.marker.preset);
-        sceneEl.appendChild(markerEl);
+        var marker = document.createElement('a-marker');
+        marker.setAttribute("preset", object.marker.preset);
+        scene.appendChild(marker);
 
         for (var entity_i=0; entity_i<object.entities.length; entity_i++) {
 
-            var entityEl = document.createElement('a-entity');
-            var shapeEl = document.createElement(`a-${object.entities[entity_i].shape}`);
+            var entity = document.createElement('a-entity');
+            var shape = document.createElement(`a-${object.entities[entity_i].shape}`);
 
-            setAttributes(shapeEl, object.entities.dimensions);
-            shapeEl.setAttribute("opacity", object.entities[entity_i].material.opacity);
-            setAttributes(shapeEl, object.entities.otherAttr);
+            setAttributes(shape, object.entities[entity_i].dimensions);
+            shape.setAttribute("opacity", object.entities[entity_i].material.opacity);
+            setAttributes(shape, object.entities[entity_i].otherAttr);
 
             for (var animation_i = 0; animation_i < object.entities[entity_i].animations.length; animation_i++) {
-                var animationEl = document.createElement('a-animation');
-                setAttributes(animationEl, object.entities[entity_i].animations[animation_i]);
-                shapeEl.appendChild(animationEl);
+                var animation = document.createElement('a-animation');
+                setAttributes(animation, object.entities[entity_i].animations[animation_i]);
+                shape.appendChild(animation);
             }
 
-            entityEl.appendChild(shapeEl);
-            sceneEl.appendChild(entityEl);
+            entity.appendChild(shape);
+            marker.appendChild(entity);
         }
     }
 
