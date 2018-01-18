@@ -427,8 +427,9 @@ function handleStateAssetLoading(data){
         sounds.sources[i] = './assets/' + soundAssets[i]
     }
 
-    console.log('Our sound assets: ', sounds);
-    console.log('Our other assets: ', target, action);
+    let currentChapter = miscAssets.state_id;
+    
+    createScene(storyObject[currentChapter]);
 
     loadAll();
 }

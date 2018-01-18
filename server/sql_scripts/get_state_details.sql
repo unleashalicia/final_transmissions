@@ -11,7 +11,7 @@ CREATE PROCEDURE `getUserStateDetails` (
     BEGIN
       SELECT ar.marker,
             l.latitude AS lat, l.longitude AS lon, l.outer_threshold, l.inner_threshold,
-            sa.action
+            sa.action, us.state_id
 
         FROM user_stories AS us
 

@@ -19,8 +19,6 @@ CREATE PROCEDURE `handleUserAction` (
       UPDATE user_stories AS us SET us.state_id = @next_state
       	WHERE us.id = userId AND us.story_id = storyId
       ;
-   	  CALL getUserStateDetails(userId, storyId)
-      ;
   END
     $$
 
