@@ -84,12 +84,7 @@ section {
     justify-content: space-between;
 }
 
-/* a {
-    position: relative;
-} */
-
 button {
-    position: relative;
     border: 5px solid whitesmoke;
     border-radius: 5%;
     background-color: rgba(235, 235, 235, .3);
@@ -104,13 +99,21 @@ button {
     position: absolute;
     bottom: 2%;
     right: 5%;
-
 }
 
 button:hover {
     background-color: rgba(235, 235, 235, .7);
     color: #252222;
     text-shadow: none;
+}
+
+a {
+    color: whitesmoke;
+    text-decoration: none;
+    position: absolute;
+    bottom: 2%;
+    right: 5%;
+    z-index: 100;
 }
 
 button a {
