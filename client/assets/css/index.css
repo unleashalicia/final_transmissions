@@ -133,7 +133,6 @@ h1{
 }
 
 button{
-<<<<<<< HEAD
     font-family: walpergens;
     color: white;
     background: black;
@@ -143,19 +142,6 @@ button{
     width: 25%;
     font-size: 100%;
     border: 2px white solid;
-=======
-  cursor: pointer;
-  height: 40px;
-  width: 25%;
-  font-size: 100%;
-  border: 1px white solid;
-  font-family: walpergens;
-  color: white;
-  font-size: 135%;
-  background: black;
-  vertical-align: top;
-  border-radius: 5%;
->>>>>>> 238dfee935bf215b048afdc1bbf1578b1de7b6ce
 }
 
 .hide{
