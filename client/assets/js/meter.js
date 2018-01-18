@@ -390,7 +390,7 @@ document.addEventListener("DOMContentLoaded", onLoad);
 function onLoad(){
     handleEventHandlers();
     grabChapterAssets()
-    getLocation();
+
 };
 //****************************************
 //****************************************
@@ -408,7 +408,9 @@ function grabChapterAssets(){
         }
     }
 
-    axios(axiosOptions).then( handleStateAssetLoading );
+    axios(axiosOptions).then( handleStateAssetLoading ).catch( error => {
+        console.log(error);
+    });
 }
 //++
 //++
@@ -429,8 +431,8 @@ function handleStateAssetLoading(data){
 
     console.log('Our sound assets: ', sounds);
     console.log('Our other assets: ', target, action);
-
     loadAll();
+    getLocation();
 }
 //****************************************
 //****************************************
