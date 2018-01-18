@@ -37,13 +37,12 @@ html
                     img.polaroid(src="assets/images/profile/polaroid.png")
                     img.edit-photo(src="assets/images/profile/editicon.png")
                 .profile-data
-                    p
-                        span.profile-details Username:
-                        span.user-details-name= userdata[0].user_name
-                    p.email
-                        span.profile-details E-Mail:
-                        span.user-details-email= userdata[0].email
+                    h4.profile-label USERNAME
+                    h4.user-details= userdata[0].user_name
+                    h4.profile-label E-MAIL
                         img.edit-text(src="assets/images/profile/edittext.png")
+                    .email-holder
+                        h4.user-details.email= userdata[0].email
                     .story-container-Inside
                         h3 CURRENT STORIES 
                         .story-list 
