@@ -4,28 +4,11 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="assets/js/profile.js" type="text/javascript"></script>
-    <link rel="stylesheet" href="assets/css/fog.css" type="text/css"/>
     <link rel="stylesheet" href="assets/css/profile.css" type="text/css"/>
     <title>Profile Page</title>
 </head>
 <body>
     <div id="user-container">
-<!--************FOG ELEMENTS************************-->
-    <div class="fogwrapper">
-        <div id="foglayer_01" class="fog">
-           <div class="image01"></div>
-           <div class="image02"></div>
-        </div>
-        <div id="foglayer_02" class="fog">
-           <div class="image01"></div>
-           <div class="image02"></div>
-        </div>
-        <div id="foglayer_03" class="fog">
-           <div class="image01"></div>
-           <div class="image02"></div>
-        </div>
-    </div>
-<!--************FOG ELEMENTS*************************-->
         <div class="modal hide">
             <div class="modal-content">
                 <h2>Confirming Request...</h2>
@@ -57,8 +40,12 @@
                 <img class="edit-photo" src="assets/images/profile/editicon.png"/>
             </div>
             <div class="profile-data">
-                <p><span class="profile-details">USERNAME:</span><span class="user-details-name">xXxjeffmonxL33TxXx</span></p>
-                <p class="email"><span class="profile-details">EMAIL:</span> <span class="user-details-email">jeffmon@tacocats.yum</span><img class="edit-text" src="assets/images/profile/edittext.png"/></p>
+                <h4 class="profile-label">USERNAME</h4>
+                <h4 class="user-details">xXxjeffmonxL33TxXx</h4>
+                <h4 class="profile-label">EMAIL<img class="edit-text" src="assets/images/profile/edittext.png"/></h4>
+                <div class="email-holder">
+                    <h4 class="user-details email">jeffmon@tacocats.yum</h4>
+                </div>
                 <div class="story-container-inside">
                     <h3>CURRENT STORIES</h3>
                     <ul class="story-list">
@@ -66,6 +53,7 @@
                         <li><a href="#">Silent Farts</a></li>
                         <li><a href="#">Banana Black Spots</a></li>
                         <li><a href="#">Skittles Monster</a></li>
+                        <li><a href="#">Banana Black Spots</a></li>
                     </ul>
                 </div>
             </div>

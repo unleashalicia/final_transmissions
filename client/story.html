@@ -10,6 +10,13 @@
 </head>
 <body>
     <Section id="container">
+        <nav>
+            <ul>
+                <li class="nav-bar"><a href="/instructions"> Instructions</a></li>
+                <li class="nav-bar"><a href="/library">Library</a></li>
+                <li class="log-out nav-bar"><a href='/logout'>Log Out</a></li>
+            </ul>
+        </nav>
         <div class="button-container">
             <a href="/profile"><button class="nav-btn">Profile</button></a>
             <a href="/library"><button class="nav-btn">Library</button></a>
@@ -43,9 +50,10 @@
         <button class="progress-btn" onclick="move()">Click Me</button> -->
         <div id="map"></div>
         <p class='starting-point'>Starting Point:</p>
-        <p class='address'>9200 Irvine Center Dr., 2nd Floor Irvine, CA 92618</p>
+        <p class='address-1'>9200 Irvine Center Dr.
+        <p class="address">Irvine, CA 92618</p>
     </Section>
     <script src="assets/js/story.js"></script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCXqyuEI8wFxFvczjGjlbim35FAuco0oCU&callback=initMap" async defer></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCXqyuEI8wFxFvczjGjlbim35FAuco0oCU&callback=initMap"></script>
 </body>
 </html>
