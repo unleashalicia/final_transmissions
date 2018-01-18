@@ -100,11 +100,37 @@ function createScene(object){
     } //end lights conditional
 } //end createScene
 
+//Draft of call function;
+
+function chapterCreator(resp){
+    switch (resp){
+        case "earth":
+            createScene(earthSceneObj);
+            break;
+        case "water":
+            createScene(waterSceneObj);
+            break;
+        case "air":
+            createScene(airSceneObj);
+            break;
+        case "fire":
+            createScene(fireSceneObj);
+            break;
+        case "finale":
+            createScene(finaleSceneObj);
+            break;
+        default:
+            alert("There was an error processing your request.  Please try again.");
+    }
+}
+
+
+
 
 //Both of these are for testing.  Will be different in final version
 
 window.addEventListener("load", function(){
-    createScene(fireSceneObj);
+    chapterCreator("error");
 });
 
 window.addEventListener("markerFound", function(){

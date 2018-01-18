@@ -16,18 +16,9 @@
 
 <a-scene>
     <a-sky color="grey"></a-sky>
-    <!--<a-assets>-->
-        <video src="./AR_Assets/Ghost%20-%202318%20(1).mp4" id="ghost1" autoplay loop="true"></video>
-    <video src="./AR_Assets/Ghost%20-%202318%20(1).mp4" id="ghost2" autoplay loop="true" style="transform: rotate(90deg);"></video>
-    <img src="./AR_Assets/movingghost.gif" id="ghostgif" ></img>
-    </a-assets>
-
 </a-scene>
 
 <script>
-
-
-
 
     window.addEventListener("load", function () {
         createGhosts(5);
@@ -46,64 +37,48 @@
         for (let creator=0; creator<amount; creator++){
             let entity = document.createElement('a-entity');
             let plane = document.createElement('a-plane');
-            let animation1 = document.createElement('a-animation');
-//            let animation2 = document.createElement('a-animation');
 
-            let posX = findRange(-7, 7);
+            let animation1 = document.createElement('a-animation');
+            let animation2 = document.createElement('a-animation');
+
+            let posX = findRange(-7,7);
             let posXdest = findRange(-7,7);
 
-            let posY = findRange(-7, 7);
-            let posYdest = findRange(-7, 7);
+            let dur = findRange(1000, 5000);
 
-            let posZ = -5;
-
-            let dur = findRange(1000, 10000);
+//            plane.setAttribute('src', './AR_assets/ghostsmokemd_59066.gif');
 
 
 
-//            material="shader:gif;src:url(nyancat.gif);" gif=""
-
-//            if(creator%2===0) {
-            debugger;
-                plane.setAttribute('material', 'shader:gif;src:url(./AR_Assets/giphy.gif)');
-//                plane.setAttribute('gif', '');
+                plane.setAttribute('material', 'shader:gif;src:url(./AR_Assets/ghost-smoke.gif)');
+////                plane.setAttribute('gif', '');
                 plane.play();
-//            } else {
-//                plane.setAttribute('src', '#snow');
-//            }
 
-//            plane.setAttribute('src', '#ghost1');
+            plane.setAttribute('opacity', '1');
 
-//            plane.setAttribute('style', 'transform', 'rotate(90deg)');
-            plane.setAttribute('opacity', '0.5');
-
-            plane.setAttribute('height', '5');
-            plane.setAttribute('width', '3');
+            plane.setAttribute('height', '2');
+            plane.setAttribute('width', '4');
             plane.setAttribute('material', '','rgba(255, 255, 255, 0)');
-
-//            animation.setAttribute('attribute', 'scale');
-//            animation.setAttribute('from', '0.5');
-//            animation.setAttribute('to', '4');
 
             animation1.setAttribute('attribute', 'position');
             animation1.setAttribute('dur', dur);
-            animation1.setAttribute('from', '0' + ' ' + '1.5' + ' -5');
-            animation1.setAttribute('to', posXdest + ' ' + posYdest + ' -5');
+            animation1.setAttribute('from', '0' + ' ' + '0.5' + ' -5');
+            animation1.setAttribute('to', posXdest + ' ' + '5' + ' -5');
             animation1.setAttribute('easing', 'linear');
             animation1.setAttribute('repeat', 'indefinite');
 
 //
-//            animation2.setAttribute('attribute', 'opacity');
-//            animation2.setAttribute('dur', dur);
-//            animation2.setAttribute('from', '0.5');
-//            animation2.setAttribute('to', '0');
-//            animation2.setAttribute('easing', 'linear');
-//            animation2.setAttribute('repeat', 'indefinite');
+            animation2.setAttribute('attribute', 'opacity');
+            animation2.setAttribute('dur', dur);
+            animation2.setAttribute('from', '1');
+            animation2.setAttribute('to', '0');
+            animation2.setAttribute('easing', 'linear');
+            animation2.setAttribute('repeat', 'indefinite');
 
-//            posZ = posZ-2;
+
 
             entity.appendChild(animation1);
-//            entity.appendChild(animation2);
+            plane.appendChild(animation2);
             entity.appendChild(plane);
             scene.appendChild(entity);
 
