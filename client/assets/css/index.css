@@ -134,10 +134,10 @@ h1{
 
 button{
   cursor: pointer;
-  height: 20%;
+  height: 40px;
   width: 25%;
   font-size: 100%;
-  border: 2px white solid;
+  border: 1px white solid;
   font-family: walpergens;
   color: white;
   font-size: 135%;
