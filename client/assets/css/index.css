@@ -98,6 +98,11 @@ h1{
   font-family: walpergens;
 }
 
+.form-group div button {
+    border-radius: 5%;
+    border: 1px solid whitesmoke;
+}
+
 .sign div input:invalid{
     border: 2px solid rgba(255, 0, 0, 0.7);
 }
@@ -135,15 +140,17 @@ h1{
 }
 
 button{
+    cursor: pointer;
+    height: 40px;
+    border: 1px white solid;
+    border-radius: 5%;
+    margin: 1%;
     font-family: walpergens;
     color: white;
-    background: black;
+    background-color: black;
     vertical-align: top;
-    cursor: pointer;
-    height: 11vmin;
     width: 25%;
     font-size: 100%;
-    border: 2px white solid;
 }
 
 .hide{
