@@ -14,7 +14,7 @@ body{
   background-size: cover;
   background-repeat: no-repeat;
   font-family: walpergens;
-  height: 100vh;
+  height: 100%;
   width: 100%;
   text-align: center;
   color: #fff;
@@ -86,8 +86,10 @@ h1{
 .form-group div input{
     display: flex;
     flex-flow: column nowrap;
-    height: 4vh;
+    height: 35px;
     margin-bottom: 1%;
+    border-radius: 2%;
+    border-style: none;
 }
 
 .form-group div input::placeholder{

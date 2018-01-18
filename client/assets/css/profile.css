@@ -110,14 +110,20 @@ button:hover {
 .logOut h2{
     font-size: 3em;
 }
+
 .logOut button{
     font-family: walpergens;
     font-size: 50px;
     background-color: black;
+    border: 1px solid whitesmoke;
     color: white;
     border: 1.5px solid white;
     cursor: pointer;
+    width: 25vw;
+    height: 50px;
+    margin: 1%;
 }
+
 .logOut button:hover,.logOut button a:hover{
     background-color: white;
     border: 1.5px solid black;
