@@ -24,7 +24,7 @@
     <a-marker preset='hiro'>
 
         <a-entity>
-            <a-box src="#wood" height="1" width="1" depth="1" position="0 0 -3.5" rotation="0 0 0">
+            <a-box src="#wood" height="1" width="1" depth="1" position="0 0 -3.5" rotation="0 90 0">
             </a-box>
         </a-entity>
 
@@ -40,33 +40,34 @@
         </a-entity>
 
         <a-entity
-            id="blue"
-            light="color: #3A43D4;
+                id="white"
+                light="color: white;
             type: directional;
             intensity: 1.0"
             position="9 0 0"
             rotation="90 0 0"
-            target="0 0 0"
+            target="0 0 -3.5"
         >
         </a-entity>
         <a-entity
-            id="green"
-            light="color: #185900;
+                id="white"
+                light="color: white;
             type: directional;
             intensity: 1.0"
             position="0 0 -9"
             rotation="180 0 0"
-            target="0 0 0"
+            target="0 0 -3.5"
         >
         </a-entity>
         <a-entity
-            id="red"
-            light="color: #AC0406;
+                id="white"
+                light="color: white;
+
             type: directional;
             intensity: 1.0"
             position="-9 0 0"
             rotation="270 0 0"
-            target="0 0 0"
+            target="0 0 -3.5"
         >
         </a-entity>
     </a-marker>
@@ -128,8 +129,8 @@
 
             move.setAttribute('attribute', 'position');
             move.setAttribute('dur', dur);
-            move.setAttribute('from', '0' + ' ' + '0.5' + ' 0');
-            move.setAttribute('to', posXdest + ' ' + posYdest + ' 0');
+            move.setAttribute('from', '0' + ' ' + '0.5' + ' -3.5');
+            move.setAttribute('to', posXdest + ' ' + posYdest + ' -3.5');
             move.setAttribute('easing', 'linear');
             move.setAttribute('repeat', 'indefinite');
 
