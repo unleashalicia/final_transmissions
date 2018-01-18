@@ -131,9 +131,11 @@ var chapter = 1;
 
 //Both of these are for testing.  Will be different in final version
 
-window.addEventListener("load", function(){
-    createScene(storyObject[chapter]);
-});
+//Commented out so it doesn't immediately activate.
+
+// window.addEventListener("load", function(){
+//     createScene(storyObject[chapter]);
+// });
 
 window.addEventListener("markerFound", function(){
     console.log("markerFound!");
