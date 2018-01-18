@@ -102,35 +102,37 @@ function createScene(object){
 
 //Draft of call function;
 
-function chapterCreator(resp){
-    switch (resp){
-        case "earth":
-            createScene(earthSceneObj);
-            break;
-        case "water":
-            createScene(waterSceneObj);
-            break;
-        case "air":
-            createScene(airSceneObj);
-            break;
-        case "fire":
-            createScene(fireSceneObj);
-            break;
-        case "finale":
-            createScene(finaleSceneObj);
-            break;
-        default:
-            alert("There was an error processing your request.  Please try again.");
-    }
-}
+// function chapterCreator(resp){
+//     switch (resp){
+//         case "earth":
+//             createScene(earthSceneObj);
+//             break;
+//         case "water":
+//             createScene(waterSceneObj);
+//             break;
+//         case "air":
+//             createScene(airSceneObj);
+//             break;
+//         case "fire":
+//             createScene(fireSceneObj);
+//             break;
+//         case "finale":
+//             createScene(finaleSceneObj);
+//             break;
+//         default:
+//             alert("There was an error processing your request.  Please try again.");
+//     }
+// }
 
 
 
+
+var chapter = 1;
 
 //Both of these are for testing.  Will be different in final version
 
 window.addEventListener("load", function(){
-    chapterCreator("error");
+    createScene(storyObject[chapter]);
 });
 
 window.addEventListener("markerFound", function(){
