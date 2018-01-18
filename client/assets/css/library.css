@@ -244,12 +244,12 @@ img {
 
 /************ Media Queries ****************/
 
-@media screen and (max-width: 560px){
+/* @media screen and (max-width: 560px){
     .go-link {
         top: 55%;
         left: 65%;
     }
-}
+} */
 
 @media screen and (max-width: 768px){
     .button-container {
@@ -262,6 +262,11 @@ img {
 
     .go-link {
         margin-top: 5%;
+    }
+
+    .go-btn {
+        visibility: visible;
+        z-index: 100;
     }
 
     body {
