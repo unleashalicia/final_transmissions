@@ -1,8 +1,8 @@
 .profile-container{
      background: url(../images/profile/smoke.png) no-repeat;
      background-size: cover;
-      -webkit-animation: 40s FOG infinite;
-      animation: 40s FOG infinite;
+      -webkit-animation: 40s linear FOG infinite;
+      animation: 40s linear FOG infinite;
 }
 
 
