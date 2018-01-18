@@ -72,9 +72,11 @@ module.exports = function (app, passport) {
 
 	app.get('/story/id/:id', isLoggedIn, (req, res) => {
 		let story_id = req.params.id;
-		let sql = `CALL getStoryPageDetails(${req.user.id},${story_id})`;
+		let sql = `CALL getStoryPageDetails(${story_id})`;
+
 
 		connection.query(sql,(err,result,fields)=>{
+			console.log(result);
 			res.render("story",{
 				storyDetails: result[0][0],
 				chapterDetails: result[1]

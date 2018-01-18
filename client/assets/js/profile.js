@@ -27,14 +27,16 @@ function handleEventHandlers(){
 
 
 function makeInput(){//the email is replaced with an input element
+    this.disabled=true;
     const fragment = document.createDocumentFragment();
     const form = document.createElement("form")
     const input = document.createElement("input")
     const submit = document.createElement("button")
     const cancel = document.createElement("button")
+    const email = document.querySelector(".user-details.email")
     form.classList.add("email-container");
     input.type="email";
-    input.placeholder=event.target.previousSibling.innerHTML;
+    input.placeholder=email.innerHTML;
     input.pattern="^[a-zA-Z0-9.!#$%&’*+\/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$"
     input.required=true;
     input.classList.add("email-input");
@@ -55,28 +57,20 @@ function makeInput(){//the email is replaced with an input element
     form.appendChild(submit);
     form.appendChild(cancel)
     fragment.appendChild(form);
-    event.target.parentNode.replaceWith(fragment);
+    email.parentNode.replaceWith(fragment);
 }
 
 
 function revertInput(){//function reverting the input back to email
+    document.querySelector(".edit-text").disabled=false;
     const fragment = document.createDocumentFragment();
-    const paragraph = document.createElement('p');
-    const emailSpan = document.createElement('span');
-    const userSpan = document.createElement('span');
-    const editImg = document.createElement('img');
-    emailSpan.classList.add("profile-details");
-    paragraph.classList.add("email");
-    userSpan.classList.add("user-details-email");
-    editImg.classList.add("edit-text");
-    emailSpan.textContent="EMAIL: ";
-    userSpan.textContent=document.querySelector('.email-container input').placeholder
-    editImg.src="assets/images/profile/edittext.png";
-    editImg.onclick=makeInput;
-    paragraph.appendChild(emailSpan);
-    paragraph.appendChild(userSpan);
-    paragraph.appendChild(editImg);
-    fragment.appendChild(paragraph);
+    const div = document.createElement('div');
+    const emailh4 = document.createElement('h4');
+    div.classList.add("email-holder");
+    emailh4.className="user-details email"
+    emailh4.textContent=document.querySelector('.email-container input').placeholder
+    div.appendChild(emailh4);
+    fragment.appendChild(div);
     event.target.parentNode.replaceWith(fragment);
 }
 
