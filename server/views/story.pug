@@ -24,7 +24,8 @@ html(lang="en")
                     button.nav-btn Log Out
             h1.title= storyDetails.name
             .img-container
-                img.story-img(src="../../assets/" + storyDetails.story_img)
+                //- needs a routing for a mobile images, add .mobile class for the img is placed here
+                img.story-img.desktop(src="../../assets/" + storyDetails.story_img)
             a.go-link(href="/play")
                 button.go-btn Go!
             .about

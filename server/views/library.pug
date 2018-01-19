@@ -27,7 +27,8 @@ html(lang="en")
                 
             each val in storydata
                     .story.initial-story
-                        img(src="assets/" + val.story_img)
+                        //- img.mobile(src="assets/" + val.story_img) needs mobile routing
+                        img.desktop(src="assets/" + val.story_img)
                         .title
                             h1.title-text= val.name
                         if val.status
@@ -37,5 +38,6 @@ html(lang="en")
                             a.go-link
                                 button.go-btn Go!
                             .lock-container
-                                img.lock(src="assets/images/library/lock.png")
+                                img.lock.mobile(src="assets/mobile/images/library/lock.png")
+                                img.lock.desktop(src="assets/images/library/lock.png")
         script(src="assets/js/library.js")

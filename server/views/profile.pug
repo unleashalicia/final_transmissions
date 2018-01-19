@@ -3,6 +3,7 @@ html
         meta(charset="utf-8")
         meta(name="viewport" content="width=device-width, initial-scale=1.0")
         script(src="assets/js/profile.js" type="text/javascript")
+        link(rel="stylesheet" href="assets/css/fog.css" type="text/css")
         link(rel="stylesheet" href="assets/css/profile.css" type="text/css")
         title #{userdata[0].user_name}'s Profile
 
@@ -34,13 +35,16 @@ html
                 h1 USER PROFILE
                 .photo-container
                     img#profile-photo.profile-photo(src="assets/images/profile/xray" + (Math.floor(Math.random() * 3) + 1) + ".jpg")
-                    img.polaroid(src="assets/images/profile/polaroid.png")
-                    img.edit-photo(src="assets/images/profile/editicon.png")
+                    img.polaroid.mobile(src="assets/images/mobile/profile/polaroid.png")
+                    img.edit-photo.mobile(src="assets/images/mobile/profile/editicon.png")
+                    img.polaroid.desktop(src="assets/images/profile/polaroid.png")
+                    img.edit-photo.desktop(src="assets/images/profile/editicon.png")
                 .profile-data
                     h4.profile-label USERNAME
                     h4.user-details= userdata[0].user_name
                     h4.profile-label E-MAIL
-                        img.edit-text(src="assets/images/profile/edittext.png")
+                        img.edit-text.mobile(src="assets/images/mobile/profile/edittext.png")
+                        img.edit-text.desktop(src="assets/images/profile/edittext.png")
                     .email-holder
                         h4.user-details.email= userdata[0].email
                     .story-container-Inside
