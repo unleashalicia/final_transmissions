@@ -29,7 +29,7 @@ module.exports = function (app, passport) {
 
 
 	app.get('/instructions', isLoggedIn, (req,res) => {
-		res.sendFile(path.join(__dirname, '..', '..', 'client', 'instructions_min.html'));
+		res.sendFile(path.join(__dirname, '..', '..', 'client', 'instructions.html'));
 	});
 
 
