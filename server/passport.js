@@ -40,10 +40,8 @@ module.exports = {
         // create new user, sign-up
         passport.use('local-signup', new LocalStrategy(localConfig,
             function (req, userHandle, password, done) {
-				console.log(req.body);
                 process.nextTick(function () {
                     let sql = userSearchSQL(userHandle);
-				    console.log("This is the SQL while signing up", sql);
                     connection.query(sql, function (err, results, fields) {
                         if (err) {
                             return done(err)
@@ -85,7 +83,7 @@ module.exports = {
                         return done(null, false);
                     }
 
-					console.log('Results:', results);
+					console.log('Successful sign in');
 
                     return done(null, results[0].id);
                 });

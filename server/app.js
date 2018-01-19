@@ -7,6 +7,7 @@ const path = require('path');
 const app = express();
 const PORT = 8000;
 
+
 app.set("view engine","pug");
 app.set("views",path.join(__dirname, "views"));
 
@@ -21,22 +22,17 @@ app.use(passport.session());
 const {passportMethod, connection} = require('./passport');
 
 passportMethod(passport);
+
+
+
+//--| Begin Routes |--\\
+
 require('./routes/auth.js')(app, passport);
 
 
 app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname,'..', 'client', 'index.html'));
 });
-
-
-// app.get('/signup', (req, res) => {
-//     res.sendFile(path.join(__dirname,'..', 'client', 'signup.html'));
-// });
-//
-//
-// app.get('/login', (req, res) => {
-//     res.sendFile(path.join(__dirname,'..', 'client', 'login.html'));
-// });
 
 
 app.get('/library', (req,res) => {
@@ -59,10 +55,7 @@ app.get('/state', (req, res)=>{
     });
 });
 
-
-
-
-
+//--| Support Functions |--\\
 
 function formatStateData(data) {
     let formattedData = [];
@@ -83,6 +76,9 @@ function errorHandler (err, req, res, next) {
 	res.status(500);
 	res.send('Error, something broke!');
 }
+
+
+
 
 app.listen(PORT, () => {
     console.log("Let's find some ghosts on port: ", PORT);
