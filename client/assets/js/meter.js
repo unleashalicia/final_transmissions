@@ -243,7 +243,9 @@ function knobRange(elem){
 function handleMeter(){
     const needlegauge = document.querySelector('.needleGauge');
 
-    console.log('Current Knob Mode: ',knobMode);
+    const test = document.querySelector('.test-output');
+
+
 
     if (knobMode === 'long'){
         if (distance > 100 && deviceOn){
@@ -267,6 +269,8 @@ function handleMeter(){
             needlegauge.style.transform = 'translateX(-50%) rotateZ('+needleAngle+'deg)';
         }
     }
+
+    test.innerHTML = knobMode;
 }
 //++
 //++
