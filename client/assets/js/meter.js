@@ -386,7 +386,6 @@ document.addEventListener("DOMContentLoaded", onLoad);
 function onLoad(){
     handleEventHandlers();
     grabChapterAssets()
-
 };
 //****************************************
 //****************************************
@@ -424,6 +423,10 @@ function handleStateAssetLoading(data){
     for (let i in soundAssets){
         sounds.sources[i] = './assets/' + soundAssets[i]
     }
+
+    let currentChapter = miscAssets.state_id;
+    
+    createScene(storyObject[currentChapter]);
 
     loadAll();
     getLocation();

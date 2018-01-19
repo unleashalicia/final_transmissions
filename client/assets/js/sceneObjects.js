@@ -3,7 +3,7 @@ var storyObject = {
         id: "earth",
         assets: [
             {
-                src: "./AR_Assets/dust.ogv",
+                src: "/assets/video/dust.ogv", 
                 id: "dust",
                 autoplay: "true",
                 loop: "true"
@@ -48,13 +48,13 @@ var storyObject = {
         id: "water",
         assets: [
             {
-                src: "./AR_Assets/Rain%20-%2078.mp4",
+                src: "/assets/video/Rain%20-%2078.mp4",
                 id: "water1",
                 autoplay: "true",
                 loop: "true"
             },
             {
-                src: "./AR_Assets/Rain%20-%2078.mp4",
+                src: "/assets/video/Rain%20-%2078.mp4",
                 id: "water2",
                 autoplay: "true",
                 loop: "true"
@@ -163,19 +163,19 @@ var storyObject = {
         id: "air",
         assets: [
             {
-                src: "./AR_Assets/sky.mp4",
+                src: "/assets/video/sky.mp4",
                 id: "air1",
                 autoplay: "true",
                 loop: "true"
             },
             {
-                src: "./AR_Assets/sky.mp4",
+                src: "/assets/video/sky.mp4",
                 id: "air2",
                 autoplay: "true",
                 loop: "true"
             },
             {
-                src: "./AR_Assets/sky.mp4",
+                src: "/assets/video/sky.mp4",
                 id: "air3",
                 autoplay: "true",
                 loop: "true"
@@ -299,25 +299,25 @@ var storyObject = {
         id: "fire",
         assets: [
             {
-                src: "./AR_Assets/fire.ogv",
+                src: "/assets/video/fire.ogv",
                 id: "fire1",
                 autoplay: "true",
                 loop: "true"
             },
             {
-                src: "./AR_Assets/fire.ogv",
+                src: "/assets/video/fire.ogv",
                 id: "fire2",
                 autoplay: "true",
                 loop: "true"
             },
             {
-                src: "./AR_Assets/fire.ogv",
+                src: "/assets/video/fire.ogv",
                 id: "fire3",
                 autoplay: "true",
                 loop: "true"
             },
             {
-                src: "./AR_Assets/fire.ogv",
+                src: "/assets/video/fire.ogv",
                 id: "fire4",
                 autoplay: "true",
                 loop: "true"
