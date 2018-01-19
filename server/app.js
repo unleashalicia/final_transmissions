@@ -48,7 +48,7 @@ app.get('/state', (req, res)=>{
     const query = `CALL getUserStateDetails(${req.user.id}, ${req.query.story})`;
 
     connection.query(query, function(error, data){
-
+        console.log(data);
         if (!error){
             let formattedData = formatStateData(data);
 

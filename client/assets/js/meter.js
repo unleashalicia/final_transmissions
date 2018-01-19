@@ -125,7 +125,7 @@ function handleEventHandlers(){
     loadingBtn.addEventListener('click', fullscreen);
 
     knobImg.addEventListener('click', function(){
-        knobRange(this);
+        knobRange(knobImg);
     });//turning the knob for range meter switch;
     uiSwitch.addEventListener('click',flipSwitch);//turns on the gadget
 
@@ -144,7 +144,6 @@ function handleEventHandlers(){
 //++
 //++
 function flipSwitch(){
-    console.log('Switch flipped');
     const uiSwitch = document.getElementById('switch');
     const indicatorLight = document.getElementById('indicator-light');
     const needlegauge = document.querySelector('.needleGauge');
@@ -210,31 +209,31 @@ function knobRange(elem){
     switch (elem.className) {
         case "close-range-knob":
             if(deviceOn){
-              knobLightOn()
-              }
-              elem.classList.remove("close-range-knob");
-              elem.classList.add("long-range-knob");
-              knobMode='long';
-              handleMeter();
-              break;
+                knobLightOn();
+            }
+            elem.classList.remove("close-range-knob");
+            elem.classList.add("long-range-knob");
+            knobMode='long';
+            handleMeter();
+            break;
         case "long-range-knob":
             if(deviceOn){
-              knobLightOn()
-              }
-              elem.classList.remove("long-range-knob");
-              elem.classList.add("mid-range-knob");
-              knobMode='med';
-              handleMeter();
-              break;
+                knobLightOn();
+            }
+            elem.classList.remove("long-range-knob");
+            elem.classList.add("mid-range-knob");
+            knobMode='med';
+            handleMeter();
+            break;
         case "mid-range-knob":
             if(deviceOn){
-              knobLightOn()
-              }
-              elem.classList.remove("mid-range-knob");
-              elem.classList.add("close-range-knob");
-              knobMode='short';
-              handleMeter();
-              break;
+                knobLightOn();
+            }
+            elem.classList.remove("mid-range-knob");
+            elem.classList.add("close-range-knob");
+            knobMode='short';
+            handleMeter();
+            break;
     }
 }
 //++
@@ -258,12 +257,14 @@ function handleMeter(){
         }
     } else if (knobMode === 'short') {
         if (distance > 25 && deviceOn){
-            needlegauge.style.transform = 'transform','translateX(-50%) rotateZ(-65deg)';
+            needlegauge.style.transform = 'translateX(-50%) rotateZ(-65deg)';
         } else if (distance <= 25 && distance >= 0 && deviceOn){
             let needleAngle = 53 - distance * 4;
             needlegauge.style.transform = 'translateX(-50%) rotateZ('+needleAngle+'deg)';
         }
     }
+
+
 }
 //++
 //++
@@ -332,14 +333,9 @@ function getLocation() {
         //pos also includes pos.timestamp if needed later
         //moved ready modal details into audio load callback
         coord = pos.coords;
-        console.log(coord);
-
+        console.log('Coord Success');
 
         distance = getDistanceFromLatLonInKm(coord.latitude,coord.longitude,target.latitude,target.longitude);
-
-        //This will output the distance to the main point from where you are to the screen
-        //used for testing purposes
-        // $('.test-output').text(distance.toFixed(3));
 
         //Update the meter needle position
         handleMeter();
@@ -355,6 +351,7 @@ function getLocation() {
         if (errorCount > 10){
             //tell the user they are having issues with their gps connection
             //possibly end app usage for later resume
+            window.location.href = "/profile";
         }
     }
 }
@@ -389,7 +386,6 @@ document.addEventListener("DOMContentLoaded", onLoad);
 function onLoad(){
     handleEventHandlers();
     grabChapterAssets()
-    getLocation();
 };
 //****************************************
 //****************************************
@@ -407,7 +403,9 @@ function grabChapterAssets(){
         }
     }
 
-    axios(axiosOptions).then( handleStateAssetLoading );
+    axios(axiosOptions).then( handleStateAssetLoading ).catch( error => {
+        window.location.href = "/story/id/" + axiosOptions.params.story;
+    });
 }
 //++
 //++
@@ -426,12 +424,17 @@ function handleStateAssetLoading(data){
         sounds.sources[i] = './assets/' + soundAssets[i]
     }
 
-    console.log('Our sound assets: ', sounds);
-    console.log('Our other assets: ', target, action);
+    let currentChapter = miscAssets.state_id;
+    
+    createScene(storyObject[currentChapter]);
 
     loadAll();
+    getLocation();
 }
 //****************************************
 //****************************************
 //-|
 //-|
+//****************************************
+//**************END***********************
+//****************************************
