@@ -243,6 +243,8 @@ function knobRange(elem){
 function handleMeter(){
     const needlegauge = document.querySelector('.needleGauge');
 
+    console.log('Current Knob Mode: ',knobMode);
+
     if (knobMode === 'long'){
         if (distance > 100 && deviceOn){
             needlegauge.style.transform = 'translateX(-50%) rotateZ(-65deg)';
@@ -335,12 +337,7 @@ function getLocation() {
         coord = pos.coords;
         console.log(coord);
 
-
         distance = getDistanceFromLatLonInKm(coord.latitude,coord.longitude,target.latitude,target.longitude);
-
-        //This will output the distance to the main point from where you are to the screen
-        //used for testing purposes
-        // $('.test-output').text(distance.toFixed(3));
 
         //Update the meter needle position
         handleMeter();
@@ -356,6 +353,7 @@ function getLocation() {
         if (errorCount > 10){
             //tell the user they are having issues with their gps connection
             //possibly end app usage for later resume
+            window.location.href = "/profile"
         }
     }
 }
@@ -409,7 +407,7 @@ function grabChapterAssets(){
     }
 
     axios(axiosOptions).then( handleStateAssetLoading ).catch( error => {
-        console.log(error);
+        window.location.href = "/story/id/" + axiosOptions.params.story;
     });
 }
 //++
@@ -438,3 +436,6 @@ function handleStateAssetLoading(data){
 //****************************************
 //-|
 //-|
+//****************************************
+//**************END***********************
+//****************************************
