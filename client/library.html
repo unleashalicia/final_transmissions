@@ -12,8 +12,8 @@
 <section id="story-container">
     <nav>
         <ul>
+            <li class="nav-bar"><a href="/profile">Profile</a></li>
             <li class="nav-bar"><a href="/instructions">Instructions</a></li>
-            <li class="nav-bar"><a href="/library">Library</a></li>
             <li class="nav-bar"><a href='/logout'>Log Out</a></li>
        </ul>
    </nav>
@@ -27,7 +27,8 @@
     <!--if story is locked/inactive, use this block-->
     <!--create this div 4 times using pug-->
     <div class="story">
-        <img src="assets/images/library/story_img_1.jpg">
+        <img class="mobile" src="assets/images/mobile/library/story_img_1.jpg">
+        <img class="desktop" src="assets/images/library/story_img_1.jpg">
         <div class="title">
             <h1 class="title-text">Story W</h1>
         </div>
@@ -35,11 +36,13 @@
             <button class="go-btn">Go!</button>
         </a>
         <div class="lock-container">
-            <img class="lock" src="assets/images/library/lock.png">
+            <img class="lock mobile" src="assets/mobile/images/library/lock.png">
+            <img class="lock desktop" src="assets/images/library/lock.png">
         </div>
     </div>
     <div class="story">
-        <img src="assets/images/library/story_img_6.jpg">
+        <img class="mobile" src="assets/images/mobile/library/story_img_6.jpg">
+        <img class="desktop" src="assets/images/library/story_img_6.jpg">
         <div class="title">
             <h1 class="title-text">Story X</h1>
         </div>
@@ -47,12 +50,14 @@
             <button class="go-btn">Go!</button>
         </a>
         <div class="lock-container">
-            <img class="lock" src="assets/images/library/lock.png">
+            <img class="lock mobile" src="assets/mobile/images/library/lock.png">
+            <img class="lock desktop" src="assets/images/library/lock.png">
         </div>
     </div>
     <!--if story is unlocked/active, use this block-->
     <div class="story initial-story">
-        <img src="assets/images/library/story_img_2.jpg">
+        <img class="mobile" src="assets/images/mobile/library/story_img_2.jpg">
+        <img class="desktop" src="assets/images/library/story_img_2.jpg">
         <div class="title">
             <h1 class="title-text">Prologue</h1>
         </div>
@@ -61,7 +66,8 @@
         </a>
     </div>
     <div class="story">
-        <img src="assets/images/library/story_img_5.jpg">
+        <img class="mobile" src="assets/images/mobile/library/story_img_5.jpg">
+        <img class="desktop" src="assets/images/library/story_img_5.jpg">
         <div class="title">
             <h1 class="title-text">Story Y</h1>
         </div>
@@ -69,11 +75,13 @@
             <button class="go-btn">Go!</button>
         </a>
         <div class="lock-container">
-            <img class="lock" src="assets/images/library/lock.png">
+            <img class="lock mobile" src="assets/images/mobile/library/lock.png">
+            <img class="lock desktop" src="assets/images/library/lock.png">
         </div>
     </div>
     <div class="story">
-        <img src="assets/images/library/story_img_3.jpg">
+        <img class="mobile" src="assets/images/mobile/library/story_img_3.jpg">
+        <img class="desktop" src="assets/images/library/story_img_3.jpg">
         <div class="title">
             <h1 class="title-text">Story Z</h1>
         </div>
@@ -81,7 +89,8 @@
             <button class="go-btn">Go!</button>
         </a>
         <div class="lock-container">
-            <img class="lock" src="assets/images/library/lock.png">
+            <img class="lock mobile" src="assets/mobile/images/library/lock.png">
+            <img class="lock desktop" src="assets/images/library/lock.png">
         </div>
     </div>
 </section>

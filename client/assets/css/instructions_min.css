@@ -31,8 +31,8 @@ body {
     border-radius: 2%;
 }
 
-.image-library {
-    width: 40%;
+.mobile{
+    display: none;
 }
 
 section {
@@ -49,10 +49,6 @@ section {
     margin-right: 5%;
 }
 
-.arrow-right:hover {
-    cursor: pointer;
-}
-
 .arrow-left {
     filter: invert(100%);
     float: left;
@@ -66,10 +62,6 @@ section {
         transform: scaleX(-1) rotateZ(-20deg);
         filter: FlipH;
         -ms-filter: "FlipH";
-}
-
-.arrow-left:hover {
-    cursor: pointer;
 }
 
 .arrow-container {
@@ -117,7 +109,6 @@ button:hover {
     background-color: rgba(235, 235, 235, .7);
     color: #252222;
     text-shadow: none;
-    cursor: pointer;
 }
 
 a {
@@ -148,4 +139,19 @@ button a {
 
 .hide-img {
     display: none;
+}
+
+
+/************MOBILE STYLING******************/
+
+@media only screen and (max-width: 770px) {
+
+    .desktop{
+        display: none;
+    }
+    .mobile{
+        display: block;
+    }
+
+
 }

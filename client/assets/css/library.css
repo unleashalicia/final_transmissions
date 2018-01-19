@@ -196,6 +196,10 @@ img {
     text-align: center;
 }
 
+.mobile{
+    display: none;
+}
+
 .story {
     height: 100vh;
     /*width: 100vw;*/
@@ -280,6 +284,13 @@ img {
 
     img {
         max-width: 980px;
+    }
+    .mobile{
+        display: block;
+    }
+
+    .desktop{
+        display: none;
     }
 }
 
