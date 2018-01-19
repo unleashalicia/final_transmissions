@@ -4,21 +4,17 @@
         <meta charset="utf-8">
         <meta name="mobile-web-app-capable" content="yes">
         <title>Ghost Meter</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="./assets/css/meter.css">
-
         <link rel="stylesheet" type="text/css" href="./assets/css/ARstyle.css" />
-
         <script src="/assets/lib/AR.js-master/aframe/examples/vendor/aframe/build/aframe.js"></script>
         <script src="/assets/lib/AR.js-master/aframe/build/aframe-ar.js"></script>
-
         <script src="/assets/lib/axios.min.js"></script>
         <script src="/assets/lib/noSleep.min.js"></script>
         <script src="/assets/lib/howler.js"></script>
         <script src="/assets/js/sceneObjects.js"></script>
         <script src="/assets/js/ar.js"></script>
         <script type="text/javascript" src="./assets/js/meter.js"></script>
-
-
     </head>
     <body>
       <div id="loading">
@@ -40,25 +36,23 @@
                 <span class="next-event hide">Next Chapter &#x25B6;&#x25B6; </span>
             </div>
         </div>
-
-        <div class="knob-container beige-border">
-          <div id="knob">
-            <div class="range-indicator long"><p>Long Range</p><div class="knob-light long"></div></div>
-            <div class="range-indicator mid"><p>Mid Range</p><div class="knob-light mid" ></div></div>
-            <div class="range-indicator close"><p>Close Range</p><div class="knob-light close"></div></div>
-            <div id="knobImg" class="mid-range-knob"></div>
-          </div>
-        </div>
-
-        <div class="action-container beige-border">
-            <div id="switch"></div>
-            <div id="indicator">
-                <div id="indicator-light"></div>
+            <div class="knob-container beige-border">
+              <div id="knob">
+                <div class="range-indicator long"><p>Long Range</p><div class="knob-light long"></div></div>
+                <div class="range-indicator mid"><p>Mid Range</p><div class="knob-light mid" ></div></div>
+                <div class="range-indicator close"><p>Close Range</p><div class="knob-light close"></div></div>
+                <div id="knobImg" class="mid-range-knob"></div>
+              </div>
             </div>
-        </div>
+            <div class="action-container beige-border">
+                <div id="switch"></div>
+                <div id="indicator">
+                    <div id="indicator-light"></div>
+                </div>
+            </div>
         <div class="text-tape"></div>
       </div>
-      <div id="camera">
+      <div id="camera" class="hide">
 
         <span class="next-event landscape hide">Next Chapter &#x25B6;&#x25B6; </span>
       </div>
