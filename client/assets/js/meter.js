@@ -207,7 +207,6 @@ function knobLightOff(){
 //++
 //++
 function knobRange(elem){
-    console.log('click knob');
     switch (elem.className) {
         case "close-range-knob":
             if(deviceOn){
