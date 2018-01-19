@@ -250,27 +250,33 @@ function handleMeter(){
     if (knobMode === 'long'){
         if (distance > 100 && deviceOn){
             needlegauge.style.transform = 'translateX(-50%) rotateZ(-65deg)';
+            test.innerHTML = knobMode + " " + needleAngle + " " + distance;
         } else if (distance <= 100 && distance >= 0 && deviceOn){
             let needleAngle = 53 - distance;
             needlegauge.style.transform = 'translateX(-50%) rotateZ('+needleAngle+'deg)';
+            test.innerHTML = knobMode + " " + needleAngle + " " + distance;
         }
     } else if (knobMode === 'med') {
         if (distance > 50 && deviceOn){
             needlegauge.style.transform = 'transform','translateX(-50%) rotateZ(-65deg)';
+            test.innerHTML = knobMode + " " + needleAngle + " " + distance;
         } else if (distance <= 50 && distance >= 0 && deviceOn){
             let needleAngle = 53 - distance * 2;
             needlegauge.style.transform = 'translateX(-50%) rotateZ('+needleAngle+'deg)';
+            test.innerHTML = knobMode + " " + needleAngle + " " + distance;
         }
     } else if (knobMode === 'short') {
         if (distance > 25 && deviceOn){
             needlegauge.style.transform = 'transform','translateX(-50%) rotateZ(-65deg)';
+            test.innerHTML = knobMode + " " + needleAngle + " " + distance;
         } else if (distance <= 25 && distance >= 0 && deviceOn){
             let needleAngle = 53 - distance * 4;
             needlegauge.style.transform = 'translateX(-50%) rotateZ('+needleAngle+'deg)';
+            test.innerHTML = knobMode + " " + needleAngle + " " + distance;
         }
     }
 
-    test.innerHTML = knobMode;
+
 }
 //++
 //++
