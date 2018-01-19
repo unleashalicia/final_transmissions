@@ -47,7 +47,7 @@ body * {
     height: 50vh;
     width: 90%;
     animation: noise-3 2s linear infinite;
-    top: 19%;
+    top: 10%;
 }
 
 .progress-container {
