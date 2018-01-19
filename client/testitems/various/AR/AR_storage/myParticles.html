@@ -15,7 +15,6 @@
 <body style='margin : 0px; overflow: hidden;'>
 
 <a-scene embedded artoolkit='sourceType: webcam;'>
-    <!--<a-sky color="grey"></a-sky>-->
 
     <a-assets>
         <img id="wood" src="../../../../assets/images/wood.jpg"/>
@@ -24,7 +23,17 @@
     <a-marker preset='hiro'>
 
         <a-entity>
-            <a-box src="#wood" height="1" width="1" depth="1" position="0 0.5 0" rotation="0 0 0">
+            <a-box src="#wood" height="1" width="1" depth="1" position="0 0 -3.5" rotation="0 90 0">
+                <a-animation
+                    attribute="rotation"
+                    from="15 90 -15"
+                    to="-15 90 15"
+                    dur="80"
+                    direction="alternate-reverse"
+                    easing="linear"
+                    repeat="indefinite"
+                >
+                </a-animation>
             </a-box>
         </a-entity>
 
@@ -35,38 +44,39 @@
             intensity: 1.0"
             position="0 0 9"
             rotation="0 0 90"
-            target="0 0 0"
+            target="0 0 -3.5"
         >
         </a-entity>
 
         <a-entity
-            id="blue"
-            light="color: #3A43D4;
+                id="white"
+                light="color: white;
             type: directional;
             intensity: 1.0"
             position="9 0 0"
             rotation="90 0 0"
-            target="0 0 0"
+            target="0 0 -3.5"
         >
         </a-entity>
         <a-entity
-            id="green"
-            light="color: #185900;
+                id="white"
+                light="color: white;
             type: directional;
             intensity: 1.0"
             position="0 0 -9"
             rotation="180 0 0"
-            target="0 0 0"
+            target="0 0 -3.5"
         >
         </a-entity>
         <a-entity
-            id="red"
-            light="color: #AC0406;
+                id="white"
+                light="color: white;
+
             type: directional;
             intensity: 1.0"
             position="-9 0 0"
             rotation="270 0 0"
-            target="0 0 0"
+            target="0 0 -3.5"
         >
         </a-entity>
     </a-marker>
@@ -77,14 +87,20 @@
 <script>
 
 
-
-
     window.addEventListener("load", function () {
         createSpheres(200);
     });
 
     const findRange = (start, end) => {
         return (Math.random() * (end-start) ) + start;
+    };
+
+    function setAttributes(element, attributeObj) {
+
+        for (let item in attributeObj){
+            element.setAttribute(item, attributeObj[item]);
+        }
+
     };
 
 
@@ -104,11 +120,9 @@
             let dur = findRange(200, 3000);
             let radius = findRange(0.025, 0.07);
 
-
-
             if (random < .2){
                 posXdest = findRange(-1, 1);
-                color = "grey";
+                color = "black";
             } else if (random < .7){
                 posXdest = findRange(-2, 2);
                 color = "white";
@@ -120,49 +134,49 @@
                 color = "white";
             }
 
+            let sphereAttr = {
+                material: {
+                    color: color
+                },
+                otherAttr: {
+                    opacity: "0.7",
+                    radius: radius
+                }
+            };
 
-            sphere.setAttribute('material', 'color', color);
-            sphere.setAttribute('opacity', '0.7');
+            let moveAttr = {
+                attribute: "position",
+                dur: dur,
+                from: "0 0.5 -3.5",
+                to: `${posXdest} ${posYdest} -3.5`,
+                easing: 'linear',
+                repeat: 'indefinite'
+            };
 
-            sphere.setAttribute('radius', radius);
+            let fadeAttr = {
+                attribute: "opacity",
+                dur: dur,
+                from: "0.7",
+                to: "0",
+                easing: "linear",
+                repeat: "indefinite"
+            };
 
-            move.setAttribute('attribute', 'position');
-            move.setAttribute('dur', dur);
-            move.setAttribute('from', '0' + ' ' + '0.5' + ' 0');
-            move.setAttribute('to', posXdest + ' ' + posYdest + ' 0');
-            move.setAttribute('easing', 'linear');
-            move.setAttribute('repeat', 'indefinite');
 
-            fade.setAttribute('attribute', 'opacity');
-            fade.setAttribute('dur', dur);
-            fade.setAttribute('from', '0.7');
-            fade.setAttribute('to', '0');
-            fade.setAttribute('easing', 'linear');
-            fade.setAttribute('repeat', 'indefinite');
+            sphere.setAttribute('material', sphereAttr.material);
+            setAttributes(sphere, sphereAttr.otherAttr);
 
+            setAttributes(move, moveAttr);
+            setAttributes(fade, fadeAttr);
 
             entity.appendChild(move);
             sphere.appendChild(fade);
             entity.appendChild(sphere);
             marker.appendChild(entity);
 
-
-
         }
     }
 
-
-
-
-//    //var sphereEl = document.createElement('a-sphere');
-//    //sphereEl.setAttribute('radius', 0.5);
-//    //sphereEl.setAttribute('material', 'color', 'blue');
-//    //sphereEl.setAttribute('position', {x: 0, y: 1, z:-5});
-//    //document.querySelector('a-scene').appendChild(sphereEl);
-//    //sphereEl.addEventListener('loaded', function () {
-//    //    console.log('sphere attached');
-//    //});
-//
 
 </script>
 
