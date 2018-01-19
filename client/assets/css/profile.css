@@ -135,8 +135,12 @@ button:hover {
 .profile-container{
     color: white;
     margin: auto;
-    width: 90%;
+    width: 100%;
     text-align: center;
+    background: url(../images/profile/smoke.png) no-repeat;
+    background-size: cover;
+     -webkit-animation: 40s linear FOG infinite;
+     animation: 40s linear FOG infinite;
 }
 
 .profile-container >h1{
@@ -371,6 +375,27 @@ a{
     43% {opacity: 1; transform: scaleX(1.5);}
 }
 
+
+@keyframes FOG {
+        0% {background-position:left;}
+        30% {opacity:.5;}
+        80% {opacity: .8;}
+        100%{background-position:right; opacity:1;}
+    }
+
+@-moz-keyframes FOG {
+   0% {background-position:left;}
+    30% {opacity:.5;}
+    80% {opacity: .8;}
+    100%{background-position:right; opacity:1;}
+}
+
+@-webkit-keyframes FOG {
+    0% {background-position:left;}
+    30% {opacity:.5;}
+    80% {opacity: .8;}
+    100%{background-position:right; opacity:1;}
+}
 
 /***********KEY FRAMES END***********************/
 
