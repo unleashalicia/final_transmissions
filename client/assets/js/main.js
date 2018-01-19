@@ -27,12 +27,12 @@ function handleCancel(event){
     const greeting = document.querySelector('.greeting');
     grandParent.classList.add('fade-out');
     setTimeout(function () {
-      grandParent.classList.remove('ghostOut');
       grandParent.classList.remove('fade-in');
       grandParent.classList.remove('fade-out');
-    }, 1500);
-    greeting.classList.add('fade-in');
+  }, 300);
     greeting.classList.remove('fade-out');
+    greeting.classList.add('fade-in');
+
 }
 
 function handleLandingBtn(){
