@@ -23,7 +23,7 @@ function createScene(object){
 
     //Create body variable, scene, and assets and append
 
-    var body = document.getElementsByTagName('BODY')[0];
+    var ARcontainer = document.getElementById('camera');
 
     var scene = document.createElement('a-scene');
     scene.setAttribute('embedded', 'true');
@@ -32,7 +32,7 @@ function createScene(object){
     var assets = document.createElement('a-assets');
 
 
-    body.appendChild(scene);
+    ARcontainer.appendChild(scene);
     scene.appendChild(assets);
 
     //Create asset items and append to assets
@@ -100,34 +100,6 @@ function createScene(object){
     } //end lights conditional
 } //end createScene
 
-//Draft of call function;
-
-// function chapterCreator(resp){
-//     switch (resp){
-//         case "earth":
-//             createScene(earthSceneObj);
-//             break;
-//         case "water":
-//             createScene(waterSceneObj);
-//             break;
-//         case "air":
-//             createScene(airSceneObj);
-//             break;
-//         case "fire":
-//             createScene(fireSceneObj);
-//             break;
-//         case "finale":
-//             createScene(finaleSceneObj);
-//             break;
-//         default:
-//             alert("There was an error processing your request.  Please try again.");
-//     }
-// }
-
-
-
-
-var chapter = 1;
 
 //Both of these are for testing.  Will be different in final version
 
