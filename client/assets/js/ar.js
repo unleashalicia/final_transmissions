@@ -98,6 +98,29 @@ function createScene(object){
         } //end light for loop
 
     } //end lights conditional
+
+    //Program more specific JS at creation.
+
+    switch (object.id){
+        case "earth":
+            console.log("Earth video: ", object.assets[0].src);
+            break;
+        case "water":
+            console.log("Water video: ", object.assets[0].src);
+            break;
+        case "air":
+            console.log("Air video: ", object.assets[0].src);
+            break;
+        case "fire":
+            console.log("Fire video: ", object.assets[0].src);
+            break;
+        case "finale":
+            console.log("Finale img: ", object.assets[0].src);
+            break;
+        default:
+            console.log("I don't know what you're talking about.");
+    }
+
 } //end createScene
 
 
