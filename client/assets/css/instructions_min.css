@@ -31,6 +31,10 @@ body {
     border-radius: 2%;
 }
 
+.mobile{
+    display: none;
+}
+
 section {
     height: 85%;
 }
@@ -135,4 +139,19 @@ button a {
 
 .hide-img {
     display: none;
+}
+
+
+/************MOBILE STYLING******************/
+
+@media only screen and (max-width: 770px) {
+
+    .desktop{
+        display: none;
+    }
+    .mobile{
+        display: block;
+    }
+
+
 }

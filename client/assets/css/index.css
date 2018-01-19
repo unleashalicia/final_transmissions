@@ -10,7 +10,7 @@ body{
 
 #landing-container{
   position: absolute;
-  background-image: url(../images/ghost3.jpg);
+  background-image: url(../images/indexbg.jpg);
   background-size: cover;
   background-repeat: no-repeat;
   font-family: walpergens;
@@ -269,6 +269,7 @@ button{
 /*******MOBILE STYLING  START**********/
 @media only screen and (max-width: 770px) {
     #landing-container{
+        background-image: url(../images/mobile/indexbg.jpg);
         background-position: center;
     }
     h1{
