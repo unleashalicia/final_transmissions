@@ -15,7 +15,7 @@ body {
     background-color: black;
     color: whitesmoke;
     text-align: center;
-    font-size: 2.25em;
+    font-size: 2.65em;
 }
 
 .title {
@@ -29,6 +29,10 @@ body {
     height: 35%;
     border: 5px solid whitesmoke;
     border-radius: 2%;
+}
+
+.image-library {
+    width: 40%;
 }
 
 section {
