@@ -125,7 +125,7 @@ function handleEventHandlers(){
     loadingBtn.addEventListener('click', fullscreen);
 
     knobImg.addEventListener('click', function(){
-        knobRange(this);
+        knobRange(knobImg);
     });//turning the knob for range meter switch;
     uiSwitch.addEventListener('click',flipSwitch);//turns on the gadget
 
@@ -144,7 +144,6 @@ function handleEventHandlers(){
 //++
 //++
 function flipSwitch(){
-    console.log('Switch flipped');
     const uiSwitch = document.getElementById('switch');
     const indicatorLight = document.getElementById('indicator-light');
     const needlegauge = document.querySelector('.needleGauge');
@@ -207,8 +206,6 @@ function knobLightOff(){
 //++
 //++
 function knobRange(elem){
-    elem = document.getElementById('knobImg');
-    console.log('click knob');
     switch (elem.className) {
         case "close-range-knob":
             if(deviceOn){
@@ -244,36 +241,26 @@ function knobRange(elem){
 function handleMeter(){
     const needlegauge = document.querySelector('.needleGauge');
 
-    const test = document.querySelector('.test-output');
-
-
-
     if (knobMode === 'long'){
         if (distance > 100 && deviceOn){
             needlegauge.style.transform = 'translateX(-50%) rotateZ(-65deg)';
-            test.innerHTML = knobMode + " " + '-65deg' + " " + distance;
         } else if (distance <= 100 && distance >= 0 && deviceOn){
             let needleAngle = 53 - distance;
             needlegauge.style.transform = 'translateX(-50%) rotateZ('+needleAngle+'deg)';
-            test.innerHTML = knobMode + " " + needleAngle + " " + distance;
         }
     } else if (knobMode === 'med') {
         if (distance > 50 && deviceOn){
             needlegauge.style.transform = 'transform','translateX(-50%) rotateZ(-65deg)';
-            test.innerHTML = knobMode + " " + '-65deg' + " " + distance;
         } else if (distance <= 50 && distance >= 0 && deviceOn){
             let needleAngle = 53 - distance * 2;
             needlegauge.style.transform = 'translateX(-50%) rotateZ('+needleAngle+'deg)';
-            test.innerHTML = knobMode + " " + needleAngle + " " + distance;
         }
     } else if (knobMode === 'short') {
         if (distance > 25 && deviceOn){
-            needlegauge.style.transform = 'transform','translateX(-50%) rotateZ(-65deg)';
-            test.innerHTML = knobMode + " " + '-65deg' + " " + distance;
+            needlegauge.style.transform = 'translateX(-50%) rotateZ(-65deg)';
         } else if (distance <= 25 && distance >= 0 && deviceOn){
             let needleAngle = 53 - distance * 4;
             needlegauge.style.transform = 'translateX(-50%) rotateZ('+needleAngle+'deg)';
-            test.innerHTML = knobMode + " " + needleAngle + " " + distance;
         }
     }
 
@@ -346,7 +333,7 @@ function getLocation() {
         //pos also includes pos.timestamp if needed later
         //moved ready modal details into audio load callback
         coord = pos.coords;
-        console.log(coord);
+        console.log('Coord Success');
 
         distance = getDistanceFromLatLonInKm(coord.latitude,coord.longitude,target.latitude,target.longitude);
 
@@ -438,8 +425,6 @@ function handleStateAssetLoading(data){
         sounds.sources[i] = './assets/' + soundAssets[i]
     }
 
-    console.log('Our sound assets: ', sounds);
-    console.log('Our other assets: ', target, action);
     loadAll();
     getLocation();
 }
