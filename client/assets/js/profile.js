@@ -4,24 +4,35 @@ document.addEventListener('DOMContentLoaded', handleEventHandlers);
 
 function handleEventHandlers(){
 
-  const confirm = document.querySelectorAll(".log-out");
-  const noBtn = document.querySelector(".no");
-  const logOutModal = document.querySelector(".logOut-container");
-  const editText = document.querySelector(".edit-text");
+    const confirm = document.querySelectorAll(".log-out");
+    const noBtn = document.querySelector(".no");
+    const logOutModal = document.querySelector(".logOut-container");
+    const editText = document.querySelector(".edit-text");
 
 
-  editText.addEventListener("click", function(){
-      makeInput(this)//for email to input change
-  })
-  noBtn.addEventListener("click",function(){
-     logOutModal.classList.add("hide");
- }); //gets the user back to the profile page
+    editText.addEventListener("click", function(){
+        makeInput(this)//for email to input change
+    })
+    noBtn.addEventListener("click",function(){
+        logOutModal.classList.add("hide");
+    }); //gets the user back to the profile page
 
- for(let i=0;i<confirm.length;i++){
-     confirm[i].addEventListener("click", function(){
-         logOutModal.classList.remove("hide")
+    for(let i=0;i<confirm.length;i++){
+        confirm[i].addEventListener("click", function(){
+            logOutModal.classList.remove("hide")
      }); // adds it to the two separate button // shows log out confirm modal.
- }
+    }
+
+    heightMonitor()
+}
+
+function heightMonitor(){ //Monitors if the container height vs window height to accomodate the fog animation.
+    const userContainer = document.querySelector('#user-container');
+    if(userContainer.offsetHeight<window.innerHeight){
+        userContainer.style.height="100vh"
+    }else{
+        userContainer.style.height="inherit"
+    }
 }
 
 
