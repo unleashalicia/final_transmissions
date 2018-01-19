@@ -207,35 +207,36 @@ function knobLightOff(){
 //++
 //++
 function knobRange(elem){
+    let elem = document.getElementById('knobImg');
     console.log('click knob');
     switch (elem.className) {
         case "close-range-knob":
             if(deviceOn){
-              knobLightOn()
-              }
-              elem.classList.remove("close-range-knob");
-              elem.classList.add("long-range-knob");
-              knobMode='long';
-              handleMeter();
-              break;
+                knobLightOn();
+            }
+            elem.classList.remove("close-range-knob");
+            elem.classList.add("long-range-knob");
+            knobMode='long';
+            handleMeter();
+            break;
         case "long-range-knob":
             if(deviceOn){
-              knobLightOn()
-              }
-              elem.classList.remove("long-range-knob");
-              elem.classList.add("mid-range-knob");
-              knobMode='med';
-              handleMeter();
-              break;
+                knobLightOn();
+            }
+            elem.classList.remove("long-range-knob");
+            elem.classList.add("mid-range-knob");
+            knobMode='med';
+            handleMeter();
+            break;
         case "mid-range-knob":
             if(deviceOn){
-              knobLightOn()
-              }
-              elem.classList.remove("mid-range-knob");
-              elem.classList.add("close-range-knob");
-              knobMode='short';
-              handleMeter();
-              break;
+                knobLightOn();
+            }
+            elem.classList.remove("mid-range-knob");
+            elem.classList.add("close-range-knob");
+            knobMode='short';
+            handleMeter();
+            break;
     }
 }
 //++
@@ -250,7 +251,7 @@ function handleMeter(){
     if (knobMode === 'long'){
         if (distance > 100 && deviceOn){
             needlegauge.style.transform = 'translateX(-50%) rotateZ(-65deg)';
-            test.innerHTML = knobMode + " " + needleAngle + " " + distance;
+            test.innerHTML = knobMode + " " + '-65deg' + " " + distance;
         } else if (distance <= 100 && distance >= 0 && deviceOn){
             let needleAngle = 53 - distance;
             needlegauge.style.transform = 'translateX(-50%) rotateZ('+needleAngle+'deg)';
@@ -259,7 +260,7 @@ function handleMeter(){
     } else if (knobMode === 'med') {
         if (distance > 50 && deviceOn){
             needlegauge.style.transform = 'transform','translateX(-50%) rotateZ(-65deg)';
-            test.innerHTML = knobMode + " " + needleAngle + " " + distance;
+            test.innerHTML = knobMode + " " + '-65deg' + " " + distance;
         } else if (distance <= 50 && distance >= 0 && deviceOn){
             let needleAngle = 53 - distance * 2;
             needlegauge.style.transform = 'translateX(-50%) rotateZ('+needleAngle+'deg)';
@@ -268,7 +269,7 @@ function handleMeter(){
     } else if (knobMode === 'short') {
         if (distance > 25 && deviceOn){
             needlegauge.style.transform = 'transform','translateX(-50%) rotateZ(-65deg)';
-            test.innerHTML = knobMode + " " + needleAngle + " " + distance;
+            test.innerHTML = knobMode + " " + '-65deg' + " " + distance;
         } else if (distance <= 25 && distance >= 0 && deviceOn){
             let needleAngle = 53 - distance * 4;
             needlegauge.style.transform = 'translateX(-50%) rotateZ('+needleAngle+'deg)';
@@ -363,7 +364,7 @@ function getLocation() {
         if (errorCount > 10){
             //tell the user they are having issues with their gps connection
             //possibly end app usage for later resume
-            window.location.href = "/profile"
+            window.location.href = "/profile";
         }
     }
 }
