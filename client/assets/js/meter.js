@@ -207,7 +207,7 @@ function knobLightOff(){
 //++
 //++
 function knobRange(elem){
-    let elem = document.getElementById('knobImg');
+    elem = document.getElementById('knobImg');
     console.log('click knob');
     switch (elem.className) {
         case "close-range-knob":
