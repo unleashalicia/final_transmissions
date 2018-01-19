@@ -19,8 +19,8 @@
                 <div>
                     <!-- pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[A-Za-z\d$@$!%*?&]{8,26}" -->
                     <input pattern="^\w{4,15}$" type="text" placeholder="Username" name="user_name" value="ceskamo" title="Must be between 4 and 15 characters long and contain only letters numbers and underscores" required/>
-                    <input pattern="^(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])\w{5,20}$" class="password" type="password" placeholder="Password" title="Must be between 5 and 20 characters long and contain one capital letter, one lower case letter, and one nuber" name="password" value="bluelambchops" required/>
-                    <input pattern="^(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])\w{5,20}$" class="repeat-pass" type="password" title="Must match previously entered password" placeholder="Repeat Password" name="password2" value="bluelambchops" required/>
+                    <input pattern="^(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])\w{5,20}$" class="password" type="password" placeholder="Password" title="Must be between 5 and 20 characters long and contain one capital letter, one lower case letter, and one number" name="password" value="Bluelambch0ps" required/>
+                    <input pattern="^(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])\w{5,20}$" class="repeat-pass" type="password" title="Must match previously entered password" placeholder="Repeat Password" name="password2" value="Bluelambch0ps" required/>
                     <input pattern="^\w*[@]{1}[a-zA-Z]*\.[A-Za-z]{2,6}(?:\.{1}[A-Za-z]{2,6})?$" type="email" placeholder="Email" name="email" value="prettypotato@taters.com" required/>
                 </div>
                 <button type="submit" class="formButton btnSign" >Confirm</button>
@@ -31,8 +31,8 @@
             <form class="log form-group" action="/login" method="POST">
                 <h1>Log In</h1>
                 <div>
-                    <input type="text" pattern="^\w{4,15}$" placeholder="Username" name="user_name" value="ceskamo" />
-                    <input type="password" pattern="^(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])\w{5,20}$" placeholder="Password" name="password" value="bluelambchops" />
+                    <input type="text" placeholder="Username" name="user_name" value="ceskamo" />
+                    <input type="password" placeholder="Password" name="password" value="bluelambchops" />
                 </div>
                 <button type="submit" class="formButton btnLog">Log In</button>
                 <button type="reset" class="cancel">Cancel</button>
