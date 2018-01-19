@@ -24,7 +24,7 @@ html(lang="en")
                     button.nav-btn Log Out
             h1.title= storyDetails.name
             .img-container
-                img.story-img.mobile(src="../../assets/mobile" + storyDetails.story_img.slice(storyDetails.story_img.search('/')))
+                img.story-img.mobile(src="../../assets/images/mobile" + storyDetails.story_img.slice(storyDetails.story_img.search('/')))
                 img.story-img.desktop(src="../../assets/" + storyDetails.story_img)
             a.go-link(href="/play")
                 button.go-btn Go!
