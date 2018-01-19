@@ -40,10 +40,10 @@ module.exports = {
         // create new user, sign-up
         passport.use('local-signup', new LocalStrategy(localConfig,
             function (req, userHandle, password, done) {
+				console.log(req.body);
                 process.nextTick(function () {
-                    debugger;
                     let sql = userSearchSQL(userHandle);
-		    console.log("This is the SQL while signing up", sql);
+				    console.log("This is the SQL while signing up", sql);
                     connection.query(sql, function (err, results, fields) {
                         if (err) {
                             return done(err)
