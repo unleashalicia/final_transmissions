@@ -10,7 +10,7 @@ function handleEvents(){
   const formBtns = document.querySelectorAll('.formButton');
   const repeatPass = document.querySelector('.repeat-pass');
   assignClickHandlers(landingBtns, handleLandingBtn); //SignUp & LogIn
-  // assignClickHandlers(cancelBtns, handleCancel); // Cancel Buttons for both Forms
+  assignClickHandlers(cancelBtns, handleCancel); // Cancel Buttons for both Forms
   // assignClickHandlers(formBtns, userCall) // Submit forms for both formSign
 
 }
