@@ -1,0 +1,106 @@
+* {
+    box-sizing: border-box;
+}
+
+@font-face {
+   font-family: walpergens;
+   src: url(../fonts/walpergens.ttf);
+}
+
+body {
+    margin: auto;
+    padding: 2% 5% 5% 5%;
+    font-family: walpergens, serif;
+    color: whitesmoke;
+    background-color: #232323;
+    font-size: 2em;
+    letter-spacing: 1.15px;
+    background-image: url('../images/instructions/tree-background.jpg');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 100vh;
+    background-attachment: fixed;
+    opacity: .8;
+    background-blend-mode: color-dodge;
+}
+
+nav {
+    display: block;
+    z-index: 300;
+    position: relative;
+}
+
+nav ul{
+    padding: 0 2%;
+    text-align: center;
+    margin-top: 0;
+}
+
+.nav-bar {
+    font-size: 4vmin;
+    display: inline-block;
+    cursor: pointer;
+    text-transform: uppercase;
+}
+
+.nav-bar a {
+    color: whitesmoke;
+    text-decoration: none;
+    z-index: 100;
+}
+
+.nav-bar:hover{
+    animation: noise-3 1s infinite;
+}
+
+.nav-bar::after{
+    content: "|";
+    font-size: 1.5em;
+    margin-left: 0.5em;
+    color: white;
+}
+
+.nav-bar::before{
+    content: "|";
+    font-size: 1.5em;
+    margin-right: 0.5em;
+    color: white;
+}
+
+h2 {
+    text-decoration: underline;
+}
+
+p {
+    margin-left: 2%;
+}
+
+ul {
+    margin-left: 3%;
+}
+
+.map {
+    width: 50%;
+    margin: 5% auto;
+    display: block;
+    border: 1px solid white;
+    border-radius: 2%;
+}
+
+.marker {
+    width: 35%;
+    margin: 5% auto;
+    display: block;
+    border: 1px solid white;
+    border-radius: 2%;
+}
+
+
+
+
+@keyframes noise-3 {
+    0%, 3%, 5%, 42%, 44%, 100% {opacity: 1; transform: scaleY(1);}
+    4.3% {opacity: 1; transform: scaleY(1.7);}
+    43% {opacity: 1; transform: scaleX(1.5);}
+}
