@@ -7956,6 +7956,23 @@ ARjs.MarkersAreaUtils.createDefaultMarkersControlsParameters = function(tracking
 				type : 'pattern',
 				patternUrl : absoluteBaseURL + 'examples/marker-training/examples/pattern-files/pattern-letterF.patt',
 			},
+			// ***** OUR PATTERNS *****
+			{
+				type : 'pattern',
+				patternUrl : 'https://raw.githubusercontent.com/csinocruz/augmented-reality/master/airelement.patt',
+			},
+			{
+				type : 'pattern',
+				patternUrl : 'https://raw.githubusercontent.com/csinocruz/augmented-reality/master/waterelement.patt',
+			},
+			{
+				type : 'pattern',
+				patternUrl : 'https://raw.githubusercontent.com/csinocruz/augmented-reality/master/fireelement.patt',
+			},
+			{
+				type : 'pattern',
+				patternUrl : 'https://raw.githubusercontent.com/csinocruz/augmented-reality/master/earthelement.patt',
+			},
 		]		
 	}else if( trackingBackend === 'aruco' ){
 		var markersControlsParameters = [
@@ -8197,6 +8214,22 @@ AFRAME.registerComponent('arjs-anchor', {
 				arProfile.defaultMarkerParameters.type = 'barcode'
 				arProfile.defaultMarkerParameters.barcodeValue = 1001	
 				arProfile.defaultMarkerParameters.markersAreaEnabled = true
+			}else if( _this.data.preset === 'air' ){
+				arProfile.defaultMarkerParameters.type = 'pattern'
+				arProfile.defaultMarkerParameters.patternUrl = 'https://raw.githubusercontent.com/csinocruz/augmented-reality/master/airelement.patt';
+				arProfile.defaultMarkerParameters.markersAreaEnabled = false
+			}else if( _this.data.preset === 'water' ){
+				arProfile.defaultMarkerParameters.type = 'pattern'
+				arProfile.defaultMarkerParameters.patternUrl = 'https://raw.githubusercontent.com/csinocruz/augmented-reality/master/waterelement.patt';
+				arProfile.defaultMarkerParameters.markersAreaEnabled = false
+			}else if( _this.data.preset === 'fire' ){
+				arProfile.defaultMarkerParameters.type = 'pattern'
+				arProfile.defaultMarkerParameters.patternUrl = 'https://raw.githubusercontent.com/csinocruz/augmented-reality/master/fireelement.patt';
+				arProfile.defaultMarkerParameters.markersAreaEnabled = false
+			}else if( _this.data.preset === 'earth' ){
+				arProfile.defaultMarkerParameters.type = 'pattern'
+				arProfile.defaultMarkerParameters.patternUrl = 'https://raw.githubusercontent.com/csinocruz/augmented-reality/master/earthelement.patt';
+				arProfile.defaultMarkerParameters.markersAreaEnabled = false
 			}else {
 				// console.assert( this.data.preset === '', 'illegal preset value '+this.data.preset)
 			}		
