@@ -131,6 +131,10 @@ button:hover {
     border-radius: 2%;
 }
 
+.mobile{
+    display: none;
+}
+
 .go-link {
     margin-top: 0;
     display: block;
@@ -208,6 +212,17 @@ button:hover {
 
 /************ Media Queries ***************/
 @media screen and (max-width: 768px) {
+    body{
+        background-image: url(../images/mobile/story/background_dark.jpg);
+    }
+
+    .mobile{
+        display: block;
+    }
+
+    .desktop{
+        display: none;
+    }
     .button-container {
         display: flex;
     }
