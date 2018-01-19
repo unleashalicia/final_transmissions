@@ -27,7 +27,7 @@ html(lang="en")
                 
             each val in storydata
                     .story.initial-story
-                        //- img.mobile(src="assets/" + val.story_img) needs mobile routing
+                        img.mobile(src="assets/mobile" + val.story_img.slice(val.story_img.search('/')))
                         img.desktop(src="assets/" + val.story_img)
                         .title
                             h1.title-text= val.name
