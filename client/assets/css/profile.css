@@ -4,7 +4,6 @@
 }
 
 body{
-    height:  100vh;
     margin: 0;
     background-color: black;
     font-family: walpergens;
@@ -15,7 +14,6 @@ body{
 }
 
 #user-container{
-    height: 100%;
     position: relative;
 }
 
@@ -23,7 +21,7 @@ body{
 nav ul{
     padding: 0 2%;
     text-align: center;
-    margin: 3% 0 5% 0;
+    margin-bottom: 5%;
 }
 
 nav ul li {
@@ -137,10 +135,10 @@ button:hover {
     margin: auto;
     width: 100%;
     text-align: center;
-    background: url(../images/profile/smoke.png) no-repeat;
+    /* background: url(../images/profile/smoke.png) no-repeat;
     background-size: cover;
      -webkit-animation: 40s linear FOG infinite;
-     animation: 40s linear FOG infinite;
+     animation: 40s linear FOG infinite; */
 }
 
 .profile-container >h1{
@@ -349,7 +347,12 @@ a{
 /**********************************************/
 
 /**********PROFILE END************************/
+/******SPECIAL CLASSES************************/
 .hide{
+    display: none;
+}
+
+.mobile{
     display: none;
 }
 
@@ -401,19 +404,32 @@ a{
 
 
 /*******MOBILE STYLING  START**********/
+@media only screen and (min-height: 760) {
+    #user-container{
+        height: 100%;
+    }
+}
+
 @media only screen and (max-width: 770px) {
 
     body{
         width: 100vw;
-        height: 100vh;
-        background-image: url(../images/profile/profilebgmobile.jpg);
+        background-image: url(../images/mobile/profile/profilebgmobile.jpg);
         background-position: center;
         background-size: cover;
         background-repeat: no-repeat;
     }
 
-    nav{
+    nav, .desktop{
         display: none;
+    }
+
+    .mobile{
+        display: block;
+    }
+    
+    .edit-text.mobile{
+        display: inline-block;
     }
 
     .button-container{
@@ -439,7 +455,7 @@ a{
 
     .profile-data{
         width: 80%;
-        margin: 8%;
+        margin: 8% 8% 0 8%;
         font-size: 1.2em;
     }
 
