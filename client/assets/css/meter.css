@@ -9,9 +9,12 @@ body * {
 }
 
 #loading{
-  height: 100vh;
+  height: 100%;
   width: 100vw;
-  background: #3c3c3c;
+  /* background: #3c3c3c; */
+  background-image: url(../images/esr-meter/fog.jpg);
+  background-size: cover;
+  background-repeat: no-repeat;
   text-align: center;
   z-index: 5;
   position: absolute;
@@ -20,28 +23,58 @@ body * {
 }
 
 .loading-btn, #loading h2{
-  font-family: demonsker;
-  color: black;
-  background: transparent;
-  font-size: 21vmin;
-  display: inline-block;
-  position: absolute;
-  bottom: 0;
-  left: 22%;
+    font-family: demonsker;
+    color: #2b2b2b;
+    text-shadow: 0px 8px 15px #f7efef;
+    background: transparent;
+    font-size: 15vmin;
+    position: absolute;
+    bottom: 12%;
+    text-align: center;
+    width: 100%;
 }
 .loading-btn{
-  overflow: hidden;
-  white-space: nowrap;
-  width: 52%;
-  animation: appear 4s steps(60,end), pulse 1s linear infinite;
+    overflow: hidden;
+    white-space: nowrap;
+    width: 52%;
+    animation: pulse 1s linear infinite;
 }
 
 .raven {
-    height: 55vh;
-    width: 90vw;
+    position: relative;
+    display: block;
+    margin: auto;
+    height: 50vh;
+    width: 90%;
     animation: noise-3 2s linear infinite;
     top: 10%;
+}
+
+.progress-container {
+    width: 65%;
+    background: #d5cfcf6e;
+    margin: auto;
     position: relative;
+    bottom: -30%;
+    border-radius: 5px;
+}
+
+.progress-bar {
+    position: relative;
+    width: 10%;
+    height: 5vh;
+    background: #2b2b2b;
+    border-radius: 5px;
+    transition: .5s;
+}
+.progress-bar::after {
+    content: "";
+    display: inline-block;
+    position: absolute;
+    height: 80%;
+    width: 70px;
+    right: -10px;
+    bottom: 7px;
 }
 
 @keyframes noise-3 {
@@ -50,18 +83,13 @@ body * {
     43% {opacity: 1; transform: scaleX(10) rotate(60deg);}
 }
 
-
-/*#loading h2{*/
-  /*animation: pulse 1s linear infinite;*/
-/*}*/
-
 #camera{
     position: relative;
     height: 100vh;
 }
 
 .topGauge {
-    width: 90vmin;
+    width: 85vmin;
     height: 41.85vmin;
     position: absolute;
     top: 5%;
@@ -75,7 +103,7 @@ body * {
     width: 100%;
     height: 41.85vmin;
     position: absolute;
-    bottom: -100%;
+    bottom: -84%;
     left: 50%;
     transform: translateX(-50%);
     background-image: url('../images/esr-meter/meter-bottom.png');
@@ -104,10 +132,10 @@ body * {
 
 .needleGauge {
     background-color: red;
-    height: 100%;
+    height: 75%;
     width: 0.45%;
     position: absolute;
-    bottom: -15%;
+    bottom: 10%;
     left: 50%;
     transform: translateX(-50%) rotateZ(-75deg); /* +50 is max */
     transform-origin: bottom;
@@ -217,18 +245,18 @@ body * {
 }
 
 #knobImg{
-  transition: 0.5s;
-  position: relative;
-  top: 30%;
-  height: 50%;
-  width: 50%;
-  background-image: url("../images/esr-meter/meter-knob.png");
-  background-size: contain;
-  background-position: center center;
-  background-repeat: no-repeat;
-  filter: grayscale(100%);
-  transition-duration: 0.5s;
-  margin: 0 auto;
+    transition: 0.5s;
+    position: relative;
+    top: 30%;
+    height: 50%;
+    width: 50%;
+    background-image: url("../images/esr-meter/meter-knob.png");
+    background-size: contain;
+    background-position: center center;
+    background-repeat: no-repeat;
+    filter: grayscale(100%);
+    transition-duration: 0.5s;
+    margin: 0 auto;
 }
 
 #indicator {
@@ -267,14 +295,14 @@ body * {
 
 .action-container {
     width: 34vmin;
-    height: 56vmin;
+    height: 50vmin;
     top: 55%;
     right: 6%;
 }
 
 .knob-container {
-    width: 51vmin;
-    height: 56vmin;
+    width: 50vmin;
+    height: 50vmin;
     top: 55%;
     left: 6%;
 }
@@ -392,3 +420,12 @@ body * {
 }
 
 /**********KEY FRAMES/ FONT FACE  END********************/
+@media only screen and (min-width: 770px), screen and (max-height: 415px) {
+
+    .raven{
+        height: 46vh;
+        width: 40%;
+        top: 15%;
+    }
+
+}

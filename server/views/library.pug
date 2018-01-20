@@ -12,14 +12,14 @@ html(lang="en")
                     li.nav-bar
                         a(href="/instructions") Instructions
                     li.nav-bar
-                        a(href="/library") Library
+                        a(href="/profile") Profile
                     li.nav-bar
                         a(href="/logout") Log Out
             .button-container
-                a(href="/profile")
-                    button.nav-btn Profile
                 a(href="/instructions")
                     button.nav-btn Instructions
+                a(href="/profile")
+                    button.nav-btn Profile
                 a(href="/logout")
                     button.nav-btn Log Out
             .triangle-left
@@ -27,7 +27,8 @@ html(lang="en")
                 
             each val in storydata
                     .story.initial-story
-                        img(src="assets/" + val.story_img)
+                        img.mobile(src="assets/images/mobile" + val.story_img.slice(val.story_img.search('/')))
+                        img.desktop(src="assets/" + val.story_img)
                         .title
                             h1.title-text= val.name
                         if val.status
@@ -37,5 +38,6 @@ html(lang="en")
                             a.go-link
                                 button.go-btn Go!
                             .lock-container
-                                img.lock(src="assets/images/library/lock.png")
+                                img.lock.mobile(src="assets/images/mobile/library/lock.png")
+                                img.lock.desktop(src="assets/images/library/lock.png")
         script(src="assets/js/library.js")

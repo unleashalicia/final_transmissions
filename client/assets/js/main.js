@@ -11,7 +11,7 @@ function handleEvents(){
   const repeatPass = document.querySelector('.repeat-pass');
   assignClickHandlers(landingBtns, handleLandingBtn); //SignUp & LogIn
   assignClickHandlers(cancelBtns, handleCancel); // Cancel Buttons for both Forms
-  assignClickHandlers(formBtns, userCall) // Submit forms for both formSign
+  // assignClickHandlers(formBtns, userCall) // Submit forms for both formSign
 
 }
 
@@ -27,12 +27,12 @@ function handleCancel(event){
     const greeting = document.querySelector('.greeting');
     grandParent.classList.add('fade-out');
     setTimeout(function () {
-      grandParent.classList.remove('ghostOut');
       grandParent.classList.remove('fade-in');
       grandParent.classList.remove('fade-out');
-    }, 1500);
-    greeting.classList.add('fade-in');
+  }, 300);
     greeting.classList.remove('fade-out');
+    greeting.classList.add('fade-in');
+
 }
 
 function handleLandingBtn(){
@@ -114,37 +114,37 @@ function generateErrorMsg(invalidArr){ //generates the proper error msg dependin
 //     }
 // }
 
-function userCall(event){ //axios call for both sign and login
-    event.preventDefault();
-    let inputData={};
-    let urlStr=""
-    let errorMsg=""
-    if(this.classList.contains('btnSign')){
-        inputData={
-          email: document.querySelector(".sign input[name='email']").value,
-          password: document.querySelector(".sign input[name='password']").value,
-          user_name: document.querySelector(".sign input[name='username']").value
-        };
-        urlStr="/signup";
-        errorMsg="Something has happened signing in to the server";
-    }else if(this.classList.contains('btnLog')){
-        inputData={
-          password: document.querySelector(".formLog input[name='password']").value,
-          user_name: document.querySelector(".formLog input[name='username']").value
-        };
-        urlStr="/login";
-        errorMsg="Something has happened logging in to the server";
-    }
-    axios({
-        url: urlStr,
-        method: "POST",
-        responseType: "document",
-        data: inputData
-    }).then(function(response) {
-        console.log(response);
-        console.log("This is the page that will be redirected to: ", response.data.URL);
-        window.location = response.data.URL;
-    }).catch(function(error) {
-        console.error(errorMsg, error);
-    });
-}
+// function userCall(event){ //axios call for both sign and login
+//     event.preventDefault();
+//     let inputData={};
+//     let urlStr=""
+//     let errorMsg=""
+//     if(this.classList.contains('btnSign')){
+//         inputData={
+//           email: document.querySelector(".sign input[name='email']").value,
+//           password: document.querySelector(".sign input[name='password']").value,
+//           user_name: document.querySelector(".sign input[name='username']").value
+//         };
+//         urlStr="/signup";
+//         errorMsg="Something has happened signing in to the server";
+//     }else if(this.classList.contains('btnLog')){
+//         inputData={
+//           password: document.querySelector(".formLog input[name='password']").value,
+//           user_name: document.querySelector(".formLog input[name='username']").value
+//         };
+//         urlStr="/login";
+//         errorMsg="Something has happened logging in to the server";
+//     }
+//     axios({
+//         url: urlStr,
+//         method: "POST",
+//         responseType: "document",
+//         data: inputData
+//     }).then(function(response) {
+//         console.log(response);
+//         console.log("This is the page that will be redirected to: ", response.data.URL);
+//         window.location = response.data.URL;
+//     }).catch(function(error) {
+//         console.error(errorMsg, error);
+//     });
+// }

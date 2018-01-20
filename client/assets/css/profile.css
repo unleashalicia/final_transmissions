@@ -4,7 +4,6 @@
 }
 
 body{
-    height:  100vh;
     margin: 0;
     background-color: black;
     font-family: walpergens;
@@ -15,7 +14,6 @@ body{
 }
 
 #user-container{
-    height: 100%;
     position: relative;
 }
 
@@ -23,7 +21,7 @@ body{
 nav ul{
     padding: 0 2%;
     text-align: center;
-    margin-top: 0;
+    margin-bottom: 5%;
 }
 
 nav ul li {
@@ -58,8 +56,7 @@ nav ul li::before{
     display: none;
     height: 10vw;
     width: 95%;
-    margin: auto;
-    margin-top: 2%;
+    margin: 5% auto;
     justify-content: space-between;
 }
 
@@ -136,8 +133,12 @@ button:hover {
 .profile-container{
     color: white;
     margin: auto;
-    width: 90%;
+    width: 100%;
     text-align: center;
+    /* background: url(../images/profile/smoke.png) no-repeat;
+    background-size: cover;
+     -webkit-animation: 40s linear FOG infinite;
+     animation: 40s linear FOG infinite; */
 }
 
 .profile-container >h1{
@@ -346,7 +347,12 @@ a{
 /**********************************************/
 
 /**********PROFILE END************************/
+/******SPECIAL CLASSES************************/
 .hide{
+    display: none;
+}
+
+.mobile{
     display: none;
 }
 
@@ -373,23 +379,57 @@ a{
 }
 
 
+@keyframes FOG {
+        0% {background-position:left;}
+        30% {opacity:.5;}
+        80% {opacity: .8;}
+        100%{background-position:right; opacity:1;}
+    }
+
+@-moz-keyframes FOG {
+   0% {background-position:left;}
+    30% {opacity:.5;}
+    80% {opacity: .8;}
+    100%{background-position:right; opacity:1;}
+}
+
+@-webkit-keyframes FOG {
+    0% {background-position:left;}
+    30% {opacity:.5;}
+    80% {opacity: .8;}
+    100%{background-position:right; opacity:1;}
+}
+
 /***********KEY FRAMES END***********************/
 
 
 /*******MOBILE STYLING  START**********/
+@media only screen and (min-height: 760) {
+    #user-container{
+        height: 100%;
+    }
+}
+
 @media only screen and (max-width: 770px) {
 
     body{
         width: 100vw;
-        height: 100vh;
-        background-image: url(../images/profile/profilebgmobile.jpg);
+        background-image: url(../images/mobile/profile/profilebgmobile.jpg);
         background-position: center;
         background-size: cover;
         background-repeat: no-repeat;
     }
 
-    nav{
+    nav, .desktop{
         display: none;
+    }
+
+    .mobile{
+        display: block;
+    }
+    
+    .edit-text.mobile{
+        display: inline-block;
     }
 
     .button-container{
@@ -415,7 +455,7 @@ a{
 
     .profile-data{
         width: 80%;
-        margin: 8%;
+        margin: 8% 8% 0 8%;
         font-size: 1.2em;
     }
 

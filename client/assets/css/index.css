@@ -10,7 +10,7 @@ body{
 
 #landing-container{
   position: absolute;
-  background-image: url(../images/ghost3.jpg);
+  background-image: url(../images/indexbg.jpg);
   background-size: cover;
   background-repeat: no-repeat;
   font-family: walpergens;
@@ -98,6 +98,11 @@ h1{
   font-family: walpergens;
 }
 
+.form-group div button {
+    border-radius: 5%;
+    border: 1px solid whitesmoke;
+}
+
 .sign div input:invalid{
     border: 2px solid rgba(255, 0, 0, 0.7);
 }
@@ -127,25 +132,25 @@ h1{
 }
 
 .sign, .log{
-  margin: auto;
-  width: 30%;
-  height: 30%;
-  margin-top: 15%;
-  font-family: walpergens;
+    margin: auto;
+    width: 30%;
+    height: 30%;
+    margin-top: 15%;
+    font-family: walpergens;
 }
 
 button{
-  cursor: pointer;
-  height: 40px;
-  width: 25%;
-  font-size: 100%;
-  border: 1px white solid;
-  font-family: walpergens;
-  color: white;
-  font-size: 135%;
-  background: black;
-  vertical-align: top;
-  border-radius: 5%;
+    cursor: pointer;
+    height: 40px;
+    border: 1px white solid;
+    border-radius: 5%;
+    margin: 1%;
+    font-family: walpergens;
+    color: white;
+    background-color: black;
+    vertical-align: top;
+    width: 25%;
+    font-size: 100%;
 }
 
 .hide{
@@ -264,6 +269,7 @@ button{
 /*******MOBILE STYLING  START**********/
 @media only screen and (max-width: 770px) {
     #landing-container{
+        background-image: url(../images/mobile/indexbg.jpg);
         background-position: center;
     }
     h1{
