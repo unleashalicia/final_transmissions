@@ -32,7 +32,6 @@ function createScene(object){
     var assets = document.createElement('a-assets');
 
 
-    ARcontainer.appendChild(scene);
     scene.appendChild(assets);
 
     //Create asset items and append to assets
@@ -49,6 +48,8 @@ function createScene(object){
     var marker = document.createElement('a-marker');
     marker.setAttribute("preset", object.marker.preset);
     scene.appendChild(marker);
+
+    
 
     //Create entities and set attributes
 
@@ -98,6 +99,8 @@ function createScene(object){
         } //end light for loop
 
     } //end lights conditional
+
+    ARcontainer.appendChild(scene);
 } //end createScene
 
 
