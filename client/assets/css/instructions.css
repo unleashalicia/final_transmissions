@@ -12,20 +12,25 @@
 }
 
 #desktop {
-    margin: auto;
+    background-image: url('../images/instructions/tree-background.jpg');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    opacity: .8;
+    background-blend-mode: color-dodge;
     padding: 2% 5% 5% 5%;
+    background-color: #232323;
+    background-attachment: fixed;
+}
+
+body {
+    margin: auto;
+    padding: 0;
     font-family: walpergens, serif;
     color: whitesmoke;
     background-color: #232323;
     font-size: 2em;
     letter-spacing: 1.15px;
-    background-image: url('../images/instructions/tree-background.jpg');
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-    height: 100vh;
-    background-attachment: fixed;
-    opacity: .8;
     background-blend-mode: color-dodge;
 }
 
@@ -110,10 +115,6 @@ ul {
 
 
 @media screen and (max-width: 500px){
-
-    #background-container {
-        display: none;
-    }
 
     #desktop {
         display: none;
