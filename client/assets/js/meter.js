@@ -30,7 +30,8 @@ var target = {
 };
 var distance;
 var knobMode='med';
-var action = '';
+var action;
+var next = false;
 //****************************************
 //****************************************
 //--|
@@ -77,10 +78,6 @@ function loadAll(){
         count++;
     }
 }
-
-function loadARObjects(){
-    console.log("I'm loading your objects!!!");
-}
 //++
 //++
 function handleAudioPlayback(dist){
@@ -126,7 +123,7 @@ function handleEventHandlers(){
     const knobImg = document.getElementById('knobImg');
     const loadingBtn = document.querySelector('.loading-btn');
     const uiSwitch = document.getElementById('switch');
-    const nextEvent =  document.querySelector('.next-event');
+    const nextEvent = document.querySelectorAll('.next-event');
 
     loadingBtn.addEventListener('click', fullscreen);
 
@@ -136,9 +133,10 @@ function handleEventHandlers(){
     uiSwitch.addEventListener('click',flipSwitch);//turns on the gadget
 
     window.addEventListener('orientationchange',handleOrientation);//switch from meter to camera;
-    nextEvent.addEventListener('click', function(){
-        console.log('moving on to next event');
-    }); //ADD FUNCTION FOR CHANGING TO NEXT CHAPTER HERE
+
+    nextEvent.forEach(function(elem){
+        elem.addEventListener('click',moveToNextChapter)
+    });
 }
 //****************************************
 //****************************************
@@ -400,6 +398,22 @@ function onLoad(){
 //#################################################################################
 //##  Axios call for state/chapter assets and data handler functions  #############
 //#################################################################################
+function moveToNextChapter(){
+    const axiosOptions = {
+        url: '/action',
+        method: 'POST',
+        params: {
+            story: sessionStorage.storyId,
+            action: action
+        }
+    }
+
+    axios(axiosOptions).catch( error => {
+        window.location.href = "/story/id/" + axiosOptions.params.story;
+    });
+}
+//++
+//++
 function grabChapterAssets(){
     const axiosOptions = {
         url: '/state',
@@ -431,7 +445,7 @@ function handleStateAssetLoading(data){
     }
 
     let currentChapter = miscAssets.state_id;
-    
+
     createScene(storyObject[currentChapter]);
 
     loadAll(); //Maybe change to audio.
@@ -447,13 +461,25 @@ function handleStateAssetLoading(data){
 //#############################################
 function makeVisible(number){
     const shapeArray = document.getElementsByClassName('appearingShape');
-    
+
     for (let i=0; i<shapeArray.length; i++){
         if(number > 0){
             shapeArray[i].classList.remove('hide');
         }else {
             shapeArray[i].classList.add('hide');
         }
+    }
+}
+//++
+//++
+function loadARObjects(){
+    console.log("I'm loading your objects!!!");
+}
+//++
+//++
+function handleARvisibility(){
+    if (!next && distance < target.talkThreshold){
+        next = true;
     }
 }
 //****************************************

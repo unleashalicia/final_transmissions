@@ -48,7 +48,7 @@ function createScene(object){
     marker.setAttribute("preset", object.marker.preset);
     scene.appendChild(marker);
 
-    
+
 
     //Create entities and set attributes
 
@@ -151,14 +151,19 @@ window.addEventListener("load", function(){
 });
 
 window.addEventListener("markerFound", function(){
-
     console.log("markerFound!");
 
-    if(distance < target.talkThreshold) {
-        //trigger next chapter modal.
+    if(distance < target.talkThreshold && !seen) {
+        seen = true;
+        let nextBtn = document.getElementsByClassName('next-event');
+        nextBtn.forEach(function(elem){
+            elem.classList.toggle('hide');
+        });
     }
-
 });
+
+
+
 
 ///////    Given to backend ///////
 //function takes in object and opacity to 0.9 and give to Brian.
