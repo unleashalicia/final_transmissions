@@ -34,11 +34,10 @@ nav {
 nav ul{
     padding: 0 2%;
     text-align: center;
-    margin-top: 0;
+    margin-top: 2%;
 }
 
 .nav-bar {
-    /* margin: 0 5%; */
     font-size: 4vmin;
     display: inline-block;
     cursor: pointer;
@@ -159,13 +158,12 @@ button:hover {
 .go-link {
     position: relative;
     display: block;
-    top: 42%;
+    top: 41%;
     left: 40%;
     height: 6vh;
 }
 
 .go-btn {
-    visibility: hidden;
     position: relative;
     height: 100%;
     width: 20vw;
@@ -202,7 +200,6 @@ img {
 
 .story {
     height: 100vh;
-    /*width: 100vw;*/
     display: none;
 }
 
@@ -248,13 +245,6 @@ img {
 
 /************ Media Queries ****************/
 
-/* @media screen and (max-width: 560px){
-    .go-link {
-        top: 55%;
-        left: 65%;
-    }
-} */
-
 @media screen and (max-width: 768px){
     .button-container {
         display: flex;
@@ -269,7 +259,6 @@ img {
     }
 
     .go-btn {
-        visibility: visible;
         z-index: 100;
     }
 
@@ -312,6 +301,11 @@ img {
 
     img {
         max-width: 980px;
+    }
+
+    .go-link {
+        top: 60%;
+        left: 40%;
     }
 
 }
