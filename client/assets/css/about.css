@@ -159,7 +159,7 @@ section {
     filter: invert(100%);
     width: 40px;
     position: absolute;
-    top: 50%;
+    top: 30%;
     transform: translate(0, -50%);
 }
 
