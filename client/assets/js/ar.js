@@ -43,7 +43,6 @@ function createScene(object){
         assets.appendChild(assetItem);
     } //end asset loop
 
-    //Create marker and append
 
     var marker = document.createElement('a-marker');
     marker.setAttribute("preset", object.marker.preset);
@@ -61,6 +60,9 @@ function createScene(object){
         setAttributes(shape, shapeObj.dimensions);
         shape.setAttribute("opacity", shapeObj.material.opacity);
         setAttributes(shape, shapeObj.otherAttr);
+        shape.classList.add('appearingShape');
+        shape.classList.add('hide');
+
 
         //Create Animations and add to shapes
 
@@ -76,10 +78,6 @@ function createScene(object){
         marker.appendChild(entityShape);
     } //end shape loop
 
-    /*
-    Create light entities.
-    This currently isn't working.  Come back to this.
-     */
 
     if (object.entities.length>1){
 
@@ -100,18 +98,84 @@ function createScene(object){
 
     } //end lights conditional
 
+
     ARcontainer.appendChild(scene);
+
+    //Program more specific JS at creation.  Come back to this at the end.
+
+    // switch (object.id){
+    //     case "earth":
+    //         console.log("Earth video: ", object.assets[0].src);
+    //
+    //         //Add these if more time.
+    //
+    //         // const water1 = document.getElementById("water1");
+    //         // const water2 = document.getElementById("water2");
+    //         //
+    //         // water1.currentTime = 1000;
+    //         // water1.play();
+    //         // water2.currentTime = 6000;
+    //         // water2.playbackRate = 1.3;
+    //         // water2.play();
+    //
+    //         break;
+    //     case "water":
+    //         console.log("Water video: ", object.assets[0].src);
+    //         break;
+    //     case "air":
+    //         console.log("Air video: ", object.assets[0].src);
+    //         break;
+    //     case "fire":
+    //         console.log("Fire video: ", object.assets[0].src);
+    //         break;
+    //     case "finale":
+    //         console.log("Finale img: ", object.assets[0].src);
+    //         break;
+    //     default:
+    //         console.log("I don't know what you're talking about.");
+    // }
+
 } //end createScene
+
+
+
+
 
 
 //Both of these are for testing.  Will be different in final version
 
 //Commented out so it doesn't immediately activate.
 
-// window.addEventListener("load", function(){
-//     createScene(storyObject[chapter]);
-// });
+window.addEventListener("load", function(){
+    createScene(storyObject[1]);
+});
 
 window.addEventListener("markerFound", function(){
+
     console.log("markerFound!");
+
+    if(distance < target.talkThreshold) {
+        //trigger next chapter modal.
+    }
+
 });
+
+///////    Given to backend ///////
+//function takes in object and opacity to 0.9 and give to Brian.
+//give them all classes and add here.
+
+// function makeVisible(class_name, number){
+//
+//     const shapeArray = document.getElementsByClassName(class_name);
+//
+//     for (let i=0; i<shapeArray.length; i++){
+//         if(number > 0){
+//             shapeArray[i].classList.remove('hide');
+//         }else {
+//             shapeArray[i].classList.add('hide');
+//         }
+//     }
+//
+// }
+//
+// makeVisible("appearingShape", 1);

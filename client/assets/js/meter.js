@@ -77,6 +77,10 @@ function loadAll(){
         count++;
     }
 }
+
+function loadARObjects(){
+    console.log("I'm loading your objects!!!");
+}
 //++
 //++
 function handleAudioPlayback(dist){
@@ -430,7 +434,8 @@ function handleStateAssetLoading(data){
     
     createScene(storyObject[currentChapter]);
 
-    loadAll();
+    loadAll(); //Maybe change to audio.
+    loadARObjects(); //I'm confused.
     getLocation();
 }
 //****************************************
