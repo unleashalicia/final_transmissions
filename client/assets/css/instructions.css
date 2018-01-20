@@ -11,7 +11,7 @@
     display: none;
 }
 
-body {
+#desktop {
     margin: auto;
     padding: 2% 5% 5% 5%;
     font-family: walpergens, serif;
@@ -115,6 +115,10 @@ ul {
         display: none;
     }
 
+    #desktop {
+        display: none;
+    }
+
     #mobile {
         display: block;
     }
@@ -127,7 +131,7 @@ ul {
         background-color: black;
         color: whitesmoke;
         text-align: center;
-        font-size: 4.5vmin;
+        font-size: 4vmin;
     }
 
     .title {
