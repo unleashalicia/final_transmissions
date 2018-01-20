@@ -1,0 +1,256 @@
+* {
+    box-sizing: border-box;
+}
+
+@font-face {
+   font-family: walpergens;
+   src: url(../fonts/walpergens.ttf);
+}
+
+#mobile {
+    display: none;
+}
+
+body {
+    margin: auto;
+    padding: 2% 5% 5% 5%;
+    font-family: walpergens, serif;
+    color: whitesmoke;
+    background-color: #232323;
+    font-size: 2em;
+    letter-spacing: 1.15px;
+    background-image: url('../images/instructions/tree-background.jpg');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 100vh;
+    background-attachment: fixed;
+    opacity: .8;
+    background-blend-mode: color-dodge;
+}
+
+nav {
+    display: block;
+    z-index: 300;
+    position: relative;
+}
+
+nav ul{
+    padding: 0 2%;
+    text-align: center;
+    margin-top: 0;
+}
+
+.nav-bar {
+    font-size: 4vmin;
+    display: inline-block;
+    cursor: pointer;
+    text-transform: uppercase;
+}
+
+.nav-bar a {
+    color: whitesmoke;
+    text-decoration: none;
+    z-index: 100;
+}
+
+.nav-bar:hover{
+    animation: noise-3 1s infinite;
+}
+
+.nav-bar::after{
+    content: "|";
+    font-size: 1.5em;
+    margin-left: 0.5em;
+    color: white;
+}
+
+.nav-bar::before{
+    content: "|";
+    font-size: 1.5em;
+    margin-right: 0.5em;
+    color: white;
+}
+
+h2 {
+    text-decoration: underline;
+}
+
+p {
+    margin-left: 2%;
+}
+
+ul {
+    margin-left: 3%;
+}
+
+.map {
+    width: 50%;
+    margin: 5% auto;
+    display: block;
+    border: 1px solid white;
+    border-radius: 2%;
+}
+
+.marker {
+    width: 35%;
+    margin: 5% auto;
+    display: block;
+    border: 1px solid white;
+    border-radius: 2%;
+}
+
+@keyframes noise-3 {
+    0%, 3%, 5%, 42%, 44%, 100% {opacity: 1; transform: scaleY(1);}
+    4.3% {opacity: 1; transform: scaleY(1.7);}
+    43% {opacity: 1; transform: scaleX(1.5);}
+}
+
+/************* mobile *****************/
+
+
+@media screen and (max-width: 768px){
+
+    #background-container {
+        display: none;
+    }
+
+    #mobile {
+        display: block;
+    }
+
+    body {
+        margin: auto;
+        padding: 3%;
+        font-family: walpergens, serif;
+        overflow: hidden;
+        background-color: black;
+        color: whitesmoke;
+        text-align: center;
+        font-size: 2.25em;
+    }
+
+    .title {
+        font-size: 2em;
+        margin-bottom: .5em;
+        margin-top: .3em;
+    }
+
+    .image {
+        width: 50%;
+        height: 35%;
+        border: 5px solid whitesmoke;
+        border-radius: 2%;
+    }
+
+    section {
+        height: 85%;
+    }
+
+    .arrow-right {
+        filter: invert(100%);
+        /* position: absolute;
+        bottom: 2%;
+        right: 5%; */
+        transform: rotateZ(-20deg);
+        float: right;
+        margin-right: 5%;
+    }
+
+    .arrow-left {
+        filter: invert(100%);
+        float: left;
+        margin-right: 5%;
+        /* position: absolute;
+        bottom: 2%;
+        left: 5%; */
+        -moz-transform: scaleX(-1);
+            -o-transform: scaleX(-1);
+            -webkit-transform: scaleX(-1);
+            transform: scaleX(-1) rotateZ(-20deg);
+            filter: FlipH;
+            -ms-filter: "FlipH";
+    }
+
+    .arrow-container {
+        position: fixed;
+        /* height: 150px; */
+        /* transform: translateY(175%); */
+        bottom: 0;
+        height: 15%;
+        width: 100%;
+        /* padding: 10% */
+    }
+
+    .arrow-up {
+        filter: invert(100%);
+        display: block;
+        margin: auto;
+    }
+
+    .button-container {
+        height: 10vw;
+        width: 95%;
+        margin: 7% auto;
+        display: flex;
+        justify-content: space-between;
+    }
+
+    button {
+        border: 5px solid whitesmoke;
+        border-radius: 5%;
+        background-color: rgba(235, 235, 235, .3);
+        color: whitesmoke;
+        font-size: 3.5vmin;
+        font-family: walpergens, serif;
+        font-weight: bold;
+        letter-spacing: 1.15px;
+        text-shadow: 1px 1px #252222;
+        height: 5vh;
+        width: 25vw;
+        position: absolute;
+        bottom: 2%;
+        right: 5%;
+    }
+
+    button:hover {
+        background-color: rgba(235, 235, 235, .7);
+        color: #252222;
+        text-shadow: none;
+    }
+
+    a {
+        color: whitesmoke;
+        text-decoration: none;
+        position: absolute;
+        bottom: 2%;
+        right: 5%;
+        z-index: 100;
+    }
+
+    button a {
+        text-decoration: none;
+        color: whitesmoke;
+    }
+
+    p {
+        margin-left: 0;
+    }
+
+
+
+    /*************** swipe css ****************/
+
+
+    .page2, .page3, .page4, .page5 {
+        display: none;
+    }
+
+    .show-img {
+        display: inline-block;
+    }
+
+    .hide-img {
+        display: none;
+    }
+}
