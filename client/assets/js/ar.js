@@ -129,7 +129,7 @@ function createScene(object){
 //Commented out so it doesn't immediately activate.
 
 window.addEventListener("load", function(){
-    createScene(storyObject[2]);
+    createScene(storyObject[1]);
 });
 
 window.addEventListener("markerFound", function(){
