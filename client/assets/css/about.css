@@ -149,6 +149,10 @@ section {
     padding: 0;
 }
 
+#faq p {
+    color: #9c9b9b;
+}
+
 .top {
     color: white;
     float: right;
