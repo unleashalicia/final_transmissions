@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width">
+        <title>Function Testing</title>
+        <style>
+            .appearingShape{
+                background-color: green;
+                height: 100px;
+                width: 100px;
+                display: inline-block;
+            }
+
+            .border {
+                border: 5px solid blue;
+            }
+
+            .newColor{
+                background-color: black;
+            }
+
+            .hide{
+                display: none;
+            }
+        </style>
+
+    </head>
+    <body>
+        <div class="appearingShape hide"></div>
+        <div class="appearingShape hide"></div>
+        <div class="appearingShape hide"></div>
+        <script>
+            function makeVisible(class_name, number){ //greater than 0 will set visibility on.
+                var shapeArray = document.getElementsByClassName(class_name);
+                for (var i=0; i<shapeArray.length; i++){
+
+                    if(number > 0){
+                        shapeArray[i].classList.remove('hide');
+                        shapeArray[i].classList.add('newColor');
+                        shapeArray[i].classList.add('border');
+                        shapeArray[i].classList.add('aliciaClass');
+
+                    }else {
+                        shapeArray[i].classList.add('hide');
+
+
+                    }
+                }
+
+            }
+
+            makeVisible("appearingShape", 1);
+        </script>
+    </body>
+</html>
