@@ -399,7 +399,7 @@ function grabChapterAssets(){
         url: '/state',
         method: 'GET',
         params: {
-            story: 1, // hard coded at the moment. Will need to either grab from local storage or something
+            story: sessionStorage.storyId
         }
     }
 

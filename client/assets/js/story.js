@@ -1,3 +1,16 @@
+document.addEventListener('DOMContentLoaded', saveStoryId)
+
+function saveStoryId(){
+
+  if ( typeof Storage !== "undefined" ) {
+    let storyId = window.location.pathname.split('/')
+    storyId = storyId[storyId.length-1];
+
+    sessionStorage.storyId = storyId;
+  } else {
+      console.log('local storage is not supported on this browser. Story will not work');
+  }
+}
 
 var marker;
 var map;
