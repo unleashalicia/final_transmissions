@@ -105,10 +105,12 @@ function handleAudioPlayback(dist){
             sounds[1].play(speaking);
         }
         sounds[1].fade(0,0.9,1500,speaking);
+        makeVisible(1);
     } else if (dist > target.talkThreshold && sounds[1].playing(speaking)){
         sounds[1].fade(0.9,0,1500,speaking).once('fade',function(){
             sounds[1].pause(speaking);
         },speaking);
+        makeVisible(0);
     }
 }
 //****************************************
@@ -440,6 +442,20 @@ function handleStateAssetLoading(data){
 //****************************************
 //-|
 //-|
+//#############################################
+//##  AR Display Toggle Function  #############
+//#############################################
+function makeVisible(number){
+    const shapeArray = document.getElementsByClassName('appearingShape');
+    
+    for (let i=0; i<shapeArray.length; i++){
+        if(number > 0){
+            shapeArray[i].classList.remove('hide');
+        }else {
+            shapeArray[i].classList.add('hide');
+        }
+    }
+}
 //****************************************
 //**************END***********************
 //****************************************
