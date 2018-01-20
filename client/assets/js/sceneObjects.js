@@ -3,7 +3,7 @@ var storyObject = {
         id: "earth",
         assets: [
             {
-                src: "/assets/video/dust.ogv", 
+                src: "./assets/video/dust.ogv",
                 id: "dust",
                 autoplay: "true",
                 loop: "true"
