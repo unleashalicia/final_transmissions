@@ -10,7 +10,7 @@ html(lang="en")
             nav
                 ul
                     li.nav-bar
-                        a(href="/instructions") Instructions
+                        a(href="/profile") Profile
                     li.nav-bar
                         a(href="/library") Library
                     li.nav-bar
@@ -24,7 +24,8 @@ html(lang="en")
                     button.nav-btn Log Out
             h1.title= storyDetails.name
             .img-container
-                img.story-img(src="../../assets/" + storyDetails.story_img)
+                img.story-img.mobile(src="../../assets/images/mobile" + storyDetails.story_img.slice(storyDetails.story_img.search('/')))
+                img.story-img.desktop(src="../../assets/" + storyDetails.story_img)
             a.go-link(href="/play")
                 button.go-btn Go!
             .about

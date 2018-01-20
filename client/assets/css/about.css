@@ -1,0 +1,122 @@
+* {
+    box-sizing: border-box;
+}
+
+@font-face {
+   font-family: walpergens;
+   src: url(../fonts/walpergens.ttf);
+}
+
+body {
+    margin: auto;
+    padding: 0;
+    font-family: walpergens, serif;
+    overflow: hidden;
+    height: 100vh;
+    width: 100vw;
+}
+
+/******** nav bar - desktop ******************/
+
+
+nav {
+    display: block;
+    z-index: 300;
+    position: relative;
+}
+
+nav ul{
+    padding: 0 2%;
+    text-align: center;
+    margin-top: 0;
+}
+
+.nav-bar {
+    /* margin: 0 5%; */
+    font-size: 4vmin;
+    display: inline-block;
+    cursor: pointer;
+    text-transform: uppercase;
+}
+
+.nav-bar a {
+    color: white;
+    text-decoration: none;
+    z-index: 100;
+}
+
+.nav-bar:hover{
+    animation: noise-3 1s infinite;
+}
+
+.nav-bar::after{
+    content: "|";
+    font-size: 1.5em;
+    margin-left: 0.5em;
+    color: white;
+}
+
+.nav-bar::before{
+    content: "|";
+    font-size: 1.5em;
+    margin-right: 0.5em;
+    color: white;
+}
+
+/*********** Nav Bar End  ************/
+
+
+.button-container {
+    height: 10vw;
+    width: 95%;
+    margin: auto;
+    display: none;
+    justify-content: space-between;
+}
+
+a {
+    position: relative;
+}
+
+button {
+    position: relative;
+    border: 2px solid whitesmoke;
+    border-radius: 5%;
+    background-color: rgba(235, 235, 235, .3);
+    color: whitesmoke;
+    font-size: 3.5vmin;
+    font-family: de-walpergens-pica, serif;
+    font-weight: bold;
+    letter-spacing: 1.10px;
+    text-shadow: 1px 1px #252222;
+}
+
+button:hover {
+    background-color: rgba(235, 235, 235, .7);
+    color: #252222;
+    text-shadow: none;
+}
+
+.nav-btn {
+    height: 100%;
+    width: 28vw;
+    z-index: 300;
+    margin-top: 20%;
+}
+
+@keyframes noise-3 {
+    0%, 3%, 5%, 42%, 44%, 100% {opacity: 1; transform: scaleY(1);}
+    4.3% {opacity: 1; transform: scaleY(1.7);}
+    43% {opacity: 1; transform: scaleX(1.5);}
+}
+
+@media screen and (max-width: 768px){
+    .button-container {
+        display: flex;
+    }
+
+    nav {
+        display: none;
+    }
+
+}
