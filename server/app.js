@@ -35,8 +35,8 @@ app.get('/', (req, res) => {
 });
 
 
-app.get('/library', (req,res) => {
-    res.sendFile(path.join(__dirname,'..', 'client', 'library.html'));
+app.get('/about', (req,res) => {
+    res.sendFile(path.join(__dirname,'..', 'client', 'about.html'));
 })
 
 

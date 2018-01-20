@@ -21,6 +21,18 @@ body{
   z-index: 9999;
 }
 
+.about {
+    position: absolute;
+    top: 5%;
+    right: 5%;
+}
+
+.about a {
+    text-decoration: none;
+    color: whitesmoke;
+    font-size: 1.5em;
+}
+
 .greeting{
   animation: noise-3 2s linear infinite;
   position: relative;
