@@ -32,7 +32,7 @@ var distance;
 var knobMode='med';
 var action;
 var next = false;
-var seen;
+var seen = false;
 //****************************************
 //****************************************
 //--|
@@ -421,6 +421,8 @@ function grabChapterAssets(){
     const storyID = sessionStorage.getItem('story_id');
 
     axios.get('/state',{params : {story: storyID}}).then( handleStateAssetLoading ).catch( error => {
+        console.warn('Axios GET from state issue');
+        console.log(error);
         window.location.href = "/story/id/" + storyID;
     });
 }
