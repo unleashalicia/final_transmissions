@@ -302,6 +302,7 @@ var storyObject = {
                 id: "fire2",
                 loop: "true"
             },
+            {
 
                 src: "/assets/video/fire.ogv",
                 id: "fire3",
