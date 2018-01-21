@@ -401,20 +401,20 @@ function onLoad(){
 //#################################################################################
 //##  Axios call for state/chapter assets and data handler functions  #############
 //#################################################################################
-function moveToNextChapter(){
-    const axiosOptions = {
-        url: '/action',
-        method: 'POST',
-        params: {
-            story: sessionStorage.storyId,
-            action: action
-        }
-    }
-
-    axios(axiosOptions).catch( error => {
-        window.location.href = "/story/id/" + axiosOptions.params.story;
-    });
-}
+// function moveToNextChapter(){
+//     const axiosOptions = {
+//         url: '/action',
+//         method: 'POST',
+//         params: {
+//             story: sessionStorage.storyId,
+//             action: 'proceed'
+//         }
+//     }
+//
+//     axios(axiosOptions).catch( error => {
+//         window.location.href = "/story/id/" + axiosOptions.params.story;
+//     });
+// }
 //++
 //++
 function grabChapterAssets(){

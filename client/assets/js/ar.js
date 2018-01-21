@@ -112,22 +112,22 @@ function createScene(object){
     //#################################################################################
     //##  Axios call for state/chapter assets and data handler functions  #############
     //#################################################################################
-    // function moveToNextChapter(){
-    //     const axiosOptions = {
-    //         url: '/action',
-    //         method: 'POST',
-    //         params: {
-    //             story: sessionStorage.storyId,
-    //             action: action
-    //         }
-    //     }
-    //
-    //     axios(axiosOptions).then(() => {
-    //         window.location.href = '/play';
-    //     }).catch( error => {
-    //         window.location.href = "/story/id/" + axiosOptions.params.story;
-    //     });
-    // }
+    function moveToNextChapter(){
+        const axiosOptions = {
+            url: '/actionAlt',
+            method: 'POST',
+            params: {
+                story: sessionStorage.storyId,
+                action: 'proceed'
+            }
+        }
+
+        axios(axiosOptions).then(() => {
+            window.location.href = '/play';
+        }).catch( error => {
+            window.location.href = "/story/id/" + axiosOptions.params.story;
+        });
+    }
     //++
     //++
 
