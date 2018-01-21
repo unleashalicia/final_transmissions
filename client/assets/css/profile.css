@@ -303,6 +303,21 @@ p{
     cursor: pointer;
     font-size: 1.3em;
 }
+
+
+.story-list li::before{
+    content: "";
+    display: inline-block;
+    background-image: url(../images/icons/book.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 20px;
+    width: 20px;
+    filter: invert(100%);
+    margin-right: 5px;
+}
+
+
 a{
     text-decoration: none;
     color: white;
