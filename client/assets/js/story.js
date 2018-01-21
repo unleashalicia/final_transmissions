@@ -6,7 +6,7 @@ function saveStoryId(){
     let storyId = window.location.pathname.split('/')
     storyId = storyId[storyId.length-1];
 
-    sessionStorage.storyId = storyId;
+    sessionStorage.setItem('story_id',''+storyId);
   } else {
       console.log('local storage is not supported on this browser. Story will not work');
   }

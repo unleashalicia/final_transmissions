@@ -75,7 +75,7 @@ function loadAll(){
         if (count === 1){
             sounds.numLoaded++;
         } // get rid of this once valid sounds start getting passed from the db
-        sounds[count] = loadSound(sounds.sources[i], i);
+        sounds[count] = loadSound(sounds.sources[i], loop);
         count++;
     }
 }
@@ -136,7 +136,7 @@ function handleEventHandlers(){
     window.addEventListener('orientationchange',handleOrientation);//switch from meter to camera;
 
 
-    nextEvent.addEventListener('click', moveToNextChapter)
+    // nextEvent.addEventListener('click', moveToNextChapter)
     // nextEvent.forEach(function(elem){
     //     elem.addEventListener('click',moveToNextChapter)
     // });
@@ -401,20 +401,20 @@ function onLoad(){
 //#################################################################################
 //##  Axios call for state/chapter assets and data handler functions  #############
 //#################################################################################
-function moveToNextChapter(){
-    const axiosOptions = {
-        url: '/action',
-        method: 'POST',
-        params: {
-            story: sessionStorage.storyId,
-            action: action
-        }
-    }
-
-    axios(axiosOptions).catch( error => {
-        window.location.href = "/story/id/" + axiosOptions.params.story;
-    });
-}
+// function moveToNextChapter(){
+//     const axiosOptions = {
+//         url: '/action',
+//         method: 'POST',
+//         params: {
+//             story: sessionStorage.storyId,
+//             action: 'proceed'
+//         }
+//     }
+//
+//     axios(axiosOptions).catch( error => {
+//         window.location.href = "/story/id/" + axiosOptions.params.story;
+//     });
+// }
 //++
 //++
 function grabChapterAssets(){

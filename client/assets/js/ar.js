@@ -107,22 +107,17 @@ function createScene(object){
     span.onclick=moveToNextChapter;
     fragment.append(span);
     ARcontainer.appendChild(scene);
-    // ARcontainer.appendChild(fragment); Commented out for testing
+    ARcontainer.appendChild(fragment);
 
     //#################################################################################
     //##  Axios call for state/chapter assets and data handler functions  #############
     //#################################################################################
     function moveToNextChapter(){
-        const axiosOptions = {
-            url: '/action',
-            method: 'POST',
-            params: {
-                story: sessionStorage.storyId,
-                action: action
-            }
-        }
+        const storyID = sessionStorage.getItem('story_id');
 
-        axios(axiosOptions).catch( error => {
+        axios.post('/action',{story: Number(storyID), action: 'proceed'}).then(() => {
+            window.location.href = '/play';
+        }).catch( error => {
             window.location.href = "/story/id/" + axiosOptions.params.story;
         });
     }
