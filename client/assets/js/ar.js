@@ -98,8 +98,15 @@ function createScene(object){
 
     } //end lights conditional
 
-
+    var fragment = document.createDocumentFragment();
+    var span = document.createElement('span');
+    var img = document.createElement('img');
+    img.src="./assets/images/icons/gobeige.png";
+    span.textContent="Next Chapter";
+    span.appendChild(img);
+    fragment.append(span);
     ARcontainer.appendChild(scene);
+    // ARcontainer.appendChild(fragment); Commented out for testing
 
     //Program more specific JS at creation.  Come back to this at the end.
 
