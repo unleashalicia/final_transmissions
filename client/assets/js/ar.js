@@ -114,18 +114,8 @@ function createScene(object){
     //#################################################################################
     function moveToNextChapter(){
         const storyID = sessionStorage.getItem('story_id');
-        console.log(storyID);
 
-        const axiosOptions = {
-            url: '/actionAlt',
-            method: 'GET',
-            params: {
-                story: Number(storyID),
-                action: 'proceed'
-            }
-        }
-
-        axios.post('/actionAlt',{story: Number(storyID), action: 'proceed'}).then(() => {
+        axios.post('/action',{story: Number(storyID), action: 'proceed'}).then(() => {
             window.location.href = '/play';
         }).catch( error => {
             window.location.href = "/story/id/" + axiosOptions.params.story;
