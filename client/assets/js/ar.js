@@ -101,6 +101,7 @@ function createScene(object){
 
     ARcontainer.appendChild(scene);
 
+
     //Program more specific JS at creation.  Come back to this at the end.
 
     // switch (object.id){
