@@ -90,10 +90,12 @@ module.exports = function (app, passport) {
 	});
 
 	app.post('/actionAlt',isLoggedIn, (req, res) => {
+		console.log(`Action variables: User - ${req.user.id}, Story - ${req.body.story}`);
 		const sql  = `UPDATE user_stories SET state_id = state_id + 1 WHERE id = ${req.user.id} and story_id = ${req.body.story}`
 
 		connection.query(sql, (error, data) => {
 			if (!error){
+				console.log('SQL update success');
 				res.redirect('/play');
 			} else {
 				res.send('Error updating user state');
