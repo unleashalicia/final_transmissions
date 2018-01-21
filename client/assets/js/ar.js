@@ -113,11 +113,14 @@ function createScene(object){
     //##  Axios call for state/chapter assets and data handler functions  #############
     //#################################################################################
     function moveToNextChapter(){
+        const storyID = sessionStorage.getItem('story_id');
+        console.log(storyID);
+
         const axiosOptions = {
             url: '/actionAlt',
             method: 'POST',
             params: {
-                story: Number(sessionStorage.getItem('story_id')),
+                story: Number(storyID),
                 action: 'proceed'
             }
         }
