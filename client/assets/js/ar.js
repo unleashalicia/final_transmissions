@@ -104,9 +104,31 @@ function createScene(object){
     img.src="./assets/images/icons/gobeige.png";
     span.textContent="Next Chapter";
     span.appendChild(img);
+    span.onclick=moveToNextChapter;
     fragment.append(span);
     ARcontainer.appendChild(scene);
     // ARcontainer.appendChild(fragment); Commented out for testing
+
+    //#################################################################################
+    //##  Axios call for state/chapter assets and data handler functions  #############
+    //#################################################################################
+    function moveToNextChapter(){
+        const axiosOptions = {
+            url: '/action',
+            method: 'POST',
+            params: {
+                story: sessionStorage.storyId,
+                action: action
+            }
+        }
+
+        axios(axiosOptions).catch( error => {
+            window.location.href = "/story/id/" + axiosOptions.params.story;
+        });
+    }
+    //++
+    //++
+
 
     //Program more specific JS at creation.  Come back to this at the end.
 
