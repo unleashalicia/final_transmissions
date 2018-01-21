@@ -151,6 +151,11 @@ section {
 
 #faq p {
     color: #9c9b9b;
+    margin-top: 0;
+}
+
+#faq h3 {
+    margin-bottom: 0;
 }
 
 .top {

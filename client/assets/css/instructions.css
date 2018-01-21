@@ -144,7 +144,7 @@ ul {
     .image {
         width: 40%;
         height: 35%;
-        border: 5px solid whitesmoke;
+        border: 2px solid whitesmoke;
         border-radius: 2%;
     }
 
@@ -198,7 +198,7 @@ ul {
     }
 
     button {
-        border: 5px solid whitesmoke;
+        border: 2px solid whitesmoke;
         border-radius: 5%;
         background-color: rgba(235, 235, 235, .3);
         color: whitesmoke;
