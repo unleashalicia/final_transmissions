@@ -420,7 +420,7 @@ function onLoad(){
 function grabChapterAssets(){
     const storyID = sessionStorage.getItem('story_id');
 
-    axios.get('/state',{params : story: storyID}).then( handleStateAssetLoading ).catch( error => {
+    axios.get('/state',{params : {story: storyID}}).then( handleStateAssetLoading ).catch( error => {
         window.location.href = "/story/id/" + storyID;
     });
 }
