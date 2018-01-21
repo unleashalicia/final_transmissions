@@ -124,7 +124,7 @@ function handleEventHandlers(){
     const knobImg = document.getElementById('knobImg');
     const loadingBtn = document.querySelector('.loading-btn');
     const uiSwitch = document.getElementById('switch');
-    const nextEvent = document.querySelectorAll('.next-event');
+    const nextEvent = document.querySelector('.next-event');
 
     loadingBtn.addEventListener('click', fullscreen);
 
@@ -135,9 +135,11 @@ function handleEventHandlers(){
 
     window.addEventListener('orientationchange',handleOrientation);//switch from meter to camera;
 
-    nextEvent.forEach(function(elem){
-        elem.addEventListener('click',moveToNextChapter)
-    });
+
+    nextEvent.addEventListener('click', moveToNextChapter)
+    // nextEvent.forEach(function(elem){
+    //     elem.addEventListener('click',moveToNextChapter)
+    // });
 }
 //****************************************
 //****************************************
