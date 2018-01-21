@@ -102,3 +102,9 @@ const inputData = elem.previousSibling.value
         console.error(errorMsg, error);
     });
 }
+
+function checkStories(){
+    if(!document.querySelector('.story-list li')){
+        document.querySelector('.story-container h3').innerText="visit the library to start a story"
+    }
+}
