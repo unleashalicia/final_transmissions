@@ -75,7 +75,7 @@ function loadAll(){
         if (count === 1){
             sounds.numLoaded++;
         } // get rid of this once valid sounds start getting passed from the db
-        sounds[count] = loadSound(sounds.sources[i], i);
+        sounds[count] = loadSound(sounds.sources[i], loop);
         count++;
     }
 }
