@@ -107,7 +107,7 @@ function createScene(object){
     span.onclick=moveToNextChapter;
     fragment.append(span);
     ARcontainer.appendChild(scene);
-    // ARcontainer.appendChild(fragment); Commented out for testing
+    ARcontainer.appendChild(fragment);
 
     //#################################################################################
     //##  Axios call for state/chapter assets and data handler functions  #############
@@ -122,7 +122,9 @@ function createScene(object){
             }
         }
 
-        axios(axiosOptions).catch( error => {
+        axios(axiosOptions).then(() => {
+            window.location.href = '/play';
+        }).catch( error => {
             window.location.href = "/story/id/" + axiosOptions.params.story;
         });
     }
