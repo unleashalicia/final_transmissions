@@ -91,7 +91,7 @@ module.exports = function (app, passport) {
 
 
 	app.post('/action', isLoggedIn, (req, res) => {
-		const query = `CALL handleUserAction(${req.user.id}, ${req.query.story}, '${req.query.action}')`;
+		const query = `CALL handleUserAction(${req.user.id}, ${req.body.story}, '${req.body.action}')`;
 		console.log(`Action requested by user ${req.user.id}.`);
 
 		connection.query(query, function(error, data){
