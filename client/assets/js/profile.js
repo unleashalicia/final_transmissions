@@ -7,12 +7,11 @@ function handleEventHandlers(){
     const confirm = document.querySelectorAll(".log-out");
     const noBtn = document.querySelector(".no");
     const logOutModal = document.querySelector(".logOut-container");
-    const editText = document.querySelector(".edit-text");
+    const editText = document.querySelectorAll(".edit-text");
+    // debugger;
 
-
-    editText.addEventListener("click", function(){
-        makeInput(this)//for email to input change
-    })
+    editText.forEach((elem)=>elem.addEventListener("click",makeInput))
+        //for email to input change
     noBtn.addEventListener("click",function(){
         logOutModal.classList.add("hide");
     }); //gets the user back to the profile page
