@@ -151,14 +151,15 @@ window.addEventListener("load", function(){
 });
 
 window.addEventListener("markerFound", function(){
-    console.log("markerFound!");
-
     if(distance < target.talkThreshold && !seen) {
+        console.log("markerFound!");
         seen = true;
         let nextBtn = document.getElementsByClassName('next-event');
-        nextBtn.forEach(function(elem){
-            elem.classList.toggle('hide');
-        });
+        for (let x in nextBtn){
+            if (!isNaN(x)){
+        		nextBtn[x].classList.toggle('hide');
+            }
+        }
     }
 });
 
