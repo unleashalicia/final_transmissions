@@ -418,16 +418,10 @@ function onLoad(){
 //++
 //++
 function grabChapterAssets(){
-    const axiosOptions = {
-        url: '/state',
-        method: 'GET',
-        params: {
-            story: sessionStorage.storyId
-        }
-    }
+    const storyID = sessionStorage.getItem('story_id');
 
-    axios(axiosOptions).then( handleStateAssetLoading ).catch( error => {
-        window.location.href = "/story/id/" + axiosOptions.params.story;
+    axios.get('/state',{params : story: storyID}).then( handleStateAssetLoading ).catch( error => {
+        window.location.href = "/story/id/" + storyID;
     });
 }
 //++
