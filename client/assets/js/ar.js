@@ -102,17 +102,146 @@ function createScene(object){
 
     } //end lights conditional
 
-    // if (object.actions){
-    //     for (var action_i=0; action_i<actions.length; action_i++){
-    //         object.actions[action_i]();
-    //     }
-    // }
+    switch (object.id){
+        case "earth":
+
+            var earth = document.getElementById("dust");
+
+            earth.play();
+
+            break;
+
+        case "water":
+
+            var water1 = document.getElementById("water1");
+            var water2 = document.getElementById("water2");
+
+            water1.currentTime = 1000;
+            water1.play();
+            water2.currentTime = 6000;
+            water2.playbackRate = 1.3;
+            water2.play();
+
+            break;
+
+        case "air":
+
+            var air1 = document.getElementById("air1");
+            var air2 = document.getElementById("air2");
+            var air3 = document.getElementById("air3");
+
+            air1.currentTime = 1000;
+            air1.playbackRate = 4.0;
+            air1.play();
+            air2.currentTime = 2000;
+            air2.playbackRate = 2.0;
+            air2.play();
+            air3.currentTime = 4000;
+            air3.playbackRate = -2.0;
+            air3.play();
+
+            break;
+
+        case "fire":
+
+            var videos = document.querySelectorAll(".video");
+
+            for (i=0; i<videos.length; i++) {
+                (function(i) {
+                    window.addEventListener("load", function () {
+                        videos[i].currentTime = 1000;
+                        videos[i].play();
+                        setInterval(function () {
+                            videos[i].currentTime = 1000;
+                        }, 4000);
+                    });
+                })(i)
+            };
+
+            break;
+        case "finale":
+
+            for (var creator = 0; creator < 200; creator++) {
+                var entity = document.createElement('a-entity');
+                var sphere = document.createElement('a-sphere');
+                var move = document.createElement('a-animation');
+                var fade = document.createElement('a-animation');
+                var random = Math.random();
+                var posXdest = null;
+                var color = null;
+                var posYdest = findRange(5, 7);
+                var dur = findRange(200, 3000);
+                var radius = findRange(0.025, 0.07);
+
+                if (random < .2) {
+                    posXdest = findRange(-1, 1);
+                    color = "black";
+                } else if (random < .7) {
+                    posXdest = findRange(-2, 2);
+                    color = "white";
+                } else if (random < .95) {
+                    posXdest = findRange(-3, 3);
+                    color = "white";
+                } else {
+                    posXdest = findRange(-4, 4);
+                    color = "white";
+                }
+
+                var sphereAttr = {
+                    material: {
+                        color: color
+                    },
+                    otherAttr: {
+                        opacity: "0.7",
+                        radius: radius
+                    }
+                };
+
+                var moveAttr = {
+                    attribute: "position",
+                    dur: dur,
+                    from: "0 0.5 -3.5",
+                    to: `${posXdest} ${posYdest} -3.5`,
+                    easing: 'linear',
+                    repeat: 'indefinite'
+                };
+
+                var fadeAttr = {
+                    attribute: "opacity",
+                    dur: dur,
+                    from: "0.7",
+                    to: "0",
+                    easing: "linear",
+                    repeat: "indefinite"
+                };
+
+
+                sphere.setAttribute('material', sphereAttr.material);
+                setAttributes(sphere, sphereAttr.otherAttr);
+
+                setAttributes(move, moveAttr);
+                setAttributes(fade, fadeAttr);
+
+                entity.appendChild(move);
+                sphere.appendChild(fade);
+                entity.appendChild(sphere);
+                marker.appendChild(entity);
+
+
+            }
+
+            break;
+
+        default:
+            console.log("There was an error making this work.");
+    } //end of extra functionality switch statement
+
 
     var fragment = document.createDocumentFragment();
     var span = document.createElement('span');
     var img = document.createElement('img');
     img.src="./assets/images/icons/gobeige.png";
-    span.className= "next-event landscape"
+    span.className= "next-event landscape";
     span.textContent="Next Chapter";
     span.appendChild(img);
     span.onclick=moveToNextChapter;
@@ -137,54 +266,9 @@ function createScene(object){
 
 
 
-    //Program more specific JS at creation.  Come back to this at the end.
-
-    // switch (object.id){
-    //     case "earth":
-    //         console.log("Earth video: ", object.assets[0].src);
-    //
-    //         //Add these if more time.
-    //
-    //         // const water1 = document.getElementById("water1");
-    //         // const water2 = document.getElementById("water2");
-    //         //
-    //         // water1.currentTime = 1000;
-    //         // water1.play();
-    //         // water2.currentTime = 6000;
-    //         // water2.playbackRate = 1.3;
-    //         // water2.play();
-    //
-    //         break;
-    //     case "water":
-    //         console.log("Water video: ", object.assets[0].src);
-    //         break;
-    //     case "air":
-    //         console.log("Air video: ", object.assets[0].src);
-    //         break;
-    //     case "fire":
-    //         console.log("Fire video: ", object.assets[0].src);
-    //         break;
-    //     case "finale":
-    //         console.log("Finale img: ", object.assets[0].src);
-    //         break;
-    //     default:
-    //         console.log("I don't know what you're talking about.");
-    // }
-
 } //end createScene
 
-
-
-
-
-
-//Both of these are for testing.  Will be different in final version
-
-//Commented out so it doesn't immediately activate.
-
-// window.addEventListener("load", function(){ COMMENTED OUT SINCE IT'S CAUSING DOUBLE APPENDS OF A-SCENE
-//     createScene(storyObject[1]);
-// });
+//Seen will need to reset to false at the start of each chapter.
 
 window.addEventListener("markerFound", function(){
     if(distance < target.talkThreshold && !seen) {
@@ -199,25 +283,3 @@ window.addEventListener("markerFound", function(){
     }
 });
 
-
-
-
-///////    Given to backend ///////
-//function takes in object and opacity to 0.9 and give to Brian.
-//give them all classes and add here.
-
-// function makeVisible(class_name, number){
-//
-//     const shapeArray = document.getElementsByClassName(class_name);
-//
-//     for (let i=0; i<shapeArray.length; i++){
-//         if(number > 0){
-//             shapeArray[i].classList.remove('hide');
-//         }else {
-//             shapeArray[i].classList.add('hide');
-//         }
-//     }
-//
-// }
-//
-// makeVisible("appearingShape", 1);

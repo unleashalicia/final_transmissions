@@ -5,7 +5,6 @@ var storyObject = {
             {
                 src: "./assets/video/dust.ogv",
                 id: "dust",
-                autoplay: "true",
                 loop: "true"
             }
         ],
@@ -50,13 +49,11 @@ var storyObject = {
             {
                 src: "/assets/video/Rain%20-%2078.mp4",
                 id: "water1",
-                autoplay: "false",
                 loop: "true"
             },
             {
                 src: "/assets/video/Rain%20-%2078.mp4",
                 id: "water2",
-                autoplay: "false",
                 loop: "true"
             }
         ],
@@ -165,19 +162,16 @@ var storyObject = {
             {
                 src: "/assets/video/sky.mp4",
                 id: "air1",
-                autoplay: "true",
                 loop: "true"
             },
             {
                 src: "/assets/video/sky.mp4",
                 id: "air2",
-                autoplay: "true",
                 loop: "true"
             },
             {
                 src: "/assets/video/sky.mp4",
                 id: "air3",
-                autoplay: "true",
                 loop: "true"
             }
 
@@ -301,25 +295,21 @@ var storyObject = {
             {
                 src: "/assets/video/fire.ogv",
                 id: "fire1",
-                autoplay: "false",
-                loop: "false"
+                loop: "true"
             },
             {
                 src: "/assets/video/fire.ogv",
                 id: "fire2",
-                autoplay: "false",
                 loop: "true"
             },
 
                 src: "/assets/video/fire.ogv",
                 id: "fire3",
-                autoplay: "false",
                 loop: "true"
             },
             {
                 src: "/assets/video/fire.ogv",
                 id: "fire4",
-                autoplay: "false",
                 loop: "true"
             }
         ],
@@ -437,7 +427,6 @@ var storyObject = {
             {
                 src: "./assets/images/wood.jpg",
                 id: "#wood",
-                autoplay: "false",
                 loop: "false"
             }
         ],
