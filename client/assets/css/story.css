@@ -18,7 +18,7 @@ body {
     background-repeat: no-repeat;
     background-position: center;
     letter-spacing: 1.15px;
-    font-size: 1.2em;
+    font-size: 4vmin;
 }
 
 #container {
@@ -172,7 +172,7 @@ button:hover {
 
 .chapters-list {
     padding: 0 20%;
-    list-style-type: upper-roman;
+    list-style-type: none;
     margin-bottom: 10%;
 }
 
