@@ -117,7 +117,7 @@ function createScene(object){
             url: '/actionAlt',
             method: 'POST',
             params: {
-                story: Number(sessionStorage.getItem(story_id)),
+                story: Number(sessionStorage.getItem('story_id')),
                 action: 'proceed'
             }
         }
