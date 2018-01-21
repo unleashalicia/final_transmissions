@@ -136,7 +136,7 @@ function handleEventHandlers(){
     window.addEventListener('orientationchange',handleOrientation);//switch from meter to camera;
 
 
-    nextEvent.addEventListener('click', moveToNextChapter)
+    // nextEvent.addEventListener('click', moveToNextChapter)
     // nextEvent.forEach(function(elem){
     //     elem.addEventListener('click',moveToNextChapter)
     // });
