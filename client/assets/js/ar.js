@@ -125,7 +125,7 @@ function createScene(object){
             }
         }
 
-        axios(axiosOptions).then(() => {
+        axios.post('/actionAlt',{story: Number(storyID), action: 'proceed'}).then(() => {
             window.location.href = '/play';
         }).catch( error => {
             window.location.href = "/story/id/" + axiosOptions.params.story;
