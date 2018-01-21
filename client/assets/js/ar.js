@@ -90,6 +90,10 @@ function createScene(object){
 
             entityLight.setAttribute("light", `type: ${lightAttr.type}; angle: ${lightAttr.angle}; color: ${lightAttr.color}; intensity: ${lightAttr.intensity}`);
 
+            if (object.entities[1].lights[light_i].attributes.type === "directional"){
+                setAttributes(entityLight, object.entities[1].lights[light_i].directionalAttr);
+            };
+
 
             //Append lights to marker
 
@@ -97,6 +101,12 @@ function createScene(object){
         } //end light for loop
 
     } //end lights conditional
+
+    // if (object.actions){
+    //     for (var action_i=0; action_i<actions.length; action_i++){
+    //         object.actions[action_i]();
+    //     }
+    // }
 
     var fragment = document.createDocumentFragment();
     var span = document.createElement('span');
