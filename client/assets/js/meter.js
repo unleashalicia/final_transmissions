@@ -32,7 +32,7 @@ var distance;
 var knobMode='med';
 var action;
 var next = false;
-var seen;
+var seen = false;
 //****************************************
 //****************************************
 //--|

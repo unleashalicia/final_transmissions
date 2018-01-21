@@ -283,13 +283,13 @@ p{
     position: relative;
 }
 
-.story-container-inside{
+.story-container{
     width: 100%;
     text-align: center;
     margin-top: 5%;
 }
 
-.story-container-inside h3{
+.story-container h3{
     margin: 0;
     border-bottom: 1px dotted white;
     border-top: 1px dotted white;
@@ -483,7 +483,7 @@ a{
         text-align: center;
     }
 
-    .story-container-inside{
+    .story-container{
         margin-top: 10%;
     }
 
