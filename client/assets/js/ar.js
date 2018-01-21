@@ -172,9 +172,9 @@ function createScene(object){
 
 //Commented out so it doesn't immediately activate.
 
-window.addEventListener("load", function(){
-    createScene(storyObject[1]);
-});
+// window.addEventListener("load", function(){ COMMENTED OUT SINCE IT'S CAUSING DOUBLE APPENDS OF A-SCENE
+//     createScene(storyObject[1]);
+// });
 
 window.addEventListener("markerFound", function(){
     if(distance < target.talkThreshold && !seen) {
