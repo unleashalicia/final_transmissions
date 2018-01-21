@@ -118,7 +118,7 @@ function createScene(object){
 
         const axiosOptions = {
             url: '/actionAlt',
-            method: 'POST',
+            method: 'GET',
             params: {
                 story: Number(storyID),
                 action: 'proceed'

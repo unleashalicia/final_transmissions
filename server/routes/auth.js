@@ -89,9 +89,9 @@ module.exports = function (app, passport) {
 	    res.sendFile(path.join(__dirname, '..', '..', 'client', 'meter-index.html'));
 	});
 
-	app.post('/actionAlt',isLoggedIn, (req, res) => {
-		console.log(`Action variables: User - ${req.user.id}, Story - ${req.body.story}`);
-		const sql  = `UPDATE user_stories SET state_id = state_id + 1 WHERE id = ${req.user.id} and story_id = ${req.body.story}`
+	app.get('/actionAlt',isLoggedIn, (req, res) => {
+		console.log(`Action variables: User - ${req.user.id}, Story - ${req.param.story}`);
+		const sql  = `UPDATE user_stories SET state_id = state_id + 1 WHERE id = ${req.user.id} and story_id = ${req.param.story}`
 
 		connection.query(sql, (error, data) => {
 			if (!error){
