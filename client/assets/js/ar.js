@@ -102,6 +102,24 @@ function createScene(object){
 
     } //end lights conditional
 
+
+//next chapter button
+
+    var fragment = document.createDocumentFragment();
+    var span = document.createElement('span');
+    var img = document.createElement('img');
+    img.src="./assets/images/icons/gobeige.png";
+    span.className= "next-event landscape";
+    span.textContent="Next Chapter";
+    span.appendChild(img);
+    span.onclick=moveToNextChapter;
+    fragment.append(span);
+    ARcontainer.appendChild(scene);
+    ARcontainer.appendChild(fragment);
+    
+    //extra js functionality
+
+
     switch (object.id){
         case "earth":
 
@@ -235,19 +253,6 @@ function createScene(object){
         default:
             console.log("There was an error making this work.");
     } //end of extra functionality switch statement
-
-
-    var fragment = document.createDocumentFragment();
-    var span = document.createElement('span');
-    var img = document.createElement('img');
-    img.src="./assets/images/icons/gobeige.png";
-    span.className= "next-event landscape";
-    span.textContent="Next Chapter";
-    span.appendChild(img);
-    span.onclick=moveToNextChapter;
-    fragment.append(span);
-    ARcontainer.appendChild(scene);
-    ARcontainer.appendChild(fragment);
 
     //#################################################################################
     //##  Axios call for state/chapter assets and data handler functions  #############
