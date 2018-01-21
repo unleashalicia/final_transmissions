@@ -144,7 +144,76 @@
 
         ],
        actions: {
-            function:
+            createSpheres: function(amount){
+                const marker = document.querySelector('a-marker');
+
+                for (let creator=0; creator<amount; creator++) {
+                    let entity = document.createElement('a-entity');
+                    let sphere = document.createElement('a-sphere');
+                    let move = document.createElement('a-animation');
+                    let fade = document.createElement('a-animation');
+                    let random = Math.random();
+                    let posXdest = null;
+                    let color = null;
+                    let posYdest = findRange(5, 7);
+                    let dur = findRange(200, 3000);
+                    let radius = findRange(0.025, 0.07);
+
+                    if (random < .2) {
+                        posXdest = findRange(-1, 1);
+                        color = "black";
+                    } else if (random < .7) {
+                        posXdest = findRange(-2, 2);
+                        color = "white";
+                    } else if (random < .95) {
+                        posXdest = findRange(-3, 3);
+                        color = "white";
+                    } else {
+                        posXdest = findRange(-4, 4);
+                        color = "white";
+                    }
+
+                    let sphereAttr = {
+                        material: {
+                            color: color
+                        },
+                        otherAttr: {
+                            opacity: "0.7",
+                            radius: radius
+                        }
+                    };
+
+                    let moveAttr = {
+                        attribute: "position",
+                        dur: dur,
+                        from: "0 0.5 -3.5",
+                        to: `${posXdest} ${posYdest} -3.5`,
+                        easing: 'linear',
+                        repeat: 'indefinite'
+                    };
+
+                    let fadeAttr = {
+                        attribute: "opacity",
+                        dur: dur,
+                        from: "0.7",
+                        to: "0",
+                        easing: "linear",
+                        repeat: "indefinite"
+                    };
+
+
+                    sphere.setAttribute('material', sphereAttr.material);
+                    setAttributes(sphere, sphereAttr.otherAttr);
+
+                    setAttributes(move, moveAttr);
+                    setAttributes(fade, fadeAttr);
+
+                    entity.appendChild(move);
+                    sphere.appendChild(fade);
+                    entity.appendChild(sphere);
+                    marker.appendChild(entity);
+                }
+            }
        }
     };
 
@@ -215,77 +284,77 @@
 
 
 
-    const createSpheres = (amount) => {
-        const marker = document.querySelector('a-marker');
-
-        for (let creator=0; creator<amount; creator++) {
-            let entity = document.createElement('a-entity');
-            let sphere = document.createElement('a-sphere');
-            let move = document.createElement('a-animation');
-            let fade = document.createElement('a-animation');
-            let random = Math.random();
-            let posXdest = null;
-            let color = null;
-            let posYdest = findRange(5, 7);
-            let dur = findRange(200, 3000);
-            let radius = findRange(0.025, 0.07);
-
-            if (random < .2){
-                posXdest = findRange(-1, 1);
-                color = "black";
-            } else if (random < .7){
-                posXdest = findRange(-2, 2);
-                color = "white";
-            } else if (random < .95){
-                posXdest = findRange(-3, 3);
-                color = "white";
-            } else {
-                posXdest = findRange(-4, 4);
-                color = "white";
-            }
-
-            let sphereAttr = {
-                material: {
-                    color: color
-                },
-                otherAttr: {
-                    opacity: "0.7",
-                    radius: radius
-                }
-            };
-
-            let moveAttr = {
-                attribute: "position",
-                dur: dur,
-                from: "0 0.5 -3.5",
-                to: `${posXdest} ${posYdest} -3.5`,
-                easing: 'linear',
-                repeat: 'indefinite'
-            };
-
-            let fadeAttr = {
-                attribute: "opacity",
-                dur: dur,
-                from: "0.7",
-                to: "0",
-                easing: "linear",
-                repeat: "indefinite"
-            };
-
-
-            sphere.setAttribute('material', sphereAttr.material);
-            setAttributes(sphere, sphereAttr.otherAttr);
-
-            setAttributes(move, moveAttr);
-            setAttributes(fade, fadeAttr);
-
-            entity.appendChild(move);
-            sphere.appendChild(fade);
-            entity.appendChild(sphere);
-            marker.appendChild(entity);
-
-        }
-    }
+//    const createSpheres = (amount) => {
+//        const marker = document.querySelector('a-marker');
+//
+//        for (let creator=0; creator<amount; creator++) {
+//            let entity = document.createElement('a-entity');
+//            let sphere = document.createElement('a-sphere');
+//            let move = document.createElement('a-animation');
+//            let fade = document.createElement('a-animation');
+//            let random = Math.random();
+//            let posXdest = null;
+//            let color = null;
+//            let posYdest = findRange(5, 7);
+//            let dur = findRange(200, 3000);
+//            let radius = findRange(0.025, 0.07);
+//
+//            if (random < .2){
+//                posXdest = findRange(-1, 1);
+//                color = "black";
+//            } else if (random < .7){
+//                posXdest = findRange(-2, 2);
+//                color = "white";
+//            } else if (random < .95){
+//                posXdest = findRange(-3, 3);
+//                color = "white";
+//            } else {
+//                posXdest = findRange(-4, 4);
+//                color = "white";
+//            }
+//
+//            let sphereAttr = {
+//                material: {
+//                    color: color
+//                },
+//                otherAttr: {
+//                    opacity: "0.7",
+//                    radius: radius
+//                }
+//            };
+//
+//            let moveAttr = {
+//                attribute: "position",
+//                dur: dur,
+//                from: "0 0.5 -3.5",
+//                to: `${posXdest} ${posYdest} -3.5`,
+//                easing: 'linear',
+//                repeat: 'indefinite'
+//            };
+//
+//            let fadeAttr = {
+//                attribute: "opacity",
+//                dur: dur,
+//                from: "0.7",
+//                to: "0",
+//                easing: "linear",
+//                repeat: "indefinite"
+//            };
+//
+//
+//            sphere.setAttribute('material', sphereAttr.material);
+//            setAttributes(sphere, sphereAttr.otherAttr);
+//
+//            setAttributes(move, moveAttr);
+//            setAttributes(fade, fadeAttr);
+//
+//            entity.appendChild(move);
+//            sphere.appendChild(fade);
+//            entity.appendChild(sphere);
+//            marker.appendChild(entity);
+//
+//        }
+//    }
 
 
 </script>

@@ -72655,7 +72655,7 @@ module.exports = registerElement('a-assets', {
         Promise.all(loaded).then(bind(this.load, this));
 
         // Timeout to start loading anyways.
-        timeout = parseInt(this.getAttribute('timeout'), 10) || 3000;
+        timeout = parseInt(this.getAttribute('timeout'), 10) || 10000;
         this.timeout = setTimeout(function () {
           if (self.hasLoaded) { return; }
           warn('Asset loading timed out in ', timeout, 'ms');
