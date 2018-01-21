@@ -112,7 +112,7 @@ function createScene(object){
     var span = document.createElement('span');
     var img = document.createElement('img');
     img.src="./assets/images/icons/gobeige.png";
-    span.className= "next-event landscape"
+    span.className="next-event landscape hide";
     span.textContent="Next Chapter";
     span.appendChild(img);
     span.onclick=moveToNextChapter;
