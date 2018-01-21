@@ -11,15 +11,22 @@ body {
     margin: auto;
     padding: 0;
     font-family: walpergens, serif;
-    overflow: hidden;
-    height: 100vh;
-    width: 100vw;
+    background-color: #131313;
+    color: white;
+    text-align: center;
+    background-image: url('../images/story/background_dark.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-blend-mode: darken;
+    font-size: 4vmin;
 }
 
 /******** nav bar - desktop ******************/
 
 
 nav {
+    margin-top: 5%;
     display: block;
     z-index: 300;
     position: relative;
@@ -64,14 +71,14 @@ nav ul{
 }
 
 /*********** Nav Bar End  ************/
-
+/**************  nav mobile *******************/
 
 .button-container {
-    height: 10vw;
+    height: 15vw;
     width: 95%;
     margin: auto;
     display: none;
-    justify-content: space-between;
+    justify-content: space-evenly;
 }
 
 a {
@@ -98,7 +105,7 @@ button:hover {
 }
 
 .nav-btn {
-    height: 100%;
+    height: 70%;
     width: 28vw;
     z-index: 300;
     margin-top: 20%;
@@ -110,6 +117,68 @@ button:hover {
     43% {opacity: 1; transform: scaleX(1.5);}
 }
 
+/**************  nav mobile end *******************/
+
+h1 {
+    font-size: 2em;
+}
+
+section {
+    margin: 0 5% 5% 5%;
+    padding-bottom: 5%;
+    border-bottom: 1px solid whitesmoke;
+}
+
+.sub-menu {
+    list-style: none;
+    padding: 5% 0 0 0;
+}
+
+.sub-menu li a {
+    margin: 2%;
+    color: white;
+    text-decoration: none;
+}
+
+#inspiration {
+    font-size: 4vmin;
+}
+
+#faq ul {
+    list-style: none;
+    padding: 0;
+}
+
+#faq p {
+    color: #9c9b9b;
+}
+
+.top {
+    color: white;
+    float: right;
+    text-decoration: none;
+}
+
+.git {
+    filter: invert(100%);
+    width: 40px;
+    position: absolute;
+    top: 30%;
+    transform: translate(0, -50%);
+}
+
+.team-member h2 {
+    display: inline-block;
+    margin-right: 5%;
+    color: white;
+    position: relative;
+}
+
+
+
+/************** media query ********************/
+
+
 @media screen and (max-width: 768px){
     .button-container {
         display: flex;
@@ -117,6 +186,51 @@ button:hover {
 
     nav {
         display: none;
+    }
+}
+
+@media screen and (min-width: 768px){
+    section {
+        padding: 0 3% 3% 3%;
+        margin-bottom: 0;
+    }
+
+    h1 {
+        font-size: 1.5em;
+    }
+
+    .sub-menu {
+        padding: 0;
+    }
+
+    .team-img {
+        width: 60%;
+    }
+
+    body {
+        font-size: 3.5vmin;
+    }
+
+    .team-member h2 {
+        font-size: 4vmin;
+    }
+
+    #contact {
+        margin-bottom: 5%;
+    }
+}
+
+@media screen and (min-width: 950px){
+    .team-member {
+        width: 48%;
+        display: inline-block;
+    }
+
+}
+
+@media screen and (min-width: 1430px){
+    .team-member {
+        width: 33%;
     }
 
 }
