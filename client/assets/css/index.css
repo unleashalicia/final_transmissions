@@ -303,6 +303,20 @@ button{
     }
 
 }
+        /* landscape query */
+@media only screen and (min-width: 770px), screen and (max-height: 415px) {
 
 
+    .form-group div{
+        margin: 2% auto;
+    }
+
+    .log{
+        margin-top: 5%
+    }
+
+    .sign{
+        margin-top: 1%
+    }
+}
 /*******MOBILE STYLING END**********/
