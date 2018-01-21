@@ -50,13 +50,13 @@ var storyObject = {
             {
                 src: "/assets/video/Rain%20-%2078.mp4",
                 id: "water1",
-                autoplay: "true",
+                autoplay: "false",
                 loop: "true"
             },
             {
                 src: "/assets/video/Rain%20-%2078.mp4",
                 id: "water2",
-                autoplay: "true",
+                autoplay: "false",
                 loop: "true"
             }
         ],
@@ -301,25 +301,25 @@ var storyObject = {
             {
                 src: "/assets/video/fire.ogv",
                 id: "fire1",
-                autoplay: "true",
-                loop: "true"
+                autoplay: "false",
+                loop: "false"
             },
             {
                 src: "/assets/video/fire.ogv",
                 id: "fire2",
-                autoplay: "true",
+                autoplay: "false",
                 loop: "true"
             },
             {
                 src: "/assets/video/fire.ogv",
                 id: "fire3",
-                autoplay: "true",
+                autoplay: "false",
                 loop: "true"
             },
             {
                 src: "/assets/video/fire.ogv",
                 id: "fire4",
-                autoplay: "true",
+                autoplay: "false",
                 loop: "true"
             }
         ],
@@ -435,7 +435,7 @@ var storyObject = {
         id: "finale",
         assets: [
             {
-                src: "../../../../assets/images/wood.jpg",
+                src: "./assets/images/wood.jpg",
                 id: "#wood",
                 autoplay: "false",
                 loop: "false"
@@ -446,7 +446,7 @@ var storyObject = {
         },
         entities: [
             {
-                shapes:  [
+                shapes: [
                     {
                         shape: "box",
                         dimensions: {
@@ -475,10 +475,56 @@ var storyObject = {
                         ]
                     }
                 ]
+            },
+            {
+                lights: [
+                    {
+                        attributes: {
+                            type: "directional",
+                            angle: "0",
+                            color: "white",
+                            intensity: "1.0"
+                        },
+                        directionalAttr: {
+                            position: "0 0 9",
+                            rotation: "0 0 90",
+                            target: "0 0 -3.5"
+                        }
+
+                    },
+                    {
+                        attributes: {
+                            type: "directional",
+                            angle: "0",
+                            color: "white",
+                            intensity: "1.0"
+                        },
+                        directionalAttr: {
+                            position: "0 0 -9",
+                            rotation: "180 0 0",
+                            target: "0 0 -3.5"
+                        }
+
+                    },
+                    {
+                        attributes: {
+                            type: "directional",
+                            angle: "0",
+                            color: "white",
+                            intensity: "1.0"
+                        },
+                        directionalAttr: {
+                            position: "-9 0 0",
+                            rotation: "270 0 0",
+                            target: "0 0 -3.5"
+                        }
+
+                    },
+                ]
             }
 
         ]
-    },
+    }
 };
 
 
