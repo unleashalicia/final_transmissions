@@ -310,7 +310,7 @@ var storyObject = {
                 autoplay: "false",
                 loop: "true"
             },
-            {
+
                 src: "/assets/video/fire.ogv",
                 id: "fire3",
                 autoplay: "false",
