@@ -3,17 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <title>Chapter 5</title>
-    <link rel="stylesheet" type="text/css" href="../../assets/css/ARstyle.css" />
+    <link rel="stylesheet" type="text/css" href="../css/ARstyle.css" />
 
-    <script src="../../assets/lib/aframe.js"></script>
-    <script src="../../assets/lib/aframe-ar.js"></script>
+    <script src="../lib/aframe.js"></script>
+    <script src="../lib/aframe-ar.js"></script>
 </head>
 <body style='margin : 0; overflow: hidden;'>
 
 <a-scene embedded artoolkit='sourceType: webcam;'>
 
     <a-assets>
-        <img id="wood" src="../../assets/images/AR/wood.jpg"/>
+        <img id="wood" src="../images/AR/wood.jpg"/>
     </a-assets>
 
     <a-marker preset='earth'>
@@ -42,17 +42,6 @@
 
     var finaleObj = {
         id: "finale",
-        assets: [
-            {
-                src: "../../assets/images/wood.jpg",
-                id: "#wood",
-                autoplay: "false",
-                loop: "false"
-            }
-        ],
-        marker: {
-            preset: "hiro"
-        },
         entities: [
             {
                 shapes: [
@@ -140,7 +129,7 @@
     //creator function to dynamically render a-scenes with objects.
 
 
-    var marker = document.getElementsByTagName('a-marker')[0];
+    var marker = document.querySelector('a-marker');
     //    var ARcontainer = document.getElementsByTagName('a-scene')[0];
 
     function createBox(object) {
@@ -155,9 +144,6 @@
             setAttributes(shape, shapeObj.dimensions);
             shape.setAttribute("opacity", shapeObj.material.opacity);
             setAttributes(shape, shapeObj.otherAttr);
-            shape.classList.add('appearingShape');
-            shape.classList.add('hide');
-
 
             //Create Animations and add to shapes
 
