@@ -34,10 +34,8 @@ html(lang="en")
                             h1.title-text= val.name
                         if val.status
                             a.go-link(href='/story/id/' + val.id)
-                                button.go-btn.display-go Go!
+                                button.go-btn.display-go
                         else 
-                            a.go-link
-                                button.go-btn Go!
                             .lock-container
                                 img.lock.mobile(src="assets/images/mobile/library/lock.png")
                                 img.lock.desktop(src="assets/images/library/lock.png")

@@ -147,36 +147,38 @@ button:hover {
     z-index: 100;
 }
 
-.title > h1 {
-    position: relative;
-    top: 15%;
+.title-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     margin: 0;
     font-size: 10.5vmin;
-    text-shadow: 1px 1px #252222;
+    text-shadow: 2px 2px #252222;
+    width: 100%;
 }
 
 .go-link {
-    position: relative;
-    display: block;
-    top: 41%;
-    left: 40%;
-    height: 6vh;
+    position: absolute;
+    /* display: block; */
+    top: 42%;
+    left: 50%;
+    /* height: 10vh; */
+    transform: translate(-50%, -50%);
 }
 
 .go-btn {
     position: relative;
     height: 100%;
-    width: 20vw;
-    background-color: rgba(83, 80, 76, 0.8);
+    width: 35vw;
+    filter: invert(100%);
     text-shadow: none;
     font-size: 4.5vmin;
     color: white;
 }
 
 .go-btn:hover {
-    border-color: whitesmoke;
-    background-color: rgba(34, 32, 29, 0.8);
-    color: white;
+    filter: invert(80%);
 }
 
 /**************** swipe css ****************/
@@ -254,13 +256,13 @@ img {
         display: none;
     }
 
-    .go-link {
+    /* .go-link {
         margin-top: 5%;
-    }
+    } */
 
-    .go-btn {
+    /* .go-btn {
         z-index: 100;
-    }
+    } */
 
     body {
         background-color: black;
@@ -303,9 +305,9 @@ img {
         max-width: 980px;
     }
 
-    .go-link {
+    /* .go-link {
         top: 60%;
         left: 40%;
-    }
+    } */
 
 }
