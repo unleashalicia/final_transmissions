@@ -147,6 +147,8 @@ section {
 #faq ul {
     list-style: none;
     padding: 0;
+    max-width: 768px;
+    margin: auto;
 }
 
 #faq p {
