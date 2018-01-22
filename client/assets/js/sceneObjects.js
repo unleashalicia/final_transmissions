@@ -47,12 +47,12 @@ var storyObject = {
         id: "water",
         assets: [
             {
-                src: "/assets/video/Rain%20-%2078.mp4",
+                src: "/assets/video/Rain%20-%2078.ogv",
                 id: "water1",
                 loop: "true"
             },
             {
-                src: "/assets/video/Rain%20-%2078.mp4",
+                src: "/assets/video/Rain%20-%2078.ogv",
                 id: "water2",
                 loop: "true"
             }
@@ -160,17 +160,17 @@ var storyObject = {
         id: "air",
         assets: [
             {
-                src: "/assets/video/sky.mp4",
+                src: "/assets/video/sky.ogv",
                 id: "air1",
                 loop: "true"
             },
             {
-                src: "/assets/video/sky.mp4",
+                src: "/assets/video/sky.ogv",
                 id: "air2",
                 loop: "true"
             },
             {
-                src: "/assets/video/sky.mp4",
+                src: "/assets/video/sky.ogv",
                 id: "air3",
                 loop: "true"
             }
