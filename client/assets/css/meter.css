@@ -29,7 +29,7 @@ body * {
     background: transparent;
     font-size: 15vmin;
     position: absolute;
-    bottom: 12%;
+    bottom: 20%;
     text-align: center;
     width: 100%;
 }
@@ -86,6 +86,7 @@ body * {
 #camera{
     display: none;
     position: absolute;
+    border: none;
     height: 100%;
     width: 100%;
     top: 0;
@@ -440,7 +441,7 @@ body * {
 }
 
 /**********KEY FRAMES/ FONT FACE  END********************/
-@media only screen and (min-width: 770px), screen and (max-height: 415px) {
+@media only screen and (orientation : landscape) {
 
     .raven{
         height: 46vh;
