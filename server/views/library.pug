@@ -32,8 +32,8 @@ html(lang="en")
                         .title
                             h1.title-text= val.name
                         if val.status
-                            a.go-link(href='/story/id/' + val.id)
-                                img.lock
+                            a.book-container(href='/story/id/' + val.id)
+                                img.book(src='assets/images/icons/book.png')
                         else 
                             .lock-container
                                 img.lock.mobile(src="assets/images/mobile/library/lock.png")

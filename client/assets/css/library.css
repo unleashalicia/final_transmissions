@@ -158,27 +158,6 @@ button:hover {
     width: 100%;
 }
 
-.go-link {
-    position: absolute;
-    top: 42%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-}
-
-/* .go-btn {
-    position: relative;
-    height: 100%;
-    width: 35vw;
-    filter: invert(100%);
-    text-shadow: none;
-    font-size: 4.5vmin;
-    color: white;
-} */
-
-/* .go-btn:hover {
-    filter: invert(80%);
-} */
-
 .lock:hover {
     filter: invert(80%);
 }
@@ -236,8 +215,25 @@ img {
     left: 0;
 }
 
-.display-go {
-    z-index: 300;
+.book-container {
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 200;
+    background-color: rgba(37, 35, 35, 0.1);
+}
+
+.book {
+    margin: auto;
+    width: 43vw;
+    height: 23vh;
+    text-align: center;
+    filter: invert(95%);
+    position: absolute;
+    bottom: 25%;
+    left: 0;
 }
 
 @keyframes noise-3 {
@@ -257,14 +253,6 @@ img {
     nav {
         display: none;
     }
-
-    /* .go-link {
-        margin-top: 5%;
-    } */
-
-    /* .go-btn {
-        z-index: 100;
-    } */
 
     body {
         background-color: black;
@@ -306,10 +294,5 @@ img {
     img {
         max-width: 980px;
     }
-
-    /* .go-link {
-        top: 60%;
-        left: 40%;
-    } */
 
 }
