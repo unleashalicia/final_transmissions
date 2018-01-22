@@ -83,10 +83,12 @@ h2 {
 
 p {
     margin-left: 2%;
+    color: #989494;
 }
 
 ul {
     margin-left: 3%;
+    color: #989494;
 }
 
 .map {
@@ -103,6 +105,11 @@ ul {
     display: block;
     border: 1px solid white;
     border-radius: 2%;
+}
+
+a {
+    color: #989494;
+    text-shadow: .5px .5px white;
 }
 
 @keyframes noise-3 {
