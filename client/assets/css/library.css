@@ -230,7 +230,6 @@ img {
     width: 43vw;
     height: 23vh;
     text-align: center;
-    filter: invert(95%);
     position: absolute;
     bottom: 25%;
     left: 0;
