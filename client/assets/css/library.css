@@ -160,14 +160,12 @@ button:hover {
 
 .go-link {
     position: absolute;
-    /* display: block; */
     top: 42%;
     left: 50%;
-    /* height: 10vh; */
     transform: translate(-50%, -50%);
 }
 
-.go-btn {
+/* .go-btn {
     position: relative;
     height: 100%;
     width: 35vw;
@@ -175,9 +173,13 @@ button:hover {
     text-shadow: none;
     font-size: 4.5vmin;
     color: white;
-}
+} */
 
-.go-btn:hover {
+/* .go-btn:hover {
+    filter: invert(80%);
+} */
+
+.lock:hover {
     filter: invert(80%);
 }
 
