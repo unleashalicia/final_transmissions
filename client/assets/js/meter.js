@@ -297,11 +297,15 @@ function handleOrientation(event){
     const camera = document.getElementById('camera');
 
     if(screen.orientation.type === 'portrait-primary'){
-        gaugeWrapper.classList.remove('hide');
-        camera.classList.add('hide');
+        // gaugeWrapper.classList.remove('hide');
+        // camera.classList.add('hide');
+        gaugeWrapper.style.display="block"
+        camera.style.display="none"
     }else{
-        gaugeWrapper.classList.add('hide');
-        camera.classList.remove('hide');
+        // gaugeWrapper.classList.add('hide');
+        // camera.classList.remove('hide');
+        gaugeWrapper.style.display="none"
+        camera.style.display="block"
     }
 }
 //****************************************
