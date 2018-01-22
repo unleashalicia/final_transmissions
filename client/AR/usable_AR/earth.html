@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Chapter 1</title>
+        <link rel="stylesheet" type="text/css" href="../../assets/css/ARstyle.css" />
+
+        <script src="../../assets/lib/aframe.js"></script>
+        <script src="../../assets/lib/aframe-ar.js"></script>
+
+    </head>
+    <body style='margin : 0; overflow: hidden;'>
+
+        <a-scene embedded artoolkit='sourceType: webcam;'>
+            <a-assets>
+                <video id="dust" src="../../assets/video/dust.ogv" autoplay loop="true"></video>
+
+            </a-assets>
+            <a-marker preset='earth'>
+
+                <a-entity>
+                    <a-box src='#dust' height="1" width="1" depth="1" material="opacity: 0.9" position="0 2 0">
+                        <a-animation attribute="rotation"
+                                     dur="5000"
+                                     from="0 45 0"
+                                     to="0 45 360"
+                                     repeat="indefinite">
+                        </a-animation>
+                    </a-box>
+            </a-entity>
+
+            </a-marker>
+        </a-scene>
+
+    <script>
+        window.addEventListener("markerFound", function(){
+            console.log("markerFound!");
+        })
+    </script>
+
+    </body>
+</html>

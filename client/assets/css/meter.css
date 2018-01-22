@@ -9,17 +9,17 @@ body * {
 }
 
 #loading{
-  height: 100%;
-  width: 100vw;
-  /* background: #3c3c3c; */
-  background-image: url(../images/esr-meter/fog.jpg);
-  background-size: cover;
-  background-repeat: no-repeat;
-  text-align: center;
-  z-index: 5;
-  position: absolute;
-  top: 0;
-  left: 0;
+    height: 100%;
+    width: 100vw;
+    /* background: #3c3c3c; */
+    background-image: url(../images/esr-meter/fog.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    text-align: center;
+    z-index: 5;
+    position: absolute;
+    top: 0;
+    left: 0;
 }
 
 .loading-btn, #loading h2{
@@ -84,8 +84,12 @@ body * {
 }
 
 #camera{
-    position: relative;
-    height: 100vh;
+    display: none;
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    top: 0;
+    left: 0;
 }
 
 .topGauge {
@@ -171,46 +175,46 @@ body * {
 }
 
 .range-indicator{
-  position: absolute;
-  color: white;
-  font-size: 2vmin;
-  text-transform: uppercase;
+    position: absolute;
+    color: white;
+    font-size: 2vmin;
+    text-transform: uppercase;
 }
 .knob-light{
-  border-radius: 100%;
-  background-color: grey;
-  position: absolute;
-  left: 44%;
-  height: 3vmin;
-  width: 3vmin;
+    border-radius: 100%;
+    background-color: grey;
+    position: absolute;
+    left: 44%;
+    height: 3vmin;
+    width: 3vmin;
 }
 .selected {
-  background-color: red;
+    background-color: red;
 }
 
 .range-indicator.close{
-  transform: rotate(90deg);
-  top: 48%;
-  right: -5%;
+    transform: rotate(90deg);
+    top: 48%;
+    right: -5%;
 }
 
 .range-indicator.mid{
-  left: 37%;
+    left: 37%;
 }
 
 
 .range-indicator.long{
-  transform: rotate(-90deg);
-  top: 50%;
-  left: -5%;
+    transform: rotate(-90deg);
+    top: 50%;
+    left: -5%;
 }
 
 .long-range-knob{
-  transform: rotateZ(-90deg);
+    transform: rotateZ(-90deg);
 }
 
 .close-range-knob{
-  transform: rotateZ(90deg);
+    transform: rotateZ(90deg);
 }
 
 
@@ -349,26 +353,26 @@ body * {
 }
 
 .fade-out {
-  opacity: 1;
-  animation: fadeOut .5s ease-out 1 forwards;
-  -webkit-transition: opacity 2s ease-out;
-  -moz-transition: opacity 2s ease-out;
-  -o-transition: opacity 2s ease-out;
-  -ms-transition: opacity 2s ease-out;
-  transition: opacity 2s ease-out;
+    opacity: 1;
+    animation: fadeOut .5s ease-out 1 forwards;
+    -webkit-transition: opacity 2s ease-out;
+    -moz-transition: opacity 2s ease-out;
+    -o-transition: opacity 2s ease-out;
+    -ms-transition: opacity 2s ease-out;
+    transition: opacity 2s ease-out;
 }
 
 .fade-out-transition {
-  opacity: 1;
-  animation: fadeOut 2s ease-out 1 forwards;
-  -webkit-transition: opacity 2.5s ease-out;
-  -moz-transition: opacity 2.5s ease-out;
-  -o-transition: opacity 2.5s ease-out;
-  -ms-transition: opacity 2.5s ease-out;
-  transition: opacity 2.5s ease-out;
+    opacity: 1;
+    animation: fadeOut 2s ease-out 1 forwards;
+    -webkit-transition: opacity 2.5s ease-out;
+    -moz-transition: opacity 2.5s ease-out;
+    -o-transition: opacity 2.5s ease-out;
+    -ms-transition: opacity 2.5s ease-out;
+    transition: opacity 2.5s ease-out;
 }
 .hide{
-  display: none;
+    display: none;
 }
 
 /**********KEY FRAMES / FONT FACE START********************/
@@ -400,28 +404,28 @@ body * {
 
 
 @keyframes appear {
-  from {width: 0; opacity: 0;}
+    from {width: 0; opacity: 0;}
 }
 @keyframes pulse {
-	0% { transform: scale(1); }
-	30% { transform: scale(1); }
-	40% { transform: scale(1.08); }
-	50% { transform: scale(1); }
-	60% { transform: scale(1); }
-	70% { transform: scale(1.05); }
-	80% { transform: scale(1); }
-	100% { transform: scale(1); }
+    0% { transform: scale(1); }
+    30% { transform: scale(1); }
+    40% { transform: scale(1.08); }
+    50% { transform: scale(1); }
+    60% { transform: scale(1); }
+    70% { transform: scale(1.05); }
+    80% { transform: scale(1); }
+    100% { transform: scale(1); }
 }
 
 
 @font-face {
-  font-family: victorious;
-  src: url(../fonts/victorious.ttf);
+    font-family: victorious;
+    src: url(../fonts/victorious.ttf);
 }
 
 @font-face {
-  font-family: demonsker;
-  src: url(../fonts/demonsker.ttf);
+    font-family: demonsker;
+    src: url(../fonts/demonsker.ttf);
 }
 
 @font-face {
@@ -430,9 +434,9 @@ body * {
 }
 
 @keyframes fadeOut {
-  to {
-    opacity: 0;
-  }
+    to {
+        opacity: 0;
+    }
 }
 
 /**********KEY FRAMES/ FONT FACE  END********************/

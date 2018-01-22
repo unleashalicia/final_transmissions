@@ -5,7 +5,7 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Finale Test</title>
+    <title>Finale Demo</title>
     <link rel="stylesheet" type="text/css" href="../assets/css/ARstyle.css" />
 
     <script src="../assets/lib/aframe.js"></script>
@@ -13,12 +13,16 @@
 <body style='margin : 0px; overflow: hidden;'>
 
 <a-scene>
-    <a-sky src="./trainskybox.jpg"></a-sky>
+
     <a-assets>
-        <img id="wood" src="../assets/images/wood.jpg"/>
+        <img id="wood" src="../assets/images/AR/wood.jpg"/>
+        <img id="sky" src="../assets/images/AR/alcatraz.jpg"/>
     </a-assets>
+
+    <a-sky src="#sky"></a-sky>
+
     <a-entity>
-        <a-box src="#wood" height="1" width="1" depth="1" position="0 0 -5" rotation="0 90 0">
+        <a-box src="#wood" height="1" width="1" depth="1" position="0 -1 -5" rotation="0 90 0">
             <a-animation
                     attribute="rotation"
                     from="15 90 -15"
@@ -142,7 +146,7 @@
             let moveAttr = {
                 attribute: "position",
                 dur: dur,
-                from: "0 0 -5",
+                from: "0 -1 -5",
                 to: `${posXdest} ${posYdest} -3.5`,
                 easing: 'linear',
                 repeat: 'indefinite'
