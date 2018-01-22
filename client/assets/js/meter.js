@@ -402,9 +402,9 @@ function onLoad(){
 //****************************************
 //-|
 //-|
-//#################################################################################
-//##  Axios call for state/chapter assets and data handler functions  #############
-//#################################################################################
+//########################################
+//##  Asset Loading/Axios  ###############
+//########################################
 // function moveToNextChapter(){
 //     const axiosOptions = {
 //         url: '/action',
@@ -435,6 +435,8 @@ function grabChapterAssets(){
 function handleStateAssetLoading(data){
     const soundAssets = data.data[1][0];
     const miscAssets = data.data[0][0];
+    const cam = document.getElementById('camera');
+    const storyID = sessionStorage.getItem('story_id');
 
     target.latitude = parseFloat(miscAssets.lat);
     target.longitude = parseFloat(miscAssets.lon);
@@ -448,6 +450,8 @@ function handleStateAssetLoading(data){
     }
 
     let currentChapter = miscAssets.state_id;
+
+    cam.src = `/assets/AR/${storyID}-${currentChapter}.html`;
 
     createScene(storyObject[currentChapter]);
 
