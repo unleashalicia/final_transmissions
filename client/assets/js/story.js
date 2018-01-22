@@ -45,11 +45,27 @@ function initMap() {
             "elementType": "labels",
             "stylers": [
               {
-                "visibility": "on"
+                "visibility": "on",
               }
             ]
           },
           {
+              "elementType": "labels.text.stroke",
+              "stylers": [
+              {
+                  "color": '#242f3e'
+              }
+            ]
+          },
+          {
+              "elementType": 'labels.text.fill',
+              "stylers": [
+               {
+                   "color": '#d6cab8'
+               }
+             ]
+           },
+           {
             "featureType": "administrative",
             "elementType": "geometry.fill",
             "stylers": [
@@ -144,8 +160,7 @@ function initMap() {
           }
         ]
     });
-
-    var iconBase = '../../assets/images/story/raven2.png';
+    var iconBase = '../client/assets/images/story/raven2.png';
     marker = new google.maps.Marker({
         position: {
             lat: 33.6348729,
