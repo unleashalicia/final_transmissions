@@ -140,6 +140,23 @@ body * {
     height: 20px;
 }
 
+.tilt{
+    display: none;
+    color: #cbba63;
+    position: absolute;
+    text-align: center;
+    width: 100%;
+    font-family: walpergens;
+    bottom: 0;
+}
+
+.tilt img{
+    filter: invert(100%);
+    margin-left: 10px;
+    height: 7vmin;
+}
+
+
 
 
 .landscape{
