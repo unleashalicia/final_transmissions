@@ -75,6 +75,7 @@
     <script>
 
         var videos = document.querySelectorAll("#fire");
+        var found = false;
 
         for (i=0; i<videos.length; i++) {
             (function(i) {
@@ -89,7 +90,14 @@
         };
 
         window.addEventListener("markerFound", function(){
-            console.log("markerFound!");
+            if (!found){
+                console.log("MARKER FOUND!");
+                found = true;
+                var timer = setTimeOut(function(){
+                    window.parent.markerListener();
+                }, 5000);
+
+            }
         });
     </script>
 </html>

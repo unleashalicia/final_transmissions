@@ -33,9 +33,20 @@
         </a-scene>
 
     <script>
+
+        var found = false;
+
         window.addEventListener("markerFound", function(){
-            console.log("markerFound!");
-        })
+            if (!found){
+                console.log("MARKER FOUND!");
+                found = true;
+                var timer = setTimeOut(function(){
+                    window.parent.markerListener();
+                }, 5000);
+
+            }
+        });
+
     </script>
 
     </body>
