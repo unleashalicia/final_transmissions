@@ -136,10 +136,7 @@ function handleEventHandlers(){
     window.addEventListener('orientationchange',handleOrientation);//switch from meter to camera;
 
 
-    // nextEvent.addEventListener('click', moveToNextChapter)
-    // nextEvent.forEach(function(elem){
-    //     elem.addEventListener('click',moveToNextChapter)
-    // });
+    nextEvent.addEventListener('click', moveToNextChapter);
 }
 //****************************************
 //****************************************
@@ -407,20 +404,15 @@ function onLoad(){
 //########################################
 //##  Asset Loading/Axios  ###############
 //########################################
-// function moveToNextChapter(){
-//     const axiosOptions = {
-//         url: '/action',
-//         method: 'POST',
-//         params: {
-//             story: sessionStorage.storyId,
-//             action: 'proceed'
-//         }
-//     }
-//
-//     axios(axiosOptions).catch( error => {
-//         window.location.href = "/story/id/" + axiosOptions.params.story;
-//     });
-// }
+function moveToNextChapter(){
+    const storyID = sessionStorage.getItem('story_id');
+
+    axios.post('/action',{story: Number(storyID), action: 'proceed'}).then(() => {
+        window.location.href = '/play';
+    }).catch( error => {
+        window.location.href = "/story/id/" + axiosOptions.params.story;
+    });
+}
 //++
 //++
 function grabChapterAssets(){
