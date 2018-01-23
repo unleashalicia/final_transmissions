@@ -263,8 +263,18 @@
 
     });
 
+
+    var found = false;
+
     window.addEventListener("markerFound", function(){
-        console.log("MARKER FOUND!!!!");
+        if (!found){
+            console.log("MARKER FOUND!");
+            found = true;
+            var timer = setTimeOut(function(){
+                window.parent.markerListener();
+            }, 5000);
+
+        }
     });
 
 

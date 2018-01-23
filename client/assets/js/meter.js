@@ -295,12 +295,14 @@ function handleOrientation(event){
     //use to listen for device orientation change to switch from ESR or Ghost CAM
     const gaugeWrapper = document.getElementById('gauge-wrapper');
     const camera = document.getElementById('camera');
+    const tilt = document.querySelector('.tilt');
 
     if(screen.orientation.type === 'portrait-primary'){
         // gaugeWrapper.classList.remove('hide');
         // camera.classList.add('hide');
         gaugeWrapper.style.display="block"
         camera.style.display="none"
+        tilt.style.display="none"
     }else{
         // gaugeWrapper.classList.add('hide');
         // camera.classList.remove('hide');
@@ -489,6 +491,15 @@ function handleARvisibility(){
         next = true;
     }
 }
+//++
+//++
+function markerListener(){
+    const nextEvent = document.querySelector(".next-event");
+    const tilt = document.querySelector('.tilt');
+    nextEvent.classList.remove("hide");
+    tilt.style.display="block";
+}
+
 //****************************************
 //**************END***********************
 //****************************************

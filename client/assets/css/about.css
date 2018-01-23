@@ -144,6 +144,11 @@ section {
     font-size: 4vmin;
 }
 
+.card-pack {
+    text-decoration: none;
+    color: whitesmoke;
+}
+
 #faq ul {
     list-style: none;
     padding: 0;
@@ -193,6 +198,10 @@ section {
 
     nav {
         display: none;
+    }
+
+    .card-img {
+        width: 50%;
     }
 }
 

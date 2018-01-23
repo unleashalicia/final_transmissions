@@ -21,7 +21,7 @@
         <a-marker preset='water'>
 
             <a-entity>
-                <a-octahedron src='#water1' radius="1" material="opacity: 0.9" position="-2 0 -3">
+                <a-octahedron src='#water1' radius="0.5" material="opacity: 0.9" position="-0.5 -0.75 -1.5">
                     <a-animation attribute="rotation"
                                  dur="5000"
                                  to="360 360 360"
@@ -30,8 +30,8 @@
                     </a-animation>
                     <a-animation attribute="position"
                                  dur="3000"
-                                 from="-2 0 -3"
-                                 to="-2 0 -7"
+                                 from="-0.5 0.75 -1.5"
+                                 to="-0.5 0.75 0"
                                  direction="alternate-reverse"
                                  easing= "linear"
                                  repeat="indefinite">
@@ -39,7 +39,7 @@
                 </a-octahedron>
             </a-entity>
             <a-entity>
-                <a-octahedron src='#water2' radius="1.5" material="opacity: 0.9" position="2 0 -7">
+                <a-octahedron src='#water2' radius="0.5" material="opacity: 0.9" position="0.5 -0.75 0">
                     <a-animation attribute="rotation"
                                  dur="5000"
                                  to="-360 -360 -360"
@@ -48,8 +48,8 @@
                     </a-animation>
                     <a-animation attribute="position"
                                  dur="5000"
-                                 from="2 0 -7"
-                                 to="2 0 -3"
+                                 from="0.5 0.75 0"
+                                 to="0.5 0.75 -1.5"
                                  direction="alternate-reverse"
                                  easing= "linear"
                                  repeat="indefinite">
@@ -63,8 +63,10 @@
     </a-scene>
 
     <script>
-        const water1 = document.getElementById("water1");
-        const water2 = document.getElementById("water2");
+
+        var water1 = document.getElementById("water1");
+        var water2 = document.getElementById("water2");
+        var found = false;
 
         window.addEventListener("load", function(){
             water1.currentTime = 1000;
@@ -75,8 +77,16 @@
         });
 
         window.addEventListener("markerFound", function(){
-            console.log("markerFound!");
+            if (!found){
+                console.log("MARKER FOUND!");
+                found = true;
+                var timer = setTimeOut(function(){
+                    window.parent.markerListener();
+                }, 5000);
+
+            }
         });
+
 
     </script>
 
