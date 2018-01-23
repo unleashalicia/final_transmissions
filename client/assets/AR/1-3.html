@@ -5,6 +5,14 @@
     <title>Chapter 3</title>
     <link rel="stylesheet" type="text/css" href="../css/ARstyle.css" />
 
+    <style>
+
+        .a-canvas {
+            display: none;
+        }
+
+    </style>
+
     <script src="../lib/aframe.js"></script>
     <script src="../lib/aframe-ar.js"></script>
 </head>
@@ -13,9 +21,7 @@
 <a-scene embedded artoolkit='sourceType: webcam;'>
 
     <a-assets>
-        <video id="air1" src="../video/sky.ogv" loop="true"></video>
-        <video id="air2" src="../video/sky.ogv" loop="true"></video>
-        <video id="air3" src="../video/sky.ogv" loop="true"></video>
+        <img id="air" src="../images/AR/air.jpg" />
 
     </a-assets>
 
@@ -48,7 +54,7 @@
             <a-animation attribute="position"
                          dur="3500"
                          from="2 1 -5"
-                         to="2 3.5 5"
+                         to="2 3.5 -5"
                          easing="linear"
                          direction="alternate-reverse"
                          easing= "ease-in-out-circ"
@@ -89,13 +95,17 @@
 
 <script>
 
-
     var found = false;
 
     window.addEventListener("markerFound", function(){
         if (!found){
             console.log("MARKER FOUND!");
+
             found = true;
+            var canvas = document.querySelector('.a-canvas');
+            canvas.style.display = "block";
+
+
             var timer = setTimeout(function(){
                 window.parent.markerListener();
             }, 5000);
@@ -103,7 +113,7 @@
         }
     });
 
-    
+
 
 </script>
 
