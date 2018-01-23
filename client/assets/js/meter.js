@@ -489,6 +489,13 @@ function handleARvisibility(){
         next = true;
     }
 }
+//++
+//++
+function markerListener(){
+    const nextEvent = document.querySelector(".next-event");
+    nextEvent.classList.remove("hide");
+}
+
 //****************************************
 //**************END***********************
 //****************************************
