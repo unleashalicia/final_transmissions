@@ -231,7 +231,7 @@ img {
     height: 23vh;
     text-align: center;
     position: absolute;
-    bottom: 25%;
+    bottom: 20%;
     left: 0;
 }
 
@@ -255,7 +255,7 @@ img {
 
     body {
         background-color: black;
-        max-width: 980px;
+        max-width: 800px;
     }
 
     #story-container {
@@ -282,16 +282,24 @@ img {
 
     body {
         background-color: black;
-        max-width: 980px;
+        max-width: 800px;
     }
 
     #story-container {
-        max-width: 980px;
+        max-width: 800px;
         position: absolute;
     }
 
     img {
-        max-width: 980px;
+        max-width: 800px;
+    }
+
+    .title {
+        height: 25%;
+    }
+
+    .book {
+        width: 25vw;
     }
 
 }
