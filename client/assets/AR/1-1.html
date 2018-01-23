@@ -5,6 +5,14 @@
         <title>Chapter 1</title>
         <link rel="stylesheet" type="text/css" href="../css/ARstyle.css" />
 
+        <style>
+
+            .a-canvas {
+                display: none;
+            }
+
+        </style>
+
         <script src="../lib/aframe.js"></script>
         <script src="../lib/aframe-ar.js"></script>
 
@@ -29,7 +37,7 @@
                 </a-box>
             </a-entity>
 
-            <a-entity light="type: spot; angle: 45; color: #1C7B33; intensity: 3.0" id="blue"></a-entity>
+            <a-entity light="type: spot; angle: 45; color: #1C7B33; intensity: 3.0" id="green"></a-entity>
 
 
         </a-scene>
@@ -41,13 +49,19 @@
         window.addEventListener("markerFound", function(){
             if (!found){
                 console.log("MARKER FOUND!");
+
                 found = true;
+                var canvas = document.querySelector('.a-canvas');
+                canvas.style.display = "block";
+
+
                 var timer = setTimeout(function(){
                     window.parent.markerListener();
                 }, 5000);
 
             }
         });
+
 
     </script>
 
