@@ -5,6 +5,14 @@
     <title>Chapter 5</title>
     <link rel="stylesheet" type="text/css" href="../css/ARstyle.css" />
 
+    <style>
+
+        .a-canvas {
+            display: none;
+        }
+
+    </style>
+
     <script src="../lib/aframe.js"></script>
     <script src="../lib/aframe-ar.js"></script>
 </head>
@@ -57,7 +65,7 @@
                         },
                         otherAttr: {
                             src: "#wood",
-                            position: "0 0 -3.5",
+                            position: "0 1 -5",
                             rotation: "0 90 0"
                         },
                         animations: [
@@ -86,7 +94,7 @@
                         directionalAttr: {
                             position: "0 0 9",
                             rotation: "0 0 90",
-                            target: "0 0 -3.5"
+                            target: "0 1 -5"
                         }
 
                     },
@@ -100,7 +108,7 @@
                         directionalAttr: {
                             position: "0 0 -9",
                             rotation: "180 0 0",
-                            target: "0 0 -3.5"
+                            target: "0 1 -5"
                         }
 
                     },
@@ -114,7 +122,7 @@
                         directionalAttr: {
                             position: "-9 0 0",
                             rotation: "270 0 0",
-                            target: "0 0 -3.5"
+                            target: "0 1 -5"
                         }
 
                     },
@@ -129,7 +137,7 @@
     //creator function to dynamically render a-scenes with objects.
 
 
-    var marker = document.querySelector('a-marker');
+    var scene = document.querySelector('a-scene');
     //    var ARcontainer = document.getElementsByTagName('a-scene')[0];
 
     function createBox(object) {
@@ -156,7 +164,7 @@
             //Append shape to entity and entity to marker
 
             entityShape.appendChild(shape);
-            marker.appendChild(entityShape);
+            scene.appendChild(entityShape);
         } //end shape loop
 
 
@@ -178,7 +186,7 @@
 
                 //Append lights to marker
 
-                marker.appendChild(entityLight);
+                scene.appendChild(entityLight);
             } //end light for loop
 
         } //end lights conditional
@@ -224,8 +232,8 @@
                 let moveAttr = {
                     attribute: "position",
                     dur: dur,
-                    from: "0 0.5 -3.5",
-                    to: `${posXdest} ${posYdest} -3.5`,
+                    from: "0 1 -5",
+                    to: `${posXdest} ${posYdest} -5`,
                     easing: 'linear',
                     repeat: 'indefinite'
                 };
@@ -249,7 +257,7 @@
                 entity.appendChild(move);
                 sphere.appendChild(fade);
                 entity.appendChild(sphere);
-                marker.appendChild(entity);
+                scene.appendChild(entity);
 
 
             }
@@ -267,9 +275,14 @@
     var found = false;
 
     window.addEventListener("markerFound", function(){
-        if (!found){
+        if (!found && window.parent.distance < window.parent.target.talkThreshold){
             console.log("MARKER FOUND!");
+
             found = true;
+            var canvas = document.querySelector('.a-canvas');
+            canvas.style.display = "block";
+
+
             var timer = setTimeout(function(){
                 window.parent.markerListener();
             }, 5000);

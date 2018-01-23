@@ -5,6 +5,14 @@
         <title>Chapter 4</title>
         <link rel="stylesheet" type="text/css" href="../css/ARstyle.css" />
 
+        <style>
+
+            .a-canvas {
+                display: none;
+            }
+
+        </style>
+
         <script src="../lib/aframe.js"></script>
         <script src="../lib/aframe-ar.js"></script>
     </head>
@@ -14,58 +22,55 @@
             <a-assets>
                 <video src="../video/fire.ogv" id="fire" loop="true"></video>
             </a-assets>
-             <a-marker preset='fire'>
-
-                 <!--"0 -0.75 -1.5"-->
+             <a-marker preset='fire'></a-marker>
 
 
-                <a-entity>
-                    <a-tetrahedron src='#fire' radius="0.5" material="opacity: 0.9" position="-1 -0.75 -1.5">
-                        <a-animation attribute="rotation"
-                                     dur="3000"
-                                     to="0 360 -360"
-                                     easing= "linear"
-                                     repeat="indefinite">
-                        </a-animation>
-                    </a-tetrahedron>
-                </a-entity>
+            <a-entity>
+                <a-tetrahedron src='#fire' radius="0.5" material="opacity: 0.9" position="-1 1 -5">
+                    <a-animation attribute="rotation"
+                                 dur="3000"
+                                 to="0 360 -360"
+                                 easing= "linear"
+                                 repeat="indefinite">
+                    </a-animation>
+                </a-tetrahedron>
+            </a-entity>
 
 
-                <a-entity>
-                    <a-tetrahedron src='#fire' radius="0.5" material="opacity: 0.9" position="0 2 -1.5">
-                        <a-animation attribute="rotation"
-                                     dur="2000"
-                                     to="360 360 360"
-                                     easing= "linear"
-                                     repeat="indefinite">
-                        </a-animation>
-                    </a-tetrahedron>
-                </a-entity>
+            <a-entity>
+                <a-tetrahedron src='#fire' radius="0.5" material="opacity: 0.9" position="0 2 -5">
+                    <a-animation attribute="rotation"
+                                 dur="2000"
+                                 to="360 360 360"
+                                 easing= "linear"
+                                 repeat="indefinite">
+                    </a-animation>
+                </a-tetrahedron>
+            </a-entity>
 
 
-                <a-entity>
-                    <a-tetrahedron src='#fire' radius="0.5" material="opacity: 0.9" position="0 0.5 -1.5">
-                        <a-animation attribute="rotation"
-                                     dur="2500"
-                                     to="0 360 0"
-                                     easing= "linear"
-                                     repeat="indefinite">
-                        </a-animation>
-                    </a-tetrahedron>
-                </a-entity>
+            <a-entity>
+                <a-tetrahedron src='#fire' radius="0.5" material="opacity: 0.9" position="0 1 -5">
+                    <a-animation attribute="rotation"
+                                 dur="2500"
+                                 to="0 360 0"
+                                 easing= "linear"
+                                 repeat="indefinite">
+                    </a-animation>
+                </a-tetrahedron>
+            </a-entity>
 
 
-                <a-entity>
-                    <a-tetrahedron src='#fire' radius="0.5" material="opacity: 0.9" position="1 0 -1.5">
-                        <a-animation attribute="rotation"
-                                     dur="4000"
-                                     to="-360 -360 -360"
-                                     easing= "linear"
-                                     repeat="indefinite">
-                        </a-animation>
-                    </a-tetrahedron>
-                </a-entity>
-             </a-marker>
+            <a-entity>
+                <a-tetrahedron src='#fire' radius="0.5" material="opacity: 0.9" position="1 1 -5">
+                    <a-animation attribute="rotation"
+                                 dur="4000"
+                                 to="-360 -360 -360"
+                                 easing= "linear"
+                                 repeat="indefinite">
+                    </a-animation>
+                </a-tetrahedron>
+            </a-entity>
 
         </a-scene>
 
@@ -74,30 +79,24 @@
 
     <script>
 
-        var videos = document.querySelectorAll("#fire");
         var found = false;
 
-        for (i=0; i<videos.length; i++) {
-            (function(i) {
-                window.addEventListener("load", function () {
-                    videos[i].currentTime = 1000;
-                    videos[i].play();
-                    setInterval(function () {
-                        videos[i].currentTime = 1000;
-                    }, 4000);
-                });
-            })(i)
-        };
-
         window.addEventListener("markerFound", function(){
-            if (!found){
+            if (!found && window.parent.distance < window.parent.target.talkThreshold){
                 console.log("MARKER FOUND!");
+
                 found = true;
+                var canvas = document.querySelector('.a-canvas');
+                canvas.style.display = "block";
+
+
                 var timer = setTimeout(function(){
                     window.parent.markerListener();
                 }, 5000);
 
             }
         });
+
+
     </script>
 </html>

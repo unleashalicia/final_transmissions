@@ -5,6 +5,14 @@
         <title>Chapter 1</title>
         <link rel="stylesheet" type="text/css" href="../css/ARstyle.css" />
 
+        <style>
+
+            .a-canvas {
+                display: none;
+            }
+
+        </style>
+
         <script src="../lib/aframe.js"></script>
         <script src="../lib/aframe-ar.js"></script>
 
@@ -13,23 +21,25 @@
 
         <a-scene embedded artoolkit='sourceType: webcam;'>
             <a-assets>
-                <video id="dust" src="../video/dust.ogv" autoplay loop="true"></video>
+                <img id="fern" src="../images/AR/earth.jpg" />
 
             </a-assets>
-            <a-marker preset='earth'>
+            <a-marker preset='earth'></a-marker>
 
-                <a-entity>
-                    <a-box src='#dust' height="1" width="1" depth="1" material="opacity: 0.9" position="0 -0.75 -1.5">
-                        <a-animation attribute="rotation"
-                                     dur="5000"
-                                     from="0 45 0"
-                                     to="0 45 360"
-                                     repeat="indefinite">
-                        </a-animation>
-                    </a-box>
+            <a-entity>
+                <a-box src='#fern' height="1" width="1" depth="1" material="opacity: 0.9" position="0 2 -5">
+                    <a-animation attribute="rotation"
+                                 dur="5000"
+                                 from="0 45 0"
+                                 to="0 45 360"
+                                 repeat="indefinite">
+                    </a-animation>
+                </a-box>
             </a-entity>
 
-            </a-marker>
+            <a-entity light="type: spot; angle: 45; color: #1C7B33; intensity: 3.0" id="green"></a-entity>
+
+
         </a-scene>
 
     <script>
@@ -37,15 +47,21 @@
         var found = false;
 
         window.addEventListener("markerFound", function(){
-            if (!found){
+            if (!found && window.parent.distance < window.parent.target.talkThreshold){
                 console.log("MARKER FOUND!");
+
                 found = true;
+                var canvas = document.querySelector('.a-canvas');
+                canvas.style.display = "block";
+
+
                 var timer = setTimeout(function(){
                     window.parent.markerListener();
                 }, 5000);
 
             }
         });
+
 
     </script>
 
