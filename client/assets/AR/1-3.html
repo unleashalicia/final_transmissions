@@ -91,6 +91,7 @@
     var air1 = document.getElementById("air1");
     var air2 = document.getElementById("air2");
     var air3 = document.getElementById("air3");
+    var found = false;
 
     window.addEventListener("load", function(){
         air1.currentTime = 1000;
@@ -105,7 +106,14 @@
     });
 
     window.addEventListener("markerFound", function(){
-        console.log("markerFound!");
+        if (!found){
+            console.log("MARKER FOUND!");
+            found = true;
+            var timer = setTimeOut(function(){
+                window.parent.markerListener();
+            }, 5000);
+
+        }
     });
 
 </script>

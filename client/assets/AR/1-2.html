@@ -63,8 +63,10 @@
     </a-scene>
 
     <script>
-        const water1 = document.getElementById("water1");
-        const water2 = document.getElementById("water2");
+
+        var water1 = document.getElementById("water1");
+        var water2 = document.getElementById("water2");
+        var found = false;
 
         window.addEventListener("load", function(){
             water1.currentTime = 1000;
@@ -75,8 +77,16 @@
         });
 
         window.addEventListener("markerFound", function(){
-            console.log("markerFound!");
+            if (!found){
+                console.log("MARKER FOUND!");
+                found = true;
+                var timer = setTimeOut(function(){
+                    window.parent.markerListener();
+                }, 5000);
+
+            }
         });
+
 
     </script>
 
