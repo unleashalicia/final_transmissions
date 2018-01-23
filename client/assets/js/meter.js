@@ -103,12 +103,12 @@ function handleAudioPlayback(dist){
             sounds[1].play(speaking);
         }
         sounds[1].fade(0,0.9,1500,speaking);
-        makeVisible(1);
+        // makeVisible(1);
     } else if (dist > target.talkThreshold && sounds[1].playing(speaking)){
         sounds[1].fade(0.9,0,1500,speaking).once('fade',function(){
             sounds[1].pause(speaking);
         },speaking);
-        makeVisible(0);
+        // makeVisible(0);
     }
 }
 //****************************************
@@ -455,10 +455,7 @@ function handleStateAssetLoading(data){
 
     cam.src = `/assets/AR/${storyID}-${currentChapter}.html`;
 
-    createScene(storyObject[currentChapter]);
-
-    loadAll(); //Maybe change to audio.
-    loadARObjects(); //I'm confused.
+    loadAll();
     getLocation();
 }
 //****************************************
