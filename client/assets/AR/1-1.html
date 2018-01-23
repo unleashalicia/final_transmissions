@@ -13,13 +13,13 @@
 
         <a-scene embedded artoolkit='sourceType: webcam;'>
             <a-assets>
-                <video id="dust" src="../video/dust.ogv" autoplay loop="true"></video>
+                <img id="fern" src="../images/AR/earth.jpg" />
 
             </a-assets>
             <a-marker preset='earth'></a-marker>
 
             <a-entity>
-                <a-box src='#dust' height="1" width="1" depth="1" material="opacity: 0.9" position="0 2 -5">
+                <a-box src='#fern' height="1" width="1" depth="1" material="opacity: 0.9" position="0 2 -5">
                     <a-animation attribute="rotation"
                                  dur="5000"
                                  from="0 45 0"
@@ -27,7 +27,9 @@
                                  repeat="indefinite">
                     </a-animation>
                 </a-box>
-        </a-entity>
+            </a-entity>
+
+            <a-entity light="type: spot; angle: 45; color: #1C7B33; intensity: 3.0" id="blue"></a-entity>
 
 
         </a-scene>
