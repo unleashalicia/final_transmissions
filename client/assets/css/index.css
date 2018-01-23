@@ -92,6 +92,11 @@ h1{
     transition: 4s;
 }
 
+.form-group h1{
+    color: white;
+    text-shadow: none;
+}
+
 .form-group div {
     display: flex;
     flex-flow: column nowrap;
