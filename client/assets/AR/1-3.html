@@ -20,90 +20,76 @@
     </a-assets>
 
 
-    <a-marker preset='air'>
+    <a-marker preset='air'></a-marker>
 
-        <a-entity>
-            <a-icosahedron src='#air1' radius="0.5" rotation="0 90 0" material="opacity: 0.9" position="-1 -0.75 -1.5">
-                <a-animation attribute="position"
-                             dur="3000"
-                             from="-1 -0.75 -1.5"
-                             to="-1 1 -1.5"
-                             easing="linear"
-                             direction="alternate-reverse"
-                             easing= "ease-in-out-circ"
-                             repeat="indefinite">
-                </a-animation>
-                <a-animation attribute="rotation"
-                             dur="10000"
-                             to="360 0 0"
-                             easing= "linear"
-                             repeat="indefinite">
-                </a-animation>
-            </a-icosahedron>
-        </a-entity>
-
-
-        <a-entity>
-            <a-icosahedron src='#air2' radius="0.5" rotation="0 90 0" material="opacity: 0.9" position="1 1 -1.5">
-                <a-animation attribute="position"
-                             dur="3500"
-                             from="1 1 -1.5"
-                             to="1 -0.75 -1.5"
-                             easing="linear"
-                             direction="alternate-reverse"
-                             easing= "ease-in-out-circ"
-                             repeat="indefinite">
-                </a-animation>
-                <a-animation attribute="rotation"
-                             dur="10000"
-                             to="-360 0 0"
-                             easing= "linear"
-                             repeat="indefinite">
-                </a-animation>
-            </a-icosahedron>
-        </a-entity>
+    <a-entity>
+        <a-icosahedron src='#air' radius="0.5" rotation="0 90 0" material="opacity: 0.9" position="-2 1 -5">
+            <a-animation attribute="position"
+                         dur="3000"
+                         from="-2 1 -5"
+                         to="-2 4 -5"
+                         easing="linear"
+                         direction="alternate-reverse"
+                         easing= "ease-in-out-circ"
+                         repeat="indefinite">
+            </a-animation>
+            <a-animation attribute="rotation"
+                         dur="10000"
+                         to="360 0 0"
+                         easing= "linear"
+                         repeat="indefinite">
+            </a-animation>
+        </a-icosahedron>
+    </a-entity>
 
 
-        <a-entity>
-            <a-icosahedron src='#air3' radius="0.5" rotation="0 90 0" material="opacity: 0.9" position="0 1.2 -1.5">
-                <a-animation attribute="position"
-                             dur="2500"
-                             from="0 1.2 -1.5"
-                             to="0 -0.75 -1.5"
-                             easing="linear"
-                             direction="alternate-reverse"
-                             easing= "ease-in-out-circ"
-                             repeat="indefinite">
-                </a-animation>
-                <a-animation attribute="rotation"
-                             dur="10000"
-                             to="-360 0 0"
-                             easing= "linear"
-                             repeat="indefinite">
-                </a-animation>
-            </a-icosahedron>
-        </a-entity>
-    </a-marker>
+    <a-entity>
+        <a-icosahedron src='#air' radius="0.5" rotation="0 90 0" material="opacity: 0.9" position="2 1 -5">
+            <a-animation attribute="position"
+                         dur="3500"
+                         from="2 1 -5"
+                         to="2 3.5 5"
+                         easing="linear"
+                         direction="alternate-reverse"
+                         easing= "ease-in-out-circ"
+                         repeat="indefinite">
+            </a-animation>
+            <a-animation attribute="rotation"
+                         dur="10000"
+                         to="-360 0 0"
+                         easing= "linear"
+                         repeat="indefinite">
+            </a-animation>
+        </a-icosahedron>
+    </a-entity>
+
+
+    <a-entity>
+        <a-icosahedron src='#air' radius="0.5" rotation="0 90 0" material="opacity: 0.9" position="0 4 -5">
+            <a-animation attribute="position"
+                         dur="2500"
+                         from="0 4 -5"
+                         to="0 1.2 -5"
+                         easing="linear"
+                         direction="alternate-reverse"
+                         easing= "ease-in-out-circ"
+                         repeat="indefinite">
+            </a-animation>
+            <a-animation attribute="rotation"
+                         dur="10000"
+                         to="-360 0 0"
+                         easing= "linear"
+                         repeat="indefinite">
+            </a-animation>
+        </a-icosahedron>
+    </a-entity>
+
 
 </a-scene>
 
 <script>
-    var air1 = document.getElementById("air1");
-    var air2 = document.getElementById("air2");
-    var air3 = document.getElementById("air3");
-    var found = false;
 
-    window.addEventListener("load", function(){
-        air1.currentTime = 1000;
-        air1.playbackRate = 4.0;
-        air1.play();
-        air2.currentTime = 2000;
-        air2.playbackRate = 2.0;
-        air2.play();
-        air3.currentTime = 4000;
-        air3.playbackRate = -2.0;
-        air3.play();
-    });
+    var found = false;
 
     window.addEventListener("markerFound", function(){
         if (!found){
