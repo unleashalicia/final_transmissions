@@ -88,33 +88,35 @@
 </a-scene>
 
 <script>
-    var air1 = document.getElementById("air1");
-    var air2 = document.getElementById("air2");
-    var air3 = document.getElementById("air3");
-    var found = false;
 
-    window.addEventListener("load", function(){
-        air1.currentTime = 1000;
-        air1.playbackRate = 4.0;
-        air1.play();
-        air2.currentTime = 2000;
-        air2.playbackRate = 2.0;
-        air2.play();
-        air3.currentTime = 4000;
-        air3.playbackRate = -2.0;
-        air3.play();
-    });
-
-    window.addEventListener("markerFound", function(){
-        if (!found){
-            console.log("MARKER FOUND!");
-            found = true;
-            var timer = setTimeout(function(){
-                window.parent.markerListener();
-            }, 5000);
-
-        }
-    });
+    
+//    var air1 = document.getElementById("air1");
+//    var air2 = document.getElementById("air2");
+//    var air3 = document.getElementById("air3");
+//    var found = false;
+//
+//    window.addEventListener("load", function(){
+//        air1.currentTime = 1000;
+//        air1.playbackRate = 4.0;
+//        air1.play();
+//        air2.currentTime = 2000;
+//        air2.playbackRate = 2.0;
+//        air2.play();
+//        air3.currentTime = 4000;
+//        air3.playbackRate = -2.0;
+//        air3.play();
+//    });
+//
+//    window.addEventListener("markerFound", function(){
+//        if (!found){
+//            console.log("MARKER FOUND!");
+//            found = true;
+//            var timer = setTimeout(function(){
+//                window.parent.markerListener();
+//            }, 5000);
+//
+//        }
+//    });
 
 </script>
 
