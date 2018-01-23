@@ -2,14 +2,10 @@
 
 DELIMITER $$
 
-DROP PROCEDURE IF EXISTS `handleUserAction` $$
-CREATE PROCEDURE `handleUserAction` (
-    IN `userId` INT,
-    IN `storyId` INT,
-    IN `userAction` VARCHAR(15)
-  )  MODIFIES SQL DATA
-
-  BEGIN
+DROP PROCEDURE IF EXISTS `handleUserAction`
+$$
+CREATE PROCEDURE `handleUserAction` (IN `userId` INT, IN `storyId` INT, IN `userAction` VARCHAR(15))  MODIFIES SQL DATA
+BEGIN
     SET @next_state = (
       SELECT sa.next_state_id FROM user_stories AS us
         JOIN state_actions AS sa
@@ -19,7 +15,8 @@ CREATE PROCEDURE `handleUserAction` (
       UPDATE user_stories AS us SET us.state_id = @next_state
       	WHERE us.id = userId AND us.story_id = storyId
       ;
-  END
-    $$
+   	  CALL getUserStateDetails(userId, storyId)
+      ;
+END$$
 
 DELIMITER ;

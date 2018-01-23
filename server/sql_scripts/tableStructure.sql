@@ -37,9 +37,9 @@ CREATE TABLE `location` (
   `state_id` smallint(3) NOT NULL,
   `latitude` varchar(30) NOT NULL,
   `longitude` varchar(30) NOT NULL,
-  `outer_threshold` smallint(3) NOT NULL,
-  `inner_threshold` smallint(3) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
+  `outer_threshold` mediumint(6) NOT NULL,
+  `inner_threshold` mediumint(6) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 
 DROP TABLE IF EXISTS `audio`;
@@ -79,7 +79,7 @@ CREATE TABLE `story_details` (
   `start_lon` varchar(30) NOT NULL,
   `description` varchar(400) NOT NULL,
   `est_time` varchar(10) NOT NULL,
-  `start_address` VARCHAR(100) NOT NULL
+  `start_address` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 
