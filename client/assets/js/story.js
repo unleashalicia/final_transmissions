@@ -160,7 +160,7 @@ function initMap() {
           }
         ]
     });
-    var iconBase = '../client/assets/images/story/raven2.png';
+    var iconBase = '../images/story/raven2.png';
     marker = new google.maps.Marker({
         position: {
             lat: 33.6348729,
