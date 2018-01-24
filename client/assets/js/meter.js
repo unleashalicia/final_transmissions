@@ -68,7 +68,7 @@ function loadSound(location, setLoop){
 function loadAll(){
     let count = 0;
     for (let i in sounds.sources){
-        let loop = false;
+        var loop = false;
         if (i === 'outerAudio'){
             loop = true;
         }
@@ -98,17 +98,15 @@ function handleAudioPlayback(dist){
             speaking = sounds[1].play();
             sounds[1].on('end',function(){
                 sounds.speakingPlayed = true;
-            },speaking);
+            }, speaking);
         } else {
             sounds[1].play(speaking);
         }
         sounds[1].fade(0,0.9,1500,speaking);
-        // makeVisible(1);
     } else if (dist > target.talkThreshold && sounds[1].playing(speaking)){
         sounds[1].fade(0.9,0,1500,speaking).once('fade',function(){
             sounds[1].pause(speaking);
-        },speaking);
-        // makeVisible(0);
+        }, speaking);
     }
 }
 //****************************************
@@ -254,7 +252,7 @@ function handleMeter(){
         }
     } else if (knobMode === 'med') {
         if (distance > 50 && deviceOn){
-            needlegauge.style.transform = 'transform','translateX(-50%) rotateZ(-65deg)';
+            needlegauge.style.transform = 'translateX(-50%) rotateZ(-65deg)';
         } else if (distance <= 50 && distance >= 0 && deviceOn){
             let needleAngle = 53 - distance * 2;
             needlegauge.style.transform = 'translateX(-50%) rotateZ('+needleAngle+'deg)';
