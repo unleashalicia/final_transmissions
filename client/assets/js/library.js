@@ -1,6 +1,7 @@
 document.addEventListener('DOMContentLoaded', function() {
     initEventListeners();
     targetElement.classList.add('show-img');
+    triangleLeft.classList.add('hide-img');
 
     triangleLeft.addEventListener('click', function(){
         handleArrowClickLeft();
