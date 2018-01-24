@@ -22,7 +22,8 @@ function handleEventHandlers(){
      }); // adds it to the two separate button // shows log out confirm modal.
     }
 
-    heightMonitor()
+    heightMonitor();
+    checkStories();
 }
 
 function heightMonitor(){ //Monitors if the container height vs window height to accomodate the fog animation.
@@ -105,6 +106,6 @@ const inputData = elem.previousSibling.value
 
 function checkStories(){
     if(!document.querySelector('.story-list li')){
-        document.querySelector('.story-container h3').innerText="visit the library to start a story"
+        document.querySelector('.story-container h3').innerText="visit the Library to start a story"
     }
 }
