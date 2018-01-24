@@ -29,7 +29,7 @@ var target = {
     talkThreshold: 0
 };
 var distance;
-var knobMode='med';
+var knobMode='long';
 var action;
 var next = false;
 var seen = false;
