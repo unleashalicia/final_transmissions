@@ -186,6 +186,10 @@ section {
     position: relative;
 }
 
+.thanks {
+    font-size: 3.5vmin;
+}
+
 
 
 /************** media query ********************/
@@ -202,6 +206,10 @@ section {
 
     .card-img {
         width: 50%;
+    }
+
+    .team-img {
+        width: 85%;
     }
 }
 
@@ -220,7 +228,7 @@ section {
     }
 
     .team-img {
-        width: 60%;
+        width: 70%;
     }
 
     body {
