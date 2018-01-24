@@ -145,6 +145,7 @@ body * {
     color: #cbba63;
     position: absolute;
     text-align: center;
+    font-size: 5vmin;
     width: 100%;
     font-family: walpergens;
     bottom: 0;
