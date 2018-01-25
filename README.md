@@ -139,9 +139,9 @@ available at [http://contributor-covenant.org/version/1/4][version]
 * Andy Ong
 
 ### Junior Devs
-Henry Moon
-Kelcey Lorenzo
-Andrea Wayte
-Taylor Davidson
-Nick Quan
-Aarron Guillen
+* Henry Moon
+* Kelcey Lorenzo
+* Andrea Wayte
+* Taylor Davidson
+* Nick Quan
+* Aarron Guillen
