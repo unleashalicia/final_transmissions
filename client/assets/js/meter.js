@@ -69,9 +69,11 @@ function loadSound(location, setLoop){
 function loadAll(){
     let count = 0;
     for (let i in sounds.sources){
-        var loop = false;
+        var loop;
         if (i === 'outerAudio'){
             loop = true;
+        } else {
+            loop = false;
         }
         if (count === 1 && chapter < 5){
             sounds.numLoaded++;
@@ -492,6 +494,8 @@ function markerListener(){
     tilt.style.display="block";
     if (chapter == 5){
         ending = sounds[2].play();
+        sounds[2].fade(0,0.9,1500,ending);
+        sounds[1].fade(0.9,0.5,1500,speaking);
     }
 }
 //****************************************
