@@ -21,6 +21,7 @@ var sounds = {
 };
 var speaking;
 var looping;
+var ending;
 var effect;
 var target = {
     latitude: 0,
@@ -487,7 +488,7 @@ function markerListener(){
     nextEvent.classList.remove("hide");
     tilt.style.display="block";
     if (chapter == 5){
-        sounds[2].play()
+        ending = sounds[2].play();
     }
 }
 //****************************************
