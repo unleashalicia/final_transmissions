@@ -6,20 +6,11 @@ The app utilizes webRTC, AR, Geolocation, and proximity based sound. We hope tha
 
 ## Getting Started 
 
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
+These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system. 
 
 ### Prerequisites
 
-What things you need to install the software and how to install them
-
 ```
-Give examples
-```
-
-## Built With
-
-```
-* core javascript
 * axios
 * aframe
 * pug
@@ -27,11 +18,14 @@ Give examples
 * jWebAudio.js
 * noSleep.js
 * AR.js
+* node.js
 ```
 
 ## Deployment
 
-Add additional notes about how to deploy this on a live system
+www.finaltransmissions.com
+
+You will need an android phone in order to run this application to it's full potential. It can be accessed on a desktop, but some features will be limited. 
 
 
 # Contributing
@@ -139,6 +133,15 @@ available at [http://contributor-covenant.org/version/1/4][version]
 
 ## Acknowledgments
 
+### Mentors
 * Shawn Bullock
 * Tim Horist
 * Andy Ong
+
+### Junior Devs
+Henry Moon
+Kelcey Lorenzo
+Andrea Wayte
+Taylor Davidson
+Nick Quan
+Aarron Guillen
