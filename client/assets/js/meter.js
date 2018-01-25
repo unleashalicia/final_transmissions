@@ -32,7 +32,6 @@ var distance;
 var knobMode='long';
 var action;
 var next = false;
-var seen = false;
 var chapter;
 //****************************************
 //****************************************
@@ -488,7 +487,7 @@ function markerListener(){
     nextEvent.classList.remove("hide");
     tilt.style.display="block";
     if (chapter == 5){
-
+        sounds[2].play()
     }
 }
 //****************************************
