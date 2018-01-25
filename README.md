@@ -5,12 +5,10 @@ Final Transmissions is a labor of love created by six developers in Irvine, Cali
 The app utilizes webRTC, AR, Geolocation, and proximity based sound. We hope that your curiousity and fondness for adventure will lead you to gripping stories from those on the other side. 
 
 ## Getting Started 
-**************************************************
 
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
 
 ### Prerequisites
-**************************************************
 
 What things you need to install the software and how to install them
 
@@ -28,6 +26,7 @@ Give examples
 * howler.js
 * jWebAudio.js
 * noSleep.js
+* AR.js
 ```
 
 ## Deployment
@@ -110,7 +109,7 @@ further defined and clarified by project maintainers.
 ### Enforcement
 
 Instances of abusive, harassing, or otherwise unacceptable behavior may be
-reported by contacting the project team at [INSERT EMAIL ADDRESS]. All
+reported by contacting the project team at experience.finaltransmissions@gmail.com. All
 complaints will be reviewed and investigated and will result in a response that
 is deemed necessary and appropriate to the circumstances. The project team is
 obligated to maintain confidentiality with regard to the reporter of an incident.
