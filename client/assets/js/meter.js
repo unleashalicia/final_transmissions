@@ -94,13 +94,11 @@ function handleAudioPlayback(dist){
         sounds[0].fade(0.7,0,1000,looping);
     }
 
-    if (dist <= target.talkThreshold && !sounds[1].playing(speaking) && !sounds.speakingPlayed && deviceOn) {
-        if (!speaking){
+    if (dist <= target.talkThreshold && !sounds[1].playing(speaking) && deviceOn) {
+        if (!speaking && !sounds.speakingPlayed){
             speaking = sounds[1].play();
-            sounds[1].on('end',function(){
-                sounds.speakingPlayed = true;
-            }, speaking);
-        } else {
+            sounds.speakingPlayed = true;
+        } else if (speaking) {
             sounds[1].play(speaking);
         }
         sounds[1].fade(0,0.9,1500,speaking);
@@ -489,6 +487,7 @@ function markerListener(){
     tilt.style.display="block";
     if (chapter == 5){
         ending = sounds[2].play();
+        sounds[2].fade(0,0.9,1500,ending);
     }
 }
 //****************************************
