@@ -94,20 +94,23 @@ function handleAudioPlayback(dist){
         sounds[0].fade(0.7,0,1000,looping);
     }
 
-    if (dist <= target.talkThreshold && !sounds.speakingPlayed && deviceOn) {
-        speaking = sounds[1].play();
-        sounds[1].on('end',()=>{
-            sounds[1] = null;
-            speaking = null;
-        }, speaking);
-        sounds.speakingPlayed = true;
-        sounds[1].fade(0,0.9,1500,speaking);
+    if (dist <= target.talkThreshold && !sounds[1].playing(speaking) && deviceOn) {
+        if (!speaking){
+            speaking = sounds[1].play();
+            sounds[1].fade(0,0.9,1500,speaking);
+            sounds[1].on('end',function(){
+                sounds.speakingPlayed = true;
+            }, speaking);
+        } else {
+            if (!sounds.speakingPlayed){
+                sounds[1].play(speaking);
+                sounds[1].fade(0,0.9,1500,speaking);
+            }
+        }
     } else if (dist > target.talkThreshold && sounds[1].playing(speaking)){
         sounds[1].fade(0.9,0,1500,speaking).once('fade',function(){
             sounds[1].pause(speaking);
         }, speaking);
-    } else if (dist <= target.talkThreshold && deviceOn && !sounds[1].playing(speaking)){
-        sounds[1].play(speaking);
     }
 }
 //****************************************
@@ -489,7 +492,6 @@ function markerListener(){
     tilt.style.display="block";
     if (chapter == 5){
         ending = sounds[2].play();
-        sounds[2].fade(0,0.9,1500,ending);
     }
 }
 //****************************************
