@@ -190,10 +190,20 @@ section {
     font-size: 3.5vmin;
 }
 
+#video {
+    margin: auto;
+    height: 400px;
+}
+
 
 
 /************** media query ********************/
 
+@media screen and (max-width: 700px){
+    iframe {
+        width: 80% !important;
+    }
+}
 
 @media screen and (max-width: 768px){
     .button-container {
@@ -211,6 +221,7 @@ section {
     .team-img {
         width: 85%;
     }
+
 }
 
 @media screen and (min-width: 768px){
