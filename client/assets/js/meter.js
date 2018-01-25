@@ -33,6 +33,7 @@ var knobMode='long';
 var action;
 var next = false;
 var seen = false;
+var chapter;
 //****************************************
 //****************************************
 //--|
@@ -72,7 +73,7 @@ function loadAll(){
         if (i === 'outerAudio'){
             loop = true;
         }
-        if (count === 1){
+        if (count === 1 && chapter < 5){
             sounds.numLoaded++;
         } // get rid of this once valid sounds start getting passed from the db
         sounds[count] = loadSound(sounds.sources[i], loop);
@@ -429,6 +430,7 @@ function handleStateAssetLoading(data){
     const miscAssets = data.data[0][0];
     const cam = document.getElementById('camera');
     const storyID = sessionStorage.getItem('story_id');
+    chapter = miscAssets.state_id;
 
     target.latitude = parseFloat(miscAssets.lat);
     target.longitude = parseFloat(miscAssets.lon);
@@ -485,8 +487,10 @@ function markerListener(){
     const tilt = document.querySelector('.tilt');
     nextEvent.classList.remove("hide");
     tilt.style.display="block";
-}
+    if (chapter == 5){
 
+    }
+}
 //****************************************
 //**************END***********************
 //****************************************
