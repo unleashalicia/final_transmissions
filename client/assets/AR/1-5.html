@@ -1,0 +1,300 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Chapter 5</title>
+    <link rel="stylesheet" type="text/css" href="../css/ARstyle.css" />
+
+    <style>
+
+        .a-canvas {
+            display: none;
+        }
+
+    </style>
+
+    <script src="../lib/aframe.js"></script>
+    <script src="../lib/aframe-ar.js"></script>
+</head>
+<body style='margin : 0; overflow: hidden;'>
+
+<a-scene embedded artoolkit='sourceType: webcam;'>
+
+    <a-assets>
+        <img id="wood" src="../images/AR/wood.jpg"/>
+    </a-assets>
+
+    <a-marker preset='earth'>
+
+    </a-marker>
+
+
+</a-scene>
+
+<script>
+
+
+    const findRange = (start, end) => {
+        return (Math.random() * (end-start) ) + start;
+    };
+
+
+    function setAttributes(element, attributeObj) {
+
+        for (let item in attributeObj){
+            element.setAttribute(item, attributeObj[item]);
+        }
+
+    }
+
+
+    var finaleObj = {
+        id: "finale",
+        entities: [
+            {
+                shapes: [
+                    {
+                        shape: "box",
+                        dimensions: {
+                            height: "1",
+                            width: "1",
+                            depth: "1"
+                        },
+                        material: {
+                            opacity: "0.9"
+                        },
+                        otherAttr: {
+                            src: "#wood",
+                            position: "0 1 -5",
+                            rotation: "0 90 0"
+                        },
+                        animations: [
+                            {
+                                attribute: "rotation",
+                                from: "15 90 -15",
+                                to: "-15 90 15",
+                                dur: "80",
+                                direction: "alternate-reverse",
+                                easing: "linear",
+                                repeat: "indefinite"
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                lights: [
+                    {
+                        attributes: {
+                            type: "directional",
+                            angle: "0",
+                            color: "white",
+                            intensity: "1.0"
+                        },
+                        directionalAttr: {
+                            position: "0 0 9",
+                            rotation: "0 0 90",
+                            target: "0 1 -5"
+                        }
+
+                    },
+                    {
+                        attributes: {
+                            type: "directional",
+                            angle: "0",
+                            color: "white",
+                            intensity: "1.0"
+                        },
+                        directionalAttr: {
+                            position: "0 0 -9",
+                            rotation: "180 0 0",
+                            target: "0 1 -5"
+                        }
+
+                    },
+                    {
+                        attributes: {
+                            type: "directional",
+                            angle: "0",
+                            color: "white",
+                            intensity: "1.0"
+                        },
+                        directionalAttr: {
+                            position: "-9 0 0",
+                            rotation: "270 0 0",
+                            target: "0 1 -5"
+                        }
+
+                    },
+                ]
+            }
+
+        ]
+
+    };
+
+
+    //creator function to dynamically render a-scenes with objects.
+
+
+    var scene = document.querySelector('a-scene');
+    //    var ARcontainer = document.getElementsByTagName('a-scene')[0];
+
+    function createBox(object) {
+
+        //Create entities and set attributes
+
+        for (var shape_i = 0; shape_i < object.entities[0].shapes.length; shape_i++) {
+            var entityShape = document.createElement('a-entity');
+            var shapeObj = object.entities[0].shapes[shape_i];
+            var shape = document.createElement(`a-${shapeObj.shape}`);
+
+            setAttributes(shape, shapeObj.dimensions);
+            shape.setAttribute("opacity", shapeObj.material.opacity);
+            setAttributes(shape, shapeObj.otherAttr);
+
+            //Create Animations and add to shapes
+
+            for (var animation_i = 0; animation_i < shapeObj.animations.length; animation_i++) {
+                var animation = document.createElement('a-animation');
+                setAttributes(animation, shapeObj.animations[animation_i]);
+                shape.appendChild(animation);
+            } //end animation loop
+
+            //Append shape to entity and entity to marker
+
+            entityShape.appendChild(shape);
+            scene.appendChild(entityShape);
+        } //end shape loop
+
+
+        if (object.entities.length > 1) {
+
+            for (var light_i = 0; light_i < object.entities[1].lights.length; light_i++) {
+                var entityLight = document.createElement('a-entity');
+                var lightAttr = object.entities[1].lights[light_i].attributes;
+
+
+                //Set light attributes
+
+                entityLight.setAttribute("light", `type: ${lightAttr.type}; angle: ${lightAttr.angle}; color: ${lightAttr.color}; intensity: ${lightAttr.intensity}`);
+
+                if (object.entities[1].lights[light_i].attributes.type === "directional") {
+                    setAttributes(entityLight, object.entities[1].lights[light_i].directionalAttr);
+                }
+
+
+                //Append lights to marker
+
+                scene.appendChild(entityLight);
+            } //end light for loop
+
+        } //end lights conditional
+
+        if (object.id === 'finale') {
+
+            for (let creator = 0; creator < 200; creator++) {
+                let entity = document.createElement('a-entity');
+                let sphere = document.createElement('a-sphere');
+                let move = document.createElement('a-animation');
+                let fade = document.createElement('a-animation');
+                let random = Math.random();
+                let posXdest = null;
+                let color = null;
+                let posYdest = findRange(5, 7);
+                let dur = findRange(200, 3000);
+                let radius = findRange(0.025, 0.07);
+
+                if (random < .2) {
+                    posXdest = findRange(-1, 1);
+                    color = "black";
+                } else if (random < .7) {
+                    posXdest = findRange(-2, 2);
+                    color = "white";
+                } else if (random < .95) {
+                    posXdest = findRange(-3, 3);
+                    color = "white";
+                } else {
+                    posXdest = findRange(-4, 4);
+                    color = "white";
+                }
+
+                let sphereAttr = {
+                    material: {
+                        color: color
+                    },
+                    otherAttr: {
+                        opacity: "0.7",
+                        radius: radius
+                    }
+                };
+
+                let moveAttr = {
+                    attribute: "position",
+                    dur: dur,
+                    from: "0 1 -5",
+                    to: `${posXdest} ${posYdest} -5`,
+                    easing: 'linear',
+                    repeat: 'indefinite'
+                };
+
+                let fadeAttr = {
+                    attribute: "opacity",
+                    dur: dur,
+                    from: "0.7",
+                    to: "0",
+                    easing: "linear",
+                    repeat: "indefinite"
+                };
+
+
+                sphere.setAttribute('material', sphereAttr.material);
+                setAttributes(sphere, sphereAttr.otherAttr);
+
+                setAttributes(move, moveAttr);
+                setAttributes(fade, fadeAttr);
+
+                entity.appendChild(move);
+                sphere.appendChild(fade);
+                entity.appendChild(sphere);
+                scene.appendChild(entity);
+
+
+            }
+
+        } //cond
+    } //end function
+
+
+    window.addEventListener("load", function(){
+        createBox(finaleObj);
+
+    });
+
+
+    var found = false;
+
+    window.addEventListener("markerFound", function(){
+        if (!found && window.parent.distance < window.parent.target.talkThreshold){
+            console.log("MARKER FOUND!");
+
+            found = true;
+            var canvas = document.querySelector('.a-canvas');
+            canvas.style.display = "block";
+
+
+            var timer = setTimeout(function(){
+                window.parent.markerListener();
+            }, 5000);
+
+        }
+    });
+
+
+
+
+
+</script>
+</body>
+</html>
+

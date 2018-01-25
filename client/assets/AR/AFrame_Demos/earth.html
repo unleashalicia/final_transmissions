@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Earth AR Demo</title>
+    <link rel="stylesheet" type="text/css" href="../../css/ARstyle.css" />
+
+    <script src="../../lib/aframe.js"></script>
+</head>
+<body style='margin : 0px; overflow: hidden;'>
+
+    <a-scene>
+        <a-assets>
+            <video id="dust" src="../../video/dust.ogv" autoplay loop="true"></video>
+            <img id="sky" src="../../images/AR/alcatraz.jpg" />
+        </a-assets>
+        <a-sky src="#sky"></a-sky>
+
+        <a-entity>
+            <a-box src='#dust' height="1" width="1" depth="1" material="opacity: 0.9" position="0 2 -3.5">
+                <a-animation attribute="rotation"
+                             dur="5000"
+                             from="0 45 0"
+                             to="0 45 360"
+                             repeat="indefinite">
+                </a-animation>
+            </a-box>
+        </a-entity>
+    </a-scene>
+
+
+</body>
+</html>

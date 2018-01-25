@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Earth Test</title>
+    <link rel="stylesheet" type="text/css" href="ARstyle.css" />
+
+    <script src="../../../assets/lib/aframe.js"></script>
+    <script src="../../../assets/lib/aframe-ar.js"></script>-->
+</head>
+
+<body style='margin : 0px; overflow: hidden;'>
+
+<a-scene embedded artoolkit='sourceType: webcam;'>
+
+    <a-assets>
+        <video src="./dust.ogv" id="dust" autoplay loop="true"></video>
+    </a-assets>
+
+    <a-marker preset='hiro'>
+        <a-entity>
+            <a-box src='#dust' height="2" width="2" depth="2" material="opacity: 0.9" position="0 0.5 0">
+                <a-animation attribute="rotation"
+                             dur="5000"
+                             to="0 0 360"
+                             repeat="indefinite">
+                </a-animation>
+            </a-box>
+        </a-entity>
+    </a-marker>
+</a-scene>
+
+</body>
+</html>

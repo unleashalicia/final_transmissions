@@ -1,3 +1,6 @@
 **/node_modules
 **/.DS_Store
 **/database.js
+**/.idea
+**/debug.log
+**/.vscode

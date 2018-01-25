@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Chapter 4</title>
+        <link rel="stylesheet" type="text/css" href="../css/ARstyle.css" />
+
+        <style>
+
+            /*.a-canvas {*/
+                /*display: none;*/
+            /*}*/
+
+        </style>
+
+        <script src="../lib/aframe.js"></script>
+        <script src="../lib/aframe-ar.js"></script>
+    </head>
+    <body style='margin : 0; overflow: hidden;'>
+
+         <a-scene embedded artoolkit='sourceType: webcam;'>
+            <a-assets>
+                <img src="../images/AR/fire3.jpeg" id="fire"></img>
+            </a-assets>
+             <a-marker preset='fire'></a-marker>
+
+
+            <a-entity>
+                <a-tetrahedron src='#fire' radius="0.5" material="opacity: 0.9" position="-1 1 -5">
+                    <a-animation attribute="rotation"
+                                 dur="3000"
+                                 to="0 360 -360"
+                                 easing= "linear"
+                                 repeat="indefinite">
+                    </a-animation>
+                </a-tetrahedron>
+            </a-entity>
+
+
+            <a-entity>
+                <a-tetrahedron src='#fire' radius="0.5" material="opacity: 0.9" position="0 2 -5">
+                    <a-animation attribute="rotation"
+                                 dur="2000"
+                                 to="360 360 360"
+                                 easing= "linear"
+                                 repeat="indefinite">
+                    </a-animation>
+                </a-tetrahedron>
+            </a-entity>
+
+
+            <a-entity>
+                <a-tetrahedron src='#fire' radius="0.5" material="opacity: 0.9" position="0 1 -5">
+                    <a-animation attribute="rotation"
+                                 dur="2500"
+                                 to="0 360 0"
+                                 easing= "linear"
+                                 repeat="indefinite">
+                    </a-animation>
+                </a-tetrahedron>
+            </a-entity>
+
+
+            <a-entity>
+                <a-tetrahedron src='#fire' radius="0.5" material="opacity: 0.9" position="1 1 -5">
+                    <a-animation attribute="rotation"
+                                 dur="4000"
+                                 to="-360 -360 -360"
+                                 easing= "linear"
+                                 repeat="indefinite">
+                    </a-animation>
+                </a-tetrahedron>
+            </a-entity>
+
+             <a-entity light="type: spot; angle: 45; color: #red; intensity: 3.0" ></a-entity>
+
+        </a-scene>
+
+
+    </body>
+
+    <script>
+
+//        var found = false;
+//
+//        window.addEventListener("markerFound", function(){
+//            if (!found && window.parent.distance < window.parent.target.talkThreshold){
+//                console.log("MARKER FOUND!");
+//
+//                found = true;
+//                var canvas = document.querySelector('.a-canvas');
+//                canvas.style.display = "block";
+//
+//
+//                var timer = setTimeout(function(){
+//                    window.parent.markerListener();
+//                }, 5000);
+//
+//            }
+//        });
+
+
+    </script>
+</html>

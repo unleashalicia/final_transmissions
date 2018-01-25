@@ -9,42 +9,30 @@ var watchHandler;
 var errorCount = 0;
 var noSleep = new NoSleep();
 var sounds = {
-    0: null,
-    1: null,
-    2: null,
     numLoaded: 0,
+    numToLoad: 3,
     ready: false,
     speakingPlayed: false,
-    sources: ['./assets/sounds/CH1-MUSIC.ogg','./assets/sounds/CH1-READING.ogg']
+    sources: {
+        outerAudio: '',
+        innerAudio: '',
+        completeAudio: ''
+    }
 };
 var speaking;
 var looping;
 var effect;
-//Out front of lfz:
-// var target = {
-//     latitude: 33.6350687,
-//     longitude: -117.7402043,
-//     loopThreshold: 40,
-//     talkThreshold: 9
-// };
-
-//lfz back room
 var target = {
-    latitude: 33.634697,
-    longitude: -117.740578,
-    loopThreshold: 20,
-    talkThreshold: 9
+    latitude: 0,
+    longitude: 0,
+    loopThreshold: 0,
+    talkThreshold: 0
 };
-
-
-//Out front of apartment
-// var target = {
-//     latitude: 33.7523889,
-//     longitude: -117.8637263,
-//     threshold: 10
-// };
 var distance;
-var knobMode='med';
+var knobMode='long';
+var action;
+var next = false;
+var seen = false;
 //****************************************
 //****************************************
 //--|
@@ -54,8 +42,7 @@ var knobMode='med';
 //########################################
 //++
 //++
-function loadSound(location,position){
-    var setLoop = position === 0 ? true : false;
+function loadSound(location, setLoop){
     let howl = new Howl({
         src: [location],
         preload: true,
@@ -64,7 +51,7 @@ function loadSound(location,position){
         volume: 0,
         onload: ()=>{
             sounds.numLoaded++;
-            if (sounds.numLoaded >= sounds.sources.length){
+            if (sounds.numLoaded >= sounds.numToLoad){
                 const loadingBtn = document.querySelector('.loading-btn');
                 const headerFade = document.querySelector('#loading h2');
 
@@ -79,8 +66,17 @@ function loadSound(location,position){
 //++
 //++
 function loadAll(){
-    for (let i = 0; i < sounds.sources.length; i++){
-        sounds[i] = loadSound(sounds.sources[i],i);
+    let count = 0;
+    for (let i in sounds.sources){
+        var loop = false;
+        if (i === 'outerAudio'){
+            loop = true;
+        }
+        if (count === 1){
+            sounds.numLoaded++;
+        } // get rid of this once valid sounds start getting passed from the db
+        sounds[count] = loadSound(sounds.sources[i], loop);
+        count++;
     }
 }
 //++
@@ -102,7 +98,7 @@ function handleAudioPlayback(dist){
             speaking = sounds[1].play();
             sounds[1].on('end',function(){
                 sounds.speakingPlayed = true;
-            },speaking);
+            }, speaking);
         } else {
             sounds[1].play(speaking);
         }
@@ -110,7 +106,7 @@ function handleAudioPlayback(dist){
     } else if (dist > target.talkThreshold && sounds[1].playing(speaking)){
         sounds[1].fade(0.9,0,1500,speaking).once('fade',function(){
             sounds[1].pause(speaking);
-        },speaking);
+        }, speaking);
     }
 }
 //****************************************
@@ -126,17 +122,19 @@ function handleEventHandlers(){
     const knobImg = document.getElementById('knobImg');
     const loadingBtn = document.querySelector('.loading-btn');
     const uiSwitch = document.getElementById('switch');
+    const nextEvent = document.querySelector('.next-event');
 
     loadingBtn.addEventListener('click', fullscreen);
 
     knobImg.addEventListener('click', function(){
-        knobRange(this);
-    });
+        knobRange(knobImg);
+    });//turning the knob for range meter switch;
+    uiSwitch.addEventListener('click',flipSwitch);//turns on the gadget
+
+    window.addEventListener('orientationchange',handleOrientation);//switch from meter to camera;
 
 
-    uiSwitch.addEventListener('click',flipSwitch);
-
-    window.addEventListener('orientationchange',handleOrientation);
+    nextEvent.addEventListener('click', moveToNextChapter);
 }
 //****************************************
 //****************************************
@@ -148,7 +146,6 @@ function handleEventHandlers(){
 //++
 //++
 function flipSwitch(){
-    console.log('Switch flipped');
     const uiSwitch = document.getElementById('switch');
     const indicatorLight = document.getElementById('indicator-light');
     const needlegauge = document.querySelector('.needleGauge');
@@ -211,35 +208,34 @@ function knobLightOff(){
 //++
 //++
 function knobRange(elem){
-    console.log('click knob');
     switch (elem.className) {
         case "close-range-knob":
             if(deviceOn){
-              knobLightOn()
-              }
-              elem.classList.remove("close-range-knob");
-              elem.classList.add("long-range-knob");
-              knobMode='long';
-              handleMeter();
-              break;
+                knobLightOn();
+            }
+            elem.classList.remove("close-range-knob");
+            elem.classList.add("long-range-knob");
+            knobMode='long';
+            handleMeter();
+            break;
         case "long-range-knob":
             if(deviceOn){
-              knobLightOn()
-              }
-              elem.classList.remove("long-range-knob");
-              elem.classList.add("mid-range-knob");
-              knobMode='med';
-              handleMeter();
-              break;
+                knobLightOn();
+            }
+            elem.classList.remove("long-range-knob");
+            elem.classList.add("mid-range-knob");
+            knobMode='med';
+            handleMeter();
+            break;
         case "mid-range-knob":
             if(deviceOn){
-              knobLightOn()
-              }
-              elem.classList.remove("mid-range-knob");
-              elem.classList.add("close-range-knob");
-              knobMode='short';
-              handleMeter();
-              break;
+                knobLightOn();
+            }
+            elem.classList.remove("mid-range-knob");
+            elem.classList.add("close-range-knob");
+            knobMode='short';
+            handleMeter();
+            break;
     }
 }
 //++
@@ -256,19 +252,21 @@ function handleMeter(){
         }
     } else if (knobMode === 'med') {
         if (distance > 50 && deviceOn){
-            needlegauge.style.transform = 'transform','translateX(-50%) rotateZ(-65deg)';
+            needlegauge.style.transform = 'translateX(-50%) rotateZ(-65deg)';
         } else if (distance <= 50 && distance >= 0 && deviceOn){
             let needleAngle = 53 - distance * 2;
             needlegauge.style.transform = 'translateX(-50%) rotateZ('+needleAngle+'deg)';
         }
     } else if (knobMode === 'short') {
         if (distance > 25 && deviceOn){
-            needlegauge.style.transform = 'transform','translateX(-50%) rotateZ(-65deg)';
+            needlegauge.style.transform = 'translateX(-50%) rotateZ(-65deg)';
         } else if (distance <= 25 && distance >= 0 && deviceOn){
             let needleAngle = 53 - distance * 4;
             needlegauge.style.transform = 'translateX(-50%) rotateZ('+needleAngle+'deg)';
         }
     }
+
+
 }
 //++
 //++
@@ -292,13 +290,19 @@ function handleOrientation(event){
     //use to listen for device orientation change to switch from ESR or Ghost CAM
     const gaugeWrapper = document.getElementById('gauge-wrapper');
     const camera = document.getElementById('camera');
+    const tilt = document.querySelector('.tilt');
 
     if(screen.orientation.type === 'portrait-primary'){
-        gaugeWrapper.classList.remove('hide');
-        camera.classList.add('hide');
+        // gaugeWrapper.classList.remove('hide');
+        // camera.classList.add('hide');
+        gaugeWrapper.style.display="block"
+        camera.style.display="none"
+        tilt.style.display="none"
     }else{
-        gaugeWrapper.classList.add('hide');
-        camera.classList.remove('hide');
+        // gaugeWrapper.classList.add('hide');
+        // camera.classList.remove('hide');
+        gaugeWrapper.style.display="none"
+        camera.style.display="block"
     }
 }
 //****************************************
@@ -337,14 +341,9 @@ function getLocation() {
         //pos also includes pos.timestamp if needed later
         //moved ready modal details into audio load callback
         coord = pos.coords;
-        console.log(coord);
-
+        console.log('Coord Success');
 
         distance = getDistanceFromLatLonInKm(coord.latitude,coord.longitude,target.latitude,target.longitude);
-
-        //This will output the distance to the main point from where you are to the screen
-        //used for testing purposes
-        // $('.test-output').text(distance.toFixed(3));
 
         //Update the meter needle position
         handleMeter();
@@ -360,6 +359,7 @@ function getLocation() {
         if (errorCount > 10){
             //tell the user they are having issues with their gps connection
             //possibly end app usage for later resume
+            window.location.href = "/profile";
         }
     }
 }
@@ -393,10 +393,100 @@ document.addEventListener("DOMContentLoaded", onLoad);
 
 function onLoad(){
     handleEventHandlers();
-    loadAll();
-    getLocation();
+    grabChapterAssets()
 };
 //****************************************
 //****************************************
 //-|
 //-|
+//########################################
+//##  Asset Loading/Axios  ###############
+//########################################
+function moveToNextChapter(){
+    const storyID = sessionStorage.getItem('story_id');
+
+    axios.post('/action',{story: Number(storyID), action: 'proceed'}).then(() => {
+        window.location.href = '/play';
+    }).catch( error => {
+        window.location.href = "/story/id/" + axiosOptions.params.story;
+    });
+}
+//++
+//++
+function grabChapterAssets(){
+    const storyID = sessionStorage.getItem('story_id');
+
+    axios.get('/state',{params : {story: storyID}}).then( handleStateAssetLoading ).catch( error => {
+        console.warn('Axios GET from state issue');
+        console.log(error);
+        window.location.href = "/story/id/" + storyID;
+    });
+}
+//++
+//++
+function handleStateAssetLoading(data){
+    const soundAssets = data.data[1][0];
+    const miscAssets = data.data[0][0];
+    const cam = document.getElementById('camera');
+    const storyID = sessionStorage.getItem('story_id');
+
+    target.latitude = parseFloat(miscAssets.lat);
+    target.longitude = parseFloat(miscAssets.lon);
+    target.loopThreshold = miscAssets.outer_threshold;
+    target.talkThreshold = miscAssets.inner_threshold;
+
+    action = miscAssets.action
+
+    for (let i in soundAssets){
+        sounds.sources[i] = './assets/' + soundAssets[i]
+    }
+
+    let currentChapter = miscAssets.state_id;
+
+    cam.src = `/assets/AR/${storyID}-${currentChapter}.html`;
+
+    loadAll();
+    getLocation();
+}
+//****************************************
+//****************************************
+//-|
+//-|
+//#############################################
+//##  AR Display Toggle Function  #############
+//#############################################
+function makeVisible(number){
+    const shapeArray = document.getElementsByClassName('appearingShape');
+
+    for (let i=0; i<shapeArray.length; i++){
+        if(number > 0){
+            shapeArray[i].classList.remove('hide');
+        }else {
+            shapeArray[i].classList.add('hide');
+        }
+    }
+}
+//++
+//++
+function loadARObjects(){
+    console.log("I'm loading your objects!!!");
+}
+//++
+//++
+function handleARvisibility(){
+    if (!next && distance < target.talkThreshold){
+        next = true;
+    }
+}
+//++
+//++
+function markerListener(){
+    const nextEvent = document.querySelector(".next-event");
+    const tilt = document.querySelector('.tilt');
+    nextEvent.classList.remove("hide");
+    tilt.style.display="block";
+}
+
+//****************************************
+//**************END***********************
+//****************************************

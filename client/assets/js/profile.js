@@ -3,76 +3,109 @@ document.addEventListener('DOMContentLoaded', handleEventHandlers);
 
 
 function handleEventHandlers(){
-  //**will segregate these handlers in later configurations**//
-    var profile = document.querySelectorAll(".profile")[0];
-    var stories = document.querySelectorAll(".stories")[0];
-    var profileContainer = document.querySelectorAll(".profile-container")[0];
-    var account = document.querySelectorAll(".account-settings")[0];
-    var edit = document.getElementsByClassName("edit");
-    var story = document.getElementsByClassName("story");
-    var submitBtn = document.querySelectorAll(".submit")[0];
-    var cancelBtn = document.querySelectorAll(".cancel")[0];
-    var storylist = document.querySelectorAll(".story-list");
-    var logOut = document.getElementsByClassName("log-out")[0];
-    var experience = document.querySelectorAll(".experience");
-    Array.from(storylist).forEach(elem => elem.addEventListener('click',showStory));
-    profile.addEventListener("click", function(){   profileContainer.classList.toggle("hide")});
-    stories.addEventListener("click", function(){ profileContainer.classList.add("hide")});
-    Array.from(edit).forEach(elem => elem.addEventListener('click', function() {
-    account.classList.remove("hide")
-    }));
-    submitBtn.addEventListener("click",handleSubmit);
-    cancelBtn.addEventListener("click",handleCancel);
-    logOut.addEventListener("click", function(){
-      document.getElementsByClassName("logOut-container")[0].classList.remove("hide");
+
+    const confirm = document.querySelectorAll(".log-out");
+    const noBtn = document.querySelector(".no");
+    const logOutModal = document.querySelector(".logOut-container");
+    const editText = document.querySelectorAll(".edit-text");
+    // debugger;
+
+    editText.forEach((elem)=>elem.addEventListener("click",makeInput))
+        //for email to input change
+    noBtn.addEventListener("click",function(){
+        logOutModal.classList.add("hide");
+    }); //gets the user back to the profile page
+
+    for(let i=0;i<confirm.length;i++){
+        confirm[i].addEventListener("click", function(){
+            logOutModal.classList.remove("hide")
+     }); // adds it to the two separate button // shows log out confirm modal.
+    }
+
+    heightMonitor();
+//     checkStories();
+}
+
+function heightMonitor(){ //Monitors if the container height vs window height to accomodate the fog animation.
+    const userContainer = document.querySelector('#user-container');
+    if(userContainer.offsetHeight<window.innerHeight){
+        userContainer.style.height="100vh"
+    }else{
+        userContainer.style.height="inherit"
+    }
+}
+
+
+
+function makeInput(){//the email is replaced with an input element
+    this.disabled=true;
+    const fragment = document.createDocumentFragment();
+    const form = document.createElement("form")
+    const input = document.createElement("input")
+    const submit = document.createElement("button")
+    const cancel = document.createElement("button")
+    const email = document.querySelector(".user-details.email")
+    form.classList.add("email-container");
+    input.type="email";
+    input.placeholder=email.innerHTML;
+    input.pattern="^[a-zA-Z0-9.!#$%&’*+\/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$"
+    input.required=true;
+    input.classList.add("email-input");
+    submit.textContent="Submit";
+    cancel.type="button";
+    cancel.classList.add("cancel");
+    submit.onclick=function(){
+        if(this.previousSibling.value.match(/^[a-zA-Z0-9.!#$%&’*+\/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/)){
+            document.querySelector('.modal').classList.remove('hide');
+            console.log(this.previousSibling.value)
+        }
+    }
+    cancel.onclick=function(){
+        revertInput();
+    }
+    cancel.textContent="Cancel"
+    form.appendChild(input);
+    form.appendChild(submit);
+    form.appendChild(cancel)
+    fragment.appendChild(form);
+    email.parentNode.replaceWith(fragment);
+}
+
+
+function revertInput(){//function reverting the input back to email
+    document.querySelector(".edit-text").disabled=false;
+    const fragment = document.createDocumentFragment();
+    const div = document.createElement('div');
+    const emailh4 = document.createElement('h4');
+    div.classList.add("email-holder");
+    emailh4.className="user-details email"
+    emailh4.textContent=document.querySelector('.email-container input').placeholder
+    div.appendChild(emailh4);
+    fragment.appendChild(div);
+    event.target.parentNode.replaceWith(fragment);
+}
+
+
+
+function updateEmail(elem){// dummy axios call to be filled up when the change to email is going to be implemented
+const inputData = elem.previousSibling.value
+    axios.put({
+        url: "/email",
+        method: "POST",
+        responseType: "document",
+        data: inputData
+    }).then(function(response) {
+        document.querySelector('.modal').classList.add('hide');
+        console.log(response);
+        console.log("This is the page that will be redirected to: ", response.data.URL);
+        window.location = response.data.URL;
+    }).catch(function(error) {
+        console.error(errorMsg, error);
     });
-    document.querySelectorAll(".logOut button")[1].addEventListener("click", function(){
-        document.getElementsByClassName("logOut-container")[0].classList.add("hide")
-    });
-    document.querySelectorAll(".logOut button")[0].addEventListener("click", loggingOut);
-    Array.from(experience).forEach(elem => elem.addEventListener('click',goToExperience));
-    document.querySelectorAll(".instruction span")[0].addEventListener("click", function(){
-      document.querySelectorAll(".instruction")[0].classList.add("hide");
-    })
 }
 
-function goToExperience(){
-  if(window.outerWidth < 750){
-    window.open("/play","_self");
-  }else{
-    document.querySelectorAll(".instruction")[0].classList.remove("hide");
-  }
-}
-
-function loggingOut(){
-  window.open("/logout","_self");
-}
-
-function showStory(){
-  var story = document.querySelectorAll(".story");
-  if(!this.firstElementChild.classList.contains("slideDown")){
-    Array.from(story).forEach(elem => elem.classList.remove("slideDown"));
-  }
-  this.firstElementChild.classList.toggle("slideDown");
-}
-
-
-
-function handleSubmit(){
-    event.preventDefault();
-    var usernameInput = document.querySelector(".username").value;
-    var emailInput= document.querySelector(".email").value;
-    var account = document.querySelectorAll(".account-settings")[0];
-    account.classList.add("hide")
-    console.log(".username", usernameInput, "& .email" , emailInput);
-    document.querySelector(".username").value="";
-    document.querySelector(".email").value="";
-}
-
-function handleCancel(){
-  event.preventDefault();
-   document.querySelector(".username").value="";
-   document.querySelector(".email").value="";
-   var account = document.querySelectorAll(".account-settings")[0];
-   account.classList.add("hide")
-}
+// function checkStories(){
+//     if(!document.querySelector('.story-list li')){
+//         document.querySelector('.story-container h3').innerText="visit the Library to start a story"
+//     }
+// }

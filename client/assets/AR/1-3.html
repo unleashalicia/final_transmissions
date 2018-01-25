@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Chapter 3</title>
+    <link rel="stylesheet" type="text/css" href="../css/ARstyle.css" />
+
+    <style>
+
+        .a-canvas {
+            display: none;
+        }
+
+    </style>
+
+    <script src="../lib/aframe.js"></script>
+    <script src="../lib/aframe-ar.js"></script>
+</head>
+<body style='margin : 0; overflow: hidden;'>
+
+<a-scene embedded artoolkit='sourceType: webcam;'>
+
+    <a-assets>
+        <img id="air" src="../images/AR/air.jpg" />
+
+    </a-assets>
+
+
+    <a-marker preset='air'></a-marker>
+
+    <a-entity>
+        <a-icosahedron src='#air' radius="0.5" rotation="0 90 0" material="opacity: 0.9" position="-2 1 -5">
+            <a-animation attribute="position"
+                         dur="3000"
+                         from="-2 1 -5"
+                         to="-2 4 -5"
+                         easing="linear"
+                         direction="alternate-reverse"
+                         easing= "ease-in-out-circ"
+                         repeat="indefinite">
+            </a-animation>
+            <a-animation attribute="rotation"
+                         dur="10000"
+                         to="360 0 0"
+                         easing= "linear"
+                         repeat="indefinite">
+            </a-animation>
+        </a-icosahedron>
+    </a-entity>
+
+
+    <a-entity>
+        <a-icosahedron src='#air' radius="0.5" rotation="0 90 0" material="opacity: 0.9" position="2 1 -5">
+            <a-animation attribute="position"
+                         dur="3500"
+                         from="2 1 -5"
+                         to="2 3.5 -5"
+                         easing="linear"
+                         direction="alternate-reverse"
+                         easing= "ease-in-out-circ"
+                         repeat="indefinite">
+            </a-animation>
+            <a-animation attribute="rotation"
+                         dur="10000"
+                         to="-360 0 0"
+                         easing= "linear"
+                         repeat="indefinite">
+            </a-animation>
+        </a-icosahedron>
+    </a-entity>
+
+
+    <a-entity>
+        <a-icosahedron src='#air' radius="0.5" rotation="0 90 0" material="opacity: 0.9" position="0 4 -5">
+            <a-animation attribute="position"
+                         dur="2500"
+                         from="0 4 -5"
+                         to="0 1.2 -5"
+                         easing="linear"
+                         direction="alternate-reverse"
+                         easing= "ease-in-out-circ"
+                         repeat="indefinite">
+            </a-animation>
+            <a-animation attribute="rotation"
+                         dur="10000"
+                         to="-360 0 0"
+                         easing= "linear"
+                         repeat="indefinite">
+            </a-animation>
+        </a-icosahedron>
+    </a-entity>
+
+
+</a-scene>
+
+<script>
+
+    var found = false;
+
+    window.addEventListener("markerFound", function(){
+        if (!found && window.parent.distance < window.parent.target.talkThreshold){
+            console.log("MARKER FOUND!");
+
+            found = true;
+            var canvas = document.querySelector('.a-canvas');
+            canvas.style.display = "block";
+
+
+            var timer = setTimeout(function(){
+                window.parent.markerListener();
+            }, 5000);
+
+        }
+    });
+
+
+
+</script>
+
+
+</body>
+</html>

@@ -7,6 +7,7 @@ const path = require('path');
 const app = express();
 const PORT = 8000;
 
+
 app.set("view engine","pug");
 app.set("views",path.join(__dirname, "views"));
 
@@ -21,6 +22,11 @@ app.use(passport.session());
 const {passportMethod, connection} = require('./passport');
 
 passportMethod(passport);
+
+
+
+//--| Begin Routes |--\\
+
 require('./routes/auth.js')(app, passport);
 
 
@@ -29,41 +35,37 @@ app.get('/', (req, res) => {
 });
 
 
-app.get('/signup', (req, res) => {
-    res.sendFile(path.join(__dirname,'..', 'client', 'signup.html'));
-});
+app.get('/about', (req,res) => {
+    res.sendFile(path.join(__dirname,'..', 'client', 'about.html'));
+})
 
 
-app.get('/login', (req, res) => {
-    res.sendFile(path.join(__dirname,'..', 'client', 'login.html'));
-});
-
-
-
-
-
-
-app.post('/action', (req, res) => {
-    let output = {
-        success: false,
-        data: null,
-        errors: null
-    };
-
-    const query = `CALL handleUserAction(${req.body.id}, '${req.body.action}')`;
+app.get('/state', (req, res)=>{
+    const query = `CALL getUserStateDetails(${req.user.id}, ${req.query.story})`;
 
     connection.query(query, function(error, data){
-
+        console.log(data);
         if (!error){
-            output.success = true;
-            output.data = data[0][0];
-        } else {
-            output.errors = "there was an error"; // being the mean backend is so fun
-        }
+            let formattedData = formatStateData(data);
 
-        res.send(output);
+            res.send(formattedData);
+        } else {
+           res.send("there was an error");
+        }
     });
 });
+
+//--| Support Functions |--\\
+
+function formatStateData(data) {
+    let formattedData = [];
+
+    for (let i = 0; i < data.length - 1; i++) {
+        formattedData.push(data[i]);
+    }
+
+    return formattedData;
+}
 
 
 
@@ -74,6 +76,9 @@ function errorHandler (err, req, res, next) {
 	res.status(500);
 	res.send('Error, something broke!');
 }
+
+
+
 
 app.listen(PORT, () => {
     console.log("Let's find some ghosts on port: ", PORT);

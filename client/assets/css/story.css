@@ -1,0 +1,241 @@
+* {
+    box-sizing: border-box;
+}
+
+@font-face {
+   font-family: walpergens;
+   src: url(../fonts/walpergens.ttf);
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: walpergens, serif;
+    color: white;
+    background-color: black;
+    background-image: url('../images/story/background_dark.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    letter-spacing: 1.15px;
+    font-size: 4vmin;
+}
+
+#container {
+    text-align: center;
+}
+
+/******** nav bar - desktop ******************/
+
+
+nav {
+    display: block;
+    margin-top: 3%;
+}
+
+nav ul{
+    padding: 0 2%;
+    text-align: center;
+    margin-top: 0;
+}
+
+nav ul li {
+    margin: 0 5%;
+    font-size: 4vmin;
+    display: inline-block;
+    cursor: pointer;
+    text-transform: uppercase;
+}
+
+nav ul li a {
+    color: white;
+    text-decoration: none;
+}
+
+nav ul li:hover{
+    animation: noise-3 1s infinite;
+}
+
+nav ul li::after{
+    content: "|";
+    font-size: 1.5em;
+    margin-left: 0.5em;
+    color: white;
+}
+
+nav ul li::before{
+    content: "|";
+    font-size: 1.5em;
+    margin-right: 0.5em;
+    color: white;
+}
+
+/*********** Nav Bar End  ************/
+/*********** Nav Buttons - Mobile  ************/
+
+.title {
+    text-align: center;
+    font-size: 9vmin;
+    display: inline-block;
+    margin: 0 0 5% 0;
+}
+
+.button-container {
+    height: 10vw;
+    width: 95%;
+    margin: 7% auto;
+    display: none;
+    justify-content: space-between;
+}
+
+a {
+    position: relative;
+}
+
+button {
+    position: relative;
+    border: 2px solid whitesmoke;
+    border-radius: 5%;
+    background-color: rgba(235, 235, 235, .3);
+    color: whitesmoke;
+    font-size: 3.5vmin;
+    font-family: de-walpergens-pica, serif;
+    font-weight: bold;
+    letter-spacing: 1.10px;
+    text-shadow: 1px 1px #252222;
+    /*z-index: 1000;*/
+}
+
+button:hover {
+    background-color: rgba(235, 235, 235, .7);
+    color: #252222;
+    text-shadow: none;
+}
+
+.nav-btn {
+    height: 100%;
+    width: 28vw;
+    z-index: 300;
+}
+
+/*********** Nav Buttons End  ************/
+
+.img-container {
+    width: 45%;
+    margin: auto;
+}
+
+.story-img {
+    width:100%;
+    border: 1px solid whitesmoke;
+    border-radius: 2%;
+}
+
+.mobile{
+    display: none;
+}
+
+.go-link {
+    margin-top: 0;
+    display: block;
+    height: 6vh;
+}
+
+.go-btn {
+    visibility: hidden;
+    position: relative;
+    height: 100%;
+    width: 20vw;
+    background-color: rgba(83, 80, 76, 0.8);
+    text-shadow: none;
+    font-size: 4.5vmin;
+    color: white;
+}
+
+.go-btn:hover {
+    border-color: whitesmoke;
+    background-color: rgba(34, 32, 29, 0.8);
+    color: white;
+}
+
+.about {
+    margin: 5% 7%;
+}
+
+.time {
+    border-bottom: 1px solid whitesmoke;
+    border-top: 1px solid whitesmoke;
+    margin: auto;
+    width: 80%;
+    padding: 5% 0;
+}
+
+.chapters-list {
+    padding: 0 20%;
+    list-style-type: none;
+    margin-bottom: 10%;
+}
+
+.chapter-complete {
+    text-decoration: line-through;
+}
+
+
+#map {
+    height: 60vw;
+    width: 60vw;
+    margin: 5% auto;
+    border: 1px solid whitesmoke;
+    border-radius: 1%;
+}
+
+.starting-point {
+    margin-bottom: 0;
+}
+
+.address-1 {
+    margin: 0;
+}
+
+.address {
+    padding: 0 10%;
+    margin-top: 0;
+}
+
+@keyframes noise-3 {
+    0%, 3%, 5%, 42%, 44%, 100% {opacity: 1; transform: scaleY(1);}
+    4.3% {opacity: 1; transform: scaleY(1.7);}
+    43% {opacity: 1; transform: scaleX(1.5);}
+}
+
+
+
+/************ Media Queries ***************/
+@media screen and (max-width: 768px) {
+    body{
+        background-image: url(../images/mobile/story/background_dark.jpg);
+    }
+
+    .mobile{
+        display: block;
+    }
+
+    .desktop{
+        display: none;
+    }
+    .button-container {
+        display: flex;
+    }
+
+    nav {
+        display: none;
+    }
+
+    .go-btn {
+        visibility: visible;
+    }
+
+    .go-link {
+        margin-top: 5%;
+    }
+}

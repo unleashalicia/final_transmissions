@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="assets/css/library.css">
+    <link rel="icon" type="image/png" href="assets/images/meter.png">
+    <title>Document</title>
+</head>
+<body>
+<section id="story-container">
+    <nav>
+        <ul>
+            <li class="nav-bar"><a href="/profile">Profile</a></li>
+            <li class="nav-bar"><a href="/instructions">Instructions</a></li>
+            <li class="nav-bar"><a href='/logout'>Log Out</a></li>
+       </ul>
+   </nav>
+    <div class="button-container">
+        <a href="/profile"><button class="nav-btn">Profile</button></a>
+        <a href="/instructions"><button class="nav-btn">Instructions</button></a>
+        <a href="/logout"><button class="nav-btn">Log Out</button></a>
+    </div>
+    <div class="triangle-left"></div>
+    <div class="triangle-right"></div>
+    <!--if story is locked/inactive, use this block-->
+    <!--create this div 4 times using pug-->
+    <div class="story">
+        <img class="mobile" src="assets/images/mobile/library/story_img_1.jpg">
+        <img class="desktop" src="assets/images/library/story_img_1.jpg">
+        <div class="title">
+            <h1 class="title-text">Echos from the afterlife</h1>
+        </div>
+        <!-- <a class="go-link">
+            <img src='./assets/images/library/go.png' class="go-btn">Go!</img>
+        </a> -->
+        <div class="lock-container">
+            <img class="lock mobile" src="assets/images/mobile/library/lock.png">
+            <img class="lock desktop" src="assets/images/library/lock.png">
+        </div>
+    </div>
+    <div class="story">
+        <img class="mobile" src="assets/images/mobile/library/story_img_6.jpg">
+        <img class="desktop" src="assets/images/library/story_img_6.jpg">
+        <div class="title">
+            <h1 class="title-text">Story X</h1>
+        </div>
+        <!-- <a class="go-link">
+            <button class="go-btn">Go!</button>
+        </a> -->
+        <div class="lock-container">
+            <img class="lock mobile" src="assets/images/mobile/library/lock.png">
+            <img class="lock desktop" src="assets/images/library/lock.png">
+        </div>
+    </div>
+    <!--if story is unlocked/active, use this block-->
+    <div class="story initial-story">
+        <img class="mobile" src="assets/images/mobile/library/story_img_2.jpg">
+        <img class="desktop" src="assets/images/library/story_img_2.jpg">
+        <div class="title">
+            <h1 class="title-text">Prologue</h1>
+        </div>
+        <a class="book-container">
+            <img src='./assets/images/library/book1.png' class="book" />
+        </a>
+    </div>
+    <div class="story">
+        <img class="mobile" src="assets/images/mobile/library/story_img_5.jpg">
+        <img class="desktop" src="assets/images/library/story_img_5.jpg">
+        <div class="title">
+            <h1 class="title-text">Story Y</h1>
+        </div>
+        <!-- <a class="go-link">
+            <button class="go-btn">Go!</button>
+        </a> -->
+        <div class="lock-container">
+            <img class="lock mobile" src="assets/images/mobile/library/lock.png">
+            <img class="lock desktop" src="assets/images/library/lock.png">
+        </div>
+    </div>
+    <div class="story">
+        <img class="mobile" src="assets/images/mobile/library/story_img_3.jpg">
+        <img class="desktop" src="assets/images/library/story_img_3.jpg">
+        <div class="title">
+            <h1 class="title-text">Story Z</h1>
+        </div>
+        <!-- <a class="go-link">
+            <button class="go-btn">Go!</button>
+        </a> -->
+        <div class="lock-container">
+            <img class="lock mobile" src="./assets/images/mobile/library/lock.png">
+            <img class="lock desktop" src="./assets/images/library/lock.png">
+        </div>
+    </div>
+</section>
+
+<script src="assets/js/library.js"></script>
+</body>
+</html>

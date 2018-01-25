@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="assets/css/story.css">
+    <link rel="icon" type="image/png" href="assets/images/meter.png">
+    <title>Document</title>
+</head>
+<body>
+    <Section id="container">
+        <nav>
+            <ul>
+                <li class="nav-bar"><a href="/profile">Profile</a></li>
+                <li class="nav-bar"><a href="/library">Library</a></li>
+                <li class="log-out nav-bar"><a href='/logout'>Log Out</a></li>
+            </ul>
+        </nav>
+        <div class="button-container">
+            <a href="/profile"><button class="nav-btn">Profile</button></a>
+            <a href="/library"><button class="nav-btn">Library</button></a>
+            <a href="/logout"><button class="nav-btn">Log Out</button></a>
+        </div>
+        <h1 class="title">Prologue</h1>
+        <div class="img-container">
+            <img class="story-img mobile" src="./assets/images/mobile/library/story_img_1.jpg">
+            <img class="story-img desktop" src="./assets/images/library/story_img_1.jpg">
+        </div>
+        <a class="go-link">
+            <button class="go-btn">Go!</button>
+        </a>
+        <div class="about">
+            <p>This is the prologue to the whole series.g</p>
+        </div>
+        <p class="time">Estimated time: 30 minutes</p>
+        <div>
+            <h2>Chapters</h2>
+            <!-- create with loop based on # chapters in story -->
+            <ol class="chapters-list">
+                <li class='chapter'>Chapter 1</li>
+                <li class='chapter'>Chapter 2</li>
+                <li class='chapter'>Chapter 3</li>
+                <li class='chapter'>Chatper 4</li>
+            </ol>
+        </div>
+        <div id="map"></div>
+        <p class='starting-point'>Starting Point:</p>
+        <p class='address-1'>9200 Irvine Center Dr.
+        <p class="address">Irvine, CA 92618</p>
+    </Section>
+    <script src="assets/js/story.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCXqyuEI8wFxFvczjGjlbim35FAuco0oCU&callback=initMap"></script>
+</body>
+</html>

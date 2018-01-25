@@ -4,17 +4,22 @@
         <meta charset="utf-8">
         <meta name="mobile-web-app-capable" content="yes">
         <title>Ghost Meter</title>
+        <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
         <link rel="stylesheet" href="./assets/css/meter.css">
-        <script src="https://code.jquery.com/jquery-3.1.0.js"></script>
-        <script src="./assets/lib/noSleep.min.js"></script>
-        <script src="./assets/lib/howler.js"></script>
+        <script src="/assets/lib/axios.min.js"></script>
+        <script src="/assets/lib/noSleep.min.js"></script>
+        <script src="/assets/lib/howler.js"></script>
         <script type="text/javascript" src="./assets/js/meter.js"></script>
-
+        <link rel="icon" type="image/png" href="assets/images/meter.png">
     </head>
     <body>
       <div id="loading">
-        <h2>Loading</h2>
-        <p class="loading-btn hide">Ready?</p>
+        <h2>Loading Story</h2>
+        <h2 class="loading-btn hide">Click to Proceed</h2>
+        <img class="raven" src="./assets/images/mobile/raven-transparent.gif">
+        <!-- <div class="progress-container">
+            <div class="progress-bar"></div>
+        </div> Commented our for reuse later-->
       </div>
       <div id="gauge-wrapper">
         <div class="topGauge">
@@ -24,28 +29,30 @@
             </div>
             <div class="bottomGauge">
                 <span class="test-output"></span>
+                <span class="next-event hide">Next Chapter <img src="./assets/images/icons/gobeige.png"/></span>
             </div>
         </div>
-
-        <div class="knob-container beige-border">
-          <div id="knob">
-            <div class="range-indicator long"><p>Long Range</p><div class="knob-light long"></div></div>
-            <div class="range-indicator mid"><p>Mid Range</p><div class="knob-light mid" ></div></div>
-            <div class="range-indicator close"><p>Close Range</p><div class="knob-light close"></div></div>
-            <div id="knobImg" class="mid-range-knob"></div>
-          </div>
-        </div>
-
-        <div class="action-container beige-border">
-            <div id="switch"></div>
-            <div id="indicator">
-                <div id="indicator-light"></div>
+            <div class="knob-container beige-border">
+              <div id="knob">
+                <div class="range-indicator long"><p>Long Range</p><div class="knob-light long"></div></div>
+                <div class="range-indicator mid"><p>Mid Range</p><div class="knob-light mid" ></div></div>
+                <div class="range-indicator close"><p>Close Range</p><div class="knob-light close"></div></div>
+                <div id="knobImg" class="long-range-knob"></div>
+              </div>
             </div>
-        </div>
+            <div class="action-container beige-border">
+                <div id="switch"></div>
+                <div id="indicator">
+                    <div id="indicator-light"></div>
+                </div>
+            </div>
         <div class="text-tape"></div>
       </div>
-      <div id="camera">
-        <h1> Camera is on landscape </h1>
-      </div>
+      <iframe id="camera" src="">
+          Your browser does not support iFrames. As such the AR components of this application will not dispaly.
+      </iframe>
+      <p class="tilt">
+          An entity has been summoned, LOOK AROUND!<br/>
+          When you finished interacting, tilt back to your ESR meter<img src="./assets/images/icons/phonetilt.png"/> </p>
     </body>
 </html>

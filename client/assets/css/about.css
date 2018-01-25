@@ -1,0 +1,271 @@
+* {
+    box-sizing: border-box;
+}
+
+@font-face {
+   font-family: walpergens;
+   src: url(../fonts/walpergens.ttf);
+}
+
+body {
+    margin: auto;
+    padding: 0;
+    font-family: walpergens, serif;
+    background-color: #131313;
+    color: white;
+    text-align: center;
+    background-image: url('../images/story/background_dark.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-blend-mode: darken;
+    font-size: 4vmin;
+}
+
+/******** nav bar - desktop ******************/
+
+
+nav {
+    margin-top: 5%;
+    display: block;
+    z-index: 300;
+    position: relative;
+}
+
+nav ul{
+    padding: 0 2%;
+    text-align: center;
+    margin-top: 0;
+}
+
+.nav-bar {
+    /* margin: 0 5%; */
+    font-size: 4vmin;
+    display: inline-block;
+    cursor: pointer;
+    text-transform: uppercase;
+}
+
+.nav-bar a {
+    color: white;
+    text-decoration: none;
+    z-index: 100;
+}
+
+.nav-bar:hover{
+    animation: noise-3 1s infinite;
+}
+
+.nav-bar::after{
+    content: "|";
+    font-size: 1.5em;
+    margin-left: 0.5em;
+    color: white;
+}
+
+.nav-bar::before{
+    content: "|";
+    font-size: 1.5em;
+    margin-right: 0.5em;
+    color: white;
+}
+
+/*********** Nav Bar End  ************/
+/**************  nav mobile *******************/
+
+.button-container {
+    height: 15vw;
+    width: 95%;
+    margin: auto;
+    display: none;
+    justify-content: space-evenly;
+}
+
+a {
+    position: relative;
+}
+
+button {
+    position: relative;
+    border: 2px solid whitesmoke;
+    border-radius: 5%;
+    background-color: rgba(235, 235, 235, .3);
+    color: whitesmoke;
+    font-size: 3.5vmin;
+    font-family: de-walpergens-pica, serif;
+    font-weight: bold;
+    letter-spacing: 1.10px;
+    text-shadow: 1px 1px #252222;
+}
+
+button:hover {
+    background-color: rgba(235, 235, 235, .7);
+    color: #252222;
+    text-shadow: none;
+}
+
+.nav-btn {
+    height: 70%;
+    width: 28vw;
+    z-index: 300;
+    margin-top: 20%;
+}
+
+@keyframes noise-3 {
+    0%, 3%, 5%, 42%, 44%, 100% {opacity: 1; transform: scaleY(1);}
+    4.3% {opacity: 1; transform: scaleY(1.7);}
+    43% {opacity: 1; transform: scaleX(1.5);}
+}
+
+/**************  nav mobile end *******************/
+
+h1 {
+    font-size: 2em;
+}
+
+section {
+    margin: 0 5% 5% 5%;
+    padding-bottom: 5%;
+    border-bottom: 1px solid whitesmoke;
+}
+
+.sub-menu {
+    list-style: none;
+    padding: 5% 0 0 0;
+}
+
+.sub-menu li a {
+    margin: 2%;
+    color: white;
+    text-decoration: none;
+}
+
+#inspiration {
+    font-size: 4vmin;
+}
+
+.card-pack {
+    text-decoration: none;
+    color: whitesmoke;
+}
+
+#faq ul {
+    list-style: none;
+    padding: 0;
+    max-width: 768px;
+    margin: auto;
+}
+
+#faq p {
+    color: #9c9b9b;
+    margin-top: 0;
+}
+
+#faq h3 {
+    margin-bottom: 0;
+}
+
+.top {
+    color: white;
+    float: right;
+    text-decoration: none;
+}
+
+.git {
+    filter: invert(100%);
+    width: 40px;
+    position: absolute;
+    top: 30%;
+    transform: translate(0, -50%);
+}
+
+.team-member h2 {
+    display: inline-block;
+    margin-right: 5%;
+    color: white;
+    position: relative;
+}
+
+.thanks {
+    font-size: 3.5vmin;
+}
+
+#video {
+    margin: auto;
+    height: 400px;
+}
+
+
+
+/************** media query ********************/
+
+@media screen and (max-width: 700px){
+    iframe {
+        width: 80% !important;
+    }
+}
+
+@media screen and (max-width: 768px){
+    .button-container {
+        display: flex;
+    }
+
+    nav {
+        display: none;
+    }
+
+    .card-img {
+        width: 50%;
+    }
+
+    .team-img {
+        width: 85%;
+    }
+
+}
+
+@media screen and (min-width: 768px){
+    section {
+        padding: 0 3% 3% 3%;
+        margin-bottom: 0;
+    }
+
+    h1 {
+        font-size: 1.5em;
+    }
+
+    .sub-menu {
+        padding: 0;
+    }
+
+    .team-img {
+        width: 70%;
+    }
+
+    body {
+        font-size: 3.5vmin;
+    }
+
+    .team-member h2 {
+        font-size: 4vmin;
+    }
+
+    #contact {
+        margin-bottom: 5%;
+    }
+}
+
+@media screen and (min-width: 950px){
+    .team-member {
+        width: 48%;
+        display: inline-block;
+    }
+
+}
+
+@media screen and (min-width: 1430px){
+    .team-member {
+        width: 33%;
+    }
+
+}

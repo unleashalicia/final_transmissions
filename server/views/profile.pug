@@ -3,42 +3,57 @@ html
         meta(charset="utf-8")
         meta(name="viewport" content="width=device-width, initial-scale=1.0")
         script(src="assets/js/profile.js" type="text/javascript")
+        link(rel="stylesheet" href="assets/css/fog.css" type="text/css")
         link(rel="stylesheet" href="assets/css/profile.css" type="text/css")
-        title Profile Page
+        link(rel="icon" type="image/png" href="../../assets/css/story.css")
+        title #{userdata[0].user_name}'s Profile
 
     body
         #user-container
+            .modal.hide
+                .modal-content
+                    h2 Confirming Request...
             .logOut-container.hide
                 .logOut
                     h2 Confirm Log Out
-                    button Yes
-                    button No
+                    button
+                        a(href="/logout") Yes
+                    button.no No
             nav
                 ul
-                    li.profile Profile
-                    li.stories Stories
-                    li.log-out Log Out &#8594;
-            .instruction.hide
-                div
-                    div You can only experience the story on a mobile device
-                        span [close]
+                    li.to-instructions 
+                        a(href="/instructions") Instructions
+                    li.to-library 
+                        a(href="/library") Library
+                    li.log-out Log Out
+            .button-container
+                a(href="/instructions")
+                    button.nav-btn Instructions
+                a(href="/library")
+                    button.nav-btn Library
+                button.nav-btn.log-out Log Out
             .profile-container
-                div
-                    img.profile-photo(src="assets/images/profile/cat.jpg")
+                h1 USER PROFILE
+                .photo-container
+                    img#profile-photo.profile-photo(src="assets/images/profile/xray" + (Math.floor(Math.random() * 3) + 1) + ".jpg")
+                    img.polaroid.mobile(src="assets/images/mobile/profile/polaroid.png")
+                    img.edit-photo.mobile(src="assets/images/mobile/profile/editicon.png")
+                    img.polaroid.desktop(src="assets/images/profile/polaroid.png")
+                    img.edit-photo.desktop(src="assets/images/profile/editicon.png")
                 .profile-data
-                    p
-                        span.profile-details USERNAME:
-                        span.user-details-name= username
-                        span.edit EDIT
-                    p
-                        span.profile-details EMAIL:
-                        span.user-details-email= email
-                        span.edit EDIT
-                    form.account-settings.hide
-                        label username
-                        input.username(name="username" type="text")
-                        label email
-                        input.email(name="email" type="email")
-                        .button-holder
-                            button.submit SUBMIT CHANGES
-                            button.cancel CANCEL
+                    h4.profile-label USERNAME
+                    h4.user-details= userdata[0].user_name
+                    h4.profile-label E-MAIL
+                        img.edit-text.mobile(src="assets/images/mobile/profile/edittext.png")
+                        img.edit-text.desktop(src="assets/images/profile/edittext.png")
+                    .email-holder
+                        h4.user-details.email= userdata[0].email
+                    .story-container
+                        h3 CURRENT STORIES 
+                        .story-list 
+                            if storydata[0]
+                                each item in storydata
+                                    li 
+                                        a(href="/story/id/" + item.id)= item.name
+                            else
+                                p Visit the library!

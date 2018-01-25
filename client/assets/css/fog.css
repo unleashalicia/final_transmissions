@@ -1,0 +1,28 @@
+#user-container{
+     background: url(../images/profile/smoke.png) no-repeat;
+     background-size: cover;
+      -webkit-animation: 40s linear FOG infinite;
+      animation: 40s linear FOG infinite;
+}
+
+
+@keyframes FOG {
+        0% {background-position:left;}
+        30% {opacity:.5;}
+        80% {opacity: .8;}
+        100%{background-position:right; opacity:1;}
+}
+
+@-moz-keyframes FOG {
+   0% {background-position:left;}
+    30% {opacity:.5;}
+    80% {opacity: .8;}
+    100%{background-position:right; opacity:1;}
+}
+
+@-webkit-keyframes FOG {
+    0% {background-position:left;}
+    30% {opacity:.5;}
+    80% {opacity: .8;}
+    100%{background-position:right; opacity:1;}
+}

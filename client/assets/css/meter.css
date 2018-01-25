@@ -9,44 +9,92 @@ body * {
 }
 
 #loading{
-  height: 100vh;
-  width: 100vw;
-  background: black;
-  text-align: center;
-  z-index: 5;
-  position: absolute;
-  top: 0;
-  left: 0;
+    height: 100%;
+    width: 100vw;
+    /* background: #3c3c3c; */
+    background-image: url(../images/esr-meter/fog.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    text-align: center;
+    z-index: 5;
+    position: absolute;
+    top: 0;
+    left: 0;
 }
 
 .loading-btn, #loading h2{
-  font-family: demonsker;
-  color: white;
-  background: transparent;
-  font-size: 21vmin;
-  display: inline-block;
-  position: absolute;
-  bottom: 35%;
-  left: 22%;
+    font-family: demonsker;
+    color: #2b2b2b;
+    text-shadow: 0px 8px 15px #f7efef;
+    background: transparent;
+    font-size: 15vmin;
+    position: absolute;
+    bottom: 14%;
+    text-align: center;
+    width: 100%;
 }
 .loading-btn{
-  overflow: hidden;
-  white-space: nowrap;
-  width: 52%;
-  animation: appear 4s steps(60,end), pulse 1s linear infinite;
+    overflow: hidden;
+    white-space: nowrap;
+    width: 52%;
+    animation: pulse 1s linear infinite;
 }
 
-/*#loading h2{*/
-  /*animation: pulse 1s linear infinite;*/
-/*}*/
-
-.hide{
-  display: none;
+.raven {
+    position: relative;
+    display: block;
+    margin: auto;
+    height: 50vh;
+    width: 90%;
+    animation: noise-3 2s linear infinite;
+    top: 10%;
 }
 
+.progress-container {
+    width: 65%;
+    background: #d5cfcf6e;
+    margin: auto;
+    position: relative;
+    bottom: -30%;
+    border-radius: 5px;
+}
+
+.progress-bar {
+    position: relative;
+    width: 10%;
+    height: 5vh;
+    background: #2b2b2b;
+    border-radius: 5px;
+    transition: .5s;
+}
+.progress-bar::after {
+    content: "";
+    display: inline-block;
+    position: absolute;
+    height: 80%;
+    width: 70px;
+    right: -10px;
+    bottom: 7px;
+}
+
+@keyframes noise-3 {
+    0%,3%,5%,42%,44%,100% {opacity: 1; transform: scaleY(1);}
+    4.3% {opacity: 1; transform: scaleY(4);}
+    43% {opacity: 1; transform: scaleX(10) rotate(60deg);}
+}
+
+#camera{
+    display: none;
+    position: absolute;
+    border: none;
+    height: 100%;
+    width: 100%;
+    top: 0;
+    left: 0;
+}
 
 .topGauge {
-    width: 90vmin;
+    width: 85vmin;
     height: 41.85vmin;
     position: absolute;
     top: 5%;
@@ -60,7 +108,7 @@ body * {
     width: 100%;
     height: 41.85vmin;
     position: absolute;
-    bottom: -100%;
+    bottom: -84%;
     left: 50%;
     transform: translateX(-50%);
     background-image: url('../images/esr-meter/meter-bottom.png');
@@ -69,12 +117,64 @@ body * {
     text-align: center;
 }
 
+.next-event{
+    font-family: walpergens;
+    display: inline-block;
+    text-transform: uppercase;
+    font-size: medium;
+    color: #cbba63;
+    width: 70%;
+    animation: textglow 1s infinite;
+    border: 1px solid;
+    padding: 1% 0;
+    border-radius: 9px;
+    position: relative;
+}
+
+.next-event:active{
+    filter: invert(100%);
+}
+
+.next-event img{
+    position: absolute;
+    height: 20px;
+}
+
+.tilt{
+    display: none;
+    color: #cbba63;
+    position: absolute;
+    text-align: center;
+    font-size: 5vmin;
+    width: 100%;
+    font-family: walpergens;
+    bottom: 0;
+}
+
+.tilt img{
+    filter: invert(100%);
+    margin-left: 10px;
+    height: 7vmin;
+}
+
+
+
+
+.landscape{
+    display: inline-block;
+    text-align: center;
+    position: absolute;
+    width: 27%;
+    bottom: 5%;
+    right: 20px;
+}
+
 .needleGauge {
     background-color: red;
-    height: 100%;
+    height: 75%;
     width: 0.45%;
     position: absolute;
-    bottom: -15%;
+    bottom: 10%;
     left: 50%;
     transform: translateX(-50%) rotateZ(-75deg); /* +50 is max */
     transform-origin: bottom;
@@ -94,46 +194,46 @@ body * {
 }
 
 .range-indicator{
-  position: absolute;
-  color: white;
-  font-size: 2vmin;
-  text-transform: uppercase;
+    position: absolute;
+    color: white;
+    font-size: 2vmin;
+    text-transform: uppercase;
 }
 .knob-light{
-  border-radius: 100%;
-  background-color: grey;
-  position: absolute;
-  left: 44%;
-  height: 3vmin;
-  width: 3vmin;
+    border-radius: 100%;
+    background-color: grey;
+    position: absolute;
+    left: 44%;
+    height: 3vmin;
+    width: 3vmin;
 }
 .selected {
-  background-color: red;
+    background-color: red;
 }
 
 .range-indicator.close{
-  transform: rotate(90deg);
-  top: 48%;
-  right: -5%;
+    transform: rotate(90deg);
+    top: 48%;
+    right: -5%;
 }
 
 .range-indicator.mid{
-  left: 37%;
+    left: 37%;
 }
 
 
 .range-indicator.long{
-  transform: rotate(-90deg);
-  top: 50%;
-  left: -5%;
+    transform: rotate(-90deg);
+    top: 50%;
+    left: -5%;
 }
 
 .long-range-knob{
-  transform: rotateZ(-90deg);
+    transform: rotateZ(-90deg);
 }
 
 .close-range-knob{
-  transform: rotateZ(90deg);
+    transform: rotateZ(90deg);
 }
 
 
@@ -184,18 +284,18 @@ body * {
 }
 
 #knobImg{
-  transition: 0.5s;
-  position: relative;
-  top: 30%;
-  height: 50%;
-  width: 50%;
-  background-image: url("../images/esr-meter/meter-knob.png");
-  background-size: contain;
-  background-position: center center;
-  background-repeat: no-repeat;
-  filter: grayscale(100%);
-  transition-duration: 0.5s;
-  margin: 0 auto;
+    transition: 0.5s;
+    position: relative;
+    top: 30%;
+    height: 50%;
+    width: 50%;
+    background-image: url("../images/esr-meter/meter-knob.png");
+    background-size: contain;
+    background-position: center center;
+    background-repeat: no-repeat;
+    filter: grayscale(100%);
+    transition-duration: 0.5s;
+    margin: 0 auto;
 }
 
 #indicator {
@@ -234,14 +334,14 @@ body * {
 
 .action-container {
     width: 34vmin;
-    height: 56vmin;
+    height: 50vmin;
     top: 55%;
     right: 6%;
 }
 
 .knob-container {
-    width: 51vmin;
-    height: 56vmin;
+    width: 50vmin;
+    height: 50vmin;
     top: 55%;
     left: 6%;
 }
@@ -272,23 +372,26 @@ body * {
 }
 
 .fade-out {
-  opacity: 1;
-  animation: fadeOut .5s ease-out 1 forwards;
-  -webkit-transition: opacity 2s ease-out;
-  -moz-transition: opacity 2s ease-out;
-  -o-transition: opacity 2s ease-out;
-  -ms-transition: opacity 2s ease-out;
-  transition: opacity 2s ease-out;
+    opacity: 1;
+    animation: fadeOut .5s ease-out 1 forwards;
+    -webkit-transition: opacity 2s ease-out;
+    -moz-transition: opacity 2s ease-out;
+    -o-transition: opacity 2s ease-out;
+    -ms-transition: opacity 2s ease-out;
+    transition: opacity 2s ease-out;
 }
 
 .fade-out-transition {
-  opacity: 1;
-  animation: fadeOut 2s ease-out 1 forwards;
-  -webkit-transition: opacity 2.5s ease-out;
-  -moz-transition: opacity 2.5s ease-out;
-  -o-transition: opacity 2.5s ease-out;
-  -ms-transition: opacity 2.5s ease-out;
-  transition: opacity 2.5s ease-out;
+    opacity: 1;
+    animation: fadeOut 2s ease-out 1 forwards;
+    -webkit-transition: opacity 2.5s ease-out;
+    -moz-transition: opacity 2.5s ease-out;
+    -o-transition: opacity 2.5s ease-out;
+    -ms-transition: opacity 2.5s ease-out;
+    transition: opacity 2.5s ease-out;
+}
+.hide{
+    display: none;
 }
 
 /**********KEY FRAMES / FONT FACE START********************/
@@ -312,35 +415,56 @@ body * {
     /* 99% {box-shadow: 0 0 0px orange;} */
 }
 
+@keyframes textglow {
+    0% {text-shadow: 0px 0px 0px yellow;}
+    50% {text-shadow:-14px 0px 13px lightgreen;}
+    /* 99% {box-shadow: 0 0 0px orange;} */
+}
+
+
 @keyframes appear {
-  from {width: 0; opacity: 0;}
+    from {width: 0; opacity: 0;}
 }
 @keyframes pulse {
-	0% { transform: scale(1); }
-	30% { transform: scale(1); }
-	40% { transform: scale(1.08); }
-	50% { transform: scale(1); }
-	60% { transform: scale(1); }
-	70% { transform: scale(1.05); }
-	80% { transform: scale(1); }
-	100% { transform: scale(1); }
+    0% { transform: scale(1); }
+    30% { transform: scale(1); }
+    40% { transform: scale(1.08); }
+    50% { transform: scale(1); }
+    60% { transform: scale(1); }
+    70% { transform: scale(1.05); }
+    80% { transform: scale(1); }
+    100% { transform: scale(1); }
 }
 
 
 @font-face {
-  font-family: victorious;
-  src: url(../fonts/victorious.ttf);
+    font-family: victorious;
+    src: url(../fonts/victorious.ttf);
 }
 
 @font-face {
-  font-family: demonsker;
-  src: url(../fonts/demonsker.ttf)
+    font-family: demonsker;
+    src: url(../fonts/demonsker.ttf);
+}
+
+@font-face {
+    font-family: walpergens;
+    src: url(../fonts/walpergens.ttf);
 }
 
 @keyframes fadeOut {
-  to {
-    opacity: 0;
-  }
+    to {
+        opacity: 0;
+    }
 }
 
 /**********KEY FRAMES/ FONT FACE  END********************/
+@media only screen and (orientation : landscape) {
+
+    .raven{
+        height: 46vh;
+        width: 40%;
+        top: 5%;
+    }
+
+}

@@ -1,0 +1,305 @@
+* {
+    box-sizing: border-box;
+}
+
+@font-face {
+   font-family: walpergens;
+   src: url(../fonts/walpergens.ttf);
+}
+
+body {
+    margin: auto;
+    padding: 0;
+    font-family: walpergens, serif;
+    overflow: hidden;
+    height: 100vh;
+    width: 100vw;
+}
+
+#story-container {
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+/******** nav bar - desktop ******************/
+
+
+nav {
+    display: block;
+    z-index: 300;
+    position: relative;
+}
+
+nav ul{
+    padding: 0 2%;
+    text-align: center;
+    margin-top: 2%;
+}
+
+.nav-bar {
+    font-size: 4vmin;
+    display: inline-block;
+    cursor: pointer;
+    text-transform: uppercase;
+}
+
+.nav-bar a {
+    color: white;
+    text-decoration: none;
+    z-index: 100;
+}
+
+.nav-bar:hover{
+    animation: noise-3 1s infinite;
+}
+
+.nav-bar::after{
+    content: "|";
+    font-size: 1.5em;
+    margin-left: 0.5em;
+    color: white;
+}
+
+.nav-bar::before{
+    content: "|";
+    font-size: 1.5em;
+    margin-right: 0.5em;
+    color: white;
+}
+
+/*********** Nav Bar End  ************/
+
+
+.button-container {
+    height: 10vw;
+    width: 95%;
+    margin: auto;
+    display: none;
+    justify-content: space-between;
+}
+
+a {
+    position: relative;
+}
+
+button {
+    position: relative;
+    border: 2px solid whitesmoke;
+    border-radius: 5%;
+    background-color: rgba(235, 235, 235, .3);
+    color: whitesmoke;
+    font-size: 3.5vmin;
+    font-family: de-walpergens-pica, serif;
+    font-weight: bold;
+    letter-spacing: 1.10px;
+    text-shadow: 1px 1px #252222;
+}
+
+button:hover {
+    background-color: rgba(235, 235, 235, .7);
+    color: #252222;
+    text-shadow: none;
+}
+
+.nav-btn {
+    height: 100%;
+    width: 28vw;
+    z-index: 300;
+    margin-top: 20%;
+}
+
+.triangle-left {
+    width: 0;
+    height: 0;
+    border-top: 10px solid transparent;
+    border-right: 20px solid rgba(235, 235, 235,.9);
+    border-bottom: 10px solid transparent;
+    position: absolute;
+    top: 41%;
+    left: 20px;
+    transform: translate(-50%, -50%);
+    z-index: 300;
+}
+
+.triangle-right {
+    width: 0;
+    height: 0;
+    border-top: 10px solid transparent;
+    border-left: 20px solid rgba(235, 235, 235,.9);
+    border-bottom: 10px solid transparent;
+    position: absolute;
+    top: 41%;
+    right: 0%;
+    transform: translate(-50%, -50%);
+    z-index: 300;
+
+}
+
+.title {
+    height: 20%;
+    position: relative;
+    top: 52%;
+    background-color: rgba(235, 235, 235, .5);
+    width: 100%;
+    color: whitesmoke;
+    text-align: center;
+    z-index: 100;
+}
+
+.title-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    margin: 0;
+    font-size: 10.5vmin;
+    text-shadow: 2px 2px #252222;
+    width: 100%;
+}
+
+.lock:hover {
+    filter: invert(80%);
+}
+
+/**************** swipe css ****************/
+
+img {
+    margin: auto;
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    width: 100vw;
+    height: 100vh;
+    line-height: 250px;
+    text-align: center;
+}
+
+.mobile{
+    display: none;
+}
+
+.story {
+    height: 100vh;
+    display: none;
+}
+
+.hide-img {
+    display: none;
+}
+
+.show-img {
+    display: block;
+}
+
+.lock-container {
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 200;
+    background-color: rgba(37, 35, 35, 0.1);
+}
+
+.lock {
+    margin: auto;
+    width: 50vw;
+    height: 30vh;
+    text-align: center;
+    filter: invert(95%);
+    position: absolute;
+    bottom: 25%;
+    left: 0;
+}
+
+.book-container {
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 200;
+    background-color: rgba(37, 35, 35, 0.1);
+}
+
+.book {
+    margin: auto;
+    width: 43vw;
+    height: 23vh;
+    text-align: center;
+    position: absolute;
+    bottom: 20%;
+    left: 0;
+}
+
+@keyframes noise-3 {
+    0%, 3%, 5%, 42%, 44%, 100% {opacity: 1; transform: scaleY(1);}
+    4.3% {opacity: 1; transform: scaleY(1.7);}
+    43% {opacity: 1; transform: scaleX(1.5);}
+}
+
+
+/************ Media Queries ****************/
+
+@media screen and (max-width: 768px){
+    .button-container {
+        display: flex;
+    }
+
+    nav {
+        display: none;
+    }
+
+    body {
+        background-color: black;
+        max-width: 800px;
+    }
+
+    #story-container {
+        max-width: 980px;
+    }
+
+    img {
+        max-width: 980px;
+    }
+    .mobile{
+        display: block;
+    }
+
+    .desktop{
+        display: none;
+    }
+}
+
+@media screen and (min-width: 768px) {
+    .lock {
+        width: 20vw;
+        bottom: 20%;
+    }
+
+    body {
+        background-color: black;
+        max-width: 800px;
+    }
+
+    #story-container {
+        max-width: 800px;
+        position: absolute;
+    }
+
+    img {
+        max-width: 800px;
+    }
+
+    .title {
+        height: 25%;
+    }
+
+    .book {
+        width: 20vw;
+    }
+
+}

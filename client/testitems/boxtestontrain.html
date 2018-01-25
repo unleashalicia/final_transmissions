@@ -1,0 +1,182 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Finale Demo</title>
+    <link rel="stylesheet" type="text/css" href="../assets/css/ARstyle.css" />
+
+    <script src="../assets/lib/aframe.js"></script>
+</head>
+<body style='margin : 0px; overflow: hidden;'>
+
+<a-scene>
+
+    <a-assets>
+        <img id="wood" src="../assets/images/AR/wood.jpg"/>
+        <img id="sky" src="../assets/images/AR/alcatraz.jpg"/>
+    </a-assets>
+
+    <a-sky src="#sky"></a-sky>
+
+    <a-entity>
+        <a-box src="#wood" height="1" width="1" depth="1" position="0 -1 -5" rotation="0 90 0">
+            <a-animation
+                    attribute="rotation"
+                    from="15 90 -15"
+                    to="-15 90 15"
+                    dur="100"
+                    direction="alternate-reverse"
+                    easing="linear"
+                    repeat="indefinite"
+            >
+            </a-animation>
+        </a-box>
+    </a-entity>
+
+    <a-entity
+            id="white"
+            light="color: white;
+            type: directional;
+            intensity: 1.0"
+            position="0 0 9"
+            rotation="0 0 90"
+            target="0 0 -5"
+    >
+    </a-entity>
+
+    <a-entity
+            id="white"
+            light="color: white;
+            type: directional;
+            intensity: 1.0"
+            position="9 0 0"
+            rotation="90 0 0"
+            target="0 0 -5"
+    >
+    </a-entity>
+    <a-entity
+            id="white"
+            light="color: white;
+            type: directional;
+            intensity: 1.0"
+            position="0 0 -9"
+            rotation="180 0 0"
+            target="0 0 -5"
+    >
+    </a-entity>
+    <a-entity
+            id="white"
+            light="color: white;
+
+            type: directional;
+            intensity: 1.0"
+            position="-9 0 0"
+            rotation="270 0 0"
+            target="0 0 -5"
+    >
+    </a-entity>
+    </a-marker>
+
+
+</a-scene>
+
+<script>
+
+
+    window.addEventListener("load", function () {
+        createSpheres(200);
+    });
+
+    const findRange = (start, end) => {
+        return (Math.random() * (end-start) ) + start;
+    };
+
+    function setAttributes(element, attributeObj) {
+
+        for (let item in attributeObj){
+            element.setAttribute(item, attributeObj[item]);
+        }
+
+    };
+
+
+
+    const createSpheres = (amount) => {
+        const scene = document.querySelector('a-scene');
+
+        for (let creator=0; creator<amount; creator++) {
+            let entity = document.createElement('a-entity');
+            let sphere = document.createElement('a-sphere');
+            let move = document.createElement('a-animation');
+            let fade = document.createElement('a-animation');
+            let random = Math.random();
+            let posXdest = null;
+            let color = null;
+            let posYdest = findRange(5, 7);
+            let dur = findRange(200, 3000);
+            let radius = findRange(0.025, 0.07);
+
+            if (random < .2){
+                posXdest = findRange(-1, 1);
+                color = "black";
+            } else if (random < .7){
+                posXdest = findRange(-2, 2);
+                color = "white";
+            } else if (random < .95){
+                posXdest = findRange(-3, 3);
+                color = "white";
+            } else {
+                posXdest = findRange(-4, 4);
+                color = "white";
+            }
+
+            let sphereAttr = {
+                material: {
+                    color: color
+                },
+                otherAttr: {
+                    opacity: "0.7",
+                    radius: radius
+                }
+            };
+
+            let moveAttr = {
+                attribute: "position",
+                dur: dur,
+                from: "0 -1 -5",
+                to: `${posXdest} ${posYdest} -3.5`,
+                easing: 'linear',
+                repeat: 'indefinite'
+            };
+
+            let fadeAttr = {
+                attribute: "opacity",
+                dur: dur,
+                from: "0.7",
+                to: "0",
+                easing: "linear",
+                repeat: "indefinite"
+            };
+
+
+            sphere.setAttribute('material', sphereAttr.material);
+            setAttributes(sphere, sphereAttr.otherAttr);
+
+            setAttributes(move, moveAttr);
+            setAttributes(fade, fadeAttr);
+
+            entity.appendChild(move);
+            sphere.appendChild(fade);
+            entity.appendChild(sphere);
+            scene.appendChild(entity);
+
+        }
+    }
+
+
+</script>
+</body>
+</html>
