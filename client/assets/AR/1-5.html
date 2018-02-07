@@ -276,12 +276,10 @@
 
     window.addEventListener("markerFound", function(){
         if (!found && window.parent.distance < window.parent.target.talkThreshold){
-            console.log("MARKER FOUND!");
 
             found = true;
             var canvas = document.querySelector('.a-canvas');
             canvas.style.display = "block";
-
 
             var timer = setTimeout(function(){
                 window.parent.markerListener();
@@ -289,11 +287,7 @@
 
         }
     });
-
-
-
-
-
+    
 </script>
 </body>
 </html>

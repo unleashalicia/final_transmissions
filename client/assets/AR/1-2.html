@@ -75,7 +75,6 @@
 
         window.addEventListener("markerFound", function(){
             if (!found && window.parent.distance < window.parent.target.talkThreshold){
-                console.log("MARKER FOUND!");
 
                 found = true;
                 var canvas = document.querySelector('.a-canvas');
@@ -88,31 +87,6 @@
 
             }
         });
-
-//        var found = false;
-//
-////        var water1 = document.getElementById("water1");
-////        var water2 = document.getElementById("water2");
-//
-////
-////        window.addEventListener("load", function(){
-////            water1.currentTime = 1000;
-////            water1.play();
-////            water2.currentTime = 6000;
-////            water2.playbackRate = 1.3;
-////            water2.play();
-////        });
-//
-//        window.addEventListener("markerFound", function(){
-//            if (!found){
-//                console.log("MARKER FOUND!");
-//                found = true;
-//                var timer = setTimeout(function(){
-//                    window.parent.markerListener();
-//                }, 5000);
-//
-//            }
-//        });
 
 
     </script>
