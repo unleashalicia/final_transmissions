@@ -203,6 +203,14 @@ section {
     iframe {
         width: 80% !important;
     }
+
+    #player, .fallback, body, html, iframe {
+        height: 100%;
+    }
+
+    #video {
+        height: 300px;
+    }
 }
 
 @media screen and (max-width: 768px){

@@ -21,6 +21,7 @@ var sounds = {
 };
 var speaking;
 var looping;
+var ending;
 var effect;
 var target = {
     latitude: 0,
@@ -32,7 +33,7 @@ var distance;
 var knobMode='long';
 var action;
 var next = false;
-var seen = false;
+var chapter;
 //****************************************
 //****************************************
 //--|
@@ -68,11 +69,13 @@ function loadSound(location, setLoop){
 function loadAll(){
     let count = 0;
     for (let i in sounds.sources){
-        var loop = false;
+        var loop;
         if (i === 'outerAudio'){
             loop = true;
+        } else {
+            loop = false;
         }
-        if (count === 1){
+        if (count === 1 && chapter < 5){
             sounds.numLoaded++;
         } // get rid of this once valid sounds start getting passed from the db
         sounds[count] = loadSound(sounds.sources[i], loop);
@@ -93,16 +96,19 @@ function handleAudioPlayback(dist){
         sounds[0].fade(0.7,0,1000,looping);
     }
 
-    if (dist <= target.talkThreshold && !sounds[1].playing(speaking) && !sounds.speakingPlayed && deviceOn) {
+    if (dist <= target.talkThreshold && !sounds[1].playing(speaking) && deviceOn) {
         if (!speaking){
             speaking = sounds[1].play();
+            sounds[1].fade(0,0.9,1500,speaking);
             sounds[1].on('end',function(){
                 sounds.speakingPlayed = true;
             }, speaking);
         } else {
-            sounds[1].play(speaking);
+            if (!sounds.speakingPlayed){
+                sounds[1].play(speaking);
+                sounds[1].fade(0,0.9,1500,speaking);
+            }
         }
-        sounds[1].fade(0,0.9,1500,speaking);
     } else if (dist > target.talkThreshold && sounds[1].playing(speaking)){
         sounds[1].fade(0.9,0,1500,speaking).once('fade',function(){
             sounds[1].pause(speaking);
@@ -429,6 +435,7 @@ function handleStateAssetLoading(data){
     const miscAssets = data.data[0][0];
     const cam = document.getElementById('camera');
     const storyID = sessionStorage.getItem('story_id');
+    chapter = miscAssets.state_id;
 
     target.latitude = parseFloat(miscAssets.lat);
     target.longitude = parseFloat(miscAssets.lon);
@@ -485,8 +492,12 @@ function markerListener(){
     const tilt = document.querySelector('.tilt');
     nextEvent.classList.remove("hide");
     tilt.style.display="block";
+    if (chapter == 5){
+        ending = sounds[2].play();
+        sounds[2].fade(0,0.9,1500,ending);
+        sounds[1].fade(0.9,0.5,1500,speaking);
+    }
 }
-
 //****************************************
 //**************END***********************
 //****************************************
