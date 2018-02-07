@@ -56,7 +56,7 @@ function loadSound(location, setLoop){
                 const loadingBtn = document.querySelector('.loading-btn');
                 const headerFade = document.querySelector('#loading h2');
 
-                sounds.ready = true; //used for debugging
+                sounds.ready = true;
                 headerFade.classList.add('fade-out');
                 loadingBtn.classList.remove('hide');
             }
@@ -77,7 +77,7 @@ function loadAll(){
         }
         if (count === 1 && chapter < 5){
             sounds.numLoaded++;
-        } // get rid of this once valid sounds start getting passed from the db
+        }
         sounds[count] = loadSound(sounds.sources[i], loop);
         count++;
     }
@@ -134,10 +134,10 @@ function handleEventHandlers(){
 
     knobImg.addEventListener('click', function(){
         knobRange(knobImg);
-    });//turning the knob for range meter switch;
-    uiSwitch.addEventListener('click',flipSwitch);//turns on the gadget
+    });
+    uiSwitch.addEventListener('click',flipSwitch);
 
-    window.addEventListener('orientationchange',handleOrientation);//switch from meter to camera;
+    window.addEventListener('orientationchange',handleOrientation);
 
 
     nextEvent.addEventListener('click', moveToNextChapter);
@@ -277,7 +277,6 @@ function handleMeter(){
 //++
 //++
 function fullscreen(){
-    //use to check if fullscreen is available by asking user permission by clicking on the "READY" (#loading ) multiple ifs for each type of browser
     document.getElementById('loading').classList.add('hide');
     var gauge = document.getElementById('gauge-wrapper');
     if(gauge.requestFullscreen){
@@ -293,20 +292,15 @@ function fullscreen(){
 //++
 //++
 function handleOrientation(event){
-    //use to listen for device orientation change to switch from ESR or Ghost CAM
     const gaugeWrapper = document.getElementById('gauge-wrapper');
     const camera = document.getElementById('camera');
     const tilt = document.querySelector('.tilt');
 
     if(screen.orientation.type === 'portrait-primary'){
-        // gaugeWrapper.classList.remove('hide');
-        // camera.classList.add('hide');
         gaugeWrapper.style.display="block"
         camera.style.display="none"
         tilt.style.display="none"
     }else{
-        // gaugeWrapper.classList.add('hide');
-        // camera.classList.remove('hide');
         gaugeWrapper.style.display="none"
         camera.style.display="block"
     }
@@ -321,8 +315,6 @@ function handleOrientation(event){
 //++
 //++
 function getLocation() {
-    //our general purpose call for location data
-    console.log('getting location');
     var options = {
         enableHighAccuracy: true,
         timeout: 5000,
@@ -330,10 +322,8 @@ function getLocation() {
     };
 
     if (!coord && navigator.geolocation) {
-        //If we have not gotten a location then call for one
         navigator.geolocation.getCurrentPosition(showSuccess,showError,options);
     } else if (navigator.geolocation){
-        //otherwise, watch the position
         watchHandler = navigator.geolocation.watchPosition(showSuccess,showError,options);
     }else {
         location = "Geolocation is not supported by this browser.";
@@ -341,13 +331,9 @@ function getLocation() {
 
 
     function showSuccess(pos) {
-        //Since we succeeded, clear the errors
         errorCount = 0;
 
-        //pos also includes pos.timestamp if needed later
-        //moved ready modal details into audio load callback
         coord = pos.coords;
-        console.log('Coord Success');
 
         distance = getDistanceFromLatLonInKm(coord.latitude,coord.longitude,target.latitude,target.longitude);
 
@@ -363,8 +349,6 @@ function getLocation() {
         console.warn(`ERROR(${err.code}) - (${errorCount}) bad calls`);
 
         if (errorCount > 10){
-            //tell the user they are having issues with their gps connection
-            //possibly end app usage for later resume
             window.location.href = "/profile";
         }
     }
@@ -385,7 +369,6 @@ function getDistanceFromLatLonInKm(lat1,lon1,lat2,lon2) {
 //++
 //++
 function deg2rad(deg) {
-    //used in the get distance calc in order to use radians
     return deg * (Math.PI/180)
 }
 //****************************************
@@ -423,8 +406,6 @@ function grabChapterAssets(){
     const storyID = sessionStorage.getItem('story_id');
 
     axios.get('/state',{params : {story: storyID}}).then( handleStateAssetLoading ).catch( error => {
-        console.warn('Axios GET from state issue');
-        console.log(error);
         window.location.href = "/story/id/" + storyID;
     });
 }
@@ -472,11 +453,6 @@ function makeVisible(number){
             shapeArray[i].classList.add('hide');
         }
     }
-}
-//++
-//++
-function loadARObjects(){
-    console.log("I'm loading your objects!!!");
 }
 //++
 //++
