@@ -5,7 +5,7 @@ const session = require('express-session');
 const path = require('path');
 
 const app = express();
-const PORT = 8000;
+const PORT = 9000;
 
 
 app.set("view engine","pug");
@@ -22,8 +22,6 @@ app.use(passport.session());
 const {passportMethod, connection} = require('./passport');
 
 passportMethod(passport);
-
-
 
 //--| Begin Routes |--\\
 
@@ -44,7 +42,6 @@ app.get('/state', (req, res)=>{
     const query = `CALL getUserStateDetails(${req.user.id}, ${req.query.story})`;
 
     connection.query(query, function(error, data){
-        console.log(data);
         if (!error){
             let formattedData = formatStateData(data);
 
