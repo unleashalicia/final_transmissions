@@ -22,11 +22,8 @@ function completeChapter(chapter){
         chapter.classList.add('chapter-complete');
     }
 }
-// This function will be adjusted depending on how the data looks on backend
-// need to idenfity chapter by id or number so they don't all toggle together
 
 function initMap() {
-    console.log('map function called');
     map = new google.maps.Map(document.getElementById('map'), {
         center: {lat: 33.6348729, lng: -117.7405317},
         zoom: 14,

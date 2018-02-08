@@ -83,8 +83,6 @@ module.exports = {
                         return done(null, false);
                     }
 
-					console.log('Successful sign in');
-
                     return done(null, results[0].id);
                 });
             }));

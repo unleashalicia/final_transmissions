@@ -5,7 +5,6 @@ const connection = mysql.createConnection(credentials);
 
 module.exports = function (app, passport) {
 
-
 	app.post('/login',
 		passport.authenticate('local-signin', {
 			successRedirect: '/profile',
@@ -34,8 +33,6 @@ module.exports = function (app, passport) {
 
 
 	app.get('/profile', isLoggedIn, (req, res) => {
-		// let sql = `SELECT * FROM users WHERE id = ${req.user.id}`;
-
 		const sql1 = `SELECT user_name, email FROM users
     				WHERE id = ${req.user.id}`
 
@@ -50,7 +47,6 @@ module.exports = function (app, passport) {
 			sql1result = result;
 		});
 		connection.query(sql2,(err,result,fields)=>{
-			console.log(result);
 			res.render("profile",{
 				userdata: sql1result,
 				storydata: result
@@ -76,7 +72,6 @@ module.exports = function (app, passport) {
 
 
 		connection.query(sql,(err,result,fields)=>{
-			console.log(result);
 			res.render("story",{
 				storyDetails: result[0][0],
 				chapterDetails: result[1]
