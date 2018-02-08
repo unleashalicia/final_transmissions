@@ -475,9 +475,7 @@ function makeVisible(number){
 }
 //++
 //++
-function loadARObjects(){
-    console.log("I'm loading your objects!!!");
-}
+
 //++
 //++
 function handleARvisibility(){

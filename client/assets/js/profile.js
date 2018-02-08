@@ -8,7 +8,7 @@ function handleEventHandlers(){
     const noBtn = document.querySelector(".no");
     const logOutModal = document.querySelector(".logOut-container");
     const editText = document.querySelectorAll(".edit-text");
-    // debugger;
+
 
     editText.forEach((elem)=>elem.addEventListener("click",makeInput))
         //for email to input change
@@ -23,10 +23,9 @@ function handleEventHandlers(){
     }
 
     heightMonitor();
-//     checkStories();
 }
 
-function heightMonitor(){ //Monitors if the container height vs window height to accomodate the fog animation.
+function heightMonitor(){ //Monitors if the container height vs window height to accommodate the fog animation.
     const userContainer = document.querySelector('#user-container');
     if(userContainer.offsetHeight<window.innerHeight){
         userContainer.style.height="100vh"
@@ -104,8 +103,3 @@ const inputData = elem.previousSibling.value
     });
 }
 
-// function checkStories(){
-//     if(!document.querySelector('.story-list li')){
-//         document.querySelector('.story-container h3').innerText="visit the Library to start a story"
-//     }
-// }
