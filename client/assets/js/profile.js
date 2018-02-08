@@ -22,10 +22,9 @@ function handleEventHandlers(){
     }
 
     heightMonitor();
-//     checkStories();
 }
 
-function heightMonitor(){ //Monitors if the container height vs window height to accomodate the fog animation.
+function heightMonitor(){ //Monitors if the container height vs window height to accommodate the fog animation.
     const userContainer = document.querySelector('#user-container');
     if(userContainer.offsetHeight<window.innerHeight){
         userContainer.style.height="100vh"

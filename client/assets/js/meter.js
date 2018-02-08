@@ -456,6 +456,7 @@ function makeVisible(number){
 }
 //++
 //++
+
 function handleARvisibility(){
     if (!next && distance < target.talkThreshold){
         next = true;
