@@ -8,7 +8,6 @@ function handleEventHandlers(){
     const noBtn = document.querySelector(".no");
     const logOutModal = document.querySelector(".logOut-container");
     const editText = document.querySelectorAll(".edit-text");
-    // debugger;
 
     editText.forEach((elem)=>elem.addEventListener("click",makeInput))
         //for email to input change
@@ -86,7 +85,6 @@ function revertInput(){//function reverting the input back to email
 }
 
 
-
 function updateEmail(elem){// dummy axios call to be filled up when the change to email is going to be implemented
 const inputData = elem.previousSibling.value
     axios.put({
@@ -103,9 +101,3 @@ const inputData = elem.previousSibling.value
         console.error(errorMsg, error);
     });
 }
-
-// function checkStories(){
-//     if(!document.querySelector('.story-list li')){
-//         document.querySelector('.story-container h3').innerText="visit the Library to start a story"
-//     }
-// }
