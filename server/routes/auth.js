@@ -56,9 +56,12 @@ module.exports = function (app, passport) {
 
 
 	app.get('/library', isLoggedIn, (req, res) => {
-		let sql = `SELECT * FROM stories`;
+		let sql = `SELECT s.*, us.state_id FROM stories AS s 
+					LEFT JOIN user_stories AS us 
+					ON s.id = us.story_id AND us.id = ?`;
+		let user = req.user.id;
 
-		connection.query(sql,(err,result,fields)=>{
+		connection.query(sql, user, (err,result,fields)=>{
 			res.render("library",{
 				storydata: result
 			});
