@@ -258,6 +258,15 @@ img {
     left: 0;
 }
 
+.continue {
+    position: absolute;
+    bottom: 10%;
+    padding: 3%;
+    z-index: 1000;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
 @keyframes noise-3 {
     0%, 3%, 5%, 42%, 44%, 100% {opacity: 1; transform: scaleY(1);}
     4.3% {opacity: 1; transform: scaleY(1.7);}
