@@ -22,6 +22,29 @@ body {
     position: relative;
 }
 
+/********  orientation warning *****************/
+.warning {
+    height: 100vh;
+    width: 100vw;
+    position: relative;
+    background-color: black;
+    text-align: center;
+    z-index: 1000;
+    display: none;
+    margin: auto;
+}
+
+.warning h1 {
+    width: 90%;
+    color: white;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    margin: 0;
+}
+
+
 /******** nav bar - desktop ******************/
 
 
@@ -243,6 +266,19 @@ img {
 
 
 /************ Media Queries ****************/
+@media screen and (max-width: 768px) and (orientation: landscape) {
+
+    .warning{
+        display: block;
+    }
+}
+
+@media screen and (max-height: 320px){
+    .warning {
+        display: block;
+    }
+}
+
 
 @media screen and (max-width: 768px){
     .button-container {
