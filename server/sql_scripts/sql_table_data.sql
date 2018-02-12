@@ -15,11 +15,11 @@ INSERT INTO `augmented_reality` (`story_id`, `state_id`, `marker`) VALUES
 
 
 INSERT INTO `location` (`story_id`, `state_id`, `latitude`, `longitude`, `outer_threshold`, `inner_threshold`) VALUES
-(1, 1, '33.6347489', '-117.7406006', 100000, 100000),
-(1, 2, '33.6353568', '-117.7411797', 100000, 100000),
-(1, 3, '33.6352599', '-117.7419794', 100000, 100000),
-(1, 4, '33.6352078', '-117.7427459', 100000, 100000),
-(1, 5, '33.6349192', '-117.743631', 10000, 10000);
+(1, 1, '33.6347489', '-117.7406006', 75, 12),
+(1, 2, '33.6353568', '-117.7411797', 75, 12),
+(1, 3, '33.6352599', '-117.7419794', 75, 12),
+(1, 4, '33.6352078', '-117.7427459', 75, 9),
+(1, 5, '33.6349192', '-117.743631', 75, 9);
 
 
 INSERT INTO `states` (`story_id`, `state_id`, `state_details`) VALUES
@@ -30,20 +30,12 @@ INSERT INTO `states` (`story_id`, `state_id`, `state_details`) VALUES
 (1, 5, 'Chapter Five');
 
 
-DROP TABLE IF EXISTS `state_actions`;
-CREATE TABLE `state_actions` (
-  `story_id` smallint(5) NOT NULL,
-  `state_id` smallint(3) NOT NULL,
-  `action` varchar(15) NOT NULL,
-  `next_state_id` varchar(10) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
-
 INSERT INTO `state_actions` (`story_id`, `state_id`, `action`, `next_state_id`) VALUES
 (1, 1, 'proceed', '2'),
 (1, 2, 'proceed', '3'),
 (1, 3, 'proceed', '4'),
-(1, 4, 'proceed', '5');
+(1, 4, 'proceed', '5'),
+(1, 5, 'proceed', '1');
 
 
 INSERT INTO `stories` (`id`, `name`, `story_img`, `status`) VALUES
