@@ -35,7 +35,7 @@ module.exports = function (app, passport) {
 		if (req.isAuthenticated()){
 			res.redirect('/profile');
 		} else {
-			res.sendFile(path.join(__dirname,'..', 'client', 'index.html'));
+			res.sendFile(path.join(__dirname,'..','..', 'client', 'index.html'));
 		}
 	});
 
