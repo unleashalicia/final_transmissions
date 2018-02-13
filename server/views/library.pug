@@ -7,7 +7,7 @@ html(lang="en")
         link(rel="icon" type="image/png" href="../../assets/css/story.css")
         title Library
     body
-        #warning 
+        .warning 
             h1 This game is meant to be played in portrait mode. Please rotate your phone.
         section#story-container
             nav
@@ -38,8 +38,12 @@ html(lang="en")
 
                             a.book-container(href='/story/id/' + val.id)
                                 img.book(src='assets/images/library/book1.png')
-
-
+                                    
+                            if val.state_id
+                                
+                                button.continue Continue
+                                    a.book-container(href='/story/id/' + val.id)
+                                
                         else 
                             .lock-container
                                 img.lock.mobile(src="assets/images/mobile/library/lock.png")
