@@ -111,7 +111,9 @@ h1{
     height: 35px;
     margin-bottom: 1%;
     border-radius: 2%;
+    padding-left: 4px;
     border-style: none;
+    border: 2px solid transparent;
 }
 
 .form-group div input::placeholder{
