@@ -28,9 +28,9 @@ passportMethod(passport);
 require('./routes/auth.js')(app, passport);
 
 
-app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname,'..', 'client', 'index.html'));
-});
+// app.get('/', (req, res) => {
+//     res.sendFile(path.join(__dirname,'..', 'client', 'index.html'));
+// });
 
 
 app.get('/about', (req,res) => {
