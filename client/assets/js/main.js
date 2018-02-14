@@ -2,7 +2,6 @@ document.addEventListener("DOMContentLoaded", init);
 
 function init(){
   handleEvents();
-  handleLogError()
 }
 
 function handleEvents(){
@@ -10,14 +9,16 @@ function handleEvents(){
   const landingBtns = document.querySelectorAll('.landingbtn');
   const formBtns = document.querySelectorAll('.formButton');
   const repeatPass = document.querySelector('.repeat-pass');
-  assignClickHandlers(landingBtns, handleLandingBtn);
-  assignClickHandlers(cancelBtns, handleCancel);
-  detectInputChange()
+  const inputs = document.querySelectorAll('input');
+  assignEventHandlers(landingBtns,'click', handleLandingBtn);
+  assignEventHandlers(cancelBtns,'click', handleCancel);
+  assignEventHandlers(inputs, 'change', detectInputChange );
+  handleLogError()
 }
 
-function assignClickHandlers(arr, eventfunction){
+function assignEventHandlers(arr, eventTrigger, eventfunction){
   for(let i=0;i<arr.length;i++){
-    arr[i].addEventListener('click', eventfunction)
+    arr[i].addEventListener(eventTrigger, eventfunction)
   }
 }
 
@@ -32,7 +33,7 @@ function handleCancel(event){
     setTimeout(function () {
       grandParent.classList.remove('fade-in');
       grandParent.classList.remove('fade-out');
-  }, 300);
+    }, 300);
     greeting.classList.remove('fade-out');
     greeting.classList.add('fade-in');
     about.classList.add('fade-in');
@@ -72,11 +73,6 @@ function handleLogError(){
 
 
 function detectInputChange(){
-    const inputs = document.querySelectorAll('input');
-    for(let i=0;i<inputs.length;i++){
-      inputs[i].addEventListener('change', function(){
-        document.querySelector('.error-sign').classList.add('hide');
-        document.querySelector('.error-log').classList.add('hide');
-      });
-    }
+    document.querySelector('.error-sign').classList.add('hide');
+    document.querySelector('.error-log').classList.add('hide');
 }
