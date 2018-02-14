@@ -25,6 +25,7 @@
                     <input pattern="^[\w\Wa?]*[@]{1}[a-zA-Z]*\.[A-Za-z]{2,6}(?:\.{1}[A-Za-z]{2,6})?$" title="Please input a valid email format i.e. must contain a username followed by '@' sign and followed by a domain name e.g. gmail.com " type="email" placeholder="Email" name="email"  required/>
                     <input pattern="^(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])\w{5,20}$" class="password" type="password" placeholder="Password" title="Must be between 5 and 20 characters long and contain one capital letter, one lower case letter, and one number" name="password" required/>
                     <input pattern="^(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])\w{5,20}$" class="repeat-pass" type="password" title="Must match previously entered password" placeholder="Repeat Password" name="password2" required/>
+                    <h3 class="error-sign hide"> username has been used  </h3>
                 </div>
                 <button type="submit" class="formButton btnSign" >Confirm</button>
                 <button type="reset" class="cancel">Cancel</button>
@@ -36,6 +37,7 @@
                 <div>
                     <input type="text" placeholder="Username" name="user_name"  />
                     <input type="password" placeholder="Password" name="password"  />
+                    <h3 class="error-log hide"> Incorrect username or password </h3>
                 </div>
                 <button type="submit" class="formButton btnLog">Confirm</button>
                 <button type="reset" class="cancel">Cancel</button>
