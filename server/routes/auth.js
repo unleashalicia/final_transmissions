@@ -8,7 +8,7 @@ module.exports = function (app, passport) {
 	app.post('/login',
 		passport.authenticate('local-signin', {
 			successRedirect: '/profile',
-			failureRedirect: '/'
+			failureRedirect: '/login'
 		})
 	);
 
@@ -16,7 +16,7 @@ module.exports = function (app, passport) {
 	app.post('/signup',
 		passport.authenticate('local-signup', {
 			successRedirect: '/instructions',
-			failureRedirect: '/'
+			failureRedirect: '/signup'
 		})
 	);
 
