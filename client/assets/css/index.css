@@ -29,7 +29,7 @@ body{
 .about a {
     text-decoration: none;
     text-shadow: 1px 1px whitesmoke;
-    color: #202020fa;
+    color: whitesmoke;
     font-size: 1.75em;
 }
 
@@ -313,6 +313,10 @@ button{
     }
     .open{
         font-size: 5vmin;
+    }
+
+    .about a {
+        color: black;
     }
 
 }
