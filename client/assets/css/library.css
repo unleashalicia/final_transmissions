@@ -260,7 +260,7 @@ img {
 
 .continue {
     position: absolute;
-    bottom: 10%;
+    bottom: 2%;
     padding: 3%;
     z-index: 1000;
     left: 50%;
@@ -340,11 +340,16 @@ img {
     }
 
     .title {
-        height: 25%;
+        height: 20%;
     }
 
     .book {
         width: 20vw;
+    }
+
+    .continue {
+        padding: 2%;
+        bottom: 0%;
     }
 
 }

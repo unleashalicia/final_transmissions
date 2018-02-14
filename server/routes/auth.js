@@ -31,6 +31,14 @@ module.exports = function (app, passport) {
 		res.sendFile(path.join(__dirname, '..', '..', 'client', 'instructions.html'));
 	});
 
+	app.get('/', (req, res) => {
+		if (req.isAuthenticated()){
+			res.redirect('/profile');
+		} else {
+			res.sendFile(path.join(__dirname,'..','..', 'client', 'index.html'));
+		}
+	});
+
 
 	app.get('/profile', isLoggedIn, (req, res) => {
 		const sql1 = `SELECT user_name, email FROM users
