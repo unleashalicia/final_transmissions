@@ -13,7 +13,9 @@ function handleEvents(){
   assignEventHandlers(landingBtns,'click', handleLandingBtn);
   assignEventHandlers(cancelBtns,'click', handleCancel);
   assignEventHandlers(inputs, 'change', detectInputChange );
+  assignEventHandlers(formBtns, 'click', submitValidation)
   handleLogError()
+  disableErrBubbles()
 }
 
 function assignEventHandlers(arr, eventTrigger, eventfunction){
@@ -75,4 +77,27 @@ function handleLogError(){
 function detectInputChange(){
     document.querySelector('.error-sign').classList.add('hide');
     document.querySelector('.error-log').classList.add('hide');
+}
+
+function disableErrBubbles(){
+    const inputs = document.querySelectorAll('input');
+    for(let i=0;i<inputs.length;i++){
+      inputs[i].addEventListener('invalid', function(event){
+         event.preventDefault();
+      });
+    }
+}
+
+function submitValidation(){
+    console.log('validating shit', this.parentNode.child);
+    const inputs = document.querySelectorAll('.formSign input');
+    for(let i = 0; i <  inputs.length ; i++){
+        if(inputs[i].validity.valueMissing){
+            inputs[i].nextElementSibling.innerText="Please fill in the input"
+            inputs[i].nextElementSibling.classList.remove('hide')
+        }else if(inputs[i].validity.patternMismatch){
+            inputs[i].nextElementSibling.innerText=inputs[i].getAttribute('title')
+            inputs[i].nextElementSibling.remove('hide')
+        }
+    }
 }
