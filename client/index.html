@@ -22,9 +22,9 @@
                         <span class="error user "></span>
                     <input pattern="^[\w\Wa?]*[@]{1}[a-zA-Z]*\.[A-Za-z]{2,6}(?:\.{1}[A-Za-z]{2,6})?$" title="Please input a valid email format i.e. must contain a username followed by '@' sign and followed by a domain name e.g. gmail.com " type="email" placeholder="Email" name="email"  required/>
                         <span class="error email "></span>
-                    <input pattern="^(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])\w{5,20}$" type="password" placeholder="Password" title="Must be between 5 and 20 characters long and contain one capital letter, one lower case letter, and one number" name="password" required/>
+                    <input class="password" pattern="^(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])\w{5,20}$" type="password" placeholder="Password" title="Must be between 5 and 20 characters long and contain one capital letter, one lower case letter, and one number" name="password" required/>
                         <span class="error password"></span>
-                    <input pattern="^(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])\w{5,20}$" type="password" title="Must match previously entered password" placeholder="Repeat Password" name="password2" required/>
+                    <input class="repeat-pass" pattern="^(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])\w{5,20}$" type="password" title="Must match previously entered password" placeholder="Repeat Password" name="password2" required/>
                         <span class="error repeat-pass"></span>
                     <h3 class="error-sign hide"> username is already in use  </h3>
                 </div>

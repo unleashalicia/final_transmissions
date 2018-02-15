@@ -8,9 +8,9 @@ function handleEvents(){
   const cancelBtns = document.querySelectorAll('.cancel');
   const landingBtns = document.querySelectorAll('.landingbtn');
   const formBtns = document.querySelectorAll('.formButton');
-  const repeatPass = document.querySelector('.repeat-pass');
   const inputs = document.querySelectorAll('input');
   const inputErr = document.querySelectorAll('.error');
+  const repeatPass = document.querySelector('input.repeat-pass');
   assignEventHandlers(landingBtns,'click', handleLandingBtn);
   assignEventHandlers(cancelBtns,'click', handleCancel);
   assignEventHandlers(inputs, 'change', detectInputChange );
@@ -18,6 +18,7 @@ function handleEvents(){
   assignEventHandlers(inputErr, 'click', hideError);
   assignEventHandlers(inputs, 'click', hideError);
   assignEventHandlers(inputs, 'keypress', hideError);
+  repeatPass.onkeyup = passwordValidation;
   handleLogError()
   disableErrBubbles()
 }
@@ -105,6 +106,15 @@ function submitValidation(){
             spanSibling.classList.add('fade-in');
           return;
         }
+    }
+}
+
+function passwordValidation(){
+    const password = document.querySelector('input.password');
+    const repeatPass = document.querySelector('input.repeat-pass');
+    if( password.value !== repeatPass.value ){
+        this.nextElementSibling.innerText="Passwords don't match";
+        this.nextElementSibling.classList.add('fade-in');
     }
 }
 
