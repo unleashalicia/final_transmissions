@@ -29,7 +29,7 @@ body{
 .about a {
     text-decoration: none;
     text-shadow: 1px 1px whitesmoke;
-    color: #202020fa;
+    color: whitesmoke;
     font-size: 1.75em;
 }
 
@@ -81,7 +81,7 @@ h1{
     animation: vanish 5s;
 }
 
-/**********MODAL FORM START********************/
+/**********FORM MODAL********************/
 .formLog, .formSign{
     display: none;
     position: absolute;
@@ -130,6 +130,10 @@ h1{
 
 .sign div input:invalid{
     border: 2px solid rgba(255, 0, 0, 0.7);
+}
+
+.error-sign , .error-log{
+    color: red;
 }
 
 #error{
@@ -181,7 +185,7 @@ button{
 .hide{
     display: none;
 }
-/**********MODAL FORM END********************/
+/**********FORM  MODAL  END********************/
 
 
 .fade-in {
@@ -313,6 +317,10 @@ button{
     }
     .open{
         font-size: 5vmin;
+    }
+
+    .about a {
+        color: black;
     }
 
 }
