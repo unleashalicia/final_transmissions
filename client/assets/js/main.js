@@ -10,10 +10,14 @@ function handleEvents(){
   const formBtns = document.querySelectorAll('.formButton');
   const repeatPass = document.querySelector('.repeat-pass');
   const inputs = document.querySelectorAll('input');
+  const inputErr = document.querySelectorAll('.error');
   assignEventHandlers(landingBtns,'click', handleLandingBtn);
   assignEventHandlers(cancelBtns,'click', handleCancel);
   assignEventHandlers(inputs, 'change', detectInputChange );
-  assignEventHandlers(formBtns, 'click', submitValidation)
+  assignEventHandlers(formBtns, 'click', submitValidation);
+  assignEventHandlers(inputErr, 'click', hideError);
+  assignEventHandlers(inputs, 'click', hideError);
+  assignEventHandlers(inputs, 'keypress', hideError);
   handleLogError()
   disableErrBubbles()
 }
@@ -89,15 +93,25 @@ function disableErrBubbles(){
 }
 
 function submitValidation(){
-    console.log('validating shit', this.parentNode.child);
     const inputs = document.querySelectorAll('.formSign input');
     for(let i = 0; i <  inputs.length ; i++){
+        const spanSibling = inputs[i].nextElementSibling;
         if(inputs[i].validity.valueMissing){
-            inputs[i].nextElementSibling.innerText="Please fill in the input"
-            inputs[i].nextElementSibling.classList.remove('hide')
+            spanSibling.innerText="Please fill in the field";
+            spanSibling.classList.add('fade-in');
+          return;
         }else if(inputs[i].validity.patternMismatch){
-            inputs[i].nextElementSibling.innerText=inputs[i].getAttribute('title')
-            inputs[i].nextElementSibling.remove('hide')
+            spanSibling.innerText=inputs[i].getAttribute('title');
+            spanSibling.classList.add('fade-in');
+          return;
         }
+    }
+}
+
+function hideError(){
+    if(this.nextElementSibling.classList.contains('fade-in')){
+        this.nextElementSibling.classList.remove('fade-in');
+    }else if(this.classList.contains('fade-in')){
+        this.classList.remove('fade-in');
     }
 }

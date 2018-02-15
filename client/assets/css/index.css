@@ -136,7 +136,7 @@ h1{
 }
 
 .error{
-    display: inline-block;
+    display: none;
     position: absolute;
     width: 105%;
     color: red;
@@ -148,10 +148,16 @@ h1{
 }
 
 .error.user{
-    top: 10%;
+    top: 20%;
 }
 .error.email{
-    top: 32%;
+    top: 45%;
+}
+.error.password{
+    top: 70%;
+}
+.error.repeat-pass{
+    top: 95%;
 }
 
 
