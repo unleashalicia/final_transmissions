@@ -8,12 +8,19 @@ function handleEvents(){
   const cancelBtns = document.querySelectorAll('.cancel');
   const landingBtns = document.querySelectorAll('.landingbtn');
   const formBtns = document.querySelectorAll('.formButton');
-  const repeatPass = document.querySelector('.repeat-pass');
   const inputs = document.querySelectorAll('input');
+  const inputErr = document.querySelectorAll('.error');
+  const repeatPass = document.querySelector('input.repeat-pass');
   assignEventHandlers(landingBtns,'click', handleLandingBtn);
   assignEventHandlers(cancelBtns,'click', handleCancel);
   assignEventHandlers(inputs, 'change', detectInputChange );
+  assignEventHandlers(formBtns, 'click', submitValidation);
+  assignEventHandlers(inputErr, 'click', hideError);
+  assignEventHandlers(inputs, 'click', hideError);
+  assignEventHandlers(inputs, 'keypress', hideError);
+  repeatPass.onkeyup = passwordValidation;
   handleLogError()
+  disableErrBubbles()
 }
 
 function assignEventHandlers(arr, eventTrigger, eventfunction){
@@ -75,4 +82,46 @@ function handleLogError(){
 function detectInputChange(){
     document.querySelector('.error-sign').classList.add('hide');
     document.querySelector('.error-log').classList.add('hide');
+}
+
+function disableErrBubbles(){
+    const inputs = document.querySelectorAll('input');
+    for(let i=0;i<inputs.length;i++){
+      inputs[i].addEventListener('invalid', function(event){
+         event.preventDefault();
+      });
+    }
+}
+
+function submitValidation(){
+    const inputs = document.querySelectorAll('.formSign input');
+    for(let i = 0; i <  inputs.length ; i++){
+        const spanSibling = inputs[i].nextElementSibling;
+        if(inputs[i].validity.valueMissing){
+            spanSibling.innerText="Please fill in the field";
+            spanSibling.classList.add('fade-in');
+          return;
+        }else if(inputs[i].validity.patternMismatch){
+            spanSibling.innerText=inputs[i].getAttribute('title');
+            spanSibling.classList.add('fade-in');
+          return;
+        }
+    }
+}
+
+function passwordValidation(){
+    const password = document.querySelector('input.password');
+    const repeatPass = document.querySelector('input.repeat-pass');
+    if( password.value !== repeatPass.value ){
+        this.nextElementSibling.innerText="Passwords don't match";
+        this.nextElementSibling.classList.add('fade-in');
+    }
+}
+
+function hideError(){
+    if(this.nextElementSibling.classList.contains('fade-in')){
+        this.nextElementSibling.classList.remove('fade-in');
+    }else if(this.classList.contains('fade-in')){
+        this.classList.remove('fade-in');
+    }
 }
