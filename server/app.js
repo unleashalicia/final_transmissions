@@ -84,6 +84,10 @@ function errorHandler (err, req, res, next) {
 
 
 
+app.use(function (req, res, next) {
+    res.status(404).send("Sorry, but this page does not exist!")
+});
+
 
 app.listen(PORT, () => {
     console.log("Let's find some ghosts on port: ", PORT);
