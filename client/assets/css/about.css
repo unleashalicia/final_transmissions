@@ -171,6 +171,11 @@ section {
     text-decoration: none;
 }
 
+#email {
+    color: white;
+    text-decoration: none;
+}
+
 .git {
     filter: invert(100%);
     width: 40px;
