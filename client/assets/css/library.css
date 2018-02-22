@@ -127,7 +127,7 @@ button:hover {
 
 .nav-btn {
     height: 100%;
-    width: 28vw;
+    width: 30vw;
     z-index: 300;
     margin-top: 20%;
 }
@@ -135,12 +135,12 @@ button:hover {
 .triangle-left {
     width: 0;
     height: 0;
-    border-top: 10px solid transparent;
-    border-right: 20px solid rgba(235, 235, 235,.9);
-    border-bottom: 10px solid transparent;
+    border-top: 25px solid transparent;
+    border-right: 35px solid rgba(235, 235, 235,.9);
+    border-bottom: 25px solid transparent;
     position: absolute;
     top: 41%;
-    left: 20px;
+    left: 35px;
     transform: translate(-50%, -50%);
     z-index: 300;
 }
@@ -148,9 +148,9 @@ button:hover {
 .triangle-right {
     width: 0;
     height: 0;
-    border-top: 10px solid transparent;
-    border-left: 20px solid rgba(235, 235, 235,.9);
-    border-bottom: 10px solid transparent;
+    border-top: 25px solid transparent;
+    border-left: 35px solid rgba(235, 235, 235,.9);
+    border-bottom: 25px solid transparent;
     position: absolute;
     top: 41%;
     right: 0%;
@@ -176,7 +176,7 @@ button:hover {
     left: 50%;
     transform: translate(-50%, -50%);
     margin: 0;
-    font-size: 10.5vmin;
+    font-size: 10vmin;
     text-shadow: 2px 2px #252222;
     width: 100%;
 }
@@ -260,7 +260,7 @@ img {
 
 .continue {
     position: absolute;
-    bottom: 2%;
+    bottom: 5%;
     padding: 3%;
     z-index: 1000;
     left: 50%;
