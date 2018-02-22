@@ -5,7 +5,7 @@ const session = require('express-session');
 const path = require('path');
 
 const app = express();
-const PORT = 9000;
+const PORT = process.env.PORT || 9000;
 
 
 app.set("view engine","pug");
@@ -28,7 +28,15 @@ passportMethod(passport);
 require('./routes/auth.js')(app, passport);
 
 
-app.get('/', (req, res) => {
+// app.get('/', (req, res) => {
+//     res.sendFile(path.join(__dirname,'..', 'client', 'index.html'));
+// });
+
+app.get('/login', (req, res) => {
+    res.sendFile(path.join(__dirname,'..', 'client', 'index.html'));
+});
+
+app.get('/signup', (req, res) => {
     res.sendFile(path.join(__dirname,'..', 'client', 'index.html'));
 });
 
@@ -75,6 +83,10 @@ function errorHandler (err, req, res, next) {
 }
 
 
+
+app.use(function (req, res, next) {
+    res.status(404).send("Sorry, but this page does not exist!")
+});
 
 
 app.listen(PORT, () => {
