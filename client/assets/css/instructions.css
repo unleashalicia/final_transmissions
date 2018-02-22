@@ -76,6 +76,26 @@ nav ul{
     margin-right: 0.5em;
     color: white;
 }
+.warning {
+    height: 100vh;
+    width: 100vw;
+    position: relative;
+    background-color: black;
+    text-align: center;
+    z-index: 1000;
+    display: none;
+    margin: auto;
+}
+
+.warning h4 {
+    width: 90%;
+    color: white;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    margin: 0;
+}
 
 h2 {
     text-decoration: underline;
@@ -119,7 +139,26 @@ a {
 }
 
 /************* mobile *****************/
+@media screen and (max-width: 768px) and (orientation: landscape) {
 
+    .warning{
+        display: block;
+    }
+
+    #desktop {
+        display: none;
+    }
+}
+
+@media screen and (max-height: 320px){
+    .warning {
+        display: block;
+    }
+
+    #desktop {
+        display: none;
+    }
+}
 
 @media screen and (max-width: 500px){
 
