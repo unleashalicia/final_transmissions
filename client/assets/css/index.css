@@ -104,11 +104,12 @@ h1{
     position: relative;
     margin: 10% auto;
     margin-top:5%;
-    width: 50%;
+    width: 70%;
 }
 
 .form-group div input{
-    height: 35px;
+    font-size: 1em;
+    height: 7vh;
     margin-bottom: 1%;
     border-radius: 2%;
     padding-left: 4px;
@@ -138,6 +139,7 @@ h1{
 .error{
     display: none;
     position: absolute;
+    font-size: 1.3em;
     width: 105%;
     color: red;
     background-color: #dcdcdc;
@@ -174,7 +176,7 @@ button{
     height: 40px;
     border: 1px white solid;
     border-radius: 5%;
-    margin: 1%;
+    margin: 0 1%;
     font-family: walpergens;
     color: white;
     background-color: black;
@@ -301,7 +303,13 @@ button{
     #landing-container{
         background-image: url(../images/mobile/indexbg.jpg);
         background-position: center;
+        padding-bottom: 20px;
     }
+
+    body {
+        overflow: auto;
+    }
+
     h1{
         font-size: 10vmin;
     }
@@ -314,7 +322,6 @@ button{
     }
     .sign, .log{
         width: 100%;
-        margin-top: 25%;
     }
     .open{
         font-size: 5vmin;
