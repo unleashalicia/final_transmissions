@@ -101,7 +101,7 @@ function submitValidation(){
             if(inputs[i].getAttribute('name')==='password2'){
                 spanSibling.innerText="Please repeat previously entered password";
             } else {
-                spanSibling.innerText="Please fill in "+ inputs[i].getAttribute('name');
+                spanSibling.innerText="Please fill in "+ inputs[i].getAttribute('placeholder');
             }
             spanSibling.classList.add('fade-in');
           return;
