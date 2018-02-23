@@ -36,8 +36,10 @@
             <form class="log form-group" action="/login" method="POST">
                 <h1>Log In</h1>
                 <div>
-                    <input type="text" placeholder="Username" name="user_name"  />
-                    <input type="password" placeholder="Password" name="password"  />
+                    <input type="text" placeholder="Username" name="user_name" required />
+                        <span class="error user "></span>
+                    <input type="password" placeholder="Password" name="password" required />
+                        <span class="error password "></span>
                     <h3 class="error-log hide"> Incorrect username or password </h3>
                 </div>
                 <button type="submit" class="formButton btnLog">Confirm</button>
