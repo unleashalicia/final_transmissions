@@ -41,9 +41,10 @@ module.exports = {
         passport.use('local-signup', new LocalStrategy(localConfig,
             function (req, userHandle, password, done) {
                 process.nextTick(function () {
-                    debugger;
                     userHandle = userHandle.toLowerCase();
+
                     let sql = userSearchSQL(userHandle);
+                    
                     connection.query(sql, function (err, results, fields) {
                         if (err) {
                             return done(err)
