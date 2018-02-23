@@ -98,7 +98,11 @@ function submitValidation(){
     for(let i = 0; i <  inputs.length ; i++){
         const spanSibling = inputs[i].nextElementSibling;
         if(inputs[i].validity.valueMissing){
-            spanSibling.innerText="Please fill in the field";
+            if(inputs[i].getAttribute('name')==='password2'){
+                spanSibling.innerText="Please repeat previously entered password";
+            } else {
+                spanSibling.innerText="Please fill in "+ inputs[i].getAttribute('placeholder');
+            }
             spanSibling.classList.add('fade-in');
           return;
         }else if(inputs[i].validity.patternMismatch){
