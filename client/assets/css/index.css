@@ -128,7 +128,7 @@ h1{
     border: 1px solid whitesmoke;
 }
 
-.sign div input:invalid{
+div input.invalid{
     border: 2px solid rgba(255, 0, 0, 0.7);
 }
 
@@ -152,12 +152,22 @@ h1{
 .error.user{
     top: 20%;
 }
+
+.log .error.user{
+    top: 35%;
+}
+
+.log .error.password{
+    top: 80%;
+}
+
 .error.email{
     top: 45%;
 }
 .error.password{
     top: 70%;
 }
+
 .error.repeat-pass{
     top: 95%;
 }

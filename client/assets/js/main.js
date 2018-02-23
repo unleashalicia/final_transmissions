@@ -14,10 +14,11 @@ function handleEvents(){
   assignEventHandlers(landingBtns,'click', handleLandingBtn);
   assignEventHandlers(cancelBtns,'click', handleCancel);
   assignEventHandlers(inputs, 'change', detectInputChange );
-  assignEventHandlers(formBtns, 'click', submitValidation);
+  assignEventHandlers(formBtns, 'click', inputValidation);
   assignEventHandlers(inputErr, 'click', hideError);
   assignEventHandlers(inputs, 'click', hideError);
   assignEventHandlers(inputs, 'keypress', hideError);
+  assignEventHandlers(inputs, 'focusout', inputValidation);
   repeatPass.onkeyup = passwordValidation;
   handleLogError()
   disableErrBubbles()
@@ -45,6 +46,9 @@ function handleCancel(event){
     greeting.classList.add('fade-in');
     about.classList.add('fade-in');
     about.classList.remove('fade-out');
+    if(document.querySelector('.log .error').classList.contains('fade-in') || document.querySelector('.sign .error').classList.contains('fade-in')){
+        document.querySelector('.error.fade-in').classList.remove('fade-in');
+    }
 }
 
 function handleLandingBtn(){
@@ -93,8 +97,11 @@ function disableErrBubbles(){
     }
 }
 
-function submitValidation(){
-    const inputs = document.querySelectorAll('.formSign input');
+function inputValidation(){
+    let inputs = document.querySelectorAll('.sign input');
+    if(this.parentElement.parentElement.classList.contains('log')){
+        inputs = document.querySelectorAll('.log input')
+    }
     for(let i = 0; i <  inputs.length ; i++){
         const spanSibling = inputs[i].nextElementSibling;
         if(inputs[i].validity.valueMissing){
@@ -104,19 +111,23 @@ function submitValidation(){
                 spanSibling.innerText="Please fill in "+ inputs[i].getAttribute('placeholder');
             }
             spanSibling.classList.add('fade-in');
+            inputs[i].classList.add('invalid');
           return;
         }else if(inputs[i].validity.patternMismatch){
             spanSibling.innerText=inputs[i].getAttribute('title');
             spanSibling.classList.add('fade-in');
+            inputs[i].classList.add('invalid')
           return;
         }
     }
 }
 
+
 function passwordValidation(){
     const password = document.querySelector('input.password');
     const repeatPass = document.querySelector('input.repeat-pass');
     if( password.value !== repeatPass.value ){
+        this.classList.add('invalid');
         this.nextElementSibling.innerText="Passwords don't match";
         this.nextElementSibling.classList.add('fade-in');
     }
@@ -125,7 +136,9 @@ function passwordValidation(){
 function hideError(){
     if(this.nextElementSibling.classList.contains('fade-in')){
         this.nextElementSibling.classList.remove('fade-in');
+        this.classList.remove('invalid');
     }else if(this.classList.contains('fade-in')){
         this.classList.remove('fade-in');
+        this.previousElementSibling.classList.remove('invalid');
     }
 }
