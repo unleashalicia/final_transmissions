@@ -295,11 +295,15 @@ function handleOrientation(event){
     const gaugeWrapper = document.getElementById('gauge-wrapper');
     const camera = document.getElementById('camera');
     const tilt = document.querySelector('.tilt');
+    const outOfRange = document.querySelector('.out-of-range');
+
+    handleOutOfRange()
 
     if(screen.orientation.type === 'portrait-primary'){
         gaugeWrapper.style.display="block"
         camera.style.display="none"
         tilt.style.display="none"
+        outOfRange.style.display="none"
     }else{
         gaugeWrapper.style.display="none"
         camera.style.display="block"
@@ -342,6 +346,9 @@ function getLocation() {
 
         //decide whether to play or stop current audio tracks
         handleAudioPlayback(distance);
+
+        //message to indicate user is out of range on AR module
+        handleOutOfRange();
     }
 
     function showError(err){
@@ -351,6 +358,15 @@ function getLocation() {
         if (errorCount > 10){
             window.location.href = "/profile";
         }
+    }
+}
+
+function handleOutOfRange(){
+    const outOfRange = document.querySelector('.out-of-range');
+    if(distance > target.loopThreshold && deviceOn){
+        outOfRange.style.display="block";
+    }else{
+        outOfRange.style.display="none";
     }
 }
 //++

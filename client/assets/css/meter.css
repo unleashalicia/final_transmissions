@@ -140,7 +140,7 @@ body * {
     height: 20px;
 }
 
-.tilt{
+.tilt, .out-of-range{
     display: none;
     color: #cbba63;
     position: absolute;
