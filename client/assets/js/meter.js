@@ -363,7 +363,7 @@ function getLocation() {
 
 function handleOutOfRange(){
     const outOfRange = document.querySelector('.out-of-range');
-    if(distance > target.loopThreshold && deviceOn){
+    if(distance > target.talkThreshold && deviceOn){
         outOfRange.style.display="block";
     }else{
         outOfRange.style.display="none";
