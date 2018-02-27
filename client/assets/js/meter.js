@@ -109,6 +109,7 @@ function handleAudioPlayback(dist){
                 sounds[1].fade(0,0.9,1500,speaking);
             }
         }
+        document.querySelector('.out-of-range').style.display="none";
     } else if (dist > target.talkThreshold && sounds[1].playing(speaking)){
         sounds[1].fade(0.9,0,1500,speaking).once('fade',function(){
             sounds[1].pause(speaking);
