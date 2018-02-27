@@ -8,7 +8,7 @@ module.exports = function (app, passport) {
 	app.post('/login',
 		passport.authenticate('local-signin', {
 			successRedirect: '/profile',
-			failureRedirect: '/'
+			failureRedirect: '/login'
 		})
 	);
 
@@ -16,7 +16,7 @@ module.exports = function (app, passport) {
 	app.post('/signup',
 		passport.authenticate('local-signup', {
 			successRedirect: '/instructions',
-			failureRedirect: '/'
+			failureRedirect: '/signup'
 		})
 	);
 
@@ -41,22 +41,22 @@ module.exports = function (app, passport) {
 
 
 	app.get('/profile', isLoggedIn, (req, res) => {
-		const sql1 = `SELECT user_name, email FROM users
-    				WHERE id = ${req.user.id}`
+		const user_profile_data = `SELECT user_name, email FROM users
+    				WHERE id = ${req.user.id}`;
 
-		const sql2 = `SELECT s.name, s.id FROM user_stories AS us
+		const user_story_data = `SELECT s.name, s.id FROM user_stories AS us
 					JOIN stories AS s
     				ON s.id = us.story_id
-    				WHERE us.id = ${req.user.id}`
+    				WHERE us.id = ${req.user.id}`;
 
-		var sql1result;
+		var user_profile_results;
 
-		connection.query(sql1,(err,result,fields) => {
-			sql1result = result;
+		connection.query(user_profile_data, (err,result,fields) => {
+			user_profile_results = result;
 		});
-		connection.query(sql2,(err,result,fields)=>{
+		connection.query(user_story_data, (err,result,fields)=>{
 			res.render("profile",{
-				userdata: sql1result,
+				userdata: user_profile_results,
 				storydata: result
 			});
 		});

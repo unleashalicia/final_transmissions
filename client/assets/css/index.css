@@ -29,7 +29,7 @@ body{
 .about a {
     text-decoration: none;
     text-shadow: 1px 1px whitesmoke;
-    color: #202020fa;
+    color: whitesmoke;
     font-size: 1.75em;
 }
 
@@ -81,7 +81,7 @@ h1{
     animation: vanish 5s;
 }
 
-/**********MODAL FORM START********************/
+/**********FORM MODAL********************/
 .formLog, .formSign{
     display: none;
     position: absolute;
@@ -101,15 +101,15 @@ h1{
 .form-group div {
     display: flex;
     flex-flow: column nowrap;
+    position: relative;
     margin: 10% auto;
     margin-top:5%;
-    width: 50%;
+    width: 70%;
 }
 
 .form-group div input{
-    display: flex;
-    flex-flow: column nowrap;
-    height: 35px;
+    font-size: 1em;
+    height: 7vh;
     margin-bottom: 1%;
     border-radius: 2%;
     padding-left: 4px;
@@ -128,33 +128,50 @@ h1{
     border: 1px solid whitesmoke;
 }
 
-.sign div input:invalid{
+div input.invalid{
     border: 2px solid rgba(255, 0, 0, 0.7);
 }
 
-#error{
-    background-color: whitesmoke;
-    margin: 2% auto;
-    color:black;
-    width: 50%;
-    border-radius: 8px;
+.error-sign , .error-log{
+    color: red;
+}
+
+.error{
     display: none;
+    position: absolute;
+    font-size: 1.3em;
+    width: 105%;
+    color: red;
+    background-color: #dcdcdc;
+    padding: 2px;
+    border: 1px #a01010 solid;
+    border-radius: 5px;
+    left: 1%;
 }
 
-#error h4{
-    margin: 10px auto;
+.error.user{
+    top: 20%;
 }
 
-#error ul{
-    text-align: left;
-    margin-top: 0;
-    padding: 5px;
+.log .error.user{
+    top: 35%;
 }
 
-#error ul li{
-    color: darkred;
-    list-style-type: none;
+.log .error.password{
+    top: 80%;
 }
+
+.error.email{
+    top: 45%;
+}
+.error.password{
+    top: 70%;
+}
+
+.error.repeat-pass{
+    top: 95%;
+}
+
 
 .sign, .log{
     margin: auto;
@@ -169,7 +186,7 @@ button{
     height: 40px;
     border: 1px white solid;
     border-radius: 5%;
-    margin: 1%;
+    margin: 0 1%;
     font-family: walpergens;
     color: white;
     background-color: black;
@@ -181,7 +198,7 @@ button{
 .hide{
     display: none;
 }
-/**********MODAL FORM END********************/
+/**********FORM  MODAL  END********************/
 
 
 .fade-in {
@@ -296,7 +313,13 @@ button{
     #landing-container{
         background-image: url(../images/mobile/indexbg.jpg);
         background-position: center;
+        padding-bottom: 20px;
     }
+
+    body {
+        overflow: auto;
+    }
+
     h1{
         font-size: 10vmin;
     }
@@ -309,10 +332,13 @@ button{
     }
     .sign, .log{
         width: 100%;
-        margin-top: 25%;
     }
     .open{
         font-size: 5vmin;
+    }
+
+    .about a {
+        color: black;
     }
 
 }

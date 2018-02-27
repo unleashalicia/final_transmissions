@@ -41,7 +41,10 @@ module.exports = {
         passport.use('local-signup', new LocalStrategy(localConfig,
             function (req, userHandle, password, done) {
                 process.nextTick(function () {
+                    userHandle = userHandle.toLowerCase();
+
                     let sql = userSearchSQL(userHandle);
+                    
                     connection.query(sql, function (err, results, fields) {
                         if (err) {
                             return done(err)
@@ -50,6 +53,7 @@ module.exports = {
                         if (results[0]) {
                             return done(null, false);
                         } else {
+                            req.body.user_name = req.body.user_name.toLowerCase();
                             let sql = userCreateSQL(req.body);
 
                             connection.query(sql, function (err, results, fields) {
@@ -66,8 +70,9 @@ module.exports = {
         // regular user sign-in
         passport.use('local-signin', new LocalStrategy(localConfig,
             function (req, userHandle, password, done) {
-                let sql = userSearchSQL(userHandle);
+                userHandle = userHandle.toLowerCase();
 
+                let sql = userSearchSQL(userHandle);
 
                 connection.query(sql, function (err, results, fields) {
 

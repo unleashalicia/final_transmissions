@@ -395,7 +395,12 @@ function moveToNextChapter(){
     const storyID = sessionStorage.getItem('story_id');
 
     axios.post('/action',{story: Number(storyID), action: 'proceed'}).then(() => {
-        window.location.href = '/play';
+        if (chapter !== 5){
+            window.location.href = '/play';
+        } else {
+            window.location.href = '/profile';
+        }
+
     }).catch( error => {
         window.location.href = "/story/id/" + axiosOptions.params.story;
     });
@@ -467,6 +472,7 @@ function handleARvisibility(){
 function markerListener(){
     const nextEvent = document.querySelector(".next-event");
     const tilt = document.querySelector('.tilt');
+    if (chapter === 5) nextEvent.textContent = 'End Story';
     nextEvent.classList.remove("hide");
     tilt.style.display="block";
     if (chapter == 5){
