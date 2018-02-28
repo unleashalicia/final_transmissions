@@ -488,9 +488,11 @@ function handleARvisibility(){
 //++
 function markerListener(){
     const nextEvent = document.querySelector(".next-event");
+    const spectralRangeTooFar = document.querySelector('p.out-of-range');
     const tilt = document.querySelector('.tilt');
     if (chapter === 5) nextEvent.textContent = 'End Story';
     nextEvent.classList.remove("hide");
+    spectralRangeTooFar.classList.add('hide');
     tilt.style.display="block";
     if (chapter == 5){
         ending = sounds[2].play();
